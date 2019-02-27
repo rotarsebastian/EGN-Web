@@ -10,7 +10,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
 export class AppComponent {
   emailIsValid: boolean = false;
   passwordIsValid: boolean = false;
-  email: string;
+  emailToRecoverAccount: string;
 
   constructor(public dialog: MatDialog) {}
 
@@ -19,15 +19,15 @@ export class AppComponent {
 
     dialogRef.afterClosed().subscribe(result => {
       if (!!result) {
-        this.email = result;
+        this.emailToRecoverAccount = result;
+        console.log(this.emailToRecoverAccount);
       } else {
-        console.log("The dialog is undefined " + result);
+        console.log("The dialog is undefined");
       }
     });
   }
 
   instantValidationEmail(event: any) {
-    console.log(event);
     if (event.srcElement.classList.contains("ng-valid")) {
       this.emailIsValid = true;
       event.srcElement.classList.remove("invalid-input");
@@ -38,7 +38,6 @@ export class AppComponent {
   }
 
   instantValidationPassword(event: any) {
-    console.log(event);
     if (event.srcElement.classList.contains("ng-valid")) {
       this.passwordIsValid = true;
       event.srcElement.classList.remove("invalid-input");
@@ -49,7 +48,6 @@ export class AppComponent {
   }
 
   onLogin(loginForm: NgForm) {
-    console.log(loginForm);
     loginForm.reset();
   }
 }
@@ -61,10 +59,21 @@ export class AppComponent {
 })
 export class ModalComponent {
   email: string;
+  emailIsValid: boolean = false;
 
   constructor(public dialogRef: MatDialogRef<ModalComponent>) {}
 
   onNoClick(): void {
     this.dialogRef.close();
+  }
+
+  instantValidationEmail(event: any) {
+    if (event.srcElement.classList.contains("ng-valid")) {
+      this.emailIsValid = true;
+      event.srcElement.classList.remove("invalid-input");
+    } else {
+      this.emailIsValid = false;
+      event.srcElement.classList.add("invalid-input");
+    }
   }
 }
