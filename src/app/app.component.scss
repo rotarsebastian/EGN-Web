@@ -182,6 +182,12 @@ input.ng-dirty.ng-touched.ng-invalid {
 input:focus {
   outline: none;
   border: 1px solid $font-blue-color;
+  background: white !important;
+}
+
+button:focus,
+button:active {
+  outline: none;
 }
 
 ::placeholder {
@@ -203,6 +209,7 @@ input:focus {
   width: 100%;
   display: flex;
   justify-content: space-between;
+  margin-top: 1.25rem;
 }
 
 .forgot-pass-button {
@@ -276,14 +283,62 @@ hr {
 }
 
 .orBarContainer {
-  margin-top: 5rem;
   display: flex;
   justify-content: space-between;
+  margin-top: 1.25rem;
 }
 
 #orWord {
   color: #8e8f90;
   opacity: 0.6;
+}
+
+#downloadText {
+  color: #969090;
+  text-align: center;
+  -webkit-font-smoothing: antialiased;
+  font-weight: normal;
+  font-size: 0.85rem;
+  opacity: 0.85;
+}
+
+.app-icons-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1.5rem;
+}
+
+.google-svg {
+  background: $font-blue-color;
+  opacity: 0.45;
+  border-radius: 8px;
+}
+
+.single-icon-container {
+  width: 50%;
+  display: inline-block;
+  text-align: center;
+}
+
+.single-icon-container svg {
+  width: 20%;
+  height: auto;
+}
+
+.single-icon-container div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.single-icon-container p {
+  padding: 0 0.8rem;
+  color: #969090;
+  -webkit-font-smoothing: antialiased;
+  font-weight: normal;
+  opacity: 0.85;
 }
 
 @media only screen and (max-width: 999px) {
