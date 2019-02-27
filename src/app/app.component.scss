@@ -1,0 +1,338 @@
+//========Imports=========
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro");
+
+//========Variables=========
+$font-blue-color: #1b3d5d;
+$font-white-color: #f6f6f6;
+$font-family: "Source Sans Pro", sans-serif;
+
+//========General settings=========
+body {
+  font-family: $font-family;
+}
+
+//========Background image=========
+#backgroung-img {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: url("./assets/buildings.jpg");
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
+  height: 100vh;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -1;
+}
+
+//========Flexbox settings=========
+.container {
+  font-family: "Source Sans Pro", sans-serif;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: row wrap;
+  justify-content: space-between;
+  height: 100vh;
+  width: 100%;
+}
+
+.flex-item {
+  width: 50%;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+//========Text Group=========
+.text-group {
+  display: table;
+  margin: 0 auto;
+  position: absolute;
+  top: 25%;
+  -ms-transform: translateY(-25%);
+  transform: translateY(-25%);
+  left: 50%;
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
+.text-background {
+  opacity: 0.84;
+  padding: 0px 25px;
+  display: table;
+  margin: 0 auto;
+}
+.blue-background {
+  background-color: $font-blue-color;
+}
+
+.white-background {
+  background-color: #fff;
+}
+
+//========Text Styles=========
+.text {
+  font-family: $font-family;
+  -webkit-font-smoothing: antialiased;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 0;
+  letter-spacing: normal;
+  text-align: center;
+  font-size: 2rem;
+}
+
+.white-font {
+  color: $font-white-color;
+}
+
+.blue-font {
+  color: $font-blue-color;
+}
+
+//========Login Section=====
+.login-container {
+  display: table;
+  margin: 0 auto;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  border-radius: 10px;
+  box-shadow: 7px 0 9.4px 0.6px rgba(27, 61, 93, 0.38);
+  background-color: #f6f6f6;
+  height: 75%;
+  width: 70%;
+}
+
+.egn-logo {
+  width: 100%;
+  height: auto;
+}
+
+.wrapper {
+  max-width: 100%;
+  max-height: 100%;
+  padding: 3.25rem 2.25rem;
+}
+
+.logo-container {
+  width: 40%;
+}
+
+.welcome-container {
+  color: #969090;
+  font-size: 1.1rem;
+  padding-top: 0.75rem;
+  padding-bottom: 1rem;
+}
+
+label {
+  display: block;
+  font-size: 1rem;
+  font-weight: bold;
+  line-height: normal;
+  letter-spacing: 0px;
+  text-align: left;
+  color: #1b3d5d;
+  padding: 0.25rem 0;
+}
+
+input {
+  width: 100%;
+  border-radius: 5px;
+  border: solid 0.3px #cccccc;
+  background-color: #ffffff;
+  line-height: 2rem;
+  margin-bottom: 1rem;
+  padding: 0.25rem 0.65rem;
+  margin-left: -0.35rem;
+  font-size: 0.95rem;
+  margin-right: 0;
+  padding-right: 0;
+}
+
+.errorMessage {
+  color: #de071c;
+  margin-top: -10px;
+  font-size: 12px;
+  line-height: 1.5;
+  font-weight: 400;
+  letter-spacing: 0;
+  letter-spacing: 0.006em;
+}
+
+.invalid-input {
+  border: 1px solid #de071c;
+}
+
+input.ng-dirty.ng-touched.ng-invalid {
+  background: #fef0f0;
+}
+
+input:focus {
+  outline: none;
+  border: 1px solid $font-blue-color;
+}
+
+::placeholder {
+  color: #9c9ea0;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #9c9ea0;
+}
+
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: #9c9ea0;
+}
+
+.login-forgot-area {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.forgot-pass-button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: #276cad;
+  padding: 0;
+  margin: 0;
+  margin-left: -0.35rem;
+  line-height: 2rem;
+  font-size: 0.95rem;
+  -webkit-font-smoothing: antialiased;
+  font-weight: normal;
+}
+
+.login-button {
+  cursor: pointer;
+  line-height: 2rem;
+  padding: 0.25rem 2.5rem;
+  border-radius: 5px;
+  box-shadow: 6px 0 6.6px 0.4px rgba(27, 61, 93, 0.16);
+  border: solid 0.3px #cccccc;
+  background-color: #1b3d5d;
+  font-size: 0.95rem;
+  letter-spacing: -1px;
+  color: $font-white-color;
+  opacity: 0.95;
+  -webkit-font-smoothing: antialiased;
+  font-weight: normal;
+}
+
+.forgot-pass-button:hover {
+  color: $font-blue-color;
+}
+
+.login-button:active {
+  transform: scale(1.1);
+}
+
+.forgot-pass-button,
+.login-button:hover {
+  opacity: 0.85;
+}
+
+button:disabled,
+button[disabled] {
+  opacity: 0.65;
+}
+
+button:disabled,
+button[disabled]:hover {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+hr {
+  opacity: 0.15;
+  background-color: #cccccc;
+  width: 45%;
+  height: 0.01em;
+  margin-top: 27px;
+}
+
+#leftBar {
+  margin-left: -1.65rem;
+}
+
+#rightBar {
+  margin-right: -1.65rem;
+}
+
+.orBarContainer {
+  margin-top: 5rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+#orWord {
+  color: #8e8f90;
+  opacity: 0.6;
+}
+
+@media only screen and (max-width: 999px) {
+  .text {
+    font-size: 1.5rem;
+  }
+  .login-container {
+    height: 80%;
+    width: 80%;
+  }
+  .login-button {
+    padding: 0.25rem 1.75rem;
+  }
+  .forgot-pass-button {
+    font-size: 0.8em;
+  }
+}
+
+@media only screen and (max-width: 750px) {
+  .text {
+    font-size: 1.2rem;
+  }
+
+  .login-container {
+    height: 70%;
+    width: 85%;
+  }
+
+  .login-button {
+    padding: 0.25rem 1.5rem;
+  }
+  .forgot-pass-button {
+    font-size: 0.65rem;
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  .flex-item:nth-child(1) {
+    display: none;
+  }
+  .flex-item:nth-child(2) {
+    width: 100%;
+  }
+
+  .login-button {
+    padding: 0.25rem 2.5rem;
+  }
+
+  .forgot-pass-button {
+    font-size: 0.85rem;
+  }
+}
