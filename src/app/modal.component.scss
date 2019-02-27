@@ -24,7 +24,7 @@ $font-family: "Source Sans Pro", sans-serif;
   }
 
   .input-container {
-    margin: 0 7rem;
+    margin: 0 20%;
   }
 
   .button-container {
@@ -54,7 +54,7 @@ $font-family: "Source Sans Pro", sans-serif;
   justify-content: space-between;
 
   .egn-logo {
-    width: 15%;
+    width: 5rem;
   }
 
   .close-btn {
@@ -150,4 +150,20 @@ button:disabled,
 button[disabled]:hover {
   opacity: 0.65;
   cursor: not-allowed;
+}
+
+@media only screen and (max-width: 1030px) {
+}
+
+@media only screen and (max-width: 770px) {
+}
+
+@media only screen and (max-width: 650px) {
+  .input-container {
+    margin: 0 8% !important;
+  }
+
+  .reset-password-button {
+    padding: 0.25rem 1rem;
+  }
 }

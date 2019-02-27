@@ -21,8 +21,6 @@ export class AppComponent {
       if (!!result) {
         this.emailToRecoverAccount = result;
         console.log(this.emailToRecoverAccount);
-      } else {
-        console.log("The dialog is undefined");
       }
     });
   }

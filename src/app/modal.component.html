@@ -228,14 +228,7 @@
         #recoverEmail="ngModel"
         (keyup)="instantValidationEmail($event)"
       />
-      <p
-        class="errorMessage"
-        *ngIf="
-          !recoverEmail.valid && recoverEmail.touched && !recoverEmail.dirty
-        "
-      >
-        Your email is required!
-      </p>
+
       <p
         class="errorMessage"
         *ngIf="
