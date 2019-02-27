@@ -1,0 +1,12 @@
+<div mat-dialog-content class="modal-content">
+  <p>Forgot your password?</p>
+  <mat-form-field>
+    <input type="email" matInput [(ngModel)]="email" />
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button [mat-dialog-close]="email" cdkFocusInitial>
+    Ok
+  </button>
+</div>

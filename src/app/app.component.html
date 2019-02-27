@@ -1,6 +1,6 @@
 <div id="backgroung-img"></div>
 <div class="container">
-  <div class="flex-item description-text">
+  <div class="flex-item description-container">
     <div class="text-group">
       <div class="text-background blue-background">
         <h3 class="text white-font">Helping people and companies</h3>
@@ -246,7 +246,11 @@
               Your password is too short!
             </p>
             <div class="login-forgot-area">
-              <button class="forgot-pass-button" type="button">
+              <button
+                class="forgot-pass-button"
+                type="button"
+                (click)="openDialog()"
+              >
                 Forgot your password?
               </button>
               <button

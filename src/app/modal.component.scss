@@ -1,0 +1,10 @@
+::ng-deep .cdk-overlay-pane {
+  width: 37rem;
+  height: 24rem;
+  box-shadow: 7px 0 9.4px 0.6px rgba(27, 61, 93, 0.38);
+  border-radius: 5px;
+}
+
+::ng-deep .cdk-overlay-dark-backdrop {
+  background: rgba(0, 0, 0, 0.45);
+}
