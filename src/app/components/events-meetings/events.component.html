@@ -1,1 +1,24 @@
-<div>events</div>
+<div class="events-component">
+  <div class="bar-title">Upcoming events and meetings</div>
+  <div class="events-wrapper">
+    <div class="single-event" *ngFor="let event of events">
+      <div class="calendar">
+        <div class="day">22</div>
+        <div class="month">JUL</div>
+      </div>
+      <div class="event-info">
+        <div class="event-name">
+          {{ event.name }}
+        </div>
+        <div class="event-tags">
+          <div class="event-time">
+            {{ event.eventStart }} - {{ event.eventEnd }}
+          </div>
+          <div class="event-type" *ngFor="let tag of event.tags">
+            {{ tag | uppercase }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

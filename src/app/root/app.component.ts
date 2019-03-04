@@ -8,14 +8,18 @@ import { Router, NavigationStart } from "@angular/router";
 })
 export class AppComponent {
   loginPage: boolean = false;
+  homePage: boolean = false;
 
   constructor(private router: Router) {
     router.events.forEach(event => {
       if (event instanceof NavigationStart) {
         if (event["url"] == "/") {
           this.loginPage = true;
+        } else if (event["url"] == "/home") {
+          this.homePage = true;
         } else {
           this.loginPage = false;
+          this.homePage = false;
         }
       }
     });

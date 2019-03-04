@@ -1,6 +1,44 @@
 <div class="container" *ngIf="!loginPage">
   <app-header></app-header>
-  <router-outlet></router-outlet>
+  <div class="page-components">
+    <div class="page-wrapper">
+      <div class="peers-component">
+        <app-peers></app-peers>
+      </div>
+      <div class="page-content">
+        <router-outlet></router-outlet>
+      </div>
+      <div class="right-component">
+        <div class="groups-component" *ngIf="homePage">
+          <div>
+            <div class="bar-title">Groups and networks</div>
+            <div class="groups-wrapper">
+              <div>
+                <p>Private</p>
+                <div class="groups-amount">2</div>
+              </div>
+              <div>
+                <p>Public</p>
+                <div class="groups-amount" style="background-color: #1b3d5d;">
+                  2
+                </div>
+              </div>
+              <div>
+                <p>Closed</p>
+                <div class="groups-amount" style="background-color: #9faec0;">
+                  1
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="events-component">
+          <app-events></app-events>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <router-outlet *ngIf="loginPage"></router-outlet>

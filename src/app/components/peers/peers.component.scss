@@ -4,26 +4,15 @@ $font-white-color: #f7f5ee;
 $font-family: "Source Sans Pro", sans-serif;
 $icons-padding: 0.3rem 0.3rem;
 
-* {
-  font-family: $font-family;
-}
 .trusted-peers-title {
   background-color: #54b0de;
-  opacity: 0.77;
-  box-shadow: 8px 0 20.7px 1.3px rgba(205, 205, 205, 0.14);
-  color: white;
-  padding: 0.55rem;
-  text-align: center;
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
-  font-size: 0.85rem;
-  letter-spacing: 0.2px;
-  -webkit-font-smoothing: antialiased;
 }
 
 .peers-wrapper {
   background: white;
   padding: 1.45rem 1.5rem;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
 
   .single-peer {
     display: flex;
@@ -42,7 +31,7 @@ $icons-padding: 0.3rem 0.3rem;
     }
 
     .peer-info {
-      font-size: 0.75rem;
+      font-size: 0.8rem;
       font-weight: normal;
       font-style: normal;
       font-stretch: normal;
@@ -51,7 +40,15 @@ $icons-padding: 0.3rem 0.3rem;
       color: #8d8b8b;
       padding: 0.35rem 0;
 
+      p {
+        margin: 0;
+      }
+
       .peer-name {
+        font-weight: bold;
+      }
+
+      .peer-position {
         font-weight: bold;
       }
     }

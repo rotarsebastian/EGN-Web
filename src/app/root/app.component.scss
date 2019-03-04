@@ -1,3 +1,5 @@
+@import "../../styles/page-structure.scss";
+
 .container {
   position: absolute;
   top: 0;
@@ -5,4 +7,45 @@
   bottom: 0;
   left: 0;
   padding: 0.85rem;
+}
+
+.groups-component {
+  margin-bottom: 10%;
+  background: white;
+  .bar-title {
+    background-color: #54b0de;
+  }
+  .groups-wrapper {
+    padding: 0.5rem;
+    div {
+      border: solid 1px #ebebeb;
+      border-radius: 5px;
+      color: #7b7c7d;
+      font-size: 0.9rem;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.55rem;
+      -webkit-font-smoothing: antialiased;
+
+      &:nth-last-child(1) {
+        margin-bottom: 0;
+      }
+      p {
+        margin: 0;
+        padding: 0.45rem 0.65rem;
+        opacity: 0.8;
+      }
+
+      div {
+        margin: 0;
+      }
+
+      .groups-amount {
+        padding: 0.45rem 0.65rem;
+        color: rgba(255, 255, 255, 0.85);
+        border: none;
+        background-color: #d50965;
+      }
+    }
+  }
 }

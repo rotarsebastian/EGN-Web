@@ -1,8 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
-
 @import "./styles/button.scss";
-@import "./styles/logo.scss";
+@import "./styles/bar-title.scss";
+
+$font-family: "Source Sans Pro", sans-serif;
+
+* {
+  font-family: $font-family;
+}
 
 body,
 html {
