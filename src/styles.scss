@@ -3,7 +3,7 @@
 @import "./styles/button.scss";
 @import "./styles/bar-title.scss";
 
-$font-family: "Source Sans Pro", sans-serif;
+$font-family: "Source Sans Pro", sans-serif !important;
 
 * {
   font-family: $font-family;

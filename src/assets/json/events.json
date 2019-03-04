@@ -5,7 +5,7 @@
     "eventStart": "09:00",
     "eventEnd": "13:00",
     "tags": ["business", "sales"],
-    "date": "2019-07-22T09:00:00.000Z"
+    "date": "2019-06-22T09:00:00.000Z"
   },
   {
     "id": 1,
@@ -13,7 +13,7 @@
     "eventStart": "11:00",
     "eventEnd": "12:00",
     "tags": ["meeting"],
-    "date": "2019-07-23T11:00:00.000Z"
+    "date": "2019-05-23T11:00:00.000Z"
   },
   {
     "id": 2,
@@ -21,7 +21,7 @@
     "eventStart": "14:00",
     "eventEnd": "15:00",
     "tags": ["business", "sales"],
-    "date": "2019-07-23T14:00:00.000Z"
+    "date": "2019-09-23T14:00:00.000Z"
   },
   {
     "id": 3,
@@ -33,6 +33,86 @@
   },
   {
     "id": 4,
+    "name": "Kinder - Meeting for setting the project leaders",
+    "eventStart": "08:00",
+    "eventEnd": "10:00",
+    "tags": ["business", "sales"],
+    "date": "2019-07-15T08:00:00.000Z"
+  },
+  {
+    "id": 5,
+    "name": "Network-Seminar - Implementation of Social Selling in BTB Comp",
+    "eventStart": "09:00",
+    "eventEnd": "13:00",
+    "tags": ["business", "sales"],
+    "date": "2019-07-22T09:00:00.000Z"
+  },
+  {
+    "id": 6,
+    "name": "Network-Seminar - Implementation of Social Selling in BTB Comp",
+    "eventStart": "11:00",
+    "eventEnd": "12:00",
+    "tags": ["meeting"],
+    "date": "2019-07-23T11:00:00.000Z"
+  },
+  {
+    "id": 7,
+    "name": "Network-Seminar - Implementation of Social Selling in BTB Comp",
+    "eventStart": "14:00",
+    "eventEnd": "15:00",
+    "tags": ["business", "sales"],
+    "date": "2019-07-23T14:00:00.000Z"
+  },
+  {
+    "id": 8,
+    "name": "Employees meeting about EGN project",
+    "eventStart": "11:00",
+    "eventEnd": "12:00",
+    "tags": ["meeting"],
+    "date": "2019-07-25T11:00:00.000Z"
+  },
+  {
+    "id": 9,
+    "name": "Kinder - Meeting for setting the project leaders",
+    "eventStart": "08:00",
+    "eventEnd": "10:00",
+    "tags": ["business", "sales"],
+    "date": "2019-07-15T08:00:00.000Z"
+  },
+  {
+    "id": 10,
+    "name": "Network-Seminar - Implementation of Social Selling in BTB Comp",
+    "eventStart": "09:00",
+    "eventEnd": "13:00",
+    "tags": ["business", "sales"],
+    "date": "2019-07-22T09:00:00.000Z"
+  },
+  {
+    "id": 11,
+    "name": "Network-Seminar - Implementation of Social Selling in BTB Comp",
+    "eventStart": "11:00",
+    "eventEnd": "12:00",
+    "tags": ["meeting"],
+    "date": "2019-07-23T11:00:00.000Z"
+  },
+  {
+    "id": 12,
+    "name": "Network-Seminar - Implementation of Social Selling in BTB Comp",
+    "eventStart": "14:00",
+    "eventEnd": "15:00",
+    "tags": ["business", "sales"],
+    "date": "2019-07-03T14:00:00.000Z"
+  },
+  {
+    "id": 13,
+    "name": "Employees meeting about EGN project",
+    "eventStart": "11:00",
+    "eventEnd": "12:00",
+    "tags": ["meeting"],
+    "date": "2019-07-25T11:00:00.000Z"
+  },
+  {
+    "id": 14,
     "name": "Kinder - Meeting for setting the project leaders",
     "eventStart": "08:00",
     "eventEnd": "10:00",

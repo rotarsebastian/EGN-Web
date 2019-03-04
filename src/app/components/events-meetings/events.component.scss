@@ -2,11 +2,25 @@
   background-color: #d50965;
 }
 
+.blueTheme {
+  color: #194470 !important;
+}
+
+.blueTag {
+  background-color: #54b0de !important;
+}
+
 .events-wrapper {
   padding: 1rem 0.7rem;
   background: white;
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
+  overflow-y: scroll;
+  height: 43vh;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   .single-event {
     display: flex;

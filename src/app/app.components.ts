@@ -31,4 +31,6 @@ export const components = [
 
   // dialogs
   ForgotPasswordDialogComponent
+
+  //Pipes
 ];

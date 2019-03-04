@@ -9,14 +9,10 @@
     padding: 1.6rem 2.4rem;
     display: flex;
     flex-flow: row wrap;
+
     .peers-component {
       width: 20%;
-      height: 72vh;
-      overflow-y: scroll;
-
-      &::-webkit-scrollbar {
-        display: none;
-      }
+      height: 65vh;
     }
 
     .page-content {
@@ -26,15 +22,10 @@
     }
     .right-component {
       width: 20%;
-      height: 72vh;
+      height: 65vh;
 
       .events-component {
-        height: 40vh;
-        overflow-y: scroll;
-
-        &::-webkit-scrollbar {
-          display: none;
-        }
+        height: 45vh;
       }
     }
   }

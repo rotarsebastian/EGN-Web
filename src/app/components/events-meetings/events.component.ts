@@ -19,6 +19,7 @@ export class EventsComponent implements OnInit {
     this.subscription = this.eventsService.eventsChanged.subscribe(
       (events: Event[]) => {
         this.events = events;
+        //console.log(this.events[0].date.toISOString());
       }
     );
   }
