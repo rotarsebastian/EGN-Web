@@ -1,0 +1,14 @@
+<div style="width: 20%">
+  <div class="trusted-peers-title">Trusted peers</div>
+  <div class="peers-wrapper">
+    <div class="peers-container">
+      <div class="single-peer" *ngFor="let peer of peers">
+        <img src="../../../assets/images/person.png" alt="peer-pic" />
+        <div class="peer-info">
+          <div class="peer-name">{{ peer.name }}</div>
+          <div>{{ peer.position }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

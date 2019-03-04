@@ -1,0 +1,42 @@
+[
+  {
+    "id": 0,
+    "name": "Lara Croft",
+    "position": "Project Manager - EGN"
+  },
+  {
+    "id": 1,
+    "name": "James Croft",
+    "position": "Project Manager - EGN"
+  },
+  {
+    "id": 2,
+    "name": "Georgia Stan",
+    "position": "Project Manager - EGN"
+  },
+  {
+    "id": 3,
+    "name": "Anna Petersen",
+    "position": "Project Manager - EGN"
+  },
+  {
+    "id": 4,
+    "name": "Jakob Nielsen",
+    "position": "Project Manager - EGN"
+  },
+  {
+    "id": 5,
+    "name": "Morten Pedersen",
+    "position": "Project Manager - EGN"
+  },
+  {
+    "id": 6,
+    "name": "James Brown",
+    "position": "Project Manager - EGN"
+  },
+  {
+    "id": 7,
+    "name": "Andrew Strojkevsky",
+    "position": "Project Manager - EGN"
+  }
+]

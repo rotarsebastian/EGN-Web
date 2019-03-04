@@ -1,0 +1,63 @@
+//========Variables=========
+$font-blue-color: #1b3d5d;
+$font-white-color: #f7f5ee;
+$font-family: "Source Sans Pro", sans-serif;
+$icons-padding: 0.3rem 0.3rem;
+
+* {
+  font-family: $font-family;
+}
+.trusted-peers-title {
+  background-color: #54b0de;
+  opacity: 0.77;
+  box-shadow: 8px 0 20.7px 1.3px rgba(205, 205, 205, 0.14);
+  color: white;
+  padding: 0.55rem;
+  text-align: center;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  font-size: 0.85rem;
+  letter-spacing: 0.2px;
+  -webkit-font-smoothing: antialiased;
+}
+
+.peers-wrapper {
+  background: white;
+  padding: 1.45rem 1.5rem;
+
+  .single-peer {
+    display: flex;
+    flex-flow: row nowrap;
+    margin-bottom: 1rem;
+    height: 100%;
+
+    :nth-last-child(1) {
+      margin-bottom: 0;
+    }
+    img {
+      height: 100%;
+      border-radius: 50%;
+      width: 20%;
+      padding-right: 0.45rem;
+    }
+
+    .peer-info {
+      font-size: 0.75rem;
+      font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      color: #8d8b8b;
+      padding: 0.35rem 0;
+
+      .peer-name {
+        font-weight: bold;
+      }
+    }
+  }
+
+  .single-peer:nth-last-child(1) {
+    margin-bottom: 0;
+  }
+}
