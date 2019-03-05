@@ -1,0 +1,42 @@
+[
+  {
+    "id": 0,
+    "name": "Anna Petersen",
+    "position": "Project Manager",
+    "company": "Google DK",
+    "email": "anapetersen@gmail.dk",
+    "password": "anapetersen"
+  },
+  {
+    "id": 1,
+    "name": "Sebastian Rotar",
+    "position": "Project Manager",
+    "company": "Google DK",
+    "email": "rotar.seby1@gmail.com",
+    "password": "sebastian"
+  },
+  {
+    "id": 2,
+    "name": "Administrator",
+    "position": "Project Manager",
+    "company": "Google DK",
+    "email": "admin@admin.dk",
+    "password": "administrator"
+  },
+  {
+    "id": 3,
+    "name": "James Brown",
+    "position": "Project Manager",
+    "company": "Google DK",
+    "email": "jamesbrown@gmail.dk",
+    "password": "jamesbrown"
+  },
+  {
+    "id": 4,
+    "name": "Andrew Jacob",
+    "position": "Project Manager",
+    "company": "Google DK",
+    "email": "andrewjacob@gmail.dk",
+    "password": "andrewjacob"
+  }
+]

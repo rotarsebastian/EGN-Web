@@ -1,5 +1,6 @@
 //========Imports=========
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro");
+@import "../../../styles/input.scss";
 
 //========Variables=========
 $font-blue-color: #1b3d5d;
@@ -152,20 +153,6 @@ body {
         color: #1b3d5d;
         padding: 0.25rem 0;
       }
-
-      input {
-        width: 100%;
-        border-radius: 5px;
-        border: solid 0.3px #cccccc;
-        background-color: #ffffff;
-        line-height: 2rem;
-        margin-bottom: 1rem;
-        padding: 0.25rem 0.65rem;
-        margin-left: -0.35rem;
-        font-size: 0.95rem;
-        margin-right: 0;
-        padding-right: 0;
-      }
       .errorMessage {
         color: #de071c;
         margin-top: -10px;
@@ -184,30 +171,9 @@ body {
         background: #fef0f0;
       }
 
-      input:focus {
-        outline: none;
-        border: 1px solid $font-blue-color;
-        background: white !important;
-      }
-
       button:focus,
       button:active {
         outline: none;
-      }
-
-      ::placeholder {
-        color: #9c9ea0;
-        opacity: 1; /* Firefox */
-      }
-
-      :-ms-input-placeholder {
-        /* Internet Explorer 10-11 */
-        color: #9c9ea0;
-      }
-
-      ::-ms-input-placeholder {
-        /* Microsoft Edge */
-        color: #9c9ea0;
       }
     }
 
@@ -250,7 +216,7 @@ body {
       }
 
       .login-button:active {
-        transform: scale(1.1);
+        transform: scale(1.05);
       }
 
       .forgot-pass-button,
@@ -345,6 +311,10 @@ body {
       }
     }
   }
+}
+
+.hide {
+  display: none;
 }
 
 @media only screen and (max-width: 1030px) {

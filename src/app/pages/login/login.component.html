@@ -208,6 +208,9 @@
               #email="ngModel"
               (keyup)="instantValidationEmail($event)"
             />
+            <p class="errorMessage" [ngClass]="{ hide: !incorrectEmail }">
+              Please check your email!
+            </p>
             <p
               class="errorMessage"
               *ngIf="!email.valid && email.touched && !email.dirty"
@@ -233,6 +236,9 @@
               #password="ngModel"
               (keyup)="instantValidationPassword($event)"
             />
+            <p class="errorMessage" [ngClass]="{ hide: !incorrectPassword }">
+              Please check your password!
+            </p>
             <p
               class="errorMessage"
               *ngIf="!password.valid && password.touched && !password.dirty"
@@ -245,6 +251,7 @@
             >
               Your password is too short!
             </p>
+
             <div class="login-forgot-area">
               <button
                 class="forgot-pass-button"

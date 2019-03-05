@@ -17,6 +17,7 @@ export class AppComponent {
           this.loginPage = true;
         } else if (event["url"] == "/home") {
           this.homePage = true;
+          this.loginPage = false;
         } else {
           this.loginPage = false;
           this.homePage = false;

@@ -1,0 +1,38 @@
+$font-family: "Source Sans Pro", sans-serif;
+$font-blue-color: #1b3d5d;
+$font-white-color: #f6f6f6;
+
+button {
+  cursor: pointer;
+  line-height: 2rem;
+  padding: 0.25rem 2.5rem;
+  border-radius: 5px;
+  box-shadow: 6px 0 6.6px 0.4px rgba(27, 61, 93, 0.16);
+  border: solid 0.3px #cccccc;
+  background-color: #1b3d5d;
+  font-size: 0.95rem;
+  letter-spacing: -1px;
+  color: $font-white-color;
+  opacity: 0.95;
+  -webkit-font-smoothing: antialiased;
+  font-weight: normal;
+}
+button:focus,
+button:active {
+  outline: none;
+}
+
+button:disabled,
+button[disabled] {
+  opacity: 0.65;
+}
+
+button:disabled,
+button[disabled]:hover {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+button:active {
+  transform: scale(1.05);
+}

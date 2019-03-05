@@ -6,7 +6,7 @@
       *ngFor="let event of (events | sort: 'date'); index as i"
     >
       <div class="calendar">
-        <div class="day" [ngClass]="{ blueTheme: i % 2 === 0 }">
+        <div class="day" [ngClass]="{ blueTheme: i % 2 === 1 }">
           {{ event.date | date: "dd" }}
         </div>
         <div class="month">{{ event.date | date: "LLL" | uppercase }}</div>
