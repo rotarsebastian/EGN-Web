@@ -26,7 +26,8 @@ import { formArrayNameProvider } from "@angular/forms/src/directives/reactive_di
       transition("void => *", [
         style({
           opacity: 0,
-          transform: "translateY(-100px)"
+          transform: "translateY(-100px)",
+          transition: "0.25s ease"
         }),
         animate(200)
       ]),
@@ -35,7 +36,8 @@ import { formArrayNameProvider } from "@angular/forms/src/directives/reactive_di
           200,
           style({
             transform: "translateY(-100px)",
-            opacity: 0
+            opacity: 0,
+            transition: "0.25s ease"
           })
         )
       ])
