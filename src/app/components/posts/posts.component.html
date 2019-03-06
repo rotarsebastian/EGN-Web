@@ -1,0 +1,243 @@
+<div class="entire-post">
+  <div class="single-post" [ngClass]="{ blueTag: index % 2 === 1 }">
+    <div class="post-content">
+      <svg
+        version="1.1"
+        id="Capa_1"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        x="0px"
+        y="0px"
+        viewBox="0 0 58 58"
+        style="enable-background:new 0 0 58 58;"
+        xml:space="preserve"
+      >
+        <circle style="fill:#9faec0;" cx="7" cy="29" r="7" />
+        <circle style="fill:#9faec0;" cx="51" cy="29" r="7" />
+        <circle style="fill:#9faec0;" cx="29" cy="29" r="7" />
+        <circle style="fill:#9faec0;" cx="7" cy="29" r="7" />
+        <circle style="fill:#9faec0;" cx="51" cy="29" r="7" />
+        <circle style="fill:#9faec0;" cx="29" cy="29" r="7" />
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+      </svg>
+      <div class="post-header">
+        <div class="post-details">
+          <div class="picture-container">
+            <img src="../../../assets/images/person.png" alt="" />
+          </div>
+          <div class="post-author">
+            <div class="author-name">{{ post.author }}</div>
+            <div class="author-position">{{ post.position }}</div>
+            <div class="author-company">{{ post.company }}</div>
+          </div>
+        </div>
+        <div class="post-date">
+          {{ post.date | date: "dd MMM, yyyy HH:mm" | lowercase }}
+        </div>
+      </div>
+      <div class="post-message">
+        <input type="checkbox" class="read-more-state" [id]="post.id" />
+
+        <p class="read-more-wrap">
+          {{ post.message | slice: 0:324 }}...
+          <span class="read-more-target">{{ post.message }} </span>
+        </p>
+
+        <label
+          [for]="post.id"
+          class="read-more-trigger"
+          [ngClass]="{ blueText: index % 2 === 1 }"
+        ></label>
+      </div>
+    </div>
+    <div class="likes-and-comments">
+      <div class="likes" (click)="onLikePost(index)">
+        <div class="likes-amount">{{ post.likes }}</div>
+        <div class="like-svg">
+          <svg
+            version="1.1"
+            id="Capa_1"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            x="0px"
+            y="0px"
+            viewBox="0 0 50.747 50.747"
+            style="enable-background:new 0 0 50.747 50.747;"
+            xml:space="preserve"
+          >
+            <g>
+              <g>
+                <path
+                  class="like-svg-path"
+                  [id]="post.id"
+                  style="fill:white;"
+                  d="M48.837,25.537l-3.146-6.834c0,0-7.188,0.333-8.535-1.667c-1.348-2,1.648-7.833-0.898-13.333
+                   c-1.865-4.031-4.697-3.496-6.076-2.923c-0.465,0.193-0.672,0.844-0.539,1.376c0.907,3.671,1.322,11.022-3.867,14.214
+                   c-1.665,1.024-2.65,2.391-5.751,2.939c-0.465,0.083-2.735,2.146-3.212,2.188c-3.876,0.337-7.521,0.322-10.07,0.238
+                   C6.905,22.138,7,22.576,7,23.037v23c0,0.422-0.087,0.82-0.224,1.195c9.794-0.037,12.711,1.218,12.711,1.218
+                   c16.772,4.246,23.51,0.087,23.51,0.087s3.594-9,6.589-14S48.837,25.537,48.837,25.537z"
+                />
+                <path
+                  class="like-svg-path"
+                  [id]="post.id"
+                  style="fill:white;"
+                  d="M3.5,20.537h-1c-1.378,0-2.5,1.122-2.5,2.5v23c0,1.379,1.122,2.5,2.5,2.5h1
+                   c1.378,0,2.5-1.121,2.5-2.5v-23C6,21.659,4.878,20.537,3.5,20.537z"
+                />
+              </g>
+            </g>
+            <g></g>
+            <g></g>
+            <g></g>
+            <g></g>
+            <g></g>
+            <g></g>
+            <g></g>
+            <g></g>
+            <g></g>
+            <g></g>
+            <g></g>
+            <g></g>
+            <g></g>
+            <g></g>
+            <g></g>
+          </svg>
+        </div>
+      </div>
+      <div class="comments" (click)="onSeeComments(index)">
+        <div class="comments-amount">{{ post.comments.length }}</div>
+        <div class="comment-svg">
+          <svg
+            version="1.1"
+            id="Capa_1"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            x="0px"
+            y="0px"
+            viewBox="0 0 60 60"
+            style="enable-background:new 0 0 60 60;"
+            xml:space="preserve"
+          >
+            <path
+              class="comment-svg-path"
+              style="fill: white"
+              d="M6,2h48c3.252,0,6,2.748,6,6v33c0,3.252-2.748,6-6,6H25.442L15.74,57.673C15.546,57.885,15.276,58,15,58
+               c-0.121,0-0.243-0.022-0.361-0.067C14.254,57.784,14,57.413,14,57V47H6c-3.252,0-6-2.748-6-6L0,8C0,4.748,2.748,2,6,2z"
+            />
+            <g></g>
+            <g></g>
+            <g></g>
+            <g></g>
+            <g></g>
+            <g></g>
+            <g></g>
+            <g></g>
+            <g></g>
+            <g></g>
+            <g></g>
+            <g></g>
+            <g></g>
+            <g></g>
+            <g></g>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div class="add-comment" (click)="openAddComment(index)">
+      <div class="add-comment-svg">
+        <svg
+          version="1.1"
+          id="Capa_1"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          x="0px"
+          y="0px"
+          viewBox="0 0 60 60"
+          style="enable-background:new 0 0 60 60;"
+          xml:space="preserve"
+        >
+          <path
+            style="fill: #194470;"
+            d="M6,2h48c3.252,0,6,2.748,6,6v33c0,3.252-2.748,6-6,6H25.442L15.74,57.673C15.546,57.885,15.276,58,15,58
+                         c-0.121,0-0.243-0.022-0.361-0.067C14.254,57.784,14,57.413,14,57V47H6c-3.252,0-6-2.748-6-6L0,8C0,4.748,2.748,2,6,2z"
+          />
+          <g></g>
+          <g></g>
+          <g></g>
+          <g></g>
+          <g></g>
+          <g></g>
+          <g></g>
+          <g></g>
+          <g></g>
+          <g></g>
+          <g></g>
+          <g></g>
+          <g></g>
+          <g></g>
+          <g></g>
+        </svg>
+      </div>
+      <div class="add-comment-text">
+        Add a comment
+      </div>
+    </div>
+  </div>
+  <div class="add-comment-container" *ngIf="addCommentOpen" [@addCommentSlide]>
+    <div
+      class="add-comment-wrapper old-comments"
+      *ngFor="let comment of post.comments"
+    >
+      <div class="add-comment-img-container">
+        <img
+          src="../../../assets/images/person.png"
+          alt=""
+          style="width: 2rem"
+        />
+      </div>
+      <div class="add-new-comment">
+        <div>
+          <p [ngClass]="{ blueText: index % 2 === 1 }">{{ comment.author }}</p>
+          {{ comment.content }}
+        </div>
+      </div>
+      <br />
+    </div>
+
+    <div class="add-comment-wrapper">
+      <div class="add-comment-img-container">
+        <img src="../../../assets/images/person.png" alt="" />
+      </div>
+      <div class="add-new-comment">
+        <form (ngSubmit)="postComment(addCommentForm)" #addCommentForm="ngForm">
+          <textarea
+            name="comment"
+            id="newCommentTextarea"
+            rows="1"
+            placeholder="Add a comment..."
+            (keyup)="autogrow($event)"
+            required
+            ngModel
+          ></textarea>
+          <button type="submit" [disabled]="!addCommentForm.valid">
+            Post
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

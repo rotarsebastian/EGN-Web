@@ -14,12 +14,14 @@ import { PeersComponent } from "./components/peers/peers.component";
 import { GroupsComponent } from "./pages/groups/groups.component";
 import { CalendarComponent } from "./pages/calendar/calendar.component";
 import { QueriesComponent } from "./pages/queries/queries.component";
+import { PostsComponent } from "./components/posts/posts.component";
 
 export const components = [
   AppComponent,
   EventsComponent,
   HeaderComponent,
   PeersComponent,
+  PostsComponent,
   // components
 
   // pages
