@@ -4,14 +4,32 @@ import { HomePageComponent } from "./pages/homePage/homePage.component";
 import { GroupsComponent } from "./pages/groups/groups.component";
 import { CalendarComponent } from "./pages/calendar/calendar.component";
 import { QueriesComponent } from "./pages/queries/queries.component";
+import { AuthGuardService } from "./services/auth-guard.service";
 
 const appRoutes: Routes = [
-  { path: "", component: LoginComponent },
-  { path: "home", component: HomePageComponent },
-  { path: "groups", component: GroupsComponent },
-  { path: "calendar", component: CalendarComponent },
-  { path: "queries", component: QueriesComponent },
-  { path: "**", redirectTo: "" }
+  { path: "", redirectTo: "login", pathMatch: "full" },
+  { path: "login", component: LoginComponent },
+  {
+    path: "home",
+    component: HomePageComponent,
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: "groups",
+    component: GroupsComponent,
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: "calendar",
+    component: CalendarComponent,
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: "queries",
+    component: QueriesComponent,
+    canActivate: [AuthGuardService]
+  },
+  { path: "**", redirectTo: "/login" }
 ];
 
 export const routing = RouterModule.forRoot(appRoutes);

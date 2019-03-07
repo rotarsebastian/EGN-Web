@@ -6,7 +6,7 @@
         <app-peers></app-peers>
       </div>
       <div class="page-content">
-        <router-outlet></router-outlet>
+        <router-outlet *ngIf="!loginPage"></router-outlet>
       </div>
       <div class="right-component">
         <div class="groups-component" *ngIf="homePage">

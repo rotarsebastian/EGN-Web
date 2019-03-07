@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Subject } from "rxjs";
 
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpRequest } from "@angular/common/http";
 import { User } from "../models/users.model";
 import { map } from "rxjs/operators";
 
@@ -14,6 +14,14 @@ export class UsersService {
   private users = [];
   path = "../assets/json/users.json";
   loggedInUser: User;
+  pathFull = "https://egn-project.firebaseio.com/users.json";
+
+  storeUsers() {
+    const req = new HttpRequest("PUT", this.pathFull, this.users, {
+      reportProgress: true
+    });
+    return this.http.request(req);
+  }
 
   getUsers() {
     this.http

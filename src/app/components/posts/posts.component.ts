@@ -9,6 +9,8 @@ import {
   animate
 } from "@angular/animations";
 import { PostsService } from "src/app/services/posts.service";
+import * as firebase from "firebase";
+import { UsersService } from "src/app/services/users.service";
 
 @Component({
   selector: "app-posts",
@@ -49,7 +51,10 @@ export class PostsComponent implements OnInit {
   @Input() index: number;
   addCommentOpen: boolean = false;
 
-  constructor(private postsService: PostsService) {}
+  constructor(
+    private postsService: PostsService,
+    private userService: UsersService
+  ) {}
 
   ngOnInit() {}
 
@@ -62,16 +67,16 @@ export class PostsComponent implements OnInit {
 
   postComment(addCommentForm: NgForm) {
     const comment = addCommentForm.value.comment;
+    const name = firebase.auth().currentUser.displayName;
+
     const newComment = {
       likes: 0,
-      author: "Sebastian Rotar",
+      author: name,
       content: comment
     };
     this.post["comments"].push(newComment);
 
-    // this.postsService.storePosts().subscribe(response => {
-    //   console.log(response);
-    // });
+    this.postsService.storePosts().subscribe(response => {});
 
     addCommentForm.reset();
   }
@@ -100,6 +105,8 @@ export class PostsComponent implements OnInit {
     } else {
       this.post.likes--;
     }
+
+    this.postsService.storePosts().subscribe(response => {});
   }
 
   onSeeComments(index: number) {

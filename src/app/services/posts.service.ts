@@ -13,9 +13,10 @@ export class PostsService {
   postsChanged = new Subject<Post[]>();
   private posts = [];
   path = "../assets/json/posts.json";
+  pathFull = "https://egn-project.firebaseio.com/posts.json";
 
   storePosts() {
-    const req = new HttpRequest("PUT", this.path, this.getPosts(), {
+    const req = new HttpRequest("PUT", this.pathFull, this.posts, {
       reportProgress: true
     });
     return this.http.request(req);
@@ -23,7 +24,7 @@ export class PostsService {
 
   getPosts() {
     this.http
-      .get<Post[]>(this.path, {
+      .get<Post[]>(this.pathFull, {
         observe: "body",
         responseType: "json"
       })

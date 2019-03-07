@@ -2,11 +2,14 @@ import { Component, OnInit } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { MatDialog } from "@angular/material";
 
+import * as firebase from "firebase";
+
 import { ForgotPasswordDialogComponent } from "../../dialogs/forgotPassword/forgotPassword";
 import { Router, ActivatedRoute } from "@angular/router";
 import { UsersService } from "src/app/services/users.service";
 import { Subscription } from "rxjs";
 import { User } from "src/app/models/users.model";
+import { AuthService } from "src/app/services/auth.service";
 
 @Component({
   selector: "app-login",
@@ -23,10 +26,11 @@ export class LoginComponent implements OnInit {
   incorrectEmail: boolean = false;
 
   constructor(
-    public dialog: MatDialog,
+    private dialog: MatDialog,
     private router: Router,
     private route: ActivatedRoute,
-    public usersService: UsersService
+    private usersService: UsersService,
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
@@ -74,34 +78,43 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin(loginForm: NgForm) {
-    let foundUser = false;
-    for (let user of this.users) {
-      if (
-        loginForm.value.email === user.email &&
-        loginForm.value.password === user.password
-      ) {
-        foundUser = true;
-        loginForm.reset();
-        this.usersService.setUserLoggedIn(user);
-        this.router.navigate(["/home"], { relativeTo: this.route });
-        break;
-      } else if (
-        loginForm.value.email === user.email &&
-        loginForm.value.password !== user.password
-      ) {
-        this.incorrectPassword = true;
-        foundUser = true;
-      } else if (
-        loginForm.value.email !== user.email &&
-        loginForm.value.password == user.password
-      ) {
-        this.incorrectEmail = true;
-        foundUser = true;
-      }
-    }
-    if (!foundUser) {
-      this.incorrectEmail = true;
-      this.incorrectPassword = true;
-    }
+    // let myUserName: string;
+
+    // let foundUser = false;
+    // for (let user of this.users) {
+    //   if (
+    //     loginForm.value.email === user.email &&
+    //     loginForm.value.password === user.password
+    //   ) {
+    //     foundUser = true;
+    //     myUserName = user.name;
+    //     //loginForm.reset();
+    //     break;
+    //   } else if (
+    //     loginForm.value.email === user.email &&
+    //     loginForm.value.password !== user.password
+    //   ) {
+    //     this.incorrectPassword = true;
+    //     foundUser = true;
+    //   } else if (
+    //     loginForm.value.email !== user.email &&
+    //     loginForm.value.password == user.password
+    //   ) {
+    //     this.incorrectEmail = true;
+    //     foundUser = true;
+    //   }
+    // }
+    // if (!foundUser) {
+    //   this.incorrectEmail = true;
+    //   this.incorrectPassword = true;
+    // }
+
+    const email = loginForm.value.email;
+    const password = loginForm.value.password;
+    this.authService.signinUser(email, password);
+
+    localStorage.setItem("user-logged-in", "true");
+
+    //console.log(firebase.auth().currentUser);
   }
 }

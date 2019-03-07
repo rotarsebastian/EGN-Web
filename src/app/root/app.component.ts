@@ -1,21 +1,31 @@
-import { Component } from "@angular/core";
-import { Router, NavigationStart } from "@angular/router";
+import { Component, OnInit } from "@angular/core";
+import {
+  Router,
+  NavigationStart,
+  ActivatedRoute,
+  NavigationEnd
+} from "@angular/router";
+import * as firebase from "firebase";
+import { AuthService } from "../services/auth.service";
 
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.scss"]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   loginPage: boolean = false;
   homePage: boolean = false;
 
-  constructor(private router: Router) {
-    router.events.forEach(event => {
-      if (event instanceof NavigationStart) {
-        if (event["url"] == "/") {
+  constructor(private router: Router, private authService: AuthService) {}
+
+  ngOnInit() {
+    this.router.events.forEach(event => {
+      if (event instanceof NavigationEnd) {
+        if (event["urlAfterRedirects"] === "/login") {
           this.loginPage = true;
-        } else if (event["url"] == "/home") {
+          this.homePage = false;
+        } else if (event["urlAfterRedirects"] == "/home") {
           this.homePage = true;
           this.loginPage = false;
         } else {
@@ -23,6 +33,17 @@ export class AppComponent {
           this.homePage = false;
         }
       }
+    });
+
+    if (!this.authService.isAuthenticated()) {
+      this.loginPage = true;
+    } else {
+      this.loginPage = false;
+    }
+
+    firebase.initializeApp({
+      apiKey: "AIzaSyBohyRVA454ltGvbvXrIdvqyvzMQMSSyho",
+      authDomain: "egn-project.firebaseapp.com"
     });
   }
 }
