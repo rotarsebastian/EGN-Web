@@ -12,7 +12,7 @@ export class UsersService {
   constructor(private http: HttpClient) {}
   usersChanged = new Subject<User[]>();
   private users = [];
-  path = "../assets/json/users.json";
+  //path = "../assets/json/users.json";
   loggedInUser: User;
   pathFull = "https://egn-project.firebaseio.com/users.json";
 
@@ -25,7 +25,7 @@ export class UsersService {
 
   getUsers() {
     this.http
-      .get<User[]>(this.path, {
+      .get<User[]>(this.pathFull, {
         observe: "body",
         responseType: "json"
       })
@@ -44,15 +44,19 @@ export class UsersService {
     this.usersChanged.next(this.users.slice());
   }
 
-  setUserLoggedIn(user: User) {
-    this.loggedInUser = user;
-  }
+  // setUserLoggedIn(user: User) {
+  //   this.loggedInUser = user;
+  // }
 
-  getLoggedInUser() {
+  getCurrentUser() {
     return this.loggedInUser;
   }
 
   getUser(index: number) {
     return this.users[index];
+  }
+
+  setCurrentUser(currUser: User) {
+    this.loggedInUser = currUser;
   }
 }

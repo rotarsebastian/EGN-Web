@@ -101,9 +101,9 @@ export class PostsComponent implements OnInit {
     }
 
     if (addLike) {
-      this.post.likes++;
+      //this.post.likes++;
     } else {
-      this.post.likes--;
+      //this.post.likes--;
     }
 
     this.postsService.storePosts().subscribe(response => {});

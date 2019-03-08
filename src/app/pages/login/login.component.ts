@@ -27,8 +27,6 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private dialog: MatDialog,
-    private router: Router,
-    private route: ActivatedRoute,
     private usersService: UsersService,
     private authService: AuthService
   ) {}
@@ -111,7 +109,15 @@ export class LoginComponent implements OnInit {
 
     const email = loginForm.value.email;
     const password = loginForm.value.password;
+
     this.authService.signinUser(email, password);
+
+    for (let user of this.users) {
+      if (user.email === firebase.auth().currentUser.email) {
+        this.usersService.setCurrentUser(user);
+        localStorage.setItem("currentUser", JSON.stringify(user));
+      }
+    }
 
     localStorage.setItem("user-logged-in", "true");
 

@@ -1,12 +1,14 @@
 import { Router, ActivatedRoute } from "@angular/router";
 import * as firebase from "firebase";
-import { Injectable } from "@angular/core";
+import { Injectable, OnInit } from "@angular/core";
 
 @Injectable()
-export class AuthService {
+export class AuthService implements OnInit {
   token: string;
 
   constructor(private router: Router, private route: ActivatedRoute) {}
+
+  ngOnInit() {}
 
   signupUser(email: string, password: string) {
     firebase
@@ -24,7 +26,9 @@ export class AuthService {
         firebase
           .auth()
           .currentUser.getIdToken()
-          .then((token: string) => (this.token = token));
+          .then((token: string) => {
+            this.token = token;
+          });
       })
       .catch(error => console.log(error));
   }
@@ -48,6 +52,7 @@ export class AuthService {
     } else if (localStorage["user-logged-in"]) {
       return true;
     } else {
+      this.router.navigate(["/login"], { relativeTo: this.route });
       return false;
     }
   }

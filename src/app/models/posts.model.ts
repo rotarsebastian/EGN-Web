@@ -1,4 +1,5 @@
 import { Comment } from "./comment.model";
+import { Like } from "./likes.model";
 
 export class Post {
   public id: number;
@@ -7,7 +8,7 @@ export class Post {
   public company: string;
   public date: string;
   public message: string;
-  public likes: number;
+  public likes: Like[];
   public comments: Comment[];
 
   constructor(
@@ -17,7 +18,7 @@ export class Post {
     company: string,
     date: string,
     message: string,
-    likes: number,
+    likes: Like[],
     comments: Comment[]
   ) {
     this.id = id;

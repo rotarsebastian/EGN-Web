@@ -6,15 +6,36 @@
     "company": "Google DK",
     "date": "2019-06-22T09:00:00.000Z",
     "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    "likes": 32,
+    "likes": [
+      {
+        "author": 2
+      },
+      {
+        "author": 1
+      }
+    ],
     "comments": [
       {
-        "likes": 2,
+        "likes": [
+          {
+            "author": 2
+          },
+          {
+            "author": 1
+          }
+        ],
         "author": "James Brown",
         "content": "Pretty good idea! Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
       },
       {
-        "likes": 1,
+        "likes": [
+          {
+            "author": 3
+          },
+          {
+            "author": 4
+          }
+        ],
         "author": "James Brown",
         "content": "Cheers for that"
       }
@@ -27,15 +48,30 @@
     "company": "Google DK",
     "date": "2019-05-23T11:00:00.000Z",
     "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    "likes": 3,
+    "likes": [
+      {
+        "author": 2
+      },
+      {
+        "author": 1
+      }
+    ],
     "comments": [
       {
-        "likes": 2,
+        "likes": [
+          {
+            "author": 2
+          }
+        ],
         "author": "James Brown",
         "content": "Pretty good idea!"
       },
       {
-        "likes": 1,
+        "likes": [
+          {
+            "author": 4
+          }
+        ],
         "author": "James Brown",
         "content": "Cheers for that"
       }
@@ -48,15 +84,26 @@
     "company": "Google DK",
     "date": "2019-09-23T14:00:00.000Z",
     "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    "likes": 3,
+    "likes": [
+      {
+        "author": 2
+      },
+      {
+        "author": 1
+      }
+    ],
     "comments": [
       {
-        "likes": 2,
+        "likes": [],
         "author": "James Brown",
         "content": "Pretty good idea!"
       },
       {
-        "likes": 1,
+        "likes": [
+          {
+            "author": 2
+          }
+        ],
         "author": "James Brown",
         "content": "Cheers for that"
       }
@@ -69,15 +116,30 @@
     "company": "Google DK",
     "date": "2019-07-25T11:00:00.000Z",
     "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    "likes": 61,
+    "likes": [
+      {
+        "author": 2
+      },
+      {
+        "author": 1
+      }
+    ],
     "comments": [
       {
-        "likes": 2,
+        "likes": [
+          {
+            "author": 2
+          }
+        ],
         "author": "James Brown",
         "content": "Pretty good idea!"
       },
       {
-        "likes": 1,
+        "likes": [
+          {
+            "author": 2
+          }
+        ],
         "author": "James Brown",
         "content": "Cheers for that"
       }
@@ -90,15 +152,30 @@
     "company": "Google DK",
     "date": "2019-07-15T08:00:00.000Z",
     "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    "likes": 42,
+    "likes": [
+      {
+        "author": 2
+      },
+      {
+        "author": 1
+      }
+    ],
     "comments": [
       {
-        "likes": 2,
+        "likes": [
+          {
+            "author": 2
+          }
+        ],
         "author": "James Brown",
         "content": "Pretty good idea!"
       },
       {
-        "likes": 1,
+        "likes": [
+          {
+            "author": 2
+          }
+        ],
         "author": "James Brown",
         "content": "Cheers for that"
       }
@@ -111,15 +188,30 @@
     "company": "Google DK",
     "date": "2019-07-22T09:00:00.000Z",
     "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    "likes": 52,
+    "likes": [
+      {
+        "author": 2
+      },
+      {
+        "author": 1
+      }
+    ],
     "comments": [
       {
-        "likes": 2,
+        "likes": [
+          {
+            "author": 2
+          }
+        ],
         "author": "James Brown",
         "content": "Pretty good idea!"
       },
       {
-        "likes": 1,
+        "likes": [
+          {
+            "author": 2
+          }
+        ],
         "author": "James Brown",
         "content": "Cheers for that"
       }
@@ -132,15 +224,30 @@
     "company": "Google DK",
     "date": "2019-07-23T11:00:00.000Z",
     "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    "likes": 26,
+    "likes": [
+      {
+        "author": 2
+      },
+      {
+        "author": 1
+      }
+    ],
     "comments": [
       {
-        "likes": 2,
+        "likes": [
+          {
+            "author": 2
+          }
+        ],
         "author": "James Brown",
         "content": "Pretty good idea!"
       },
       {
-        "likes": 1,
+        "likes": [
+          {
+            "author": 2
+          }
+        ],
         "author": "James Brown",
         "content": "Cheers for that"
       }
@@ -153,15 +260,30 @@
     "company": "Google DK",
     "date": "2019-07-23T14:00:00.000Z",
     "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    "likes": 15,
+    "likes": [
+      {
+        "author": 2
+      },
+      {
+        "author": 1
+      }
+    ],
     "comments": [
       {
-        "likes": 2,
+        "likes": [
+          {
+            "author": 2
+          }
+        ],
         "author": "James Brown",
         "content": "Pretty good idea!"
       },
       {
-        "likes": 1,
+        "likes": [
+          {
+            "author": 2
+          }
+        ],
         "author": "James Brown",
         "content": "Cheers for that"
       }
@@ -174,15 +296,30 @@
     "company": "Google DK",
     "date": "2019-07-25T11:00:00.000Z",
     "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    "likes": 18,
+    "likes": [
+      {
+        "author": 2
+      },
+      {
+        "author": 1
+      }
+    ],
     "comments": [
       {
-        "likes": 2,
+        "likes": [
+          {
+            "author": 2
+          }
+        ],
         "author": "James Brown",
         "content": "Pretty good idea!"
       },
       {
-        "likes": 1,
+        "likes": [
+          {
+            "author": 2
+          }
+        ],
         "author": "James Brown",
         "content": "Cheers for that"
       }
@@ -195,15 +332,30 @@
     "company": "Google DK",
     "date": "2019-07-15T08:00:00.000Z",
     "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    "likes": 34,
+    "likes": [
+      {
+        "author": 2
+      },
+      {
+        "author": 1
+      }
+    ],
     "comments": [
       {
-        "likes": 2,
+        "likes": [
+          {
+            "author": 2
+          }
+        ],
         "author": "James Brown",
         "content": "Pretty good idea!"
       },
       {
-        "likes": 1,
+        "likes": [
+          {
+            "author": 2
+          }
+        ],
         "author": "James Brown",
         "content": "Cheers for that"
       }
@@ -216,15 +368,30 @@
     "company": "Google DK",
     "date": "2019-07-22T09:00:00.000Z",
     "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    "likes": 66,
+    "likes": [
+      {
+        "author": 2
+      },
+      {
+        "author": 1
+      }
+    ],
     "comments": [
       {
-        "likes": 2,
+        "likes": [
+          {
+            "author": 2
+          }
+        ],
         "author": "James Brown",
         "content": "Pretty good idea!"
       },
       {
-        "likes": 1,
+        "likes": [
+          {
+            "author": 2
+          }
+        ],
         "author": "James Brown",
         "content": "Cheers for that"
       }
@@ -235,15 +402,30 @@
     "author": "Sebastian Rotar",
     "date": "2019-07-23T11:00:00.000Z",
     "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    "likes": 2,
+    "likes": [
+      {
+        "author": 2
+      },
+      {
+        "author": 1
+      }
+    ],
     "comments": [
       {
-        "likes": 2,
+        "likes": [
+          {
+            "author": 2
+          }
+        ],
         "author": "James Brown",
         "content": "Pretty good idea!"
       },
       {
-        "likes": 1,
+        "likes": [
+          {
+            "author": 2
+          }
+        ],
         "author": "James Brown",
         "content": "Cheers for that"
       }
@@ -256,15 +438,30 @@
     "company": "Google DK",
     "date": "2019-07-03T14:00:00.000Z",
     "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    "likes": 6,
+    "likes": [
+      {
+        "author": 2
+      },
+      {
+        "author": 1
+      }
+    ],
     "comments": [
       {
-        "likes": 2,
+        "likes": [
+          {
+            "author": 2
+          }
+        ],
         "author": "James Brown",
         "content": "Pretty good idea!"
       },
       {
-        "likes": 1,
+        "likes": [
+          {
+            "author": 2
+          }
+        ],
         "author": "James Brown",
         "content": "Cheers for that"
       }
@@ -277,15 +474,30 @@
     "company": "Google DK",
     "date": "2019-07-25T11:00:00.000Z",
     "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    "likes": 109,
+    "likes": [
+      {
+        "author": 2
+      },
+      {
+        "author": 1
+      }
+    ],
     "comments": [
       {
-        "likes": 2,
+        "likes": [
+          {
+            "author": 2
+          }
+        ],
         "author": "James Brown",
         "content": "Pretty good idea!"
       },
       {
-        "likes": 1,
+        "likes": [
+          {
+            "author": 2
+          }
+        ],
         "author": "James Brown",
         "content": "Cheers for that"
       }
@@ -298,15 +510,30 @@
     "company": "Google DK",
     "date": "2019-07-15T08:00:00.000Z",
     "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    "likes": 32,
+    "likes": [
+      {
+        "author": 2
+      },
+      {
+        "author": 1
+      }
+    ],
     "comments": [
       {
-        "likes": 2,
+        "likes": [
+          {
+            "author": 2
+          }
+        ],
         "author": "James Brown",
         "content": "Pretty good idea!"
       },
       {
-        "likes": 1,
+        "likes": [
+          {
+            "author": 2
+          }
+        ],
         "author": "James Brown",
         "content": "Cheers for that"
       }
