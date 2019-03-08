@@ -65,7 +65,7 @@
       </div>
     </div>
     <div class="likes-and-comments">
-      <div class="likes" (click)="onLikePost(index)">
+      <div class="likes" (click)="onLikePost()">
         <div class="likes-amount">{{ post.likes.length }}</div>
         <div class="like-svg">
           <svg
@@ -83,7 +83,7 @@
               <g>
                 <path
                   class="like-svg-path"
-                  [id]="post.id"
+                  #likeButton
                   style="fill:white;"
                   d="M48.837,25.537l-3.146-6.834c0,0-7.188,0.333-8.535-1.667c-1.348-2,1.648-7.833-0.898-13.333
                    c-1.865-4.031-4.697-3.496-6.076-2.923c-0.465,0.193-0.672,0.844-0.539,1.376c0.907,3.671,1.322,11.022-3.867,14.214
@@ -93,7 +93,7 @@
                 />
                 <path
                   class="like-svg-path"
-                  [id]="post.id"
+                  #likeButton
                   style="fill:white;"
                   d="M3.5,20.537h-1c-1.378,0-2.5,1.122-2.5,2.5v23c0,1.379,1.122,2.5,2.5,2.5h1
                    c1.378,0,2.5-1.121,2.5-2.5v-23C6,21.659,4.878,20.537,3.5,20.537z"
@@ -157,7 +157,7 @@
         </div>
       </div>
     </div>
-    <div class="add-comment" (click)="openAddComment(index)">
+    <div class="add-comment" (click)="openAddComment()">
       <div class="add-comment-svg">
         <svg
           version="1.1"

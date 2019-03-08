@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, ViewChild } from "@angular/core";
 import { Post } from "../../models/posts.model";
 import { NgForm } from "@angular/forms";
 import {
@@ -10,7 +10,9 @@ import {
 } from "@angular/animations";
 import { PostsService } from "src/app/services/posts.service";
 import * as firebase from "firebase";
-import { UsersService } from "src/app/services/users.service";
+import { User } from "src/app/models/users.model";
+import { Like } from "src/app/models/likes.model";
+import { HtmlAstPath } from "@angular/compiler";
 
 @Component({
   selector: "app-posts",
@@ -49,14 +51,23 @@ import { UsersService } from "src/app/services/users.service";
 export class PostsComponent implements OnInit {
   @Input() post: Post;
   @Input() index: number;
+  @ViewChild("likeButton") likePath: any;
   addCommentOpen: boolean = false;
+  loggedUser: User;
 
-  constructor(
-    private postsService: PostsService,
-    private userService: UsersService
-  ) {}
+  constructor(private postsService: PostsService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    let currentUser = localStorage.getItem("currentUser");
+    this.loggedUser = JSON.parse(currentUser);
+
+    for (let like of this.post.likes) {
+      if (like.author === this.loggedUser.id) {
+        this.likePath.nativeElement.classList.toggle("liked");
+        this.likePath.nativeElement.nextSibling.classList.toggle("liked");
+      }
+    }
+  }
 
   autogrow(event) {
     let textArea = event.srcElement;
@@ -75,35 +86,40 @@ export class PostsComponent implements OnInit {
       content: comment
     };
     this.post["comments"].push(newComment);
-
-    this.postsService.storePosts().subscribe(response => {});
-
+    this.postsService.storePosts().subscribe();
     addCommentForm.reset();
   }
 
-  openAddComment(index: number) {
-    this.onSeeComments(index);
+  openAddComment() {
+    this.onSeeComments(this.index);
   }
 
-  onLikePost(index: number) {
-    let path = document.querySelectorAll(".like-svg-path");
-    let pathArray = Array.from(path);
-    let addLike: boolean = false;
-    for (let pathElement of pathArray) {
-      if (parseInt(pathElement.id) === index) {
-        pathElement.classList.toggle("liked");
-        if (pathElement.classList.contains("liked")) {
-          addLike = true;
-        } else {
-          addLike = false;
-        }
+  onLikePost() {
+    let newLike: Like = {
+      author: this.loggedUser.id
+    };
+
+    let alreadyLiked: boolean = false;
+
+    for (let like of this.post.likes) {
+      if (like.author === this.loggedUser.id) {
+        alreadyLiked = true;
       }
     }
 
-    if (addLike) {
-      //this.post.likes++;
+    if (!alreadyLiked) {
+      this.post.likes.push(newLike);
+      this.likePath.nativeElement.classList.toggle("liked");
+      this.likePath.nativeElement.nextSibling.classList.toggle("liked");
     } else {
-      //this.post.likes--;
+      for (let like of this.post.likes) {
+        if (like.author === this.loggedUser.id) {
+          let likeIndex = this.post.likes.indexOf(like);
+          this.post.likes.splice(likeIndex, 1);
+          this.likePath.nativeElement.classList.toggle("liked");
+          this.likePath.nativeElement.nextSibling.classList.toggle("liked");
+        }
+      }
     }
 
     this.postsService.storePosts().subscribe(response => {});
