@@ -128,6 +128,9 @@ export class PostsComponent implements OnInit {
   }
 
   seeDropDownPost() {
+    if (this.dropDownPostOpen && this.postEditable) {
+      this.onEditPost();
+    }
     this.dropDownPostOpen = !this.dropDownPostOpen;
   }
 
@@ -144,25 +147,11 @@ export class PostsComponent implements OnInit {
   onEditPost() {
     this.postEditable = !this.postEditable;
 
-    let editButton: HTMLElement = <HTMLElement>(
-      document.querySelector(".svg-edit-post")
-    );
-    editButton.classList.toggle("svg-active");
-
-    let regularMessage: HTMLElement = <HTMLElement>(
-      document.querySelector(".regular-message")
-    );
-    regularMessage.classList.toggle("hide");
-
-    let editableMessage: HTMLElement = <HTMLElement>(
-      document.querySelector(".editable-message")
-    );
-    editableMessage.classList.toggle("hide");
-
-    let textAreaToEdit: HTMLElement = <HTMLElement>(
-      document.querySelector(".edit-post-textarea")
-    );
-    textAreaToEdit.focus();
+    //  textAreaToEdit[this.index].focus();
+    setTimeout(() => {
+      let textAreaToEdit = document.querySelectorAll(".edit-post-textarea");
+      textAreaToEdit[this.index].focus();
+    }, 0);
   }
 
   changePost(event) {
@@ -174,10 +163,8 @@ export class PostsComponent implements OnInit {
   }
 
   seeMore() {
-    let seeMoreDots: HTMLElement = <HTMLElement>(
-      document.querySelector(".more-text-dots")
-    );
-    seeMoreDots.classList.toggle("hide");
+    let seeMoreDots = document.querySelectorAll(".more-text-dots");
+    seeMoreDots[this.index].classList.toggle("hide");
   }
 
   autogrow(event) {

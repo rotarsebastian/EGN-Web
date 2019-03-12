@@ -6,20 +6,24 @@
   border-left: 5px solid #54b0de !important;
 }
 
+.blueBorder {
+  border: 1px solid #54b0de !important;
+}
+
 .blueText {
   color: #54b0de !important;
 }
 
 .hide {
-  display: none;
+  display: none !important;
 }
 
 .show {
-  display: block;
+  display: block !important;
 }
 
-.svg-active {
-  background-color: #dddddd;
+.svgActive {
+  background-color: #dddddd !important;
 }
 
 .entire-post {
@@ -125,6 +129,7 @@
         padding: 1.2rem 0;
 
         .editable-message {
+          display: none;
           div {
             width: 100%;
             text-align: right;
@@ -140,7 +145,7 @@
           width: 95%;
           resize: none;
           overflow-y: none;
-          border: 1px solid #d50965 !important;
+          border: 1px solid #d50965;
 
           &::-webkit-scrollbar {
             display: none;

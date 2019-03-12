@@ -40,6 +40,7 @@
         <div>
           <svg
             class="svg-edit-post"
+            [ngClass]="{ svgActive: postEditable }"
             (click)="onEditPost()"
             height="381pt"
             viewBox="0 -1 381.53417 381"
@@ -107,7 +108,7 @@
         </div>
       </div>
       <div class="post-message">
-        <div class="regular-message">
+        <div class="regular-message" [ngClass]="{ hide: postEditable }">
           <input type="checkbox" class="read-more-state" [id]="post.id" />
 
           <p class="read-more-wrap" *ngIf="post.message.length > 350">
@@ -128,13 +129,19 @@
             [ngClass]="{ blueText: index % 2 === 1 }"
           ></label>
         </div>
-        <div class="editable-message hide" #editPost>
+        <div
+          class="editable-message"
+          #editPost
+          [ngClass]="{ show: postEditable }"
+        >
           <textarea
             class="edit-post-textarea"
             type="text"
             [value]="post.message"
             (keyup)="autogrow($event)"
             #newPost
+            (focus)="(postEditable)"
+            [ngClass]="{ blueBorder: index % 2 === 1 }"
           ></textarea>
           <div>
             <button
