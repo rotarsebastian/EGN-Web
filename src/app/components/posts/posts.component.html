@@ -36,7 +36,7 @@
         <g></g>
         <g></g>
       </svg>
-      <div class="dropdown-post" *ngIf="dropDownPostOpen" [@editPost]>
+      <div class="dropdown-post" *ngIf="dropDownPostOpen" [@onManage]>
         <div>
           <svg
             class="svg-edit-post"
@@ -67,7 +67,7 @@
         </div>
         <div>
           <svg
-            (click)="deletePost(index)"
+            (click)="deletePost()"
             height="427pt"
             viewBox="-40 0 427 427.00131"
             width="427pt"
@@ -140,7 +140,6 @@
             [value]="post.message"
             (keyup)="autogrow($event)"
             #newPost
-            (focus)="(postEditable)"
             [ngClass]="{ blueBorder: index % 2 === 1 }"
           ></textarea>
           <div>
@@ -291,60 +290,13 @@
     </div>
   </div>
   <div class="add-comment-container" *ngIf="addCommentOpen" [@addCommentSlide]>
-    <div
-      class="add-comment-wrapper old-comments"
-      *ngFor="let comment of post.comments"
-    >
-      <svg
-        *ngIf="loggedUser.id === comment.authorID || loggedUser.id === 2"
-        #editComment
-        version="1.1"
-        id="Capa_1"
-        xmlns="http://www.w3.org/2000/svg"
-        xmlns:xlink="http://www.w3.org/1999/xlink"
-        x="0px"
-        y="0px"
-        viewBox="0 0 58 58"
-        style="enable-background:new 0 0 58 58;"
-        xml:space="preserve"
-      >
-        <circle style="fill:#9faec0;" cx="7" cy="29" r="7" />
-        <circle style="fill:#9faec0;" cx="51" cy="29" r="7" />
-        <circle style="fill:#9faec0;" cx="29" cy="29" r="7" />
-        <circle style="fill:#9faec0;" cx="7" cy="29" r="7" />
-        <circle style="fill:#9faec0;" cx="51" cy="29" r="7" />
-        <circle style="fill:#9faec0;" cx="29" cy="29" r="7" />
-        <g></g>
-        <g></g>
-        <g></g>
-        <g></g>
-        <g></g>
-        <g></g>
-        <g></g>
-        <g></g>
-        <g></g>
-        <g></g>
-        <g></g>
-        <g></g>
-        <g></g>
-        <g></g>
-        <g></g>
-      </svg>
-      <div class="add-comment-img-container">
-        <img
-          src="../../../assets/images/person.png"
-          alt=""
-          style="width: 2rem"
-        />
-      </div>
-      <div class="add-new-comment">
-        <div>
-          <p [ngClass]="{ blueText: index % 2 === 1 }">{{ comment.author }}</p>
-          {{ comment.content }}
-        </div>
-      </div>
-      <br />
-    </div>
+    <app-comments
+      *ngFor="let comment of post.comments; index as i"
+      [comment]="comment"
+      [indexComment]="i"
+      [index]="index"
+      [@singlePost]
+    ></app-comments>
 
     <div class="add-comment-wrapper">
       <div class="add-comment-img-container">

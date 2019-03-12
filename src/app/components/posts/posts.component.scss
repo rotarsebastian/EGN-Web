@@ -315,19 +315,8 @@
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 
-  .old-comments {
-    padding: 1.5rem;
-    padding-top: 0;
-    padding-bottom: 0.25rem;
-    position: relative;
-    svg {
-      position: absolute;
-      right: 1.15rem;
-      top: 0;
-      width: 1rem;
-      padding: 0.3rem 1rem;
-      cursor: pointer;
-    }
+  .old-comments-container {
+    display: block;
   }
 
   .add-comment-wrapper {
@@ -345,7 +334,18 @@
     .add-new-comment {
       width: 90%;
 
-      div {
+      .editable-comment {
+        display: none;
+        textarea {
+          margin-top: 1rem;
+          width: 95%;
+          resize: none;
+          overflow-y: none;
+          border: 1px solid #d50965;
+        }
+      }
+
+      .single-comment {
         border-radius: 5px;
         border: solid 0.3px #cccccc;
         background-color: #ffffff;

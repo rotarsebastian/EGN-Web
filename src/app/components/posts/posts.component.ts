@@ -44,7 +44,7 @@ import { Like } from "src/app/models/likes.model";
         )
       ])
     ]),
-    trigger("editPost", [
+    trigger("onManage", [
       state(
         "in",
         style({
@@ -134,24 +134,24 @@ export class PostsComponent implements OnInit {
     this.dropDownPostOpen = !this.dropDownPostOpen;
   }
 
-  deletePost(indexOfPost: number) {
-    this.postsService.getPosts();
-    this.postsService.postsChanged.subscribe((posts: Post[]) => {
-      posts.splice(indexOfPost, 1);
-    });
-
-    this.postsService.deletePost(indexOfPost);
-    this.postsService.storePosts().subscribe(response => {});
-  }
-
   onEditPost() {
     this.postEditable = !this.postEditable;
-
-    //  textAreaToEdit[this.index].focus();
     setTimeout(() => {
-      let textAreaToEdit = document.querySelectorAll(".edit-post-textarea");
+      let textAreaToEdit: any = document.querySelectorAll(
+        ".edit-post-textarea"
+      );
       textAreaToEdit[this.index].focus();
     }, 0);
+  }
+
+  deletePost() {
+    this.postsService.getPosts();
+    this.postsService.postsChanged.subscribe((posts: Post[]) => {
+      posts.splice(this.index, 1);
+    });
+
+    this.postsService.deletePost(this.index);
+    this.postsService.storePosts().subscribe(response => {});
   }
 
   changePost(event) {

@@ -1,0 +1,137 @@
+@import "../../../styles/input.scss";
+@import "../../../styles/textarea.scss";
+@import "../../../styles/button.scss";
+
+.blueTag::after {
+  border-left: 5px solid #54b0de !important;
+}
+
+.blueBorder {
+  border: 1px solid #54b0de !important;
+}
+
+.blueText {
+  color: #54b0de !important;
+}
+
+.hide {
+  display: none !important;
+}
+
+.show {
+  display: block !important;
+}
+
+.svgActive {
+  background-color: #dddddd !important;
+}
+
+.old-comments {
+  padding: 1.5rem;
+  padding-top: 0;
+  padding-bottom: 0.25rem;
+  position: relative;
+
+  .dropdown-comment {
+    position: absolute;
+    bottom: 1rem;
+    right: 0.35rem;
+    z-index: 1;
+    height: 1.75rem;
+    background-color: transparent;
+    z-index: 1;
+    margin-top: 0.35rem;
+
+    div {
+      padding: 0.3rem 0.67rem;
+      display: inline-block;
+      width: 1.7rem;
+      cursor: pointer;
+      position: relative;
+      height: 100%;
+      background-color: transparent;
+
+      svg {
+        height: auto;
+        padding: 0.25rem 1rem;
+        position: absolute;
+        right: 1.15rem;
+        top: 0;
+        width: 1rem;
+        cursor: pointer;
+
+        &:hover {
+          background-color: #dddddd;
+        }
+      }
+    }
+  }
+
+  .svg-comment-dots {
+    position: absolute;
+    right: 1.5rem;
+    top: 0;
+    width: 1rem;
+    padding: 0.3rem 1rem;
+    cursor: pointer;
+  }
+}
+
+.add-comment-wrapper {
+  display: flex;
+  .add-comment-img-container {
+    padding-right: 0.3rem;
+    width: 10%;
+    img {
+      width: 3rem;
+      border-radius: 50%;
+      display: block;
+      margin: auto;
+    }
+  }
+  .add-new-comment {
+    width: 90%;
+
+    .editable-comment {
+      display: none;
+      textarea {
+        margin-top: 1rem;
+        width: 95%;
+        resize: none;
+        overflow-y: none;
+        border: 1px solid #d50965;
+      }
+    }
+
+    .single-comment {
+      border-radius: 5px;
+      border: solid 0.3px #cccccc;
+      background-color: #ffffff;
+      line-height: 1.25rem;
+      margin-bottom: 1rem;
+      padding: 0.25rem 0.65rem;
+      margin-left: -0.35rem;
+      font-size: 0.9rem;
+      margin-right: 0;
+      padding-right: 0.5rem;
+      -webkit-font-smoothing: antialiased;
+      color: #1b3d5d;
+
+      p {
+        margin: 0;
+        color: #d50965;
+        font-size: 0.75rem;
+      }
+    }
+
+    textarea {
+      width: 98%;
+      resize: none;
+    }
+
+    button {
+      padding: 0 1.5rem;
+      line-height: 1.5rem;
+    }
+  }
+}

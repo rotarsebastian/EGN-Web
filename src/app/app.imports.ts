@@ -4,6 +4,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { routing } from "./app.routing";
 import { MaterialModule } from "./material.module";
+import { ClickOutsideModule } from "ng-click-outside";
 
 export const imports = [
   BrowserModule,
@@ -12,5 +13,6 @@ export const imports = [
   ReactiveFormsModule,
   BrowserAnimationsModule,
   routing,
-  MaterialModule
+  MaterialModule,
+  ClickOutsideModule
 ];

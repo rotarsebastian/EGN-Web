@@ -34,6 +34,9 @@ export class PostsService {
             if (!post["likes"]) {
               post["likes"] = [];
             }
+            if (!post["comments"]) {
+              post["comments"] = [];
+            }
           }
           return posts;
         })
@@ -54,5 +57,9 @@ export class PostsService {
 
   deletePost(index: number) {
     this.posts.splice(index, 1);
+  }
+
+  deletePostComment(indexPost: number, indexOfComment: number) {
+    this.posts[indexPost]["comments"].splice(indexOfComment, 1);
   }
 }

@@ -15,6 +15,7 @@ import { GroupsComponent } from "./pages/groups/groups.component";
 import { CalendarComponent } from "./pages/calendar/calendar.component";
 import { QueriesComponent } from "./pages/queries/queries.component";
 import { PostsComponent } from "./components/posts/posts.component";
+import { CommentsComponent } from "./components/comments/comments.component";
 
 export const components = [
   AppComponent,
@@ -22,6 +23,7 @@ export const components = [
   HeaderComponent,
   PeersComponent,
   PostsComponent,
+  CommentsComponent,
   // components
 
   // pages
