@@ -30,6 +30,11 @@ export class PostsService {
       })
       .pipe(
         map(posts => {
+          for (let post of posts) {
+            if (!post["likes"]) {
+              post["likes"] = [];
+            }
+          }
           return posts;
         })
       )
@@ -45,5 +50,9 @@ export class PostsService {
 
   getPost(index: number) {
     return this.posts[index];
+  }
+
+  deletePost(index: number) {
+    this.posts.splice(index, 1);
   }
 }

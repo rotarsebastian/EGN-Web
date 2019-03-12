@@ -9,10 +9,8 @@ import {
   animate
 } from "@angular/animations";
 import { PostsService } from "src/app/services/posts.service";
-import * as firebase from "firebase";
 import { User } from "src/app/models/users.model";
 import { Like } from "src/app/models/likes.model";
-import { HtmlAstPath } from "@angular/compiler";
 
 @Component({
   selector: "app-posts",
@@ -45,6 +43,59 @@ import { HtmlAstPath } from "@angular/compiler";
           })
         )
       ])
+    ]),
+    trigger("editPost", [
+      state(
+        "in",
+        style({
+          opacity: 1,
+          transform: "translateX(0)"
+        })
+      ),
+      transition("void => *", [
+        style({
+          opacity: 0,
+          transform: "translateX(50px)",
+          transition: "0.25s ease"
+        }),
+        animate(200)
+      ]),
+      transition("* => void", [
+        animate(
+          200,
+          style({
+            transform: "translateX(50px)",
+            opacity: 0,
+            transition: "0.25s ease"
+          })
+        )
+      ])
+    ]),
+    trigger("singlePost", [
+      state(
+        "in",
+        style({
+          opacity: 1,
+          transform: "translateX(0)"
+        })
+      ),
+      transition("void => *", [
+        style({
+          opacity: 0,
+          transform: "translateY(150px)",
+          transition: "0.25s ease"
+        }),
+        animate(200)
+      ]),
+      transition("* => void", [
+        animate(
+          200,
+          style({
+            transform: "translateX(100px)",
+            opacity: 0
+          })
+        )
+      ])
     ])
   ]
 })
@@ -52,21 +103,81 @@ export class PostsComponent implements OnInit {
   @Input() post: Post;
   @Input() index: number;
   @ViewChild("likeButton") likePath: any;
+
   addCommentOpen: boolean = false;
   loggedUser: User;
+  dropDownPostOpen: boolean = false;
+  postEditable: boolean = false;
 
-  constructor(private postsService: PostsService) {}
-
-  ngOnInit() {
+  constructor(private postsService: PostsService) {
     let currentUser = localStorage.getItem("currentUser");
     this.loggedUser = JSON.parse(currentUser);
+  }
 
-    for (let like of this.post.likes) {
-      if (like.author === this.loggedUser.id) {
-        this.likePath.nativeElement.classList.toggle("liked");
-        this.likePath.nativeElement.nextSibling.classList.toggle("liked");
+  //WRAP THE MESSAGES IN A VIEW X MORE COMMENTS BUTTON AND LEAVE ONLY 2 TO BE SHOWN
+
+  ngOnInit() {
+    if (this.post["likes"]) {
+      for (let like of this.post.likes) {
+        if (like.author === this.loggedUser.id) {
+          this.likePath.nativeElement.classList.toggle("liked");
+          this.likePath.nativeElement.nextSibling.classList.toggle("liked");
+        }
       }
     }
+  }
+
+  seeDropDownPost() {
+    this.dropDownPostOpen = !this.dropDownPostOpen;
+  }
+
+  deletePost(indexOfPost: number) {
+    this.postsService.getPosts();
+    this.postsService.postsChanged.subscribe((posts: Post[]) => {
+      posts.splice(indexOfPost, 1);
+    });
+
+    this.postsService.deletePost(indexOfPost);
+    this.postsService.storePosts().subscribe(response => {});
+  }
+
+  onEditPost() {
+    this.postEditable = !this.postEditable;
+
+    let editButton: HTMLElement = <HTMLElement>(
+      document.querySelector(".svg-edit-post")
+    );
+    editButton.classList.toggle("svg-active");
+
+    let regularMessage: HTMLElement = <HTMLElement>(
+      document.querySelector(".regular-message")
+    );
+    regularMessage.classList.toggle("hide");
+
+    let editableMessage: HTMLElement = <HTMLElement>(
+      document.querySelector(".editable-message")
+    );
+    editableMessage.classList.toggle("hide");
+
+    let textAreaToEdit: HTMLElement = <HTMLElement>(
+      document.querySelector(".edit-post-textarea")
+    );
+    textAreaToEdit.focus();
+  }
+
+  changePost(event) {
+    const newMessage = event.srcElement.parentElement.previousSibling.value;
+    this.post.message = newMessage;
+    this.onEditPost();
+    this.seeDropDownPost();
+    this.postsService.storePosts().subscribe();
+  }
+
+  seeMore() {
+    let seeMoreDots: HTMLElement = <HTMLElement>(
+      document.querySelector(".more-text-dots")
+    );
+    seeMoreDots.classList.toggle("hide");
   }
 
   autogrow(event) {
@@ -78,11 +189,13 @@ export class PostsComponent implements OnInit {
 
   postComment(addCommentForm: NgForm) {
     const comment = addCommentForm.value.comment;
-    const name = firebase.auth().currentUser.displayName;
+    const name = this.loggedUser.name;
+    const userID = this.loggedUser.id;
 
     const newComment = {
       likes: 0,
       author: name,
+      authorID: userID,
       content: comment
     };
     this.post["comments"].push(newComment);
@@ -92,6 +205,7 @@ export class PostsComponent implements OnInit {
 
   openAddComment() {
     this.onSeeComments(this.index);
+    this.postsService.storePosts().subscribe(response => {});
   }
 
   onLikePost() {
@@ -101,9 +215,11 @@ export class PostsComponent implements OnInit {
 
     let alreadyLiked: boolean = false;
 
-    for (let like of this.post.likes) {
-      if (like.author === this.loggedUser.id) {
-        alreadyLiked = true;
+    if (this.post["likes"]) {
+      for (let like of this.post.likes) {
+        if (like.author === this.loggedUser.id) {
+          alreadyLiked = true;
+        }
       }
     }
 

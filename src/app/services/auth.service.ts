@@ -1,6 +1,7 @@
 import { Router, ActivatedRoute } from "@angular/router";
 import * as firebase from "firebase";
 import { Injectable, OnInit } from "@angular/core";
+import { Observable } from "rxjs";
 
 @Injectable()
 export class AuthService implements OnInit {
@@ -30,7 +31,9 @@ export class AuthService implements OnInit {
             this.token = token;
           });
       })
-      .catch(error => console.log(error));
+      .catch(error => {
+        console.log(error);
+      });
   }
 
   logout() {

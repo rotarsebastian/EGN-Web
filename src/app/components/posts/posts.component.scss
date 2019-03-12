@@ -10,6 +10,18 @@
   color: #54b0de !important;
 }
 
+.hide {
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
+.svg-active {
+  background-color: #dddddd;
+}
+
 .entire-post {
   margin-bottom: 2rem;
   .single-post {
@@ -30,7 +42,7 @@
     .post-content {
       margin: 0;
       max-height: 100%;
-      padding: 0.75rem;
+      padding: 0.95rem;
       padding-left: 2rem;
       padding-right: 0.75rem;
       -webkit-font-smoothing: antialiased;
@@ -44,6 +56,35 @@
         width: 1.35rem;
         padding: 0.3rem 1rem;
         cursor: pointer;
+      }
+
+      .dropdown-post {
+        position: absolute;
+        top: 3.55rem;
+        right: 0;
+        background-color: #f1f1f1;
+        color: #939597;
+        box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
+        z-index: 1;
+        height: 1.75rem;
+
+        div {
+          padding: 0.3rem 0.75rem;
+          display: inline-block;
+          width: 1.7rem;
+          cursor: pointer;
+          position: relative;
+          height: 100%;
+
+          svg {
+            height: auto;
+            padding: 0.25rem 1rem;
+
+            &:hover {
+              background-color: #dddddd;
+            }
+          }
+        }
       }
 
       .post-header {
@@ -82,6 +123,30 @@
       }
       .post-message {
         padding: 1.2rem 0;
+
+        .editable-message {
+          div {
+            width: 100%;
+            text-align: right;
+            button {
+              padding: 0 1.5rem;
+              margin-right: 1.15rem;
+            }
+          }
+        }
+
+        textarea {
+          margin-top: 1rem;
+          width: 95%;
+          resize: none;
+          overflow-y: none;
+          border: 1px solid #d50965 !important;
+
+          &::-webkit-scrollbar {
+            display: none;
+          }
+        }
+
         .read-more-state {
           display: none;
         }
@@ -249,6 +314,15 @@
     padding: 1.5rem;
     padding-top: 0;
     padding-bottom: 0.25rem;
+    position: relative;
+    svg {
+      position: absolute;
+      right: 1.15rem;
+      top: 0;
+      width: 1rem;
+      padding: 0.3rem 1rem;
+      cursor: pointer;
+    }
   }
 
   .add-comment-wrapper {

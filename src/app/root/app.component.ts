@@ -20,6 +20,8 @@ export class AppComponent implements OnInit {
   constructor(private router: Router, private authService: AuthService) {}
 
   ngOnInit() {
+    console.log(localStorage.getItem("user-logged-in"));
+
     this.router.events.forEach(event => {
       if (event instanceof NavigationEnd) {
         if (event["urlAfterRedirects"] === "/login") {
@@ -39,6 +41,7 @@ export class AppComponent implements OnInit {
       this.loginPage = true;
     } else {
       this.loginPage = false;
+      this.router.navigate(["/home"]);
     }
 
     firebase.initializeApp({
