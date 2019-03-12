@@ -128,6 +128,12 @@
       .post-message {
         padding: 1.2rem 0;
 
+        .regular-message {
+          p {
+            white-space: pre-line;
+          }
+        }
+
         .editable-message {
           display: none;
           div {

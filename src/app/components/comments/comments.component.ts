@@ -101,6 +101,7 @@ export class CommentsComponent implements OnInit {
   @Input() comment: Comment;
   @Input() indexComment: number;
   @Input() index: number;
+  @Input() totalComments: number;
   @ViewChild("likeButton") likePath: any;
 
   loggedUser: User;
@@ -132,7 +133,7 @@ export class CommentsComponent implements OnInit {
   }
 
   changeComment(event) {
-    const newComment = event.srcElement.parentElement.previousSibling.value;
+    const newComment = event.srcElement.parentElement.previousSibling.value.trim();
     this.comment["content"] = newComment;
     this.onEditComment();
     this.onManageComment();
@@ -153,7 +154,7 @@ export class CommentsComponent implements OnInit {
 
   onClickedOutside() {
     if (this.dropDownCommentOpen) {
-      //this.onManageComment();
+      this.onManageComment();
     }
   }
 }

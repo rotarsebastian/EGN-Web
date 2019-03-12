@@ -1,6 +1,6 @@
-<div class="entire-post" [@singlePost]>
+<div class="entire-post" [@singlePost] (clickOutside)="onClickedOutside()">
   <div class="single-post" [ngClass]="{ blueTag: index % 2 === 1 }">
-    <div class="post-content">
+    <div class="post-content" (clickOutside)="onClickedOutsideContent()">
       <svg
         *ngIf="loggedUser.id === 2"
         (click)="seeDropDownPost()"
@@ -114,7 +114,7 @@
           <p class="read-more-wrap" *ngIf="post.message.length > 350">
             {{ post.message | slice: 0:324
             }}<span class="more-text-dots">...</span>
-            <span class="read-more-target"
+            <span class="read-more-target hide"
               >{{ post.message | slice: 324 }}
             </span>
           </p>
@@ -122,7 +122,7 @@
           <p *ngIf="post.message.length < 350">{{ post.message }}</p>
 
           <label
-            (click)="seeMore()"
+            (click)="seeMoreButton()"
             *ngIf="post.message.length > 350"
             [for]="post.id"
             class="read-more-trigger"
@@ -210,7 +210,7 @@
           </svg>
         </div>
       </div>
-      <div class="comments" (click)="onSeeComments(index)">
+      <div class="comments" (click)="onSeeComments()">
         <div class="comments-amount">{{ post.comments.length }}</div>
         <div class="comment-svg">
           <svg
@@ -290,13 +290,36 @@
     </div>
   </div>
   <div class="add-comment-container" *ngIf="addCommentOpen" [@addCommentSlide]>
-    <app-comments
-      *ngFor="let comment of post.comments; index as i"
-      [comment]="comment"
-      [indexComment]="i"
-      [index]="index"
-      [@singlePost]
-    ></app-comments>
+    <p
+      class="show-hide-comments"
+      [ngClass]="{ hide: post.comments.length < 6 }"
+      (click)="seeMoreComments()"
+    >
+      View {{ wrappedCommentsAmount }} more comments
+    </p>
+    <div *ngIf="!commentsWrappable">
+      <app-comments
+        *ngFor="let comment of post.comments; index as i"
+        [comment]="comment"
+        [indexComment]="i"
+        [index]="index"
+        [totalComments]="post['comments'].length"
+        [@singlePost]
+      ></app-comments>
+    </div>
+
+    <div *ngIf="commentsWrappable">
+      <app-comments
+        *ngFor="let comment of commentsToBeShown; index as i"
+        [comment]="comment"
+        [indexComment]="i"
+        [index]="index"
+        [totalComments]="post['comments'].length"
+        [@singlePost]
+      ></app-comments>
+    </div>
+
+    <!--   *ngIf="comment[i] < post['comments'].length - 2" -->
 
     <div class="add-comment-wrapper">
       <div class="add-comment-img-container">

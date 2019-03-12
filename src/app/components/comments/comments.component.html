@@ -1,10 +1,12 @@
-<div class="add-comment-wrapper old-comments">
+<div
+  class="add-comment-wrapper old-comments"
+  (clickOutside)="onClickedOutside()"
+>
   <svg
     *ngIf="loggedUser.id === comment.authorID || loggedUser.id === 2"
     #editComment
     class="svg-comment-dots"
     (click)="onManageComment()"
-    (clickOutside)="onClickedOutside()"
     version="1.1"
     id="Capa_1"
     xmlns="http://www.w3.org/2000/svg"

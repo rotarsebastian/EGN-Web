@@ -108,6 +108,9 @@ export class PostsComponent implements OnInit {
   loggedUser: User;
   dropDownPostOpen: boolean = false;
   postEditable: boolean = false;
+  commentsWrappable: boolean = false;
+  wrappedCommentsAmount: number;
+  commentsToBeShown;
 
   constructor(private postsService: PostsService) {
     let currentUser = localStorage.getItem("currentUser");
@@ -125,12 +128,66 @@ export class PostsComponent implements OnInit {
         }
       }
     }
+    if (this.post["comments"].length > 5) {
+      this.commentsWrappable = !this.commentsWrappable;
+      this.commentsToBeShown = this.post["comments"].slice(
+        this.post["comments"].length - 3
+      );
+      this.wrappedCommentsAmount = this.post["comments"].length - 3;
+      console.log(this.commentsToBeShown);
+    } else {
+      //this.commentsWrappable = !this.commentsWrappable;
+    }
+  }
+
+  seeMoreComments() {
+    this.commentsWrappable = !this.commentsWrappable;
+    // let viewOrHideComments = document.querySelectorAll(".show-hide-comments");
+    // if (viewOrHideComments[this.index].textContent.slice(0, 4) != "View") {
+    //   viewOrHideComments[this.index].textContent = `Hide first ${
+    //     this.wrappedCommentsAmount
+    //   } comments`;
+    // } else {
+    //   viewOrHideComments[this.index].textContent = `View ${
+    //     this.wrappedCommentsAmount
+    //   } more comments`;
+    // }
+  }
+
+  onClickedOutside() {
+    if (this.addCommentOpen) {
+      this.onSeeComments();
+    }
+    if (this.dropDownPostOpen) {
+      this.seeDropDownPost();
+    }
+  }
+
+  onClickedOutsideContent() {
+    if (this.dropDownPostOpen) {
+      this.seeDropDownPost();
+    }
+  }
+  onSeeComments() {
+    let path = document.querySelectorAll(".comment-svg-path");
+    let pathArray = Array.from(path);
+    pathArray[this.index].classList.toggle("commentsOpen");
+    this.addCommentOpen = !this.addCommentOpen;
+
+    if (this.dropDownPostOpen) {
+      this.dropDownPostOpen = !this.dropDownPostOpen;
+    }
   }
 
   seeDropDownPost() {
     if (this.dropDownPostOpen && this.postEditable) {
       this.onEditPost();
     }
+
+    if (this.addCommentOpen) {
+      this.addCommentOpen = !this.addCommentOpen;
+    }
+
     this.dropDownPostOpen = !this.dropDownPostOpen;
   }
 
@@ -151,20 +208,22 @@ export class PostsComponent implements OnInit {
     });
 
     this.postsService.deletePost(this.index);
-    this.postsService.storePosts().subscribe(response => {});
+    this.postsService.storePosts().subscribe();
   }
 
   changePost(event) {
-    const newMessage = event.srcElement.parentElement.previousSibling.value;
+    const newMessage = event.srcElement.parentElement.previousSibling.value.trim();
     this.post.message = newMessage;
     this.onEditPost();
     this.seeDropDownPost();
     this.postsService.storePosts().subscribe();
   }
 
-  seeMore() {
+  seeMoreButton() {
     let seeMoreDots = document.querySelectorAll(".more-text-dots");
+    let readMore = document.querySelectorAll(".read-more-target");
     seeMoreDots[this.index].classList.toggle("hide");
+    readMore[this.index].classList.toggle("hide");
   }
 
   autogrow(event) {
@@ -191,8 +250,8 @@ export class PostsComponent implements OnInit {
   }
 
   openAddComment() {
-    this.onSeeComments(this.index);
-    this.postsService.storePosts().subscribe(response => {});
+    this.onSeeComments();
+    this.postsService.storePosts().subscribe();
   }
 
   onLikePost() {
@@ -225,13 +284,6 @@ export class PostsComponent implements OnInit {
       }
     }
 
-    this.postsService.storePosts().subscribe(response => {});
-  }
-
-  onSeeComments(index: number) {
-    let path = document.querySelectorAll(".comment-svg-path");
-    let pathArray = Array.from(path);
-    pathArray[index].classList.toggle("commentsOpen");
-    this.addCommentOpen = !this.addCommentOpen;
+    this.postsService.storePosts().subscribe();
   }
 }
