@@ -109,7 +109,8 @@ export class PostsComponent implements OnInit {
   dropDownPostOpen: boolean = false;
   postEditable: boolean = false;
   commentsWrappable: boolean = false;
-  wrappedCommentsAmount: number;
+  neverShowMoreComments: boolean = false;
+  wrappedCommentsAmount: number = -1;
   commentsToBeShown;
 
   constructor(private postsService: PostsService) {
@@ -128,30 +129,19 @@ export class PostsComponent implements OnInit {
         }
       }
     }
-    if (this.post["comments"].length > 5) {
-      this.commentsWrappable = !this.commentsWrappable;
-      this.commentsToBeShown = this.post["comments"].slice(
-        this.post["comments"].length - 3
-      );
-      this.wrappedCommentsAmount = this.post["comments"].length - 3;
-      console.log(this.commentsToBeShown);
-    } else {
-      //this.commentsWrappable = !this.commentsWrappable;
-    }
   }
 
-  seeMoreComments() {
+  seeMoreComments(event) {
+    if (this.commentsWrappable) {
+      event.srcElement.textContent = `Hide first ${
+        this.wrappedCommentsAmount
+      } comments`;
+    } else {
+      event.srcElement.textContent = `See ${
+        this.wrappedCommentsAmount
+      } more comments`;
+    }
     this.commentsWrappable = !this.commentsWrappable;
-    // let viewOrHideComments = document.querySelectorAll(".show-hide-comments");
-    // if (viewOrHideComments[this.index].textContent.slice(0, 4) != "View") {
-    //   viewOrHideComments[this.index].textContent = `Hide first ${
-    //     this.wrappedCommentsAmount
-    //   } comments`;
-    // } else {
-    //   viewOrHideComments[this.index].textContent = `View ${
-    //     this.wrappedCommentsAmount
-    //   } more comments`;
-    // }
   }
 
   onClickedOutside() {
@@ -169,6 +159,14 @@ export class PostsComponent implements OnInit {
     }
   }
   onSeeComments() {
+    if (this.post["comments"].length > 5) {
+      this.commentsWrappable = !this.commentsWrappable;
+      this.commentsToBeShown = this.post["comments"].slice(
+        this.post["comments"].length - 3
+      );
+      this.wrappedCommentsAmount = this.post["comments"].length - 3;
+    }
+
     let path = document.querySelectorAll(".comment-svg-path");
     let pathArray = Array.from(path);
     pathArray[this.index].classList.toggle("commentsOpen");
@@ -245,6 +243,15 @@ export class PostsComponent implements OnInit {
       content: comment
     };
     this.post["comments"].push(newComment);
+
+    if (this.post["comments"].length === 6) {
+      this.neverShowMoreComments = true;
+    }
+
+    if (this.commentsToBeShown && this.commentsToBeShown.length > -1) {
+      this.commentsToBeShown.push(newComment);
+    }
+
     this.postsService.storePosts().subscribe();
     addCommentForm.reset();
   }

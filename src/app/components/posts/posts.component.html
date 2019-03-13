@@ -290,20 +290,28 @@
     </div>
   </div>
   <div class="add-comment-container" *ngIf="addCommentOpen" [@addCommentSlide]>
-    <p
+    <div
       class="show-hide-comments"
-      [ngClass]="{ hide: post.comments.length < 6 }"
-      (click)="seeMoreComments()"
+      [ngClass]="{
+        blueText: index % 2 === 1
+      }"
     >
-      View {{ wrappedCommentsAmount }} more comments
-    </p>
+      <p
+        [ngClass]="{
+          hide: post.comments.length < 6 || neverShowMoreComments
+        }"
+        (click)="seeMoreComments($event)"
+      >
+        See {{ wrappedCommentsAmount }} more comments
+      </p>
+    </div>
+
     <div *ngIf="!commentsWrappable">
       <app-comments
         *ngFor="let comment of post.comments; index as i"
         [comment]="comment"
         [indexComment]="i"
         [index]="index"
-        [totalComments]="post['comments'].length"
         [@singlePost]
       ></app-comments>
     </div>
@@ -314,7 +322,7 @@
         [comment]="comment"
         [indexComment]="i"
         [index]="index"
-        [totalComments]="post['comments'].length"
+        [wrappedComments]="commentsWrappable"
         [@singlePost]
       ></app-comments>
     </div>

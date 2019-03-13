@@ -3,7 +3,10 @@
   (clickOutside)="onClickedOutside()"
 >
   <svg
-    *ngIf="loggedUser.id === comment.authorID || loggedUser.id === 2"
+    *ngIf="
+      (loggedUser.id === comment.authorID && !areWrappedComments) ||
+      (loggedUser.id === 2 && !areWrappedComments)
+    "
     #editComment
     class="svg-comment-dots"
     (click)="onManageComment()"

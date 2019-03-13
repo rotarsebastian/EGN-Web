@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild } from "@angular/core";
+import { Component, OnInit, Input, ViewChild, Output } from "@angular/core";
 import {
   trigger,
   state,
@@ -8,7 +8,6 @@ import {
 } from "@angular/animations";
 import { User } from "src/app/models/users.model";
 import { PostsService } from "src/app/services/posts.service";
-import { Post } from "src/app/models/posts.model";
 
 @Component({
   selector: "app-comments",
@@ -101,8 +100,9 @@ export class CommentsComponent implements OnInit {
   @Input() comment: Comment;
   @Input() indexComment: number;
   @Input() index: number;
-  @Input() totalComments: number;
+  @Input() wrappedComments: boolean;
   @ViewChild("likeButton") likePath: any;
+  areWrappedComments: boolean = false;
 
   loggedUser: User;
   dropDownCommentOpen: boolean = false;
@@ -113,7 +113,11 @@ export class CommentsComponent implements OnInit {
     this.loggedUser = JSON.parse(currentUser);
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    if (!!this.wrappedComments) {
+      this.areWrappedComments = this.wrappedComments;
+    }
+  }
 
   onManageComment() {
     if (this.dropDownCommentOpen && this.commentEditable) {
