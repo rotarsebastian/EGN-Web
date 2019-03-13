@@ -205,7 +205,7 @@ export class PostsComponent implements OnInit {
       posts.splice(this.index, 1);
     });
 
-    this.postsService.deletePost(this.index);
+    this.postsService.deletePost(this.post);
     this.postsService.storePosts().subscribe();
   }
 

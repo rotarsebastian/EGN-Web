@@ -55,8 +55,15 @@ export class PostsService {
     return this.posts[index];
   }
 
-  deletePost(index: number) {
-    this.posts.splice(index, 1);
+  createPost(post: Post) {
+    this.posts.push(post);
+    this.postsChanged.next(this.posts.slice());
+  }
+
+  deletePost(post: Post) {
+    const indexNeeded = this.posts.indexOf(post);
+    this.posts.splice(indexNeeded, 1);
+    this.postsChanged.next(this.posts.slice());
   }
 
   deletePostComment(indexPost: number, indexOfComment: number) {

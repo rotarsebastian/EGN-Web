@@ -500,6 +500,9 @@
           <a class="nav-link">Queries</a>
         </li>
       </ul>
+      <div class="new-post-container" *ngIf="homePage">
+        <button (click)="openDialog()">New Post</button>
+      </div>
     </div>
   </nav>
 </div>

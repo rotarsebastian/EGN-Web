@@ -2,10 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { MatDialog } from "@angular/material";
 
-import * as firebase from "firebase";
-
 import { ForgotPasswordDialogComponent } from "../../dialogs/forgotPassword/forgotPassword";
-import { Router, ActivatedRoute } from "@angular/router";
 import { UsersService } from "src/app/services/users.service";
 import { Subscription } from "rxjs";
 import { User } from "src/app/models/users.model";
@@ -46,7 +43,6 @@ export class LoginComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (!!result) {
         this.emailToRecoverAccount = result;
-        console.log(this.emailToRecoverAccount);
       }
     });
   }

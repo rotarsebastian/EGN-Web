@@ -8,6 +8,7 @@ import { HomePageComponent } from "./pages/homePage/homePage.component";
 
 // dialogs
 import { ForgotPasswordDialogComponent } from "./dialogs/forgotPassword/forgotPassword";
+import { CreatePostDialogComponent } from "./dialogs/createNewPost/createPost";
 import { EventsComponent } from "./components/events-meetings/events.component";
 import { HeaderComponent } from "./components/header/header.component";
 import { PeersComponent } from "./components/peers/peers.component";
@@ -34,7 +35,8 @@ export const components = [
   QueriesComponent,
 
   // dialogs
-  ForgotPasswordDialogComponent
+  ForgotPasswordDialogComponent,
+  CreatePostDialogComponent
 
   //Pipes
 ];

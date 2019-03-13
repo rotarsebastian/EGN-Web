@@ -157,3 +157,15 @@ svg {
     }
   }
 }
+
+#navbarNav {
+  display: flex;
+  justify-content: space-between;
+
+  .new-post-container {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    margin: 0;
+  }
+}

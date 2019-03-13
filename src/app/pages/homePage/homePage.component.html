@@ -1,7 +1,7 @@
 <div class="posts-container">
   <!-- *ngFor="let post of posts; index as i" -->
   <app-posts
-    *ngFor="let post of posts; index as i"
+    *ngFor="let post of (posts | sort: 'date'); index as i"
     [post]="post"
     [index]="i"
   ></app-posts>

@@ -3,6 +3,7 @@ $font-blue-color: #1b3d5d;
 $font-white-color: #f6f6f6;
 
 textarea {
+  resize: none;
   width: 100%;
   border-radius: 5px;
   border: solid 0.3px #cccccc;

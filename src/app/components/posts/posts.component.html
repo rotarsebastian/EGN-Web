@@ -293,15 +293,11 @@
     <div
       class="show-hide-comments"
       [ngClass]="{
-        blueText: index % 2 === 1
+        blueText: index % 2 === 1,
+        hide: post.comments.length < 6 || neverShowMoreComments
       }"
     >
-      <p
-        [ngClass]="{
-          hide: post.comments.length < 6 || neverShowMoreComments
-        }"
-        (click)="seeMoreComments($event)"
-      >
+      <p (click)="seeMoreComments($event)">
         See {{ wrappedCommentsAmount }} more comments
       </p>
     </div>
