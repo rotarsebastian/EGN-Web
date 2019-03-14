@@ -60,13 +60,26 @@ export class PostsService {
     this.postsChanged.next(this.posts.slice());
   }
 
-  deletePost(post: Post) {
-    const indexNeeded = this.posts.indexOf(post);
-    this.posts.splice(indexNeeded, 1);
+  deletePost(postID: number) {
+    for (let post of this.posts) {
+      if (post.id === postID) {
+        const postIndex = this.posts.indexOf(post);
+        this.posts.splice(postIndex, 1);
+      }
+    }
     this.postsChanged.next(this.posts.slice());
   }
 
-  deletePostComment(indexPost: number, indexOfComment: number) {
-    this.posts[indexPost]["comments"].splice(indexOfComment, 1);
+  deletePostComment(postID: number, commentID: number) {
+    for (let post of this.posts) {
+      if (post.id === postID) {
+        for (let comment of post.comments) {
+          if (comment.id === commentID) {
+            const commentIndex = post.comments.indexOf(comment);
+            post.comments.splice(commentIndex, 1);
+          }
+        }
+      }
+    }
   }
 }

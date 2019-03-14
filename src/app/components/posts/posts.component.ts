@@ -11,6 +11,7 @@ import {
 import { PostsService } from "src/app/services/posts.service";
 import { User } from "src/app/models/users.model";
 import { Like } from "src/app/models/likes.model";
+import { CommentsComponent } from "../comments/comments.component";
 
 @Component({
   selector: "app-posts",
@@ -103,6 +104,7 @@ export class PostsComponent implements OnInit {
   @Input() post: Post;
   @Input() index: number;
   @ViewChild("likeButton") likePath: any;
+  posts: Post[];
 
   addCommentOpen: boolean = false;
   loggedUser: User;
@@ -117,8 +119,6 @@ export class PostsComponent implements OnInit {
     let currentUser = localStorage.getItem("currentUser");
     this.loggedUser = JSON.parse(currentUser);
   }
-
-  //WRAP THE MESSAGES IN A VIEW X MORE COMMENTS BUTTON AND LEAVE ONLY 2 TO BE SHOWN
 
   ngOnInit() {
     if (this.post["likes"]) {
@@ -202,10 +202,15 @@ export class PostsComponent implements OnInit {
   deletePost() {
     this.postsService.getPosts();
     this.postsService.postsChanged.subscribe((posts: Post[]) => {
-      posts.splice(this.index, 1);
+      for (let post of posts) {
+        if (post.id === this.post.id) {
+          const postIndex = posts.indexOf(post);
+          posts.splice(postIndex, 1);
+        }
+      }
     });
 
-    this.postsService.deletePost(this.post);
+    this.postsService.deletePost(this.post.id);
     this.postsService.storePosts().subscribe();
   }
 
@@ -235,9 +240,10 @@ export class PostsComponent implements OnInit {
     const comment = addCommentForm.value.comment;
     const name = this.loggedUser.name;
     const userID = this.loggedUser.id;
+    const commentID = this.post.comments[this.post.comments.length - 1].id + 1;
 
     const newComment = {
-      likes: 0,
+      id: commentID,
       author: name,
       authorID: userID,
       content: comment

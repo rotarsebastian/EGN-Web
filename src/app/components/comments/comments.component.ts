@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, Output } from "@angular/core";
+import { Component, OnInit, Input, ViewChild } from "@angular/core";
 import {
   trigger,
   state,
@@ -8,6 +8,7 @@ import {
 } from "@angular/animations";
 import { User } from "src/app/models/users.model";
 import { PostsService } from "src/app/services/posts.service";
+import { Post } from "src/app/models/posts.model";
 
 @Component({
   selector: "app-comments",
@@ -100,6 +101,7 @@ export class CommentsComponent implements OnInit {
   @Input() comment: Comment;
   @Input() indexComment: number;
   @Input() index: number;
+  @Input() currentPost: Post;
   @Input() wrappedComments: boolean;
   @ViewChild("likeButton") likePath: any;
   areWrappedComments: boolean = false;
@@ -145,8 +147,25 @@ export class CommentsComponent implements OnInit {
   }
 
   deleteComment() {
-    this.postsService.deletePostComment(this.index, this.indexComment);
-    this.postsService.storePosts().subscribe(response => {});
+    // this.postsService.deletePostComment(this.index, this.indexComment);
+    // this.postsService.storePosts().subscribe(response => {});
+
+    this.postsService.getPosts();
+    this.postsService.postsChanged.subscribe((posts: Post[]) => {
+      for (let post of posts) {
+        if (post.id === this.currentPost.id) {
+          for (let comment of this.currentPost.comments) {
+            if (comment.id === this.comment.id) {
+              const commentIndex = this.currentPost.comments.indexOf(comment);
+              this.currentPost.comments.splice(commentIndex, 1);
+            }
+          }
+        }
+      }
+    });
+
+    this.postsService.deletePostComment(this.currentPost.id, this.comment.id);
+    this.postsService.storePosts().subscribe();
   }
 
   autogrow(event) {

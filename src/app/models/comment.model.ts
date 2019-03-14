@@ -1,6 +1,6 @@
 export class Comment {
   constructor(
-    public likes: number,
+    public id: number,
     public author: string,
     public authorID: number,
     public content: string
