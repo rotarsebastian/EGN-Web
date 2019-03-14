@@ -103,12 +103,31 @@
       </div>
     </div>
     <div class="single-comment">
-      <p [ngClass]="{ blueText: index % 2 === 1 }">
+      <p class="comment-author" [ngClass]="{ blueText: index % 2 === 1 }">
         {{ comment.author }}
       </p>
-      <span class="comment-not-edited" [ngClass]="{ hide: commentEditable }">{{
-        comment.content
-      }}</span>
+
+      <div class="comment-content" [ngClass]="{ hide: commentEditable }">
+        <input type="checkbox" class="read-more-comment" [id]="comment.id" />
+        <p class="read-more-comment-wrap" *ngIf="comment.content.length >= 200">
+          {{ comment.content | slice: 0:124
+          }}<span class="more-text-comment-dots">...</span>
+          <span class="read-more-rest hide">{{
+            comment.content | slice: 124
+          }}</span>
+        </p>
+
+        <p *ngIf="comment.content.length < 200">{{ comment.content }}</p>
+
+        <label
+          (click)="seeMoreButton()"
+          *ngIf="comment.content.length > 200"
+          [for]="comment.id"
+          class="read-more-comment-trigger"
+          [ngClass]="{ blueText: index % 2 === 1 }"
+        ></label>
+      </div>
+
       <div
         class="editable-comment"
         #editComment

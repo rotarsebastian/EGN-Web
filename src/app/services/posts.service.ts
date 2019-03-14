@@ -30,15 +30,17 @@ export class PostsService {
       })
       .pipe(
         map(posts => {
-          for (let post of posts) {
-            if (!post["likes"]) {
-              post["likes"] = [];
+          if (posts) {
+            for (let post of posts) {
+              if (!post["likes"]) {
+                post["likes"] = [];
+              }
+              if (!post["comments"]) {
+                post["comments"] = [];
+              }
             }
-            if (!post["comments"]) {
-              post["comments"] = [];
-            }
+            return posts;
           }
-          return posts;
         })
       )
       .subscribe((posts: Post[]) => {
@@ -47,8 +49,10 @@ export class PostsService {
   }
 
   setPosts(posts: Post[]) {
-    this.posts = posts;
-    this.postsChanged.next(this.posts.slice());
+    if (!!posts) {
+      this.posts = posts;
+      this.postsChanged.next(this.posts.slice());
+    }
   }
 
   getPost(index: number) {

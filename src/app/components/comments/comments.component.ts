@@ -122,6 +122,8 @@ export class CommentsComponent implements OnInit {
   }
 
   onManageComment() {
+    let commentContent = document.querySelectorAll(".comment-content");
+    commentContent[this.indexComment].classList.toggle("expand");
     if (this.dropDownCommentOpen && this.commentEditable) {
       this.onEditComment();
     }
@@ -147,25 +149,18 @@ export class CommentsComponent implements OnInit {
   }
 
   deleteComment() {
-    // this.postsService.deletePostComment(this.index, this.indexComment);
-    // this.postsService.storePosts().subscribe(response => {});
+    this.postsService.deletePostComment(
+      this.currentPost.id,
+      this.comment["id"]
+    );
+    this.postsService.storePosts().subscribe(response => {});
+  }
 
-    this.postsService.getPosts();
-    this.postsService.postsChanged.subscribe((posts: Post[]) => {
-      for (let post of posts) {
-        if (post.id === this.currentPost.id) {
-          for (let comment of this.currentPost.comments) {
-            if (comment.id === this.comment.id) {
-              const commentIndex = this.currentPost.comments.indexOf(comment);
-              this.currentPost.comments.splice(commentIndex, 1);
-            }
-          }
-        }
-      }
-    });
-
-    this.postsService.deletePostComment(this.currentPost.id, this.comment.id);
-    this.postsService.storePosts().subscribe();
+  seeMoreButton() {
+    let seeMoreDots = document.querySelector(".more-text-comment-dots");
+    let readMore = document.querySelector(".read-more-rest");
+    seeMoreDots.classList.toggle("hide");
+    readMore.classList.toggle("hide");
   }
 
   autogrow(event) {

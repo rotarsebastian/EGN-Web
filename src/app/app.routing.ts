@@ -5,6 +5,7 @@ import { GroupsComponent } from "./pages/groups/groups.component";
 import { CalendarComponent } from "./pages/calendar/calendar.component";
 import { QueriesComponent } from "./pages/queries/queries.component";
 import { AuthGuardService } from "./services/auth-guard.service";
+import { CreatePostDialogComponent } from "./dialogs/createNewPost/createPost";
 
 const appRoutes: Routes = [
   { path: "", redirectTo: "login", pathMatch: "full" },

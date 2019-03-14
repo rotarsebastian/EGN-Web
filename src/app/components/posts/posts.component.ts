@@ -11,7 +11,6 @@ import {
 import { PostsService } from "src/app/services/posts.service";
 import { User } from "src/app/models/users.model";
 import { Like } from "src/app/models/likes.model";
-import { CommentsComponent } from "../comments/comments.component";
 
 @Component({
   selector: "app-posts",
@@ -129,6 +128,7 @@ export class PostsComponent implements OnInit {
         }
       }
     }
+    console.log("Loaded " + this.post.id);
   }
 
   seeMoreComments(event) {
@@ -174,6 +174,12 @@ export class PostsComponent implements OnInit {
 
     if (this.dropDownPostOpen) {
       this.dropDownPostOpen = !this.dropDownPostOpen;
+    } else {
+      setTimeout(() => {
+        let textAreaToEdit: any = document.querySelector("#newCommentTextarea");
+        textAreaToEdit.focus();
+        textAreaToEdit.scrollIntoView({ block: "start", behavior: "smooth" });
+      }, 50);
     }
   }
 
@@ -200,16 +206,7 @@ export class PostsComponent implements OnInit {
   }
 
   deletePost() {
-    this.postsService.getPosts();
-    this.postsService.postsChanged.subscribe((posts: Post[]) => {
-      for (let post of posts) {
-        if (post.id === this.post.id) {
-          const postIndex = posts.indexOf(post);
-          posts.splice(postIndex, 1);
-        }
-      }
-    });
-
+    console.log("Deleted " + this.post.id);
     this.postsService.deletePost(this.post.id);
     this.postsService.storePosts().subscribe();
   }
@@ -223,10 +220,10 @@ export class PostsComponent implements OnInit {
   }
 
   seeMoreButton() {
-    let seeMoreDots = document.querySelectorAll(".more-text-dots");
-    let readMore = document.querySelectorAll(".read-more-target");
-    seeMoreDots[this.index].classList.toggle("hide");
-    readMore[this.index].classList.toggle("hide");
+    let seeMoreDots = document.querySelector(".more-text-dots");
+    let readMore = document.querySelector(".read-more-target");
+    seeMoreDots.classList.toggle("hide");
+    readMore.classList.toggle("hide");
   }
 
   autogrow(event) {
@@ -240,7 +237,12 @@ export class PostsComponent implements OnInit {
     const comment = addCommentForm.value.comment;
     const name = this.loggedUser.name;
     const userID = this.loggedUser.id;
-    const commentID = this.post.comments[this.post.comments.length - 1].id + 1;
+    let commentID: number;
+    if (!!this.post.comments[this.post.comments.length - 1]) {
+      commentID = this.post.comments[this.post.comments.length - 1].id + 1;
+    } else {
+      commentID = 0;
+    }
 
     const newComment = {
       id: commentID,
@@ -248,6 +250,7 @@ export class PostsComponent implements OnInit {
       authorID: userID,
       content: comment
     };
+
     this.post["comments"].push(newComment);
 
     if (this.post["comments"].length === 6) {

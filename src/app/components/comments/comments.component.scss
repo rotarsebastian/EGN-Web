@@ -22,6 +22,10 @@
   display: block !important;
 }
 
+.expand {
+  margin-bottom: 1.25rem !important;
+}
+
 .svgActive {
   background-color: #dddddd !important;
 }
@@ -117,14 +121,53 @@
       -webkit-font-smoothing: antialiased;
       color: #1b3d5d;
 
-      p {
+      .comment-author {
         margin: 0;
         color: #d50965;
         font-size: 0.75rem;
+        height: auto;
+        word-break: break-word;
       }
 
-      .comment-not-edited {
-        white-space: pre-line;
+      .comment-content {
+        p {
+          margin: 0;
+          white-space: pre-line;
+          height: auto;
+          word-break: break-word;
+        }
+
+        .read-more-comment {
+          display: none;
+        }
+
+        .read-more-rest {
+          opacity: 0;
+          max-height: 0;
+          font-size: 0;
+          transition: 0.25s ease;
+        }
+
+        .read-more-comment:checked ~ .read-more-comment-wrap .read-more-rest {
+          opacity: 1;
+          font-size: inherit;
+          max-height: 999em;
+        }
+
+        .read-more-comment ~ .read-more-comment-trigger:before {
+          content: "See more";
+        }
+
+        .read-more-comment:checked ~ .read-more-comment-trigger:before {
+          content: "See less";
+        }
+
+        .read-more-comment-trigger {
+          cursor: pointer;
+          color: #d50965;
+          font-size: 0.75rem;
+          font-weight: bold;
+        }
       }
     }
 

@@ -226,13 +226,6 @@
         required
         #postContent="ngModel"
       ></textarea>
-
-      <p
-        class="errorMessage"
-        *ngIf="!postContent.valid && postContent.touched && postContent.dirty"
-      >
-        Your email is required!
-      </p>
     </div>
   </div>
   <div class="button-container">
@@ -240,8 +233,7 @@
       type="button"
       class="reset-password-button"
       [disabled]="!postContent.valid"
-      [mat-dialog-close]="email"
-      (click)="createPost(postContent)"
+      [mat-dialog-close]="post"
     >
       Create post
     </button>
