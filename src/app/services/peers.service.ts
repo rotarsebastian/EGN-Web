@@ -12,7 +12,7 @@ export class PeersService {
   constructor(private http: HttpClient) {}
   peersChanged = new Subject<Peer[]>();
   private peers = [];
-  path = "../assets/json/peers.json";
+  path = "https://egn-project.firebaseio.com/peers.json";
 
   getPeers() {
     this.http

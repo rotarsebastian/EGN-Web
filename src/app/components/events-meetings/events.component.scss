@@ -30,7 +30,7 @@
     .calendar {
       border: solid 1px #ebebeb;
       border-radius: 5px;
-      width: 16%;
+      width: 2.25rem;
       position: relative;
       height: 2.5rem;
       .day {
@@ -56,9 +56,10 @@
       }
     }
     .event-info {
-      width: 75%;
-      font-size: 0.65rem;
+      width: 78%;
+      font-size: 0.7rem;
       padding: 0 0.55rem;
+      padding-right: 0;
 
       .event-name {
         color: #828587;
@@ -75,6 +76,10 @@
           color: white;
           text-align: center;
           line-height: 0.8rem;
+          height: 0.8rem;
+          display: flex;
+          justify-content: center;
+          align-items: center;
         }
         .event-type {
           border-radius: 5px;
@@ -83,7 +88,11 @@
           color: white;
           text-align: center;
           line-height: 0.8rem;
+          height: 0.8rem;
           margin-left: 0.25rem;
+          display: flex;
+          justify-content: center;
+          align-items: center;
         }
       }
     }

@@ -111,19 +111,19 @@
         <div class="regular-message" [ngClass]="{ hide: postEditable }">
           <input type="checkbox" class="read-more-state" [id]="post.id" />
 
-          <p class="read-more-wrap" *ngIf="post.message.length > 350">
-            {{ post.message | slice: 0:324
+          <p class="read-more-wrap" *ngIf="post.message.length >= 750">
+            {{ post.message | slice: 0:524
             }}<span class="more-text-dots" *ngIf="!seeMoreText">...</span>
             <span class="read-more-target" *ngIf="seeMoreText"
-              >{{ post.message | slice: 324 }}
+              >{{ post.message | slice: 524 }}
             </span>
           </p>
 
-          <p *ngIf="post.message.length < 350">{{ post.message }}</p>
+          <p *ngIf="post.message.length < 750">{{ post.message }}</p>
 
           <label
             (click)="seeMoreButton(this)"
-            *ngIf="post.message.length > 350"
+            *ngIf="post.message.length >= 750"
             [for]="post.id"
             class="read-more-trigger"
             [ngClass]="{ blueText: index % 2 === 1 }"

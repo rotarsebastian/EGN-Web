@@ -12,7 +12,7 @@ export class EventsService {
   constructor(private http: HttpClient) {}
   eventsChanged = new Subject<Event[]>();
   private events = [];
-  path = "../assets/json/events.json";
+  path = "https://egn-project.firebaseio.com/events.json";
 
   getEvents() {
     this.http

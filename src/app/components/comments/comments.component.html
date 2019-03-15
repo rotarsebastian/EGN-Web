@@ -116,21 +116,21 @@
           class="read-more-comment-state"
           [id]="commentReadIdentifier"
         />
-        <p class="read-more-comment-wrap" *ngIf="comment.content.length >= 200">
-          {{ comment.content | slice: 0:124
+        <p class="read-more-comment-wrap" *ngIf="comment.content.length >= 400">
+          {{ comment.content | slice: 0:275
           }}<span class="more-text-comment-dots" *ngIf="!readMoreComment"
             >...</span
           >
           <span class="read-more-comment-target" *ngIf="readMoreComment">{{
-            comment.content | slice: 124
+            comment.content | slice: 275
           }}</span>
         </p>
 
-        <p *ngIf="comment.content.length < 200">{{ comment.content }}</p>
+        <p *ngIf="comment.content.length < 400">{{ comment.content }}</p>
 
         <label
           (click)="seeMoreButton()"
-          *ngIf="comment.content.length > 200"
+          *ngIf="comment.content.length >= 400"
           [for]="commentReadIdentifier"
           class="read-more-comment-trigger"
           [ngClass]="{ blueText: index % 2 === 1 }"
