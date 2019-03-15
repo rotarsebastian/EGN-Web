@@ -2,6 +2,12 @@ $font-family: "Source Sans Pro", sans-serif;
 $font-blue-color: #1b3d5d;
 $font-white-color: #f6f6f6;
 
+.cancelButton {
+  background-color: white;
+  color: #1b3d5d;
+  margin-left: 0.5rem;
+}
+
 button {
   cursor: pointer;
   line-height: 2rem;

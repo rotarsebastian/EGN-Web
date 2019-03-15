@@ -53,3 +53,37 @@
     }
   }
 }
+
+@media only screen and (max-width: 1150px) {
+  .peers-component {
+    display: none;
+  }
+
+  .page-content {
+    width: 65% !important;
+  }
+
+  .right-component {
+    width: 30% !important;
+  }
+}
+
+@media only screen and (max-width: 765px) {
+  .page-wrapper {
+    padding: 1rem 0 !important;
+  }
+
+  .page-content {
+    height: 70vh !important;
+  }
+}
+
+@media only screen and (max-width: 906px) {
+  .right-component {
+    display: none;
+  }
+
+  .page-content {
+    width: 100% !important;
+  }
+}

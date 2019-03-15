@@ -105,10 +105,11 @@ export class CommentsComponent implements OnInit {
   @Input() wrappedComments: boolean;
   @ViewChild("likeButton") likePath: any;
   areWrappedComments: boolean = false;
-
+  readMoreComment: boolean = false;
   loggedUser: User;
   dropDownCommentOpen: boolean = false;
   commentEditable: boolean = false;
+  commentReadIdentifier: string;
 
   constructor(private postsService: PostsService) {
     let currentUser = localStorage.getItem("currentUser");
@@ -119,11 +120,10 @@ export class CommentsComponent implements OnInit {
     if (!!this.wrappedComments) {
       this.areWrappedComments = this.wrappedComments;
     }
+    this.commentReadIdentifier = `see${this.comment["id"]}`;
   }
 
   onManageComment() {
-    let commentContent = document.querySelectorAll(".comment-content");
-    commentContent[this.indexComment].classList.toggle("expand");
     if (this.dropDownCommentOpen && this.commentEditable) {
       this.onEditComment();
     }
@@ -157,10 +157,7 @@ export class CommentsComponent implements OnInit {
   }
 
   seeMoreButton() {
-    let seeMoreDots = document.querySelector(".more-text-comment-dots");
-    let readMore = document.querySelector(".read-more-rest");
-    seeMoreDots.classList.toggle("hide");
-    readMore.classList.toggle("hide");
+    this.readMoreComment = !this.readMoreComment;
   }
 
   autogrow(event) {

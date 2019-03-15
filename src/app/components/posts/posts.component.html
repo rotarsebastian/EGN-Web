@@ -113,8 +113,8 @@
 
           <p class="read-more-wrap" *ngIf="post.message.length > 350">
             {{ post.message | slice: 0:324
-            }}<span class="more-text-dots">...</span>
-            <span class="read-more-target hide"
+            }}<span class="more-text-dots" *ngIf="!seeMoreText">...</span>
+            <span class="read-more-target" *ngIf="seeMoreText"
               >{{ post.message | slice: 324 }}
             </span>
           </p>
@@ -122,7 +122,7 @@
           <p *ngIf="post.message.length < 350">{{ post.message }}</p>
 
           <label
-            (click)="seeMoreButton()"
+            (click)="seeMoreButton(this)"
             *ngIf="post.message.length > 350"
             [for]="post.id"
             class="read-more-trigger"
@@ -148,6 +148,13 @@
               [disabled]="newPost.value.length < 1"
             >
               Save
+            </button>
+            <button
+              type="button"
+              class="cancelButton"
+              (click)="seeDropDownPost()"
+            >
+              Cancel
             </button>
           </div>
         </div>
@@ -332,7 +339,10 @@
         <img src="../../../assets/images/person.png" alt="" />
       </div>
       <div class="add-new-comment">
-        <form (ngSubmit)="postComment(addCommentForm)" #addCommentForm="ngForm">
+        <form
+          (ngSubmit)="postComment(addCommentForm, $event)"
+          #addCommentForm="ngForm"
+        >
           <textarea
             name="comment"
             id="newCommentTextarea"
@@ -344,6 +354,9 @@
           ></textarea>
           <button type="submit" [disabled]="!addCommentForm.valid">
             Post
+          </button>
+          <button type="button" class="cancelButton" (click)="openAddComment()">
+            Cancel
           </button>
         </form>
       </div>

@@ -106,13 +106,15 @@ export class PostsComponent implements OnInit {
   posts: Post[];
 
   addCommentOpen: boolean = false;
+  seeMoreText: boolean = false;
   loggedUser: User;
   dropDownPostOpen: boolean = false;
   postEditable: boolean = false;
   commentsWrappable: boolean = false;
   neverShowMoreComments: boolean = false;
   wrappedCommentsAmount: number = -1;
-  commentsToBeShown;
+  commentsToBeShown: any;
+  initialHight: boolean = false;
 
   constructor(private postsService: PostsService) {
     let currentUser = localStorage.getItem("currentUser");
@@ -158,6 +160,7 @@ export class PostsComponent implements OnInit {
       this.seeDropDownPost();
     }
   }
+
   onSeeComments() {
     if (this.post["comments"].length > 5) {
       this.commentsWrappable = !this.commentsWrappable;
@@ -170,16 +173,24 @@ export class PostsComponent implements OnInit {
     let path = document.querySelectorAll(".comment-svg-path");
     let pathArray = Array.from(path);
     pathArray[this.index].classList.toggle("commentsOpen");
-    this.addCommentOpen = !this.addCommentOpen;
 
-    if (this.dropDownPostOpen) {
-      this.dropDownPostOpen = !this.dropDownPostOpen;
-    } else {
+    this.addCommentOpen = !this.addCommentOpen;
+    if (this.addCommentOpen) {
       setTimeout(() => {
         let textAreaToEdit: any = document.querySelector("#newCommentTextarea");
         textAreaToEdit.focus();
         textAreaToEdit.scrollIntoView({ block: "start", behavior: "smooth" });
       }, 50);
+    } else {
+      let postTop: any = document.querySelectorAll(".entire-post");
+      postTop[this.index].scrollIntoView({
+        block: "start",
+        behavior: "smooth"
+      });
+    }
+
+    if (this.dropDownPostOpen) {
+      this.dropDownPostOpen = !this.dropDownPostOpen;
     }
   }
 
@@ -220,10 +231,7 @@ export class PostsComponent implements OnInit {
   }
 
   seeMoreButton() {
-    let seeMoreDots = document.querySelector(".more-text-dots");
-    let readMore = document.querySelector(".read-more-target");
-    seeMoreDots.classList.toggle("hide");
-    readMore.classList.toggle("hide");
+    this.seeMoreText = !this.seeMoreText;
   }
 
   autogrow(event) {
@@ -233,7 +241,7 @@ export class PostsComponent implements OnInit {
     textArea.style.height = textArea.scrollHeight + "px";
   }
 
-  postComment(addCommentForm: NgForm) {
+  postComment(addCommentForm: NgForm, event: any) {
     const comment = addCommentForm.value.comment;
     const name = this.loggedUser.name;
     const userID = this.loggedUser.id;
@@ -260,6 +268,8 @@ export class PostsComponent implements OnInit {
     if (this.commentsToBeShown && this.commentsToBeShown.length > -1) {
       this.commentsToBeShown.push(newComment);
     }
+
+    event.srcElement.firstChild.style.height = "";
 
     this.postsService.storePosts().subscribe();
     addCommentForm.reset();

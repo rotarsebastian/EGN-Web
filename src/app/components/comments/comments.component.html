@@ -107,12 +107,21 @@
         {{ comment.author }}
       </p>
 
-      <div class="comment-content" [ngClass]="{ hide: commentEditable }">
-        <input type="checkbox" class="read-more-comment" [id]="comment.id" />
+      <div
+        class="comment-content"
+        [ngClass]="{ hide: commentEditable, expand: dropDownCommentOpen }"
+      >
+        <input
+          type="checkbox"
+          class="read-more-comment-state"
+          [id]="commentReadIdentifier"
+        />
         <p class="read-more-comment-wrap" *ngIf="comment.content.length >= 200">
           {{ comment.content | slice: 0:124
-          }}<span class="more-text-comment-dots">...</span>
-          <span class="read-more-rest hide">{{
+          }}<span class="more-text-comment-dots" *ngIf="!readMoreComment"
+            >...</span
+          >
+          <span class="read-more-comment-target" *ngIf="readMoreComment">{{
             comment.content | slice: 124
           }}</span>
         </p>
@@ -122,7 +131,7 @@
         <label
           (click)="seeMoreButton()"
           *ngIf="comment.content.length > 200"
-          [for]="comment.id"
+          [for]="commentReadIdentifier"
           class="read-more-comment-trigger"
           [ngClass]="{ blueText: index % 2 === 1 }"
         ></label>

@@ -136,6 +136,7 @@
           p {
             white-space: pre-line;
             word-break: break-word;
+            margin-top: 0.35rem;
           }
         }
 
@@ -146,6 +147,9 @@
             text-align: right;
             button {
               padding: 0 1.5rem;
+            }
+
+            .cancelButton {
               margin-right: 1.15rem;
             }
           }
@@ -415,4 +419,12 @@
 
 .commentsOpen {
   fill: #dddddd !important;
+}
+
+@media only screen and (max-width: 700px) {
+  .add-new-comment {
+    form {
+      margin-left: 1.1rem !important;
+    }
+  }
 }

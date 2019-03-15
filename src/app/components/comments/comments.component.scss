@@ -137,28 +137,30 @@
           word-break: break-word;
         }
 
-        .read-more-comment {
+        .read-more-comment-state {
           display: none;
         }
 
-        .read-more-rest {
+        .read-more-comment {
           opacity: 0;
           max-height: 0;
           font-size: 0;
           transition: 0.25s ease;
         }
 
-        .read-more-comment:checked ~ .read-more-comment-wrap .read-more-rest {
+        .read-more-comment-state:checked
+          ~ .read-more-comment-wrap
+          .read-more-comment-target {
           opacity: 1;
           font-size: inherit;
           max-height: 999em;
         }
 
-        .read-more-comment ~ .read-more-comment-trigger:before {
+        .read-more-comment-state ~ .read-more-comment-trigger:before {
           content: "See more";
         }
 
-        .read-more-comment:checked ~ .read-more-comment-trigger:before {
+        .read-more-comment-state:checked ~ .read-more-comment-trigger:before {
           content: "See less";
         }
 
@@ -180,5 +182,15 @@
       padding: 0 1.5rem;
       line-height: 1.5rem;
     }
+  }
+}
+
+@media only screen and (max-width: 765px) {
+  .old-comments {
+    padding: 0 !important;
+  }
+
+  .single-comment {
+    margin-left: 0 !important;
   }
 }

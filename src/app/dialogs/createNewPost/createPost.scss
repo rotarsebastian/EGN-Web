@@ -188,7 +188,20 @@ button[disabled]:hover {
     margin: 0 8% !important;
   }
 
+  .logo-container {
+    margin-bottom: 1.25rem !important;
+  }
+
   .reset-password-button {
-    padding: 0.25rem 1rem;
+    padding: 0.25rem 1rem !important;
+  }
+
+  .create-post-title {
+    font-size: 1.2rem !important;
+  }
+
+  .create-post-text {
+    font-size: 0.75rem !important;
+    margin-bottom: 1rem !important;
   }
 }
