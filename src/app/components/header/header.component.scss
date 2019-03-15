@@ -14,7 +14,20 @@ svg {
 }
 
 .active {
-  border-bottom: 1px solid $font-blue-color;
+  border-bottom: 1px solid #54b0de;
+
+  a {
+    color: #54b0de !important;
+  }
+
+  svg {
+    path {
+      fill: #54b0de !important;
+    }
+    rect {
+      fill: #54b0de !important;
+    }
+  }
 }
 
 .navbar-bottom {
@@ -141,6 +154,14 @@ svg {
             width: 1.5rem;
             margin-top: -1.25rem;
             display: inline-block;
+
+            path {
+              fill: #194470;
+            }
+
+            rect {
+              fill: #194470;
+            }
           }
 
           a {
@@ -219,7 +240,7 @@ svg {
       }
     }
 
-    .active {
+    .active-mobile {
       border-bottom: none !important;
 
       path {
