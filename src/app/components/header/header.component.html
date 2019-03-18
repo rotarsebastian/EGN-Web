@@ -252,12 +252,53 @@
         <g></g>
       </svg>
     </div>
-    <div class="picture-icon">
-      <img src="../../../assets/images/person.png" alt="" />
+    <div
+      class="user-dropdown"
+      mat-icon-button
+      [matMenuTriggerFor]="userDropdownMenu"
+    >
+      <div class="picture-icon">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20px"
+          height="20px"
+          viewBox="0 0 24 24"
+          *ngIf="loggedUser.imgPath === 'unset'"
+        >
+          <g
+            fill="none"
+            fill-rule="evenodd"
+            stroke="#1b3d5d"
+            transform="translate(4 3)"
+          >
+            <circle cx="7.5" cy="5" r="5"></circle>
+            <path d="M15 17.5a7.5 7.5 0 0 0-15 0"></path>
+          </g>
+        </svg>
+        <div
+          class="user-top-picture"
+          *ngIf="loggedUser.imgPath != 'unset'"
+          #topUserImg
+        ></div>
+      </div>
+      <div class="user-name">
+        <p>{{ loggedUser.name }} <span>&#9662;</span></p>
+      </div>
     </div>
-    <div class="user-name">
-      <p *ngIf="loggedUser">{{ loggedUser.name }} <span>&#9662;</span></p>
-    </div>
+    <mat-menu #userDropdownMenu="matMenu">
+      <button mat-menu-item>
+        <mat-icon>person</mat-icon>
+        <span>Profile</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>settings</mat-icon>
+        <span>Settings</span>
+      </button>
+      <button mat-menu-item (click)="doLogout()">
+        <mat-icon>logout</mat-icon>
+        <span>Logout</span>
+      </button>
+    </mat-menu>
   </div>
 </div>
 <div class="navigation-bar-container">

@@ -32,23 +32,6 @@ $font-family: "Source Sans Pro", sans-serif;
     textarea {
       height: 7rem;
       line-height: 1.25rem;
-
-      &::-webkit-scrollbar {
-        width: 20px;
-      }
-
-      &::-webkit-scrollbar {
-        width: 0.25rem;
-      }
-
-      &::-webkit-scrollbar-thumb {
-        background: $font-blue-color;
-        border-radius: 5px;
-      }
-
-      &::-webkit-scrollbar-thumb:hover {
-        background: #54b0de;
-      }
     }
   }
 

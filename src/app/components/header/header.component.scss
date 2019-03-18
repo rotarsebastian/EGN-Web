@@ -8,6 +8,56 @@ $icons-padding: 0.3rem 0.3rem;
   font-family: $font-family;
 }
 
+mat-icon {
+  font-family: "Material Icons" !important;
+}
+
+/deep/ .mat-menu-content:not(:empty) {
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+}
+
+/deep/ .mat-menu-item {
+  box-shadow: none !important;
+  color: #1b3d5d !important;
+  border-radius: 0 !important;
+
+  span {
+    letter-spacing: 0.5px !important;
+    padding-left: 1.5rem !important;
+    padding-right: 2.5rem !important;
+  }
+
+  .mat-icon {
+    margin-left: 1.1rem !important;
+    margin-left: 1.1rem !important;
+  }
+
+  &:hover:not([disabled]) {
+    background-color: #9faec0 !important;
+    color: white !important;
+  }
+
+  &:active {
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+/deep/ .mat-menu-item .mat-icon-no-color,
+.mat-menu-item-submenu-trigger::after {
+  color: #1b3d5d;
+}
+
+/deep/.cdk-overlay-connected-position-bounding-box {
+  .cdk-overlay-pane {
+    border-radius: none;
+    box-shadow: none;
+    height: initial;
+    width: initial;
+  }
+}
+
 svg {
   width: 100%;
   height: auto;
@@ -92,20 +142,33 @@ svg {
       transform: 0.3s;
     }
 
+    .user-dropdown {
+      cursor: pointer;
+    }
+
     .picture-icon {
       display: inline-block;
       width: 2.55rem;
       padding: 0rem 0.3rem;
-      img {
+      svg {
         width: 100%;
         border-radius: 50%;
         cursor: pointer;
+      }
+      div {
+        cursor: pointer;
+        width: 2.5rem;
+        border-radius: 50%;
+        height: 2.5rem;
+        background-repeat: no-repeat, no-repeat, no-repeat, repeat-x, repeat;
+        background-size: 2.5rem;
       }
     }
 
     .user-name {
       display: inline-block;
       padding: 0 0.3rem;
+      transform: translateY(-0.95rem);
 
       p {
         color: #1b3d5d;

@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, AfterViewInit, ViewChild } from "@angular/core";
 import { PeersService } from "src/app/services/peers.service";
 import { Peer } from "src/app/models/peers.model";
 import { Subscription } from "rxjs";
@@ -8,9 +8,10 @@ import { Subscription } from "rxjs";
   templateUrl: "./peers.component.html",
   styleUrls: ["./peers.component.scss"]
 })
-export class PeersComponent implements OnInit {
+export class PeersComponent implements OnInit, AfterViewInit {
   peers;
   subscription: Subscription;
+  //@ViewChild("peerUserImg") peerUserImg: any;
 
   constructor(private peersService: PeersService) {}
 
@@ -21,5 +22,13 @@ export class PeersComponent implements OnInit {
         this.peers = peers;
       }
     );
+  }
+
+  ngAfterViewInit() {
+    // if (this.peers.imgPath != "unset") {
+    //   this.peerUserImg.nativeElement.style.backgroundImage = `url("${
+    //     this.peerUserImg.imgPath
+    //   }")`;
+    // }
   }
 }

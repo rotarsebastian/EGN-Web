@@ -1,4 +1,10 @@
-import { Component, OnInit, Input, ViewChild } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  Input,
+  ViewChild,
+  AfterViewInit
+} from "@angular/core";
 import { Post } from "../../models/posts.model";
 import { NgForm } from "@angular/forms";
 import {
@@ -99,10 +105,11 @@ import { Like } from "src/app/models/likes.model";
     ])
   ]
 })
-export class PostsComponent implements OnInit {
+export class PostsComponent implements OnInit, AfterViewInit {
   @Input() post: Post;
   @Input() index: number;
   @ViewChild("likeButton") likePath: any;
+  @ViewChild("postUserImg") postUserImg: any;
   posts: Post[];
 
   addCommentOpen: boolean = false;
@@ -130,7 +137,16 @@ export class PostsComponent implements OnInit {
         }
       }
     }
+
     console.log("Loaded " + this.post.id);
+  }
+
+  ngAfterViewInit() {
+    if (this.post.authorImgPath != "unset") {
+      this.postUserImg.nativeElement.style.backgroundImage = `url("${
+        this.post.authorImgPath
+      }")`;
+    }
   }
 
   seeMoreComments(event) {

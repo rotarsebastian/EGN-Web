@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from "@angular/core";
+import { Component, OnInit, AfterViewInit, ViewChild } from "@angular/core";
 import { User } from "src/app/models/users.model";
 import { MatDialog } from "@angular/material";
 import { CreatePostDialogComponent } from "src/app/dialogs/createNewPost/createPost";
@@ -14,8 +14,9 @@ import { Post } from "src/app/models/posts.model";
 export class HeaderComponent implements OnInit, AfterViewInit {
   loggedUser: User;
   result: string;
-  homePage: boolean = false;
+  homePage: boolean = true;
   lastPost: Post;
+  @ViewChild("topUserImg") topUserImg: any;
 
   constructor(
     private dialog: MatDialog,
@@ -44,6 +45,17 @@ export class HeaderComponent implements OnInit, AfterViewInit {
         }
       }
     });
+
+    if (this.loggedUser.imgPath != "unset") {
+      this.topUserImg.nativeElement.style.backgroundImage = `url("${
+        this.loggedUser.imgPath
+      }")`;
+    }
+  }
+
+  doLogout() {
+    localStorage.clear();
+    window.location.reload();
   }
 
   createPost(content: string) {
@@ -56,7 +68,9 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     }
     const post = new Post(
       newPostID,
+      this.loggedUser.id,
       this.loggedUser.name,
+      this.loggedUser.imgPath,
       this.loggedUser.position,
       this.loggedUser.company,
       date.toISOString(),

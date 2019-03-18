@@ -57,7 +57,7 @@
       color: #939597;
       position: relative;
 
-      svg {
+      .manage-post {
         position: absolute;
         right: 0;
         top: 0;
@@ -85,6 +85,12 @@
           height: 100%;
 
           svg {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 1.35rem;
+            padding: 0.3rem 1rem;
+            cursor: pointer;
             height: auto;
             padding: 0.25rem 1rem;
 
@@ -105,9 +111,18 @@
           justify-content: space-between;
           .picture-container {
             padding-right: 0.5rem;
-            img {
+            .author-post-img {
               width: 3rem;
               border-radius: 50%;
+              height: auto;
+            }
+            .user-set-picture {
+              width: 3rem;
+              border-radius: 50%;
+              height: 3rem;
+              background-repeat: no-repeat, no-repeat, no-repeat, repeat-x,
+                repeat;
+              background-size: 3rem;
             }
           }
           .post-author {

@@ -2,7 +2,8 @@
   <div class="single-post" [ngClass]="{ blueTag: index % 2 === 1 }">
     <div class="post-content" (clickOutside)="onClickedOutsideContent()">
       <svg
-        *ngIf="loggedUser.id === 2"
+        class="manage-post"
+        *ngIf="loggedUser.id === 2 || loggedUser.id === post.authorID"
         (click)="seeDropDownPost()"
         version="1.1"
         id="Capa_1"
@@ -36,6 +37,7 @@
         <g></g>
         <g></g>
       </svg>
+
       <div class="dropdown-post" *ngIf="dropDownPostOpen" [@onManage]>
         <div>
           <svg
@@ -95,7 +97,29 @@
       <div class="post-header">
         <div class="post-details">
           <div class="picture-container">
-            <img src="../../../assets/images/person.png" alt="" />
+            <svg
+              class="author-post-img"
+              *ngIf="post.authorImgPath === 'unset'"
+              xmlns="http://www.w3.org/2000/svg"
+              width="20px"
+              height="20px"
+              viewBox="0 0 24 24"
+            >
+              <g
+                fill="none"
+                fill-rule="evenodd"
+                stroke="#1b3d5d"
+                transform="translate(4 3)"
+              >
+                <circle cx="7.5" cy="5" r="5"></circle>
+                <path d="M15 17.5a7.5 7.5 0 0 0-15 0"></path>
+              </g>
+            </svg>
+            <div
+              class="user-set-picture"
+              *ngIf="post.authorImgPath != 'unset'"
+              #postUserImg
+            ></div>
           </div>
           <div class="post-author">
             <div class="author-name">{{ post.author }}</div>
