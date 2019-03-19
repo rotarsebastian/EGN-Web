@@ -6,6 +6,8 @@ import { routing } from "./app.routing";
 import { MaterialModule } from "./material.module";
 import { ClickOutsideModule } from "ng-click-outside";
 import { MatNativeDateModule } from "@angular/material";
+import { ToastrModule } from "ngx-toastr";
+import { LinkyModule } from "angular-linky";
 
 export const imports = [
   BrowserModule,
@@ -16,5 +18,11 @@ export const imports = [
   routing,
   MaterialModule,
   ClickOutsideModule,
-  MatNativeDateModule
+  MatNativeDateModule,
+  ToastrModule.forRoot({
+    timeOut: 2500,
+    positionClass: "toast-bottom-right",
+    preventDuplicates: false
+  }),
+  LinkyModule
 ];

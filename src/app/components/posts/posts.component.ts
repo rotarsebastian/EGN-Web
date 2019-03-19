@@ -17,6 +17,7 @@ import {
 import { PostsService } from "src/app/services/posts.service";
 import { User } from "src/app/models/users.model";
 import { Like } from "src/app/models/likes.model";
+import { ToastrService } from "ngx-toastr";
 
 @Component({
   selector: "app-posts",
@@ -123,7 +124,10 @@ export class PostsComponent implements OnInit, AfterViewInit {
   commentsToBeShown: any;
   initialHight: boolean = false;
 
-  constructor(private postsService: PostsService) {
+  constructor(
+    private postsService: PostsService,
+    private toastr: ToastrService
+  ) {
     let currentUser = localStorage.getItem("currentUser");
     this.loggedUser = JSON.parse(currentUser);
   }
@@ -236,11 +240,13 @@ export class PostsComponent implements OnInit, AfterViewInit {
     console.log("Deleted " + this.post.id);
     this.postsService.deletePost(this.post.id);
     this.postsService.storePosts().subscribe();
+    this.toastr.success("Your post has been deleted.");
   }
 
   changePost(event) {
     const newMessage = event.srcElement.parentElement.previousSibling.value.trim();
     this.post.message = newMessage;
+    this.toastr.success("Your post has been updated.");
     this.onEditPost();
     this.seeDropDownPost();
     this.postsService.storePosts().subscribe();
@@ -272,6 +278,7 @@ export class PostsComponent implements OnInit, AfterViewInit {
       id: commentID,
       author: name,
       authorID: userID,
+      authorImgPath: this.loggedUser.imgPath,
       content: comment
     };
 

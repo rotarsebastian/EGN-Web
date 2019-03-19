@@ -87,7 +87,13 @@
     padding-right: 0.3rem;
     width: 10%;
     img {
-      width: 3rem;
+      width: 2.25rem;
+      border-radius: 50%;
+      display: block;
+      margin: auto;
+    }
+    svg {
+      width: 2.25rem;
       border-radius: 50%;
       display: block;
       margin: auto;

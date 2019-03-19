@@ -9,6 +9,7 @@ import {
 import { User } from "src/app/models/users.model";
 import { PostsService } from "src/app/services/posts.service";
 import { Post } from "src/app/models/posts.model";
+import { ToastrService } from "ngx-toastr";
 
 @Component({
   selector: "app-comments",
@@ -111,7 +112,10 @@ export class CommentsComponent implements OnInit {
   commentEditable: boolean = false;
   commentReadIdentifier: string;
 
-  constructor(private postsService: PostsService) {
+  constructor(
+    private postsService: PostsService,
+    private toastr: ToastrService
+  ) {
     let currentUser = localStorage.getItem("currentUser");
     this.loggedUser = JSON.parse(currentUser);
   }
@@ -143,6 +147,7 @@ export class CommentsComponent implements OnInit {
   changeComment(event) {
     const newComment = event.srcElement.parentElement.previousSibling.value.trim();
     this.comment["content"] = newComment;
+    this.toastr.success("Your comment is now updated.");
     this.onEditComment();
     this.onManageComment();
     this.postsService.storePosts().subscribe();
@@ -153,6 +158,7 @@ export class CommentsComponent implements OnInit {
       this.currentPost.id,
       this.comment["id"]
     );
+    this.toastr.success("Your comment has been deleted.");
     this.postsService.storePosts().subscribe(response => {});
   }
 

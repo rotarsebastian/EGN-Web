@@ -143,7 +143,10 @@
             </span>
           </p>
 
-          <p *ngIf="post.message.length < 750">{{ post.message }}</p>
+          <p
+            *ngIf="post.message.length < 750"
+            [innerHTML]="post.message | linky"
+          ></p>
 
           <label
             (click)="seeMoreButton(this)"
@@ -360,7 +363,29 @@
 
     <div class="add-comment-wrapper">
       <div class="add-comment-img-container">
-        <img src="../../../assets/images/person.png" alt="" />
+        <svg
+          class="author-post-img"
+          *ngIf="post.authorImgPath === 'unset'"
+          xmlns="http://www.w3.org/2000/svg"
+          width="20px"
+          height="20px"
+          viewBox="0 0 24 24"
+        >
+          <g
+            fill="none"
+            fill-rule="evenodd"
+            stroke="#1b3d5d"
+            transform="translate(4 3)"
+          >
+            <circle cx="7.5" cy="5" r="5"></circle>
+            <path d="M15 17.5a7.5 7.5 0 0 0-15 0"></path>
+          </g>
+        </svg>
+        <img
+          [src]="loggedUser.imgPath"
+          class="user-set-picture"
+          *ngIf="post.authorImgPath != 'unset'"
+        />
       </div>
       <div class="add-new-comment">
         <form

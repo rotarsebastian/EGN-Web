@@ -5,6 +5,7 @@ import { CreatePostDialogComponent } from "src/app/dialogs/createNewPost/createP
 import { Router, NavigationEnd } from "@angular/router";
 import { PostsService } from "src/app/services/posts.service";
 import { Post } from "src/app/models/posts.model";
+import { ToastrService } from "ngx-toastr";
 
 @Component({
   selector: "app-header",
@@ -21,7 +22,8 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   constructor(
     private dialog: MatDialog,
     private router: Router,
-    private postsService: PostsService
+    private postsService: PostsService,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit() {
@@ -79,6 +81,8 @@ export class HeaderComponent implements OnInit, AfterViewInit {
       []
     );
     console.log("Created " + post.id);
+
+    this.toastr.success("Your post has been created.");
 
     this.postsService.createPost(post);
     this.postsService.storePosts().subscribe();

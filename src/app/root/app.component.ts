@@ -1,10 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import {
-  Router,
-  NavigationStart,
-  ActivatedRoute,
-  NavigationEnd
-} from "@angular/router";
+import { Router, NavigationEnd } from "@angular/router";
 import * as firebase from "firebase";
 import { AuthService } from "../services/auth.service";
 
