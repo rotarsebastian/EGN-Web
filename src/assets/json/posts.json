@@ -1,42 +1,366 @@
 [
   {
-    "id": 14,
-    "author": "Anna Petersen",
-    "position": "Project Manager",
+    "author": "Administrator",
+    "authorID": 2,
+    "authorImgPath": "../../../assets/images/admin.svg",
     "company": "Google DK",
-    "date": "2019-07-15T08:00:00.000Z",
-    "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    "likes": [
-      {
-        "author": 2
-      },
-      {
-        "author": 1
-      }
-    ],
+    "date": "2019-03-18T15:16:12.966Z",
+    "id": 0,
+    "message": "dsdasdasd",
+    "position": "Project Manager",
+    "likes": [],
+    "comments": []
+  },
+  {
+    "author": "Administrator",
+    "authorID": 2,
+    "authorImgPath": "../../../assets/images/admin.svg",
+    "company": "Google DK",
+    "date": "2019-03-18T15:16:14.897Z",
+    "id": 1,
+    "message": "asdasdasda",
+    "position": "Project Manager",
+    "likes": [],
+    "comments": []
+  },
+  {
+    "author": "Administrator",
+    "authorID": 2,
+    "authorImgPath": "../../../assets/images/admin.svg",
+    "company": "Google DK",
+    "date": "2019-03-18T15:17:41.129Z",
+    "id": 2,
+    "message": "dadasda",
+    "position": "Project Manager",
+    "likes": [],
+    "comments": []
+  },
+  {
+    "author": "Administrator",
+    "authorID": 2,
+    "authorImgPath": "../../../assets/images/admin.svg",
+    "company": "Google DK",
+    "date": "2019-03-18T15:17:50.681Z",
+    "id": 3,
+    "message": "dsadas",
+    "position": "Project Manager",
+    "likes": [],
+    "comments": []
+  },
+  {
+    "author": "Administrator",
+    "authorID": 2,
+    "authorImgPath": "../../../assets/images/admin.svg",
+    "company": "Google DK",
+    "date": "2019-03-18T15:18:01.426Z",
+    "id": 4,
+    "message": "sdasdasda",
+    "position": "Project Manager",
+    "likes": [],
+    "comments": []
+  },
+  {
+    "author": "Administrator",
+    "authorID": 2,
+    "authorImgPath": "../../../assets/images/admin.svg",
+    "company": "Google DK",
+    "date": "2019-03-18T15:19:05.343Z",
+    "id": 5,
+    "message": "dsadas",
+    "position": "Project Manager",
+    "likes": [],
+    "comments": []
+  },
+  {
+    "author": "Administrator",
+    "authorID": 2,
+    "authorImgPath": "../../../assets/images/admin.svg",
+    "company": "Google DK",
+    "date": "2019-03-18T15:19:33.976Z",
+    "id": 6,
+    "message": "sdasdasdasd",
+    "position": "Project Manager",
+    "likes": [],
+    "comments": []
+  },
+  {
+    "author": "Administrator",
+    "authorID": 2,
+    "authorImgPath": "../../../assets/images/admin.svg",
     "comments": [
       {
-        "id": 1,
-        "likes": [
-          {
-            "author": 2
-          }
-        ],
-        "author": "James Brown",
-        "authorID": 3,
-        "content": "Pretty good idea!"
+        "author": "Administrator",
+        "authorID": 2,
+        "authorImgPath": "../../../assets/images/admin.svg",
+        "content": "dsfdfdsfsdf",
+        "id": 0
       },
       {
-        "id": 2,
-        "likes": [
-          {
-            "author": 2
-          }
-        ],
+        "author": "Sebastian Rotar",
+        "authorID": 1,
+        "authorImgPath": "../../../assets/images/sebastian.png",
+        "content": "dsadas",
+        "id": 3
+      },
+      {
+        "author": "Administrator",
+        "authorID": 2,
+        "authorImgPath": "../../../assets/images/admin.svg",
+        "content": "fgdgdf",
+        "id": 4
+      },
+      {
+        "author": "Administrator",
+        "authorID": 2,
+        "authorImgPath": "../../../assets/images/admin.svg",
+        "content": "gfdgdfg",
+        "id": 5
+      },
+      {
+        "author": "Administrator",
+        "authorID": 2,
+        "authorImgPath": "../../../assets/images/admin.svg",
+        "content": "gdfgdfg",
+        "id": 6
+      },
+      {
+        "author": "Administrator",
+        "authorID": 2,
+        "authorImgPath": "../../../assets/images/admin.svg",
+        "content": "gdfgdfg",
+        "id": 7
+      },
+      {
+        "author": "Administrator",
+        "authorID": 2,
+        "authorImgPath": "../../../assets/images/admin.svg",
+        "content": "gfdgdfgd",
+        "id": 8
+      },
+      {
+        "author": "Administrator",
+        "authorID": 2,
+        "authorImgPath": "../../../assets/images/admin.svg",
+        "content": "fsretet",
+        "id": 9
+      },
+      {
+        "author": "Administrator",
+        "authorID": 2,
+        "authorImgPath": "../../../assets/images/admin.svg",
+        "content": "rewrwerwerwer",
+        "id": 10
+      },
+      {
+        "author": "Administrator",
+        "authorID": 2,
+        "authorImgPath": "../../../assets/images/admin.svg",
+        "content": "rewrwer",
+        "id": 11
+      },
+      {
+        "author": "Administrator",
+        "authorID": 2,
+        "authorImgPath": "../../../assets/images/admin.svg",
+        "content": "rewrwerwer",
+        "id": 12
+      },
+      {
+        "author": "Administrator",
+        "authorID": 2,
+        "authorImgPath": "../../../assets/images/admin.svg",
+        "content": "rewrwe",
+        "id": 13
+      },
+      {
+        "author": "Sebastian Rotar",
+        "authorID": 1,
+        "authorImgPath": "../../../assets/images/sebastian.png",
+        "content": "I believe so",
+        "id": 14
+      }
+    ],
+    "company": "Google DK",
+    "date": "2019-03-18T15:22:17.504Z",
+    "id": 8,
+    "message": "sdasdasd",
+    "position": "Project Manager",
+    "likes": []
+  },
+  {
+    "author": "Sebastian Rotar",
+    "authorID": 1,
+    "authorImgPath": "../../../assets/images/sebastian.png",
+    "comments": [
+      {
+        "author": "Sebastian Rotar",
+        "authorID": 1,
+        "authorImgPath": "../../../assets/images/sebastian.png",
+        "content": "sdasd",
+        "id": 0
+      },
+      {
+        "author": "Sebastian Rotar",
+        "authorID": 1,
+        "authorImgPath": "../../../assets/images/sebastian.png",
+        "content": "asdasdadasdasd",
+        "id": 1
+      },
+      {
+        "author": "Sebastian Rotar",
+        "authorID": 1,
+        "authorImgPath": "../../../assets/images/sebastian.png",
+        "content": "dasasd",
+        "id": 2
+      }
+    ],
+    "company": "Google DK",
+    "date": "2019-03-18T15:23:58.897Z",
+    "id": 9,
+    "message": "My post cool.com",
+    "position": "Project Manager",
+    "likes": []
+  },
+  {
+    "author": "Sebastian Rotar",
+    "authorID": 1,
+    "authorImgPath": "../../../assets/images/sebastian.png",
+    "comments": [
+      {
+        "author": "Sebastian Rotar",
+        "authorID": 1,
+        "authorImgPath": "../../../assets/images/sebastian.png",
+        "content": "Earlier on Monday, gun retailer Gun City said it had sold four weapons to the alleged gunman online, but it did not sell him the high-powered weapon used in the mosque shootings.\n\nCEO David Tipple told a news conference in Christchurch it had only sold him A-category weapons.\n\nUnder the country's gun laws, A-category weapons can be semi-automatic but limited to seven shots. Video footage of the attacks appeared to show the gunman with a larger magazine round, which is also available legally.\n\nThere are an estimated 1.5 million privately owned firearms in the country.\n\nSince the attack there have been calls for semi-automatic weapons to be banned.\n\nPrevious attempts to tighten gun laws have failed due to a strong gun lobby and a culture of hunting.",
+        "id": 0
+      },
+      {
+        "author": "Sebastian Rotar",
+        "authorID": 1,
+        "authorImgPath": "../../../assets/images/sebastian.png",
+        "content": "dasdasd",
+        "id": 1
+      },
+      {
+        "author": "Sebastian Rotar",
+        "authorID": 1,
+        "authorImgPath": "../../../assets/images/sebastian.png",
+        "content": "dsaasdasd",
+        "id": 2
+      }
+    ],
+    "company": "Google DK",
+    "date": "2019-03-18T15:24:47.395Z",
+    "id": 10,
+    "likes": [{ "author": 2 }, { "author": 1 }, { "author": 3 }],
+    "message": "Earlier on Monday, gun retailer Gun City said it had sold four weapons to the alleged gunman online, but it did not sell him the high-powered weapon used in the mosque shootings.\n\nTry google.com\n\nCEO David Tipple told a news conference in Christchurch it had only sold him A-category weapons.\n\nUnder the country's gun laws, A-category weapons can be semi-automatic but limited to seven shots. Video footage of the attacks appeared to show the gunman with a larger magazine round, which is also available legally.\n\nThere are an estimated 1.5 million privately owned firearms in the country.\n\nSince the attack there have been calls for semi-automatic weapons to be banned.\n\nPrevious attempts to tighten gun laws have failed due to a strong gun lobby and a culture of hunting. \nEarlier on Monday, gun retailer Gun City said it had sold four weapons to the alleged gunman online, but it did not sell him the high-powered weapon used in the mosque shootings.\n\nCEO David Tipple told a news conference in Christchurch it had only sold him A-category weapons.\n\nUnder the country's gun laws, A-category weapons can be semi-automatic but limited to seven shots. Video footage of the attacks appeared to show the gunman with a larger magazine round, which is also available legally.\n\nThere are an estimated 1.5 million privately owned firearms in the country.\n\nSince the attack there have been calls for semi-automatic weapons to be banned.\n\nPrevious attempts to tighten gun laws have failed due to a strong gun lobby and a culture of hunting. sdaasd",
+    "position": "Project Manager"
+  },
+  {
+    "author": "Administrator",
+    "authorID": 2,
+    "authorImgPath": "../../../assets/images/admin.svg",
+    "comments": [
+      {
+        "author": "Administrator",
+        "authorID": 2,
+        "authorImgPath": "../../../assets/images/admin.svg",
+        "content": "cxzzcxczxczcz",
+        "id": 0
+      },
+      {
+        "author": "Sebastian Rotar",
+        "authorID": 1,
+        "authorImgPath": "../../../assets/images/sebastian.png",
+        "content": "yes",
+        "id": 1
+      },
+      {
         "author": "James Brown",
         "authorID": 3,
-        "content": "Cheers for that"
+        "authorImgPath": "unset",
+        "content": "Oh great!",
+        "editedComment": false,
+        "id": 2
+      },
+      {
+        "author": "James Brown",
+        "authorID": 3,
+        "authorImgPath": "unset",
+        "content": "Oh yeahdsdada",
+        "editedComment": true,
+        "id": 3
       }
-    ]
+    ],
+    "company": "Google DK",
+    "date": "2019-03-18T15:59:31.348Z",
+    "id": 11,
+    "likes": [{ "author": 2 }, { "author": 1 }, { "author": 3 }],
+    "message": "dasdsadasd",
+    "position": "Project Manager"
+  },
+  {
+    "author": "Sebastian Rotar",
+    "authorID": 1,
+    "authorImgPath": "../../../assets/images/sebastian.png",
+    "comments": [
+      {
+        "author": "Sebastian Rotar",
+        "authorID": 1,
+        "authorImgPath": "../../../assets/images/sebastian.png",
+        "content": "Earlier on Monday, gun retailer Gun City said it had sold four weapons to the alleged gunman online, but it did not sell him the high-powered weapon used in the mosque shootings.",
+        "editedComment": true,
+        "id": 0
+      }
+    ],
+    "company": "Google DK",
+    "date": "2019-03-19T08:12:39.352Z",
+    "id": 12,
+    "likes": [{ "author": 1 }],
+    "message": "Great day today! Yeah! I love it",
+    "position": "Project Manager",
+    "wasEdited": true
+  },
+  {
+    "author": "James Brown",
+    "authorID": 3,
+    "authorImgPath": "unset",
+    "company": "Google DK",
+    "date": "2019-03-19T09:30:02.216Z",
+    "id": 13,
+    "likes": [{ "author": 3 }],
+    "message": "Yep!!!",
+    "position": "Project Manager",
+    "wasEdited": false,
+    "comments": []
+  },
+  {
+    "author": "James Brown",
+    "authorID": 3,
+    "authorImgPath": "unset",
+    "comments": [
+      {
+        "author": "James Brown",
+        "authorID": 3,
+        "authorImgPath": "unset",
+        "content": "oh oh",
+        "editedComment": false,
+        "id": 0
+      },
+      {
+        "author": "Administrator",
+        "authorID": 2,
+        "authorImgPath": "../../../assets/images/admin.svg",
+        "content": "da",
+        "editedComment": false,
+        "id": 1
+      }
+    ],
+    "company": "Google DK",
+    "date": "2019-03-19T09:56:44.741Z",
+    "id": 14,
+    "likes": [{ "author": 3 }],
+    "message": "**LG TEAM**\n\nLG coming now!\n\nPrepare the documents for LG! We will have them here in one hour!",
+    "position": "Project Manager",
+    "wasEdited": false
   }
 ]

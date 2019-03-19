@@ -8,6 +8,7 @@ import { ClickOutsideModule } from "ng-click-outside";
 import { MatNativeDateModule } from "@angular/material";
 import { ToastrModule } from "ngx-toastr";
 import { LinkyModule } from "angular-linky";
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from "ng-pick-datetime";
 
 export const imports = [
   BrowserModule,
@@ -24,5 +25,7 @@ export const imports = [
     positionClass: "toast-bottom-right",
     preventDuplicates: false
   }),
-  LinkyModule
+  LinkyModule,
+  OwlDateTimeModule,
+  OwlNativeDateTimeModule
 ];

@@ -17,6 +17,11 @@ import { CalendarComponent } from "./pages/calendar/calendar.component";
 import { QueriesComponent } from "./pages/queries/queries.component";
 import { PostsComponent } from "./components/posts/posts.component";
 import { CommentsComponent } from "./components/comments/comments.component";
+import { UserComponent } from "./pages/userPage/user.component";
+import { ArraySortPipe } from "./pipes/sort.pipe";
+import { LinkifyPipe } from "./pipes/linkify.pipe";
+import { EditProfileComponent } from "./pages/editProfile/editProfile.component";
+import { CountrySelectComponent } from "./components/country-select/country-select.component";
 
 export const components = [
   AppComponent,
@@ -25,6 +30,7 @@ export const components = [
   PeersComponent,
   PostsComponent,
   CommentsComponent,
+  CountrySelectComponent,
   // components
 
   // pages
@@ -33,10 +39,16 @@ export const components = [
   GroupsComponent,
   CalendarComponent,
   QueriesComponent,
+  UserComponent,
+  EditProfileComponent,
 
   // dialogs
   ForgotPasswordDialogComponent,
   CreatePostDialogComponent
+];
 
+export const pipes = [
   //Pipes
+  ArraySortPipe,
+  LinkifyPipe
 ];

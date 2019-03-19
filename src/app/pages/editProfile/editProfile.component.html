@@ -1,0 +1,494 @@
+<div class="edit-profile-container">
+  <div>
+    <mat-icon class="goBackToProfile" (click)="goBackToProfile()"
+      >arrow_back</mat-icon
+    >
+    <p class="title">Edit Profile</p>
+  </div>
+
+  <div class="profile_container">
+    <div class="header">
+      <p class="text">
+        Complete the fields with your information and click Save if you provided
+        the right information
+      </p>
+    </div>
+
+    <div class="body">
+      <div class="left">
+        <div class="section">
+          <div class="content">
+            <p class="section_title">General Information</p>
+            <div class="input_label">
+              <label
+                *ngIf="!loggedUser.name || loggedUser.name.length === 0"
+                (click)="name.focus()"
+              >
+                First Name<span>*</span>
+              </label>
+              <input
+                [(ngModel)]="loggedUser.name"
+                #name
+                [ngStyle]="{
+                  'border-color': !loggedUser.name ? '#ff6b6b' : ''
+                }"
+              />
+            </div>
+
+            <div class="input_label">
+              <label
+                *ngIf="!loggedUser.position || loggedUser.position.length === 0"
+                (click)="position.focus()"
+              >
+                Position<span>*</span>
+              </label>
+              <input
+                [(ngModel)]="loggedUser.position"
+                #position
+                [ngStyle]="{
+                  'border-color': !loggedUser.position ? '#ff6b6b' : ''
+                }"
+              />
+            </div>
+            <div class="input_label small">
+              <label
+                *ngIf="!loggedUser.birthday || loggedUser.birthday.length === 0"
+                [owlDateTimeTrigger]="dt"
+              >
+                Date of Birth
+              </label>
+              <input
+                [owlDateTimeTrigger]="dt"
+                [owlDateTime]="dt"
+                [(ngModel)]="loggedUser.birthday"
+              />
+              <owl-date-time [pickerType]="'calendar'" #dt></owl-date-time>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="content">
+            <p class="section_title">Contact Information</p>
+            <div class="input_label">
+              <label
+                *ngIf="!loggedUser.email || loggedUser.email.length === 0"
+                (click)="email.focus()"
+              >
+                Email<span>*</span>
+              </label>
+              <input
+                [(ngModel)]="loggedUser.email"
+                #email
+                [ngStyle]="{
+                  'border-color': !isEmailValid(loggedUser.email)
+                    ? '#ff6b6b'
+                    : ''
+                }"
+              />
+            </div>
+            <div class="row">
+              <div class="input_label small">
+                <label
+                  *ngIf="!loggedUser.phone || loggedUser.phone.length === 0"
+                  (click)="phone.focus()"
+                >
+                  Telephone
+                </label>
+                <input [(ngModel)]="loggedUser.phone" #phone />
+              </div>
+              <div class="input_label small">
+                <label
+                  *ngIf="
+                    !loggedUser.mobilePhone ||
+                    loggedUser.mobilePhone.length === 0
+                  "
+                  (click)="mobilePhone.focus()"
+                >
+                  Mobile
+                </label>
+                <input [(ngModel)]="loggedUser.mobilePhone" #mobilePhone />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="content">
+            <p class="section_title">Company Information</p>
+            <div class="input_label">
+              <label
+                *ngIf="!loggedUser.company || loggedUser.company.length === 0"
+                (click)="company.focus()"
+              >
+                Company Name<span>*</span>
+              </label>
+              <input
+                [(ngModel)]="loggedUser.company"
+                #company
+                required
+                [ngStyle]="{
+                  'border-color': !loggedUser.company ? '#ff6b6b' : ''
+                }"
+              />
+            </div>
+            <div class="input_label">
+              <label
+                *ngIf="
+                  !loggedUser.companyAddress1 ||
+                  loggedUser.companyAddress1.length === 0
+                "
+                (click)="companyAddress1.focus()"
+              >
+                Address 1
+              </label>
+              <input
+                [(ngModel)]="loggedUser.companyAddress1"
+                #companyAddress1
+              />
+            </div>
+            <div class="input_label">
+              <label
+                *ngIf="
+                  !loggedUser.companyAddress2 ||
+                  loggedUser.companyAddress2.length === 0
+                "
+                (click)="companyAddress2.focus()"
+              >
+                Address 2
+              </label>
+              <input
+                [(ngModel)]="loggedUser.companyAddress2"
+                #companyAddress2
+              />
+            </div>
+            <div class="input_label">
+              <label
+                *ngIf="
+                  !loggedUser.companyAddress3 ||
+                  loggedUser.companyAddress3.length === 0
+                "
+                (click)="companyAddress3.focus()"
+              >
+                Address 3
+              </label>
+              <input
+                [(ngModel)]="loggedUser.companyAddress3"
+                #companyAddress3
+              />
+            </div>
+            <div class="row">
+              <div class="input_label small">
+                <label
+                  *ngIf="
+                    !loggedUser.companyZipCode ||
+                    loggedUser.companyZipCode.length === 0
+                  "
+                  (click)="companyZipCode.focus()"
+                >
+                  Post Number
+                </label>
+                <input
+                  [(ngModel)]="loggedUser.companyZipCode"
+                  #companyZipCode
+                />
+              </div>
+              <div class="input_label small">
+                <label
+                  *ngIf="
+                    !loggedUser.companyCity ||
+                    loggedUser.companyCity.length === 0
+                  "
+                  (click)="companyCity.focus()"
+                >
+                  City
+                </label>
+                <input [(ngModel)]="loggedUser.companyCity" #companyCity />
+              </div>
+            </div>
+            <div class="input_label small">
+              <app-country-select [(value)]="loggedUser.companyCountry">
+              </app-country-select>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="content">
+            <p class="section_title">
+              Private Contact Information - only visible to yourself and EGN
+              employees
+            </p>
+            <div class="input_label">
+              <label
+                *ngIf="
+                  !loggedUser.privateEmail ||
+                  loggedUser.privateEmail.length === 0
+                "
+                (click)="privateEmail.focus()"
+              >
+                Private E-mail
+              </label>
+              <input [(ngModel)]="loggedUser.privateEmail" #privateEmail />
+            </div>
+            <div class="input_label">
+              <label
+                *ngIf="
+                  !loggedUser.privatePhone ||
+                  loggedUser.privatePhone.length === 0
+                "
+                (click)="privatePhone.focus()"
+              >
+                Private Telephone
+              </label>
+              <input [(ngModel)]="loggedUser.privatePhone" #privatePhone />
+            </div>
+            <div class="input_label">
+              <label
+                *ngIf="
+                  !loggedUser.privateAddress1 ||
+                  loggedUser.privateAddress1.length === 0
+                "
+                (click)="privateAddress1.focus()"
+              >
+                Address 1
+              </label>
+              <input
+                [(ngModel)]="loggedUser.privateAddress1"
+                #privateAddress1
+              />
+            </div>
+            <div class="input_label">
+              <label
+                *ngIf="
+                  !loggedUser.privateAddress2 ||
+                  loggedUser.privateAddress2.length === 0
+                "
+                (click)="privateAddress2.focus()"
+              >
+                Address 2
+              </label>
+              <input
+                [(ngModel)]="loggedUser.privateAddress2"
+                #privateAddress2
+              />
+            </div>
+            <div class="input_label">
+              <label
+                *ngIf="
+                  !loggedUser.privateAddress3 ||
+                  loggedUser.privateAddress3.length === 0
+                "
+                (click)="privateAddress3.focus()"
+              >
+                Address 3
+              </label>
+              <input
+                [(ngModel)]="loggedUser.privateAddress3"
+                #privateAddress3
+              />
+            </div>
+            <div class="row">
+              <div class="input_label small">
+                <label
+                  *ngIf="
+                    !loggedUser.privateZipCode ||
+                    loggedUser.privateZipCode.length === 0
+                  "
+                  (click)="privateZipCode.focus()"
+                >
+                  Post Number
+                </label>
+                <input
+                  [(ngModel)]="loggedUser.privateZipCode"
+                  #privateZipCode
+                />
+              </div>
+              <div class="input_label small">
+                <label
+                  *ngIf="
+                    !loggedUser.privateCity ||
+                    loggedUser.privateCity.length === 0
+                  "
+                  (click)="privateCity.focus()"
+                >
+                  City
+                </label>
+                <input [(ngModel)]="loggedUser.privateCity" #privateCity />
+              </div>
+            </div>
+            <div class="input_label small">
+              <app-country-select
+                [(value)]="loggedUser.privateCountry"
+                allCountries="true"
+              ></app-country-select>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="content">
+            <p class="section_title">Professional Compentences</p>
+            <div class="input_label">
+              <label
+                *ngIf="
+                  !loggedUser.expertise || loggedUser.expertise.length === 0
+                "
+                (click)="expertise.focus()"
+              >
+                Responsibilities and expertise
+              </label>
+              <textarea
+                [(ngModel)]="loggedUser.expertise"
+                #expertise
+              ></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="content">
+            <p class="section_title">Career Experience and LinkedIn</p>
+            <div class="input_label">
+              <label
+                *ngIf="
+                  !loggedUser.background || loggedUser.background.length === 0
+                "
+                (click)="background.focus()"
+              >
+                Background
+              </label>
+              <textarea
+                [(ngModel)]="loggedUser.background"
+                #background
+              ></textarea>
+            </div>
+            <div class="input_label">
+              <label
+                *ngIf="
+                  !loggedUser.linkedInProfile ||
+                  loggedUser.linkedInProfile.length === 0
+                "
+                (click)="linkedInProfile.focus()"
+              >
+                LinkedIn Profile
+              </label>
+              <input
+                [(ngModel)]="loggedUser.linkedInProfile"
+                #linkedInProfile
+                [ngStyle]="{
+                  'border-color': !isLinkedinLinkValid(
+                    loggedUser.linkedInProfile
+                  )
+                    ? '#ff6b6b'
+                    : ''
+                }"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="right">
+        <div class="section">
+          <div class="content">
+            <p class="section_title">Profile Picture</p>
+            <div class="profile_img_container">
+              <svg
+                class="profile_image"
+                *ngIf="loggedUser.imgPath === 'unset'"
+                xmlns="http://www.w3.org/2000/svg"
+                width="20px"
+                height="20px"
+                viewBox="0 0 24 24"
+              >
+                <g
+                  fill="none"
+                  fill-rule="evenodd"
+                  stroke="#1b3d5d"
+                  transform="translate(4 3)"
+                >
+                  <circle cx="7.5" cy="5" r="5"></circle>
+                  <path d="M15 17.5a7.5 7.5 0 0 0-15 0"></path>
+                </g>
+              </svg>
+              <img
+                class="profile_image"
+                *ngIf="loggedUser.imgPath != 'unset'"
+                [src]="loggedUser.imgPath"
+              />
+            </div>
+            <button class="with_icon" (click)="profileInput.click()">
+              <mat-icon>attach_file</mat-icon>
+              Upload Photo
+            </button>
+            <input
+              type="file"
+              accept="image/*"
+              hidden
+              #profileInput
+              (change)="profileChangeEvent($event)"
+            />
+          </div>
+        </div>
+
+        <div class="section" *ngIf="role === 'admin'">
+          <div class="content">
+            <p class="section_title">Role</p>
+            <div
+              class="select"
+              [matMenuTriggerFor]="rolesDropdown"
+              *ngIf="loggedUser.role"
+            >
+              <p>{{ loggedUser.role.name }}</p>
+              <mat-icon>arrow_drop_down</mat-icon>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="content">
+            <p class="section_title">{{ isAdfsEnv ? "EGN " : "" }}Password</p>
+            <button class="with_icon" (click)="openChangePasswordDialog()">
+              <mat-icon>security</mat-icon>
+              Change password
+            </button>
+          </div>
+        </div>
+
+        <div class="section" *ngIf="!isEgnOrganization">
+          <div class="content">
+            <p class="section_title">Account Termination</p>
+            <button class="warn with_icon" (click)="openDeleteProfileDialog()">
+              <mat-icon>delete_forever</mat-icon>
+              Delete Profile
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <button class="cancel" (click)="goBackToProfile()">
+        Cancel
+      </button>
+      <button
+        [ngClass]="{ disabled: isBtnDisabled() }"
+        [disabled]="isBtnDisabled()"
+        (click)="saveChanges()"
+      >
+        Save
+      </button>
+    </div>
+  </div>
+
+  <mat-menu #rolesDropdown="matMenu" [overlapTrigger]="false">
+    <p
+      class="select_item"
+      *ngFor="let role of roles"
+      (click)="this.loggedUser.role = role"
+    >
+      {{ role.name }}
+    </p>
+  </mat-menu>
+</div>

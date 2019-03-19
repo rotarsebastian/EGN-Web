@@ -1,0 +1,80 @@
+mat-icon {
+  font-family: "Material Icons" !important;
+}
+
+.edit-profile-container {
+  background: #fff;
+
+  div {
+    border-bottom: 0.01rem solid #939597;
+
+    .title {
+      font-size: 1.3rem;
+      color: #575757;
+      margin-bottom: 20px;
+      margin: 0;
+    }
+
+    .goBackToProfile {
+      cursor: pointer;
+      padding: 0.75rem;
+    }
+  }
+}
+
+input,
+textarea {
+  border: 1px solid #9faec0;
+}
+
+.profile_container {
+  overflow-y: scroll;
+  height: 66vh;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  overflow-x: hidden;
+  padding: 2rem;
+  padding-top: 0;
+
+  @media screen and (max-width: 1024px) {
+    width: 90%;
+  }
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  }
+
+  .header {
+    .text {
+      color: #939597;
+    }
+  }
+
+  .body {
+    display: flex;
+    margin-top: 20px;
+
+    @media screen and (max-width: 700px) {
+      flex-direction: column;
+    }
+
+    .section .content {
+      background: white;
+    }
+
+    .left {
+      display: flex;
+      flex-direction: column;
+      margin-right: 40px;
+      width: 100%;
+    }
+  }
+
+  .footer {
+    display: flex;
+    justify-content: center;
+
+    button:first-child {
+      margin-right: 20px;
+    }
+  }
+}

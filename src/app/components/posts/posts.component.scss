@@ -30,6 +30,10 @@
   background-color: #dddddd !important;
 }
 
+.reAlign {
+  padding-top: 0 !important;
+}
+
 .entire-post {
   margin-bottom: 2rem;
   .single-post {
@@ -141,7 +145,11 @@
         }
         .post-date {
           padding-top: 1rem;
-          padding-right: 0.75rem;
+
+          .edited-post {
+            padding-top: 0.45rem;
+            text-align: right;
+          }
         }
       }
       .post-message {
@@ -152,6 +160,10 @@
             white-space: pre-line;
             word-break: break-word;
             margin-top: 0.35rem;
+
+            .linkified {
+              color: #939597 !important;
+            }
           }
         }
 

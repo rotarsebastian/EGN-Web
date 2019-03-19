@@ -4,6 +4,7 @@ export class Comment {
     public author: string,
     public authorID: number,
     public authorImgPath: string,
+    public editedComment: boolean,
     public content: string
   ) {}
 }

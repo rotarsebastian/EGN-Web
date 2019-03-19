@@ -42,8 +42,15 @@
     <g></g>
     <g></g>
   </svg>
+  <div class="edited-comment" *ngIf="comment.editedComment === true">
+    (edited)
+  </div>
   <div class="add-comment-img-container">
-    <img [src]="comment.authorImgPath" alt="" />
+    <img
+      [src]="comment['authorImgPath']"
+      alt=""
+      *ngIf="comment.authorImgPath != 'unset'"
+    />
     <svg
       class="author-post-img"
       *ngIf="comment.authorImgPath === 'unset'"

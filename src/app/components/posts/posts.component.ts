@@ -18,6 +18,7 @@ import { PostsService } from "src/app/services/posts.service";
 import { User } from "src/app/models/users.model";
 import { Like } from "src/app/models/likes.model";
 import { ToastrService } from "ngx-toastr";
+import { ViewEncapsulation } from "@angular/core";
 
 @Component({
   selector: "app-posts",
@@ -104,7 +105,8 @@ import { ToastrService } from "ngx-toastr";
         )
       ])
     ])
-  ]
+  ],
+  encapsulation: ViewEncapsulation.None
 })
 export class PostsComponent implements OnInit, AfterViewInit {
   @Input() post: Post;
@@ -247,6 +249,7 @@ export class PostsComponent implements OnInit, AfterViewInit {
     const newMessage = event.srcElement.parentElement.previousSibling.value.trim();
     this.post.message = newMessage;
     this.toastr.success("Your post has been updated.");
+    this.post.wasEdited = true;
     this.onEditPost();
     this.seeDropDownPost();
     this.postsService.storePosts().subscribe();
@@ -279,6 +282,7 @@ export class PostsComponent implements OnInit, AfterViewInit {
       author: name,
       authorID: userID,
       authorImgPath: this.loggedUser.imgPath,
+      editedComment: false,
       content: comment
     };
 

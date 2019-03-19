@@ -18,6 +18,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   homePage: boolean = true;
   lastPost: Post;
   @ViewChild("topUserImg") topUserImg: any;
+  public routerLinkVariable = "/user";
 
   constructor(
     private dialog: MatDialog,
@@ -73,6 +74,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
       this.loggedUser.id,
       this.loggedUser.name,
       this.loggedUser.imgPath,
+      false,
       this.loggedUser.position,
       this.loggedUser.company,
       date.toISOString(),
@@ -86,6 +88,14 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
     this.postsService.createPost(post);
     this.postsService.storePosts().subscribe();
+    setTimeout(() => {
+      let textAreaToEdit: any = document.getElementById("posts-top");
+      textAreaToEdit.scrollIntoView({
+        block: "start",
+        inline: "nearest",
+        behavior: "smooth"
+      });
+    }, 100);
   }
 
   openDialog(): void {

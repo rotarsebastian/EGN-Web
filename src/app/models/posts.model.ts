@@ -6,6 +6,7 @@ export class Post {
   public authorID: number;
   public author: string;
   public authorImgPath: string;
+  public wasEdited: boolean;
   public position: string;
   public company: string;
   public date: string;
@@ -18,6 +19,7 @@ export class Post {
     authorID: number,
     author: string,
     authorImgPath: string,
+    wasEdited: boolean,
     position: string,
     company: string,
     date: string,
@@ -29,6 +31,7 @@ export class Post {
     this.authorID = authorID;
     this.author = author;
     this.authorImgPath = authorImgPath;
+    this.wasEdited = wasEdited;
     this.position = position;
     this.company = company;
     this.date = date;

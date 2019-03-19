@@ -148,6 +148,7 @@ export class CommentsComponent implements OnInit {
     const newComment = event.srcElement.parentElement.previousSibling.value.trim();
     this.comment["content"] = newComment;
     this.toastr.success("Your comment is now updated.");
+    this.comment["editedComment"] = true;
     this.onEditComment();
     this.onManageComment();
     this.postsService.storePosts().subscribe();

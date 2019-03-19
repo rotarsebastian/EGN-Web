@@ -1,0 +1,205 @@
+<div class="user-profile-container">
+  <div class="top_container">
+    <div class="image_container">
+      <div>
+        <svg
+          class="profile_image"
+          *ngIf="loggedUser.imgPath === 'unset'"
+          xmlns="http://www.w3.org/2000/svg"
+          width="20px"
+          height="20px"
+          viewBox="0 0 24 24"
+        >
+          <g
+            fill="none"
+            fill-rule="evenodd"
+            stroke="#1b3d5d"
+            transform="translate(4 3)"
+          >
+            <circle cx="7.5" cy="5" r="5"></circle>
+            <path d="M15 17.5a7.5 7.5 0 0 0-15 0"></path>
+          </g>
+        </svg>
+        <img
+          class="profile_image"
+          *ngIf="loggedUser.imgPath != 'unset'"
+          [src]="loggedUser.imgPath"
+        />
+      </div>
+    </div>
+
+    <div class="headline">
+      <div class="left">
+        <p class="name">{{ loggedUser.name }}</p>
+        <p class="description">{{ loggedUser.position }}</p>
+        <p class="description">
+          {{ loggedUser.company }}
+        </p>
+      </div>
+
+      <div class="right">
+        <button
+          (click)="goToEditProfile()"
+          matTooltip="Edit Profile"
+          matTooltipPosition="left"
+          [routerLink]="[routerLinkVariable, loggedUser.id]"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom_container">
+    <div class="left_container">
+      <div class="info_section">
+        <hr />
+        <div class="icon">
+          <mat-icon matTooltip="Contact information" matTooltipPosition="left"
+            >email</mat-icon
+          >
+        </div>
+        <p
+          *ngIf="loggedUser.email"
+          matTooltip="Email"
+          matTooltipPosition="left"
+        >
+          {{ loggedUser.email }}
+        </p>
+        <p
+          *ngIf="loggedUser.phone"
+          matTooltip="Telephone"
+          matTooltipPosition="left"
+        >
+          {{ loggedUser.phone }}
+        </p>
+        <p
+          *ngIf="loggedUser.mobilePhone"
+          matTooltip="Mobile phone"
+          matTooltipPosition="left"
+        >
+          {{ loggedUser.mobilePhone }}
+        </p>
+        <img
+          src="assets/images/linkedin.svg"
+          alt="Linkedin"
+          *ngIf="loggedUser.linkedInProfile"
+          (click)="openLinkedin()"
+        />
+        <p
+          class="placeholder"
+          *ngIf="
+            !loggedUser.email &&
+            !loggedUser.phone &&
+            !loggedUser.mobilePhone &&
+            !loggedUser.linkedInProfile
+          "
+        >
+          The member has not added any information.
+        </p>
+      </div>
+
+      <div class="info_section">
+        <hr />
+        <div class="icon">
+          <mat-icon matTooltip="Company information" matTooltipPosition="left"
+            >work</mat-icon
+          >
+        </div>
+        <p *ngIf="loggedUser.company">{{ loggedUser.company }}</p>
+        <p *ngIf="loggedUser.companyAddress1">
+          {{ loggedUser.companyAddress1 }}
+        </p>
+        <p *ngIf="loggedUser.companyAddress2">
+          {{ loggedUser.companyAddress2 }}
+        </p>
+        <p *ngIf="loggedUser.companyAddress3">
+          {{ loggedUser.companyAddress3 }}
+        </p>
+        <p *ngIf="loggedUser.companyCity || loggedUser.companyZipCode">
+          {{ loggedUser.companyCity }} {{ loggedUser.companyZipCode }}
+        </p>
+        <p
+          class="placeholder"
+          *ngIf="
+            !loggedUser.company &&
+            !loggedUser.companyAddress1 &&
+            !loggedUser.companyAddress2 &&
+            !loggedUser.companyAddress3 &&
+            !loggedUser.companyCity &&
+            !loggedUser.companyZipCode &&
+            !loggedUser.companyCountry
+          "
+        >
+          The member has not added any information.
+        </p>
+      </div>
+
+      <div class="info_section card">
+        <hr />
+        <div class="icon">
+          <mat-icon matTooltip="Private information" matTooltipPosition="left"
+            >visibility_off</mat-icon
+          >
+        </div>
+        <p class="helper">Only visible to yourself and EGN administration</p>
+        <p *ngIf="loggedUser.birthday">
+          {{ loggedUser.birthday | date: "dd MMM y" }}
+        </p>
+        <p *ngIf="loggedUser.privateEmail">{{ loggedUser.privateEmail }}</p>
+        <p *ngIf="loggedUser.privatePhone">{{ loggedUser.privatePhone }}</p>
+        <p *ngIf="loggedUser.privateAddress1">
+          {{ loggedUser.privateAddress1 }}
+        </p>
+        <p *ngIf="loggedUser.privateAddress2">
+          {{ loggedUser.privateAddress2 }}
+        </p>
+        <p *ngIf="loggedUser.privateAddress3">
+          {{ loggedUser.privateAddress3 }}
+        </p>
+        <p *ngIf="loggedUser.privateCity || loggedUser.privateZipCode">
+          {{ loggedUser.privateCity }} {{ loggedUser.privateZipCode }}
+        </p>
+
+        <p
+          class="placeholder"
+          *ngIf="
+            !loggedUser.birthday &&
+            !loggedUser.privateEmail &&
+            !loggedUser.privatePhone &&
+            !loggedUser.privateAddress1 &&
+            !loggedUser.privateAddress2 &&
+            !loggedUser.privateAddress3 &&
+            !loggedUser.privateCity &&
+            !loggedUser.privateZipCode &&
+            !loggedUser.privateCountry
+          "
+        >
+          The member has not added any information.
+        </p>
+      </div>
+    </div>
+
+    <div class="right_container">
+      <div class="row">
+        <p class="title">RESPONSIBILITIES AND EXPERTISE</p>
+        <p class="description" *ngIf="loggedUser.expertise">
+          {{ loggedUser.expertise }}
+        </p>
+        <p class="description placeholder" *ngIf="!loggedUser.expertise">
+          The member has not added any information.
+        </p>
+      </div>
+
+      <div class="row">
+        <p class="title">CARRIER AND EXPERIENCE</p>
+        <p class="description" *ngIf="loggedUser.background">
+          {{ loggedUser.background }}
+        </p>
+        <p class="description placeholder" *ngIf="!loggedUser.background">
+          The member has not added any information.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

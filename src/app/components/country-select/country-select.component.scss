@@ -1,0 +1,37 @@
+.country_select_container {
+  display: flex;
+  align-items: center;
+  min-width: 140px;
+  width: 140px;
+  border: 1px solid #9faec0;
+  background: white;
+  height: 41px;
+  font-size: 14px;
+  color: #9c9ea0;
+  border-radius: 5px;
+  margin-bottom: 10px;
+
+  mat-select {
+    height: 100%;
+    font-family: 'Source Sans Pro', sans-serif;
+
+    // ::ng-deep .mat-select-arrow-wrapper { display: none; }
+    ::ng-deep .mat-select-placeholder { color: #575757; font-size: 14px; }
+
+    ::ng-deep .mat-select-trigger {
+      height: 100%;
+      width: 100%;
+      padding: 9px 14px;
+    }
+  }
+}
+
+.country_option {
+  display: flex;
+  span { margin-right: 10px; }
+}
+
+::ng-deep .country_dropdown_panel.mat-select-panel {
+  height: 400px;
+  max-height: 400px;
+}

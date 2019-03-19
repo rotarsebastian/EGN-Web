@@ -79,6 +79,16 @@
     padding: 0.3rem 1rem;
     cursor: pointer;
   }
+
+  .edited-comment {
+    position: absolute;
+    right: 1rem;
+    top: 1.5rem;
+    padding: 0.3rem 1rem;
+    cursor: pointer;
+    font-size: 0.65rem;
+    color: #9faec0;
+  }
 }
 
 .add-comment-wrapper {
@@ -141,6 +151,8 @@
           white-space: pre-line;
           height: auto;
           word-break: break-word;
+          width: 24.5rem;
+          color: #1b3d5d;
         }
 
         .read-more-comment-state {

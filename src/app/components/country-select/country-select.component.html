@@ -1,0 +1,13 @@
+<div class="country_select_container">
+  <mat-select placeholder="Country" disableRipple [(value)]="value" panelClass="country_dropdown_panel"
+    (selectionChange)="selectionChange($event)">
+    <mat-option>None</mat-option>
+
+    <mat-option *ngFor="let option of options" [value]="option.code">
+      <div class="country_option">
+        <span class="flag-icon flag-icon-{{option.code.toLowerCase()}}"></span>
+        <p>{{ option.name }}</p>
+      </div>
+    </mat-option>
+  </mat-select>
+</div>

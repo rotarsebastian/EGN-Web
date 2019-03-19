@@ -127,8 +127,16 @@
             <div class="author-company">{{ post.company }}</div>
           </div>
         </div>
-        <div class="post-date">
+        <div
+          class="post-date"
+          [ngClass]="{
+            reAlign: loggedUser.id != post.authorID && loggedUser.id != 2
+          }"
+        >
           {{ post.date | date: "dd MMM, yyyy HH:mm" | lowercase }}
+          <div class="edited-post" *ngIf="post.wasEdited === true">
+            (edited post)
+          </div>
         </div>
       </div>
       <div class="post-message">
@@ -145,7 +153,7 @@
 
           <p
             *ngIf="post.message.length < 750"
-            [innerHTML]="post.message | linky"
+            [innerHTML]="post.message | linkify"
           ></p>
 
           <label
@@ -197,7 +205,7 @@
           <svg
             version="1.1"
             id="Capa_1"
-            xmlns="http://www.w3.org/2000/svg"
+            xmlns="http:www.w3.org/2000/svg"
             xmlns:xlink="http://www.w3.org/1999/xlink"
             x="0px"
             y="0px"
@@ -365,7 +373,7 @@
       <div class="add-comment-img-container">
         <svg
           class="author-post-img"
-          *ngIf="post.authorImgPath === 'unset'"
+          *ngIf="loggedUser.imgPath === 'unset'"
           xmlns="http://www.w3.org/2000/svg"
           width="20px"
           height="20px"
@@ -382,9 +390,9 @@
           </g>
         </svg>
         <img
-          [src]="loggedUser.imgPath"
           class="user-set-picture"
-          *ngIf="post.authorImgPath != 'unset'"
+          *ngIf="loggedUser.imgPath != 'unset'"
+          [src]="loggedUser.imgPath"
         />
       </div>
       <div class="add-new-comment">
