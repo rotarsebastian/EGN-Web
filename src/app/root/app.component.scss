@@ -70,11 +70,14 @@
 
 @media only screen and (max-width: 765px) {
   .page-wrapper {
-    padding: 1rem 0 !important;
+    padding: 0.45rem 0 !important;
   }
 
   .page-content {
     height: 70vh !important;
+  }
+  .container {
+    padding: 0;
   }
 }
 

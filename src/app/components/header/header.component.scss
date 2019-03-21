@@ -89,7 +89,6 @@ svg {
 .logo-notifications-container {
   display: flex;
   justify-content: space-between;
-  width: 100%;
   margin: 0.85rem 0;
 
   .logo-container {
@@ -277,8 +276,18 @@ svg {
   .large-screens {
     display: none !important;
   }
+
+  .logo-notifications-container {
+    padding: 0.85rem;
+    padding-right: 0;
+  }
+
+  .navigation-bar-container {
+    display: none;
+  }
   .footer-menu-mobile {
     display: flex !important;
+    margin: 0;
 
     li {
       padding-top: 1.1rem;

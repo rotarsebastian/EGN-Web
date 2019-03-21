@@ -1,0 +1,14 @@
+<div class="dialog_container">
+  <div class="header_row">
+    <div class="header_left"></div>
+    <p class="title">{{ title }}</p>
+    <img class="close" src="/assets/images/close.svg" alt="close" (click)="close()">
+  </div>
+
+  <p class="description">{{ description }}</p>
+
+  <div class="buttons">
+    <button (click)="close()">No</button>
+    <button class="warn" (click)="submit()">Yes</button>
+  </div>
+</div>

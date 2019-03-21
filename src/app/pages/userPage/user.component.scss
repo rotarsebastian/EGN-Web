@@ -5,17 +5,14 @@ mat-icon {
 .user-profile-container {
   background: #fff;
   //height: 71vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: auto;
 }
 
 .top_container {
   display: flex;
   padding: 1.15rem;
-
-  @media screen and (max-width: 480px) {
-    flex-direction: column;
-    width: 90%;
-    margin: 0 auto;
-  }
 
   .image_container {
     .profile_image {
@@ -39,10 +36,6 @@ mat-icon {
 
     p {
       margin: 0;
-    }
-
-    @media screen and (max-width: 480px) {
-      padding: 15px 0;
     }
 
     .left {
@@ -81,19 +74,10 @@ mat-icon {
   padding: 1.15rem;
   padding-bottom: 0.5rem;
 
-  @media screen and (max-width: 480px) {
-    flex-direction: column;
-  }
-
   .left_container {
     display: flex;
     flex-direction: column;
     width: 45%;
-
-    @media screen and (max-width: 480px) {
-      width: 100%;
-      margin: 0;
-    }
 
     .buttons {
       display: flex;
@@ -112,12 +96,6 @@ mat-icon {
     .info_section {
       width: 100%;
       margin-bottom: 1rem;
-
-      @media screen and (max-width: 480px) {
-        width: 90%;
-        margin: 10px auto;
-        text-align: center;
-      }
 
       &.card {
         box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.16);
@@ -212,6 +190,33 @@ mat-icon {
 
       p {
         margin-top: 0;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 765px) {
+  .user-profile-container {
+    height: 72vh !important;
+  }
+
+  .bottom_container {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .left_container,
+    .right_container {
+      width: 100% !important;
+    }
+
+    .right_container {
+      margin-top: 1rem !important;
+      border-top: 1px solid #194470 !important;
+      padding-top: 1.5rem !important;
+
+      .row:nth-last-child(1) {
+        margin-bottom: 0 !important;
       }
     }
   }

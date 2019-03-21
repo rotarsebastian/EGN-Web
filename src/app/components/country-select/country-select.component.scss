@@ -1,3 +1,5 @@
+@import "~flag-icon-css/css/flag-icon.min.css";
+
 .country_select_container {
   display: flex;
   align-items: center;
@@ -9,26 +11,35 @@
   font-size: 14px;
   color: #9c9ea0;
   border-radius: 5px;
-  margin-bottom: 10px;
+  margin-left: -0.35rem;
 
   mat-select {
     height: 100%;
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: "Source Sans Pro", sans-serif;
 
     // ::ng-deep .mat-select-arrow-wrapper { display: none; }
-    ::ng-deep .mat-select-placeholder { color: #575757; font-size: 14px; }
+    ::ng-deep .mat-select-placeholder {
+      font-size: 0.8rem;
+      color: #8d8b8b;
+    }
 
     ::ng-deep .mat-select-trigger {
       height: 100%;
       width: 100%;
       padding: 9px 14px;
     }
+
+    ::ng-deep .mat-select-value {
+      padding: 0.2rem;
+    }
   }
 }
 
 .country_option {
   display: flex;
-  span { margin-right: 10px; }
+  span {
+    margin-right: 10px;
+  }
 }
 
 ::ng-deep .country_dropdown_panel.mat-select-panel {

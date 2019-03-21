@@ -40,16 +40,29 @@ export class UsersService {
   }
 
   setUsers(users: User[]) {
-    this.users = users;
+    if (!!users) {
+      this.users = users;
+      this.usersChanged.next(this.users.slice());
+    }
+  }
+
+  deleteUser(userID: number) {
+    for (let user of this.users) {
+      if (user.id === userID) {
+        const userIndex = this.users.indexOf(user);
+        this.users.splice(userIndex, 1);
+      }
+    }
     this.usersChanged.next(this.users.slice());
   }
 
-  // setUserLoggedIn(user: User) {
-  //   this.loggedInUser = user;
-  // }
-
-  getCurrentUser() {
-    return this.loggedInUser;
+  changePassword(id: number, data: any) {
+    for (let user of this.users) {
+      if (id === user.id) {
+        user.password = data.newPassword;
+      }
+    }
+    this.usersChanged.next(this.users.slice());
   }
 
   getUser(index: number) {
@@ -58,5 +71,9 @@ export class UsersService {
 
   setCurrentUser(currUser: User) {
     this.loggedInUser = currUser;
+  }
+
+  getCurrentUser() {
+    return this.loggedInUser;
   }
 }

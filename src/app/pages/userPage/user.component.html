@@ -142,7 +142,7 @@
             >visibility_off</mat-icon
           >
         </div>
-        <p class="helper">Only visible to yourself and EGN administration</p>
+
         <p *ngIf="loggedUser.birthday">
           {{ loggedUser.birthday | date: "dd MMM y" }}
         </p>
@@ -175,7 +175,7 @@
             !loggedUser.privateCountry
           "
         >
-          The member has not added any information.
+          You do not have added any private information.
         </p>
       </div>
     </div>

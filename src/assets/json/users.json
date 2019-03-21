@@ -1,6 +1,7 @@
 [
   {
     "id": 0,
+    "imgPath": "unset",
     "name": "Anna Petersen",
     "position": "Project Manager",
     "company": "Google DK",
@@ -9,6 +10,7 @@
   },
   {
     "id": 1,
+    "imgPath": "unset",
     "name": "Sebastian Rotar",
     "position": "Project Manager",
     "company": "Google DK",
@@ -17,6 +19,7 @@
   },
   {
     "id": 2,
+    "imgPath": "../../../assets/images/admin.svg",
     "name": "Administrator",
     "position": "Project Manager",
     "company": "Google DK",
@@ -25,6 +28,7 @@
   },
   {
     "id": 3,
+    "imgPath": "unset",
     "name": "James Brown",
     "position": "Project Manager",
     "company": "Google DK",
@@ -33,6 +37,7 @@
   },
   {
     "id": 4,
+    "imgPath": "unset",
     "name": "Andrew Jacob",
     "position": "Project Manager",
     "company": "Google DK",

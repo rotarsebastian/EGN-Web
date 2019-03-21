@@ -108,10 +108,12 @@ export class LoginComponent implements OnInit {
 
     this.authService.signinUser(email, password);
 
-    for (let user of this.users) {
-      if (user.email === email) {
-        this.usersService.setCurrentUser(user);
-        localStorage.setItem("currentUser", JSON.stringify(user));
+    for (let oneUser of this.users) {
+      if (oneUser.email === email) {
+        this.usersService.setCurrentUser(oneUser);
+        let copy = oneUser;
+        delete copy.password;
+        localStorage.setItem("currentUser", JSON.stringify(copy));
       }
     }
 

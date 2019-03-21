@@ -36,6 +36,33 @@ export class AuthService implements OnInit {
       });
   }
 
+  changePassword(password: string) {
+    let user = firebase.auth().currentUser;
+    let newPassword = password;
+
+    user.updatePassword(newPassword).then(
+      () => {
+        // Update successful.
+      },
+      error => {
+        // An error happened.
+      }
+    );
+  }
+
+  deleteUser() {
+    var user = firebase.auth().currentUser;
+
+    user
+      .delete()
+      .then(function() {
+        // User deleted.
+      })
+      .catch(function(error) {
+        // An error happened.
+      });
+  }
+
   logout() {
     firebase.auth().signOut();
     this.token = null;
