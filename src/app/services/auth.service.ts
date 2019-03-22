@@ -1,13 +1,17 @@
 import { Router, ActivatedRoute } from "@angular/router";
 import * as firebase from "firebase";
 import { Injectable, OnInit } from "@angular/core";
-import { Observable } from "rxjs";
+import { ToastrService } from "ngx-toastr";
 
 @Injectable()
 export class AuthService implements OnInit {
   token: string;
 
-  constructor(private router: Router, private route: ActivatedRoute) {}
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit() {}
 
@@ -32,7 +36,14 @@ export class AuthService implements OnInit {
           });
       })
       .catch(error => {
-        console.log(error);
+        if (error.code === "auth/wrong-password") {
+          this.toastr.error("The password is wrong. Please try again");
+        }
+        if (error.code === "auth/user-not-found") {
+          this.toastr.error(
+            "This user does not exist. Please insert a valid email"
+          );
+        }
       });
   }
 
@@ -79,7 +90,7 @@ export class AuthService implements OnInit {
   isAuthenticated() {
     if (this.token != null) {
       return true;
-    } else if (localStorage["user-logged-in"]) {
+    } else if (localStorage["user-logged-in"] === "true") {
       return true;
     } else {
       this.router.navigate(["/login"], { relativeTo: this.route });

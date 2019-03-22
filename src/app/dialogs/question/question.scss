@@ -1,0 +1,94 @@
+@import "../../../styles/textarea.scss";
+
+$font-blue-color: #1b3d5d;
+$font-white-color: #f6f6f6;
+$font-family: "Source Sans Pro", sans-serif;
+
+.wrapper {
+  font-family: $font-family;
+  .delete-account-title {
+    font-size: 1.5rem;
+    color: $font-blue-color;
+    text-align: center;
+    margin-bottom: 0.65rem;
+    margin-top: 0.25rem;
+  }
+
+  .delete-account-text {
+    text-align: center;
+    color: #969090;
+    text-align: center;
+    -webkit-font-smoothing: antialiased;
+    font-weight: normal;
+    font-size: 1rem;
+    opacity: 0.85;
+    margin-top: 1.75rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2.5rem;
+
+    button {
+      width: 11rem;
+    }
+    .warn {
+      background-color: #ff6b6b;
+      margin-left: 1rem;
+    }
+  }
+}
+
+::ng-deep .cdk-overlay-pane {
+  width: 37rem;
+  height: auto;
+  box-shadow: 7px 0 9.4px 0.6px rgba(27, 61, 93, 0.38);
+  border-radius: 5px;
+}
+
+::ng-deep .cdk-overlay-dark-backdrop {
+  background: rgba(0, 0, 0, 0.45);
+}
+
+::ng-deep .mat-dialog-container {
+  background-color: #f6f6f6;
+}
+
+.logo-container {
+  display: flex;
+  justify-content: space-between;
+
+  .egn-logo {
+    width: 5rem;
+  }
+
+  .close-btn {
+    cursor: pointer;
+  }
+}
+
+@media only screen and (max-width: 765px) {
+  .input-container {
+    margin: 0 8% !important;
+  }
+
+  .logo-container {
+    margin-bottom: 1.25rem !important;
+  }
+
+  .delete-account-button {
+    padding: 0.25rem 1rem !important;
+  }
+
+  .delete-acount-title {
+    font-size: 1.2rem !important;
+  }
+
+  .delete-acount-text {
+    font-size: 0.75rem !important;
+    margin-bottom: 1rem !important;
+  }
+}

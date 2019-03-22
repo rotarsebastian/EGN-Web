@@ -109,15 +109,16 @@ export class LoginComponent implements OnInit {
     this.authService.signinUser(email, password);
 
     for (let oneUser of this.users) {
-      if (oneUser.email === email) {
+      console.log(this.users);
+      if (oneUser.email === email && oneUser.password === password) {
+        console.log(oneUser.password);
         this.usersService.setCurrentUser(oneUser);
         let copy = oneUser;
         delete copy.password;
         localStorage.setItem("currentUser", JSON.stringify(copy));
+        localStorage.setItem("user-logged-in", "true");
       }
     }
-
-    localStorage.setItem("user-logged-in", "true");
 
     //console.log(firebase.auth().currentUser);
   }

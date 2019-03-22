@@ -80,12 +80,15 @@
         >
           {{ loggedUser.mobilePhone }}
         </p>
-        <img
-          src="assets/images/linkedin.svg"
-          alt="Linkedin"
-          *ngIf="loggedUser.linkedInProfile"
-          (click)="openLinkedin()"
-        />
+        <div>
+          <img
+            src="assets/images/linkedin.svg"
+            alt="Linkedin"
+            *ngIf="loggedUser.linkedInProfile"
+            (click)="openLinkedin()"
+          />
+        </div>
+
         <p
           class="placeholder"
           *ngIf="

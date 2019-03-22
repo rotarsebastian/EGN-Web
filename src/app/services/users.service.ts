@@ -4,12 +4,13 @@ import { Subject } from "rxjs";
 import { HttpClient, HttpRequest } from "@angular/common/http";
 import { User } from "../models/users.model";
 import { map } from "rxjs/operators";
+import { Router } from "@angular/router";
 
 @Injectable({
   providedIn: "root"
 })
 export class UsersService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
   usersChanged = new Subject<User[]>();
   private users = [];
   //path = "../assets/json/users.json";
@@ -54,6 +55,8 @@ export class UsersService {
       }
     }
     this.usersChanged.next(this.users.slice());
+    this.storeUsers().subscribe();
+    this.router.navigate(["/login"]);
   }
 
   changePassword(id: number, data: any) {
@@ -63,6 +66,20 @@ export class UsersService {
       }
     }
     this.usersChanged.next(this.users.slice());
+  }
+
+  editUser(userId: number, data: any) {
+    for (let user of this.users) {
+      if (user.id === userId) {
+        for (const key in data) {
+          user[key] = data[key];
+        }
+        localStorage.setItem("currentUser", JSON.stringify(user));
+      }
+    }
+    this.usersChanged.next(this.users.slice());
+    this.storeUsers().subscribe();
+    this.router.navigate(["/user", userId]);
   }
 
   getUser(index: number) {

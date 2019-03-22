@@ -8,7 +8,7 @@ import { UsersService } from "src/app/services/users.service";
 import { User } from "src/app/models/users.model";
 import { AuthService } from "src/app/services/auth.service";
 import { QuestionDialogComponent } from "src/app/dialogs/question/question";
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "app-edit-profile",
@@ -20,6 +20,7 @@ export class EditProfileComponent implements OnInit, AfterViewInit {
   uploadProfileImg: File;
   roles: any[];
   users: any;
+  initialUser: any;
   @ViewChild("userImage") userImage: any;
 
   constructor(
@@ -29,9 +30,11 @@ export class EditProfileComponent implements OnInit, AfterViewInit {
     private userService: UsersService,
     private authService: AuthService,
     private utilsService: UtilsService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {
     let currentUser = localStorage.getItem("currentUser");
+    this.initialUser = JSON.parse(currentUser);
     this.loggedUser = JSON.parse(currentUser);
   }
 
@@ -89,18 +92,6 @@ export class EditProfileComponent implements OnInit, AfterViewInit {
     );
   }
 
-  openChangePasswordDialog() {
-    const dialogRef = this.dialog.open(ChangePasswordDialogComponent);
-    dialogRef.afterClosed().subscribe(data => {
-      if (data) {
-        this.userService.changePassword(this.loggedUser.id, data);
-        this.authService.changePassword(data.newPassword);
-        this.toastr.success("Password changed successfully");
-        this.userService.storeUsers().subscribe();
-      }
-    });
-  }
-
   openDeleteProfileDialog() {
     const dialogRef = this.dialog.open(QuestionDialogComponent, {
       width: "600px",
@@ -115,9 +106,7 @@ export class EditProfileComponent implements OnInit, AfterViewInit {
       if (result) {
         this.userService.deleteUser(this.loggedUser.id);
         this.authService.deleteUser();
-        this.userService.storeUsers().subscribe();
         localStorage.clear();
-        this.router.navigate(["/login"]);
       }
     });
   }
@@ -139,5 +128,44 @@ export class EditProfileComponent implements OnInit, AfterViewInit {
     textArea.style.overflow = "hidden";
     textArea.style.height = "0px";
     textArea.style.height = textArea.scrollHeight + "px";
+  }
+
+  removeUnchangedProperties() {
+    const tempUser = { ...this.loggedUser };
+
+    Object.keys(this.initialUser).forEach(key => {
+      if (this.initialUser[key] === tempUser[key]) {
+        delete tempUser[key];
+      }
+    });
+
+    return tempUser;
+  }
+
+  restoreChanges() {
+    this.loggedUser = { ...this.initialUser };
+  }
+
+  openChangePasswordDialog() {
+    const dialogRef = this.dialog.open(ChangePasswordDialogComponent);
+    dialogRef.afterClosed().subscribe(data => {
+      if (data) {
+        this.userService.changePassword(this.loggedUser.id, data);
+        this.authService.changePassword(data.newPassword);
+        this.toastr.success("Password changed successfully");
+        localStorage.setItem("user-logged-in", "false");
+        this.userService.storeUsers().subscribe();
+      }
+    });
+  }
+
+  saveChanges() {
+    const tempUser = this.removeUnchangedProperties();
+
+    if (this.uploadProfileImg) {
+      tempUser["imgPath"] = this.uploadProfileImg;
+    }
+    this.userService.editUser(this.loggedUser.id, tempUser);
+    this.toastr.success("Your profile was successfully changed");
   }
 }
