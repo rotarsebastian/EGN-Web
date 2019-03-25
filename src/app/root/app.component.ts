@@ -39,7 +39,11 @@ export class AppComponent implements OnInit {
 
     firebase.initializeApp({
       apiKey: "AIzaSyBohyRVA454ltGvbvXrIdvqyvzMQMSSyho",
-      authDomain: "egn-project.firebaseapp.com"
+      authDomain: "egn-project.firebaseapp.com",
+      databaseURL: "https://egn-project.firebaseio.com",
+      projectId: "egn-project",
+      storageBucket: "egn-project.appspot.com",
+      messagingSenderId: "931205090881"
     });
   }
 }

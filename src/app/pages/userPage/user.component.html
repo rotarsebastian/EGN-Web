@@ -2,35 +2,10 @@
   <div class="top_container">
     <div class="image_container">
       <div>
-        <svg
-          class="profile_image"
-          *ngIf="loggedUser.imgPath === 'unset'"
-          xmlns="http://www.w3.org/2000/svg"
-          width="20px"
-          height="20px"
-          viewBox="0 0 24 24"
-        >
-          <g
-            fill="none"
-            fill-rule="evenodd"
-            stroke="#1b3d5d"
-            transform="translate(4 3)"
-          >
-            <circle cx="7.5" cy="5" r="5"></circle>
-            <path d="M15 17.5a7.5 7.5 0 0 0-15 0"></path>
-          </g>
-        </svg>
-        <!-- <img
-          class="profile_image"
-          *ngIf="loggedUser.imgPath != 'unset'"
-          [src]="loggedUser.imgPath"
-        /> -->
         <div
           class="profile_image afterChange"
-          *ngIf="loggedUser.imgPath != 'unset'"
           [ngStyle]="{ 'background-image': getProfileImage() }"
           (click)="profileInput.click()"
-          #userImage
         ></div>
       </div>
     </div>

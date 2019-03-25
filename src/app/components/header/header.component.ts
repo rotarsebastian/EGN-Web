@@ -1,10 +1,4 @@
-import {
-  Component,
-  OnInit,
-  AfterViewInit,
-  ViewChild,
-  OnChanges
-} from "@angular/core";
+import { Component, OnInit, AfterViewInit } from "@angular/core";
 import { User } from "src/app/models/users.model";
 import { MatDialog } from "@angular/material";
 import { CreatePostDialogComponent } from "src/app/dialogs/createNewPost/createPost";
@@ -25,7 +19,6 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   result: string;
   homePage: boolean = true;
   lastPost: Post;
-  @ViewChild("topUserImg") topUserImg: any;
   public routerLinkVariable = "/user";
   subscription: Subscription;
   users: any;
@@ -36,12 +29,12 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     private postsService: PostsService,
     private toastr: ToastrService,
     private userService: UsersService
-  ) {}
-
-  ngOnInit() {
+  ) {
     let currentUser = localStorage.getItem("currentUser");
     this.loggedUser = JSON.parse(currentUser);
+  }
 
+  ngOnInit() {
     this.userService.getUsers();
     this.subscription = this.userService.usersChanged.subscribe(
       (users: User[]) => {
@@ -61,6 +54,13 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     });
   }
 
+  getProfileImage() {
+    console.log(this.loggedUser);
+    return this.loggedUser.imgPath !== "unset"
+      ? `url(${this.loggedUser.imgPath})`
+      : `url(/assets/images/standardProfile.svg)`;
+  }
+
   ngAfterViewInit() {
     this.router.events.forEach(event => {
       if (event instanceof NavigationEnd) {
@@ -71,12 +71,6 @@ export class HeaderComponent implements OnInit, AfterViewInit {
         }
       }
     });
-
-    if (this.loggedUser.imgPath != "unset") {
-      this.topUserImg.nativeElement.style.backgroundImage = `url("${
-        this.loggedUser.imgPath
-      }")`;
-    }
   }
 
   doLogout() {

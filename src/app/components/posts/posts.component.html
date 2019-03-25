@@ -102,28 +102,9 @@
       <div class="post-header">
         <div class="post-details">
           <div class="picture-container">
-            <svg
-              class="author-post-img"
-              *ngIf="post.authorImgPath === 'unset'"
-              xmlns="http://www.w3.org/2000/svg"
-              width="20px"
-              height="20px"
-              viewBox="0 0 24 24"
-            >
-              <g
-                fill="none"
-                fill-rule="evenodd"
-                stroke="#1b3d5d"
-                transform="translate(4 3)"
-              >
-                <circle cx="7.5" cy="5" r="5"></circle>
-                <path d="M15 17.5a7.5 7.5 0 0 0-15 0"></path>
-              </g>
-            </svg>
             <div
               class="user-set-picture"
-              *ngIf="post.authorImgPath != 'unset'"
-              #postUserImg
+              [ngStyle]="{ 'background-image': getProfileImage() }"
             ></div>
           </div>
           <div class="post-author">
@@ -375,31 +356,10 @@
     <!--   *ngIf="comment[i] < post['comments'].length - 2" -->
 
     <div class="add-comment-wrapper">
-      <div class="add-comment-img-container">
-        <svg
-          class="author-post-img"
-          *ngIf="loggedUser.imgPath === 'unset'"
-          xmlns="http://www.w3.org/2000/svg"
-          width="20px"
-          height="20px"
-          viewBox="0 0 24 24"
-        >
-          <g
-            fill="none"
-            fill-rule="evenodd"
-            stroke="#1b3d5d"
-            transform="translate(4 3)"
-          >
-            <circle cx="7.5" cy="5" r="5"></circle>
-            <path d="M15 17.5a7.5 7.5 0 0 0-15 0"></path>
-          </g>
-        </svg>
-        <img
-          class="user-set-picture"
-          *ngIf="loggedUser.imgPath != 'unset'"
-          [src]="loggedUser.imgPath"
-        />
-      </div>
+      <div
+        class="add-comment-img-container"
+        [ngStyle]="{ 'background-image': getProfileImage() }"
+      ></div>
       <div class="add-new-comment">
         <form
           (ngSubmit)="postComment(addCommentForm, $event)"

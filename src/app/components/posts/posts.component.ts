@@ -112,7 +112,6 @@ export class PostsComponent implements OnInit, AfterViewInit {
   @Input() post: Post;
   @Input() index: number;
   @ViewChild("likeButton") likePath: any;
-  @ViewChild("postUserImg") postUserImg: any;
   posts: Post[];
 
   addCommentOpen: boolean = false;
@@ -147,12 +146,12 @@ export class PostsComponent implements OnInit, AfterViewInit {
     console.log("Loaded " + this.post.id);
   }
 
-  ngAfterViewInit() {
-    if (this.post.authorImgPath != "unset") {
-      this.postUserImg.nativeElement.style.backgroundImage = `url("${
-        this.post.authorImgPath
-      }")`;
-    }
+  ngAfterViewInit() {}
+
+  getProfileImage() {
+    return this.loggedUser.imgPath !== "unset"
+      ? `url(${this.loggedUser.imgPath})`
+      : `url(/assets/images/standardProfile.svg)`;
   }
 
   seeMoreComments(event) {

@@ -263,27 +263,9 @@
       [matMenuTriggerFor]="userDropdownMenu"
     >
       <div class="picture-icon">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="20px"
-          height="20px"
-          viewBox="0 0 24 24"
-          *ngIf="loggedUser.imgPath === 'unset'"
-        >
-          <g
-            fill="none"
-            fill-rule="evenodd"
-            stroke="#1b3d5d"
-            transform="translate(4 3)"
-          >
-            <circle cx="7.5" cy="5" r="5"></circle>
-            <path d="M15 17.5a7.5 7.5 0 0 0-15 0"></path>
-          </g>
-        </svg>
         <div
           class="user-top-picture"
-          *ngIf="loggedUser.imgPath != 'unset'"
-          #topUserImg
+          [ngStyle]="{ 'background-image': getProfileImage() }"
         ></div>
       </div>
       <div class="user-name">

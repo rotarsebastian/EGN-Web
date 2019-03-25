@@ -24,6 +24,8 @@ export class UserComponent {
   }
 
   getProfileImage() {
-    return this.loggedUser.imgPath ? `url(${this.loggedUser.imgPath})` : "";
+    return this.loggedUser.imgPath !== "unset"
+      ? `url(${this.loggedUser.imgPath})`
+      : `url(/assets/images/standardProfile.svg)`;
   }
 }

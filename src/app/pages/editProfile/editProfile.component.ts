@@ -9,7 +9,6 @@ import { User } from "src/app/models/users.model";
 import { AuthService } from "src/app/services/auth.service";
 import { QuestionDialogComponent } from "src/app/dialogs/question/question";
 import { Router, ActivatedRoute } from "@angular/router";
-import * as firebase from "firebase";
 
 @Component({
   selector: "app-edit-profile",
@@ -164,17 +163,7 @@ export class EditProfileComponent implements OnInit, AfterViewInit {
     const tempUser = this.removeUnchangedProperties();
 
     if (this.uploadProfileImg) {
-      console.log(this.uploadProfileImg);
-
-      // var ref= firebase.database().ref("Uploads");
-      // var storage = firebase.storage();
-      // storage.put(this.uploadProfileImg).then(function(snapshot) {
-      //   console.log('Uploaded a blob or file!');
-      // });
-
-      //CONTINUE PUSHING THE IMAGE TO FIREBASE STORAGE
-
-      //tempUser["imgPath"] = this.uploadProfileImg;
+      tempUser["imgPath"] = this.uploadProfileImg;
     }
     this.userService.editUser(this.loggedUser.id, tempUser);
     this.toastr.success("Your profile was successfully changed");
