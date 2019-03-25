@@ -127,9 +127,10 @@ mat-icon {
 
       p {
         color: #575757;
+        margin: 0 auto;
         margin-bottom: 5px;
         word-break: break-all;
-        text-align: center;
+        width: fit-content;
 
         &.helper {
           color: #2b2b2b;

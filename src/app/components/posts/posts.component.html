@@ -38,7 +38,12 @@
         <g></g>
       </svg>
 
-      <div class="dropdown-post" *ngIf="dropDownPostOpen" [@onManage]>
+      <div
+        class="dropdown-post"
+        *ngIf="dropDownPostOpen"
+        [@onManage]
+        [ngClass]="{ moveDown: post.wasEdited === true }"
+      >
         <div>
           <svg
             class="svg-edit-post"

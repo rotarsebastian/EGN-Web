@@ -34,7 +34,7 @@ export class AppComponent implements OnInit {
       this.loginPage = true;
     } else {
       this.loginPage = false;
-      this.router.navigate(["/home"]);
+      //this.router.navigate(["/home"]);
     }
 
     firebase.initializeApp({

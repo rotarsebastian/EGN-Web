@@ -69,17 +69,19 @@ export class UsersService {
   }
 
   editUser(userId: number, data: any) {
+    console.log(data);
     for (let user of this.users) {
       if (user.id === userId) {
         for (const key in data) {
           user[key] = data[key];
         }
-        localStorage.setItem("currentUser", JSON.stringify(user));
+        //localStorage.setItem("currentUser", JSON.stringify(user));
       }
     }
-    this.usersChanged.next(this.users.slice());
-    this.storeUsers().subscribe();
-    this.router.navigate(["/user", userId]);
+    // this.usersChanged.next(this.users.slice());
+    // this.storeUsers().subscribe();
+    // this.router.navigate(["/user", userId]);
+    // UNCOMMENT AND EVERYTHING WORKS AGAIN -- TRY TO FINISH THE UPLOAD OF IMAGE TO FIREBASE STORAGE
   }
 
   getUser(index: number) {

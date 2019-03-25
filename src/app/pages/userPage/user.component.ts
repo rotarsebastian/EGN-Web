@@ -22,4 +22,8 @@ export class UserComponent {
   openLinkedin() {
     window.open(this.loggedUser.linkedInProfile);
   }
+
+  getProfileImage() {
+    return this.loggedUser.imgPath ? `url(${this.loggedUser.imgPath})` : "";
+  }
 }

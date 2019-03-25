@@ -20,11 +20,18 @@
             <path d="M15 17.5a7.5 7.5 0 0 0-15 0"></path>
           </g>
         </svg>
-        <img
+        <!-- <img
           class="profile_image"
           *ngIf="loggedUser.imgPath != 'unset'"
           [src]="loggedUser.imgPath"
-        />
+        /> -->
+        <div
+          class="profile_image afterChange"
+          *ngIf="loggedUser.imgPath != 'unset'"
+          [ngStyle]="{ 'background-image': getProfileImage() }"
+          (click)="profileInput.click()"
+          #userImage
+        ></div>
       </div>
     </div>
 
@@ -59,6 +66,7 @@
             >email</mat-icon
           >
         </div>
+
         <p
           *ngIf="loggedUser.email"
           matTooltip="Email"
@@ -66,6 +74,7 @@
         >
           {{ loggedUser.email }}
         </p>
+
         <p
           *ngIf="loggedUser.phone"
           matTooltip="Telephone"
