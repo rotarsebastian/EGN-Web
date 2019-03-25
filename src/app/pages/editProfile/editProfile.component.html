@@ -13,31 +13,10 @@
         <div class="section">
           <div class="content">
             <div class="profile_img_container">
-              <svg
-                class="profile_image"
-                (click)="profileInput.click()"
-                *ngIf="loggedUser.imgPath === 'unset'"
-                xmlns="http://www.w3.org/2000/svg"
-                width="20px"
-                height="20px"
-                viewBox="0 0 24 24"
-              >
-                <g
-                  fill="none"
-                  fill-rule="evenodd"
-                  stroke="#1b3d5d"
-                  transform="translate(4 3)"
-                >
-                  <circle cx="7.5" cy="5" r="5"></circle>
-                  <path d="M15 17.5a7.5 7.5 0 0 0-15 0"></path>
-                </g>
-              </svg>
               <div
                 class="profile_image afterChange"
-                *ngIf="loggedUser.imgPath != 'unset'"
                 [ngStyle]="{ 'background-image': getProfileImage() }"
                 (click)="profileInput.click()"
-                #userImage
               ></div>
             </div>
             <button class="with_icon" (click)="profileInput.click()">
@@ -477,11 +456,7 @@
         <button class="cancelButton" (click)="goBackToProfile()">
           Cancel
         </button>
-        <button
-          [ngClass]="{ disabled: isBtnDisabled() }"
-          [disabled]="isBtnDisabled()"
-          (click)="saveChanges()"
-        >
+        <button (click)="saveChanges()">
           Save
         </button>
       </div>
@@ -491,11 +466,7 @@
     <button class="cancelButton" (click)="goBackToProfile()">
       Cancel
     </button>
-    <button
-      [ngClass]="{ disabled: isBtnDisabled() }"
-      [disabled]="isBtnDisabled()"
-      (click)="saveChanges()"
-    >
+    <button (click)="saveChanges()">
       Save
     </button>
   </div>

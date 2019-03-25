@@ -8,7 +8,6 @@ import { UsersService } from "src/app/services/users.service";
 import { User } from "src/app/models/users.model";
 import { AuthService } from "src/app/services/auth.service";
 import { QuestionDialogComponent } from "src/app/dialogs/question/question";
-import { Router, ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "app-edit-profile",
@@ -29,9 +28,7 @@ export class EditProfileComponent implements OnInit, AfterViewInit {
     private location: Location,
     private userService: UsersService,
     private authService: AuthService,
-    private utilsService: UtilsService,
-    private router: Router,
-    private route: ActivatedRoute
+    private utilsService: UtilsService
   ) {
     let currentUser = localStorage.getItem("currentUser");
     this.initialUser = JSON.parse(currentUser);
@@ -41,12 +38,6 @@ export class EditProfileComponent implements OnInit, AfterViewInit {
   ngOnInit() {}
 
   ngAfterViewInit() {
-    if (this.loggedUser.imgPath != "unset") {
-      this.userImage.nativeElement.style.backgroundImage = `url("${
-        this.loggedUser.imgPath
-      }")`;
-    }
-
     this.userService.getUsers();
     this.userService.usersChanged.subscribe((users: User[]) => {
       this.users = users;
@@ -58,7 +49,9 @@ export class EditProfileComponent implements OnInit, AfterViewInit {
   }
 
   getProfileImage() {
-    return this.loggedUser.imgPath ? `url(${this.loggedUser.imgPath})` : "";
+    return this.loggedUser.imgPath !== "unset"
+      ? `url(${this.loggedUser.imgPath})`
+      : `url(/assets/images/standardProfile.svg)`;
   }
 
   profileChangeEvent(e) {
@@ -111,18 +104,6 @@ export class EditProfileComponent implements OnInit, AfterViewInit {
     });
   }
 
-  isBtnDisabled() {
-    return (
-      !this.loggedUser.name ||
-      this.loggedUser.name.trim().length === 0 ||
-      !this.loggedUser.position ||
-      this.loggedUser.position.trim().length === 0 ||
-      !this.isEmailValid(this.loggedUser.email) ||
-      !this.loggedUser.company ||
-      this.loggedUser.company.trim().length === 0
-    );
-  }
-
   autogrow(event) {
     let textArea = event.srcElement;
     textArea.style.overflow = "hidden";
@@ -163,8 +144,9 @@ export class EditProfileComponent implements OnInit, AfterViewInit {
     const tempUser = this.removeUnchangedProperties();
 
     if (this.uploadProfileImg) {
-      tempUser["imgPath"] = this.uploadProfileImg;
+      tempUser["imgFile"] = this.uploadProfileImg;
     }
+
     this.userService.editUser(this.loggedUser.id, tempUser);
     this.toastr.success("Your profile was successfully changed");
   }

@@ -74,8 +74,7 @@ export class UsersService {
     for (let user of this.users) {
       if (user.id === userId) {
         for (const key in data) {
-          user[key] = data[key];
-          if (key === "imgPath") {
+          if (key === "imgFile") {
             var storageRef = firebase.storage().ref();
             var profileRef = storageRef.child(randomName());
             var profileImagesRef = storageRef.child(
@@ -84,11 +83,22 @@ export class UsersService {
             var imageFile = data[key];
             profileImagesRef.put(imageFile).then(function(snapshot) {
               console.log("Uploaded a file!");
-              profileImagesRef.getDownloadURL().then(link => {
-                user[key] = link;
-                localStorage.setItem("currentUser", JSON.stringify(user));
-              });
+              profileImagesRef
+                .getDownloadURL()
+                .then(link => {
+                  user[key] = link;
+                  let copy = user;
+                  delete copy["password"];
+                  localStorage.setItem("currentUser", JSON.stringify(copy));
+                })
+                .then(() => {
+                  let currentUser = localStorage.getItem("currentUser");
+                  let myUser = JSON.parse(currentUser);
+                  user["imgPath"] = myUser.imgPath;
+                });
             });
+          } else {
+            user[key] = data[key];
           }
         }
       }
@@ -96,8 +106,6 @@ export class UsersService {
     this.usersChanged.next(this.users.slice());
     this.storeUsers().subscribe();
     //this.router.navigate(["/user", userId]);
-
-    //  UNCOMMENT AND EVERYTHING WORKS AGAIN -- TRY TO FINISH THE UPLOAD OF IMAGE TO FIREBASE STORAGE
   }
 
   getUser(index: number) {

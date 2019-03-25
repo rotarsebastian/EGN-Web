@@ -1,4 +1,10 @@
-import { Component, OnInit, Input, ViewChild } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  Input,
+  ViewChild,
+  AfterViewInit
+} from "@angular/core";
 import {
   trigger,
   state,
@@ -10,6 +16,7 @@ import { User } from "src/app/models/users.model";
 import { PostsService } from "src/app/services/posts.service";
 import { Post } from "src/app/models/posts.model";
 import { ToastrService } from "ngx-toastr";
+import { UsersService } from "src/app/services/users.service";
 
 @Component({
   selector: "app-comments",
@@ -98,7 +105,7 @@ import { ToastrService } from "ngx-toastr";
     ])
   ]
 })
-export class CommentsComponent implements OnInit {
+export class CommentsComponent implements OnInit, AfterViewInit {
   @Input() comment: Comment;
   @Input() indexComment: number;
   @Input() index: number;
@@ -111,10 +118,12 @@ export class CommentsComponent implements OnInit {
   dropDownCommentOpen: boolean = false;
   commentEditable: boolean = false;
   commentReadIdentifier: string;
+  authorImgLink: string;
 
   constructor(
     private postsService: PostsService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private userService: UsersService
   ) {
     let currentUser = localStorage.getItem("currentUser");
     this.loggedUser = JSON.parse(currentUser);
@@ -125,6 +134,25 @@ export class CommentsComponent implements OnInit {
       this.areWrappedComments = this.wrappedComments;
     }
     this.commentReadIdentifier = `see${this.comment["id"]}`;
+  }
+
+  ngAfterViewInit() {
+    this.userService.getUsers();
+    this.userService.usersChanged.subscribe((users: User[]) => {
+      for (let user of users) {
+        if (this.comment["authorID"] === user.id) {
+          this.authorImgLink = user.imgPath;
+        }
+      }
+    });
+  }
+
+  getProfileImage() {
+    if (!!this.authorImgLink) {
+      return this.authorImgLink !== "unset"
+        ? `url(${this.authorImgLink})`
+        : `url(/assets/images/standardProfile.svg)`;
+    }
   }
 
   onManageComment() {

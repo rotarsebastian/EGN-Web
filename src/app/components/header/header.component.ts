@@ -21,7 +21,6 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   lastPost: Post;
   public routerLinkVariable = "/user";
   subscription: Subscription;
-  users: any;
 
   constructor(
     private dialog: MatDialog,
@@ -38,8 +37,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     this.userService.getUsers();
     this.subscription = this.userService.usersChanged.subscribe(
       (users: User[]) => {
-        this.users = users;
-        for (let myUser of this.users) {
+        for (let myUser of users) {
           if (myUser.id === this.loggedUser.id) {
             this.loggedUser = myUser;
           }
@@ -55,7 +53,6 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   }
 
   getProfileImage() {
-    console.log(this.loggedUser);
     return this.loggedUser.imgPath !== "unset"
       ? `url(${this.loggedUser.imgPath})`
       : `url(/assets/images/standardProfile.svg)`;

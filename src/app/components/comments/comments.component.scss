@@ -94,8 +94,11 @@
 .add-comment-wrapper {
   display: flex;
   .add-comment-img-container {
-    padding-right: 0.3rem;
-    width: 10%;
+    width: 2.5rem;
+    border-radius: 50%;
+    height: 2.5rem;
+    background-repeat: no-repeat, no-repeat, no-repeat, repeat-x, repeat;
+    background-size: 2.5rem;
     img {
       width: 2.25rem;
       border-radius: 50%;

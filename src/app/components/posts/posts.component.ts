@@ -19,6 +19,7 @@ import { User } from "src/app/models/users.model";
 import { Like } from "src/app/models/likes.model";
 import { ToastrService } from "ngx-toastr";
 import { ViewEncapsulation } from "@angular/core";
+import { UsersService } from "src/app/services/users.service";
 
 @Component({
   selector: "app-posts",
@@ -124,10 +125,12 @@ export class PostsComponent implements OnInit, AfterViewInit {
   wrappedCommentsAmount: number = -1;
   commentsToBeShown: any;
   initialHight: boolean = false;
+  authorImgLink: string;
 
   constructor(
     private postsService: PostsService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private userService: UsersService
   ) {
     let currentUser = localStorage.getItem("currentUser");
     this.loggedUser = JSON.parse(currentUser);
@@ -143,12 +146,32 @@ export class PostsComponent implements OnInit, AfterViewInit {
       }
     }
 
+    this.userService.getUsers();
+    this.userService.usersChanged.subscribe((users: User[]) => {
+      for (let myUser of users) {
+        if (myUser.id === this.loggedUser.id) {
+          this.loggedUser = myUser;
+        }
+        if (this.post["authorID"] === myUser.id) {
+          this.authorImgLink = myUser.imgPath;
+        }
+      }
+    });
+
     console.log("Loaded " + this.post.id);
   }
 
   ngAfterViewInit() {}
 
   getProfileImage() {
+    if (!!this.authorImgLink) {
+      return this.authorImgLink !== "unset"
+        ? `url(${this.authorImgLink})`
+        : `url(/assets/images/standardProfile.svg)`;
+    }
+  }
+
+  getYourImage() {
     return this.loggedUser.imgPath !== "unset"
       ? `url(${this.loggedUser.imgPath})`
       : `url(/assets/images/standardProfile.svg)`;
