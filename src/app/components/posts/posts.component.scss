@@ -40,6 +40,7 @@
 
 .entire-post {
   margin-bottom: 2rem;
+
   .single-post {
     position: relative;
     width: 100%;
@@ -149,6 +150,7 @@
         }
         .post-date {
           padding-top: 1rem;
+          font-size: 0.725rem;
 
           .edited-post {
             padding-top: 0.45rem;
@@ -234,7 +236,7 @@
 
     .likes-and-comments {
       width: 7rem;
-      height: 10px;
+      height: 0.75rem;
       position: absolute;
       bottom: -0.85rem;
       left: 5%;
@@ -257,6 +259,7 @@
         align-items: center;
         flex-flow: row wrap;
         cursor: pointer;
+        margin-top: -0.25rem;
 
         .like-svg {
           padding: 0 0.25rem;
@@ -293,6 +296,7 @@
         align-items: center;
         flex-flow: row wrap;
         cursor: pointer;
+        margin-top: -0.25rem;
 
         .comment-svg {
           padding: 0 0.25rem;
@@ -323,7 +327,7 @@
 
     .add-comment {
       width: 7rem;
-      height: 10px;
+      height: 0.75rem;
       position: absolute;
       bottom: -0.85rem;
       right: 5%;
@@ -332,7 +336,6 @@
       background-color: #dddddd;
       color: #194470;
       justify-content: center;
-      align-items: center;
       padding: 0.5rem 1rem;
       border-radius: 10px;
       font-size: 0.7rem;
@@ -341,7 +344,6 @@
 
       .add-comment-svg {
         width: 1rem;
-        margin-top: 0.25rem;
       }
 
       .add-comment-text {

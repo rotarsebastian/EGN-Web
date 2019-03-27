@@ -4,7 +4,7 @@
 
 .posts-container {
   overflow-y: scroll;
-  height: 76vh;
+  height: 73vh;
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
   overflow-x: hidden;
@@ -12,6 +12,6 @@
 
 @media only screen and (max-width: 765px) {
   .posts-container {
-    height: 79vh !important;
+    height: 100% !important;
   }
 }

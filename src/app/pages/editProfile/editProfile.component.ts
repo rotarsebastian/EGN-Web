@@ -18,7 +18,6 @@ export class EditProfileComponent implements OnInit, AfterViewInit {
   loggedUser: any;
   uploadProfileImg: File;
   roles: any[];
-  users: any;
   initialUser: any;
   @ViewChild("userImage") userImage: any;
 
@@ -39,9 +38,7 @@ export class EditProfileComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.userService.getUsers();
-    this.userService.usersChanged.subscribe((users: User[]) => {
-      this.users = users;
-    });
+    this.userService.usersChanged.subscribe();
   }
 
   goBackToProfile() {
@@ -121,10 +118,6 @@ export class EditProfileComponent implements OnInit, AfterViewInit {
     });
 
     return tempUser;
-  }
-
-  restoreChanges() {
-    this.loggedUser = { ...this.initialUser };
   }
 
   openChangePasswordDialog() {

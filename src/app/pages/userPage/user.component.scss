@@ -200,7 +200,7 @@ mat-icon {
 
 @media screen and (max-width: 765px) {
   .user-profile-container {
-    height: 72vh !important;
+    height: 82.5vh !important;
   }
 
   .bottom_container {
@@ -222,5 +222,11 @@ mat-icon {
         margin-bottom: 0 !important;
       }
     }
+  }
+}
+
+@media only screen and (max-width: 765px) and (max-height: 670px) {
+  .user-profile-container {
+    height: 81vh !important;
   }
 }

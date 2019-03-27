@@ -20,6 +20,8 @@ import { Like } from "src/app/models/likes.model";
 import { ToastrService } from "ngx-toastr";
 import { ViewEncapsulation } from "@angular/core";
 import { UsersService } from "src/app/services/users.service";
+import { MatDialog } from "@angular/material";
+import { QuestionDialogComponent } from "src/app/dialogs/question/question";
 
 @Component({
   selector: "app-posts",
@@ -113,6 +115,7 @@ export class PostsComponent implements OnInit, AfterViewInit {
   @Input() post: Post;
   @Input() index: number;
   @ViewChild("likeButton") likePath: any;
+  @ViewChild("entirePost") entirePost: any;
   posts: Post[];
 
   addCommentOpen: boolean = false;
@@ -130,7 +133,8 @@ export class PostsComponent implements OnInit, AfterViewInit {
   constructor(
     private postsService: PostsService,
     private toastr: ToastrService,
-    private userService: UsersService
+    private userService: UsersService,
+    private dialog: MatDialog
   ) {
     let currentUser = localStorage.getItem("currentUser");
     this.loggedUser = JSON.parse(currentUser);
@@ -154,6 +158,9 @@ export class PostsComponent implements OnInit, AfterViewInit {
         }
         if (this.post["authorID"] === myUser.id) {
           this.authorImgLink = myUser.imgPath;
+          this.post.author = myUser.name;
+          this.post.position = myUser.position;
+          this.post.company = myUser.company;
         }
       }
     });
@@ -261,10 +268,23 @@ export class PostsComponent implements OnInit, AfterViewInit {
   }
 
   deletePost() {
-    console.log("Deleted " + this.post.id);
-    this.postsService.deletePost(this.post.id);
-    this.postsService.storePosts().subscribe();
-    this.toastr.success("Your post has been deleted.");
+    const dialogRef = this.dialog.open(QuestionDialogComponent, {
+      width: "600px",
+      data: {
+        title: "Delete post",
+        description:
+          "Are you sure you want to delete this post ? This change is irreversible."
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log("Deleted " + this.post.id);
+        this.postsService.deletePost(this.post.id);
+        this.postsService.storePosts().subscribe();
+        this.toastr.success("Your post has been deleted.");
+      }
+    });
   }
 
   changePost(event) {

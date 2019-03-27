@@ -1,4 +1,9 @@
-<div class="entire-post" [@singlePost] (clickOutside)="onClickedOutside()">
+<div
+  class="entire-post"
+  [@singlePost]
+  (clickOutside)="onClickedOutside()"
+  #entirePost
+>
   <div class="single-post" [ngClass]="{ blueTag: index % 2 === 1 }">
     <div class="post-content" (clickOutside)="onClickedOutsideContent()">
       <svg

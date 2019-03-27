@@ -87,7 +87,7 @@ export class UsersService {
                 .getDownloadURL()
                 .then(link => {
                   user[key] = link;
-                  let copy = user;
+                  let copy = { ...user };
                   delete copy["password"];
                   localStorage.setItem("currentUser", JSON.stringify(copy));
                 })
@@ -101,8 +101,12 @@ export class UsersService {
             user[key] = data[key];
           }
         }
+        let userCopy = { ...user };
+        delete userCopy["password"];
+        localStorage.setItem("currentUser", JSON.stringify(userCopy));
       }
     }
+
     this.usersChanged.next(this.users.slice());
     this.storeUsers().subscribe();
     //this.router.navigate(["/user", userId]);

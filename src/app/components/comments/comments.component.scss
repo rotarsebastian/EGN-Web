@@ -215,3 +215,19 @@
     margin-left: 0 !important;
   }
 }
+
+@media only screen and (max-width: 465px) {
+  .svg-comment-dots {
+    right: 0 !important;
+    padding: 0.3rem 2% !important;
+  }
+
+  .edited-comment {
+    right: 0 !important;
+    padding: 0.3rem 2% !important;
+  }
+
+  .dropdown-comment div svg {
+    right: -0.5rem !important;
+  }
+}

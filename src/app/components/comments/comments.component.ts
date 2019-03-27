@@ -142,6 +142,7 @@ export class CommentsComponent implements OnInit, AfterViewInit {
       for (let user of users) {
         if (this.comment["authorID"] === user.id) {
           this.authorImgLink = user.imgPath;
+          this.comment["author"] = user.name;
         }
       }
     });

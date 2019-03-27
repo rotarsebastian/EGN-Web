@@ -1,6 +1,6 @@
 .page-components {
   background-color: #f7f5ee;
-  height: 81vh;
+  height: 81.5vh;
   border-bottom-right-radius: 8px;
   border-bottom-left-radius: 8px;
   margin-top: 0;
@@ -33,6 +33,20 @@
 
 @media only screen and (max-width: 765px) {
   .page-components {
-    height: 82.45vh;
+    height: 82.5vh;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+  }
+
+  .page-wrapper {
+    height: 100%;
+  }
+}
+
+@media only screen and (max-width: 765px) and (max-height: 670px) {
+  .page-components {
+    height: 81vh;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
   }
 }
