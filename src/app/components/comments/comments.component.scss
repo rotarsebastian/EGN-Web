@@ -35,6 +35,8 @@
   padding-top: 0;
   padding-bottom: 0.25rem;
   position: relative;
+  padding-right: 0;
+  margin-right: 1.5rem;
 
   .dropdown-comment {
     position: absolute;
@@ -73,7 +75,7 @@
 
   .svg-comment-dots {
     position: absolute;
-    right: 1.5rem;
+    right: 0;
     top: 0;
     width: 1rem;
     padding: 0.3rem 1rem;
@@ -82,7 +84,7 @@
 
   .edited-comment {
     position: absolute;
-    right: 1rem;
+    right: 0;
     top: 1.5rem;
     padding: 0.3rem 1rem;
     cursor: pointer;
@@ -214,6 +216,9 @@
   .single-comment {
     margin-left: 0 !important;
   }
+  .edited-comment {
+    display: none !important;
+  }
 }
 
 @media only screen and (max-width: 465px) {
@@ -229,5 +234,29 @@
 
   .dropdown-comment div svg {
     right: -0.5rem !important;
+  }
+}
+
+@media only screen and (min-width: 700px) and (max-width: 906px) {
+  .edited-comment {
+    right: 0.5rem !important;
+  }
+  .svg-comment-dots {
+    right: 0.75rem !important;
+  }
+}
+
+@media only screen and (min-width: 1550px) {
+  .edited-comment {
+    right: 0.5rem !important;
+  }
+  .svg-comment-dots {
+    right: 0.75rem !important;
+  }
+}
+
+@media only screen and (min-width: 907px) and (max-width: 1300px) {
+  .edited-comment {
+    padding-right: 0.65rem !important;
   }
 }
