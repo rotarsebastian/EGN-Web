@@ -23,7 +23,7 @@
 }
 
 .expand {
-  margin-bottom: 1.25rem !important;
+  margin-bottom: 1.65rem !important;
 }
 
 .svgActive {
@@ -45,8 +45,6 @@
     z-index: 1;
     height: 1.75rem;
     background-color: transparent;
-    z-index: 1;
-    margin-top: 0.35rem;
 
     div {
       padding: 0.3rem 0.67rem;
@@ -160,6 +158,17 @@
           color: #1b3d5d;
         }
 
+        .comment-image {
+          height: 14rem;
+          border-radius: 5px;
+          background-repeat: no-repeat, no-repeat, no-repeat, repeat-x, repeat;
+          margin: 1rem;
+          margin-left: 0;
+          background-size: cover;
+          background-position: center;
+          cursor: pointer;
+        }
+
         .read-more-comment-state {
           display: none;
         }
@@ -258,5 +267,20 @@
 @media only screen and (min-width: 907px) and (max-width: 1300px) {
   .edited-comment {
     padding-right: 0.65rem !important;
+  }
+  .svg-comment-dots {
+    padding: 0.3rem 0.55rem !important;
+  }
+}
+
+@media only screen and (min-width: 907px) and (max-width: 1350px) {
+  .dropdown-comment {
+    right: -1rem !important;
+  }
+}
+
+@media only screen and (min-width: 1350px) and (max-width: 1550px) {
+  .dropdown-comment {
+    right: -0.7rem !important;
   }
 }

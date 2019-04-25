@@ -129,6 +129,8 @@ export class PostsComponent implements OnInit, AfterViewInit {
   commentsToBeShown: any;
   initialHight: boolean = false;
   authorImgLink: string;
+  commentWithImage: File;
+  commentWithImageURL: string;
 
   constructor(
     private postsService: PostsService,
@@ -157,10 +159,17 @@ export class PostsComponent implements OnInit, AfterViewInit {
           this.loggedUser = myUser;
         }
         if (this.post["authorID"] === myUser.id) {
-          this.authorImgLink = myUser.imgPath;
-          this.post.author = myUser.name;
-          this.post.position = myUser.position;
-          this.post.company = myUser.company;
+          if (myUser.wasDeleted) {
+            this.post.author = "Deleted user";
+            this.authorImgLink = `unset`;
+            this.post.position = "";
+            this.post.company = "";
+          } else {
+            this.post.author = myUser.name;
+            this.authorImgLink = myUser.imgPath;
+            this.post.position = myUser.position;
+            this.post.company = myUser.company;
+          }
         }
       }
     });
@@ -257,6 +266,22 @@ export class PostsComponent implements OnInit, AfterViewInit {
     this.dropDownPostOpen = !this.dropDownPostOpen;
   }
 
+  uploadImage(e) {
+    const files = e.srcElement["files"];
+
+    if (files.length > 0) {
+      const filename = files[0].name;
+      this.commentWithImage = new File([files[0]], filename, {
+        type: files[0].type
+      });
+      const reader = new FileReader();
+      reader.onload = (event: any) => {
+        this.commentWithImageURL = event.target["result"];
+      };
+      reader.readAsDataURL(this.commentWithImage);
+    }
+  }
+
   onEditPost() {
     this.postEditable = !this.postEditable;
     setTimeout(() => {
@@ -325,7 +350,8 @@ export class PostsComponent implements OnInit, AfterViewInit {
       authorID: userID,
       authorImgPath: this.loggedUser.imgPath,
       editedComment: false,
-      content: comment
+      content: comment,
+      commentImage: this.commentWithImageURL
     };
 
     this.post["comments"].push(newComment);

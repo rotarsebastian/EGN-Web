@@ -17,6 +17,8 @@ import { PostsService } from "src/app/services/posts.service";
 import { Post } from "src/app/models/posts.model";
 import { ToastrService } from "ngx-toastr";
 import { UsersService } from "src/app/services/users.service";
+import { QuestionDialogComponent } from "src/app/dialogs/question/question";
+import { MatDialog } from "@angular/material";
 
 @Component({
   selector: "app-comments",
@@ -123,7 +125,8 @@ export class CommentsComponent implements OnInit, AfterViewInit {
   constructor(
     private postsService: PostsService,
     private toastr: ToastrService,
-    private userService: UsersService
+    private userService: UsersService,
+    private dialog: MatDialog
   ) {
     let currentUser = localStorage.getItem("currentUser");
     this.loggedUser = JSON.parse(currentUser);
@@ -141,11 +144,20 @@ export class CommentsComponent implements OnInit, AfterViewInit {
     this.userService.usersChanged.subscribe((users: User[]) => {
       for (let user of users) {
         if (this.comment["authorID"] === user.id) {
-          this.authorImgLink = user.imgPath;
-          this.comment["author"] = user.name;
+          if (user.wasDeleted) {
+            this.authorImgLink = "unset";
+            this.comment["author"] = "Deleted user";
+          } else {
+            this.authorImgLink = user.imgPath;
+            this.comment["author"] = user.name;
+          }
         }
       }
     });
+  }
+
+  getCommentImage() {
+    return `url(${this.comment["commentImage"]})`;
   }
 
   getProfileImage() {
@@ -207,5 +219,22 @@ export class CommentsComponent implements OnInit, AfterViewInit {
     if (this.dropDownCommentOpen) {
       this.onManageComment();
     }
+  }
+
+  openDeleteCommentDialog() {
+    const dialogRef = this.dialog.open(QuestionDialogComponent, {
+      width: "600px",
+      data: {
+        title: "Delete your comment",
+        description:
+          "Are you sure you want to delete your comment ? This change is irreversible."
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.deleteComment();
+      }
+    });
   }
 }

@@ -5,7 +5,7 @@
   <svg
     *ngIf="
       (loggedUser.id === comment.authorID && !areWrappedComments) ||
-      (loggedUser.id === 2 && !areWrappedComments)
+      (loggedUser.role === 'admin' && !areWrappedComments)
     "
     #editComment
     class="svg-comment-dots"
@@ -81,7 +81,7 @@
       </div>
       <div>
         <svg
-          (click)="deleteComment()"
+          (click)="openDeleteCommentDialog()"
           height="427pt"
           viewBox="-40 0 427 427.00131"
           width="427pt"
@@ -131,6 +131,12 @@
         </p>
 
         <p *ngIf="comment.content.length < 400">{{ comment.content }}</p>
+
+        <div
+          *ngIf="comment.commentImage"
+          class="comment-image"
+          [ngStyle]="{ 'background-image': getCommentImage() }"
+        ></div>
 
         <label
           (click)="seeMoreButton()"

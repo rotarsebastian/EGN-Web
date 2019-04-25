@@ -101,9 +101,19 @@ textarea {
       }
 
       .input_label {
+        position: relative;
         label {
           font-size: 0.8rem;
           color: #8d8b8b;
+        }
+        svg {
+          position: absolute;
+          right: -1rem;
+          top: 0;
+          width: 1rem;
+          height: auto;
+          padding: 0.35rem;
+          outline: none;
         }
       }
 

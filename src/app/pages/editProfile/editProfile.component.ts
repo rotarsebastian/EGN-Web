@@ -5,7 +5,6 @@ import { MatDialog } from "@angular/material";
 import { ChangePasswordDialogComponent } from "src/app/dialogs/changePassword/changePassword";
 import { ToastrService } from "ngx-toastr";
 import { UsersService } from "src/app/services/users.service";
-import { User } from "src/app/models/users.model";
 import { AuthService } from "src/app/services/auth.service";
 import { QuestionDialogComponent } from "src/app/dialogs/question/question";
 

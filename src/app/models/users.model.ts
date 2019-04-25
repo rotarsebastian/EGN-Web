@@ -6,6 +6,8 @@ export class User {
   public company: string;
   public email: string;
   public password: string;
+  public wasDeleted: boolean;
+  public role: string;
   constructor(
     id: number,
     imgPath: string,
@@ -13,7 +15,9 @@ export class User {
     position: string,
     company: string,
     email: string,
-    password: string
+    password: string,
+    wasDeleted: boolean,
+    role: string
   ) {
     this.id = id;
     this.imgPath = imgPath;
@@ -22,5 +26,7 @@ export class User {
     this.company = company;
     this.email = email;
     this.password = password;
+    this.wasDeleted = wasDeleted;
+    this.role = role;
   }
 }

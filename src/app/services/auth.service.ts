@@ -61,6 +61,24 @@ export class AuthService implements OnInit {
     );
   }
 
+  resetPassword(email: string) {
+    firebase
+      .auth()
+      .sendPasswordResetEmail(email)
+      .then(() => {
+        this.toastr.success("The reset password email was sent successfully");
+      })
+      .catch(error => {
+        let errorCode = error.code;
+        if (errorCode === "auth/invalid-email") {
+          this.toastr.error("Please insert a valid email");
+        } else if (errorCode === "auth/user-not-found") {
+          this.toastr.error("Your email is not registered");
+        }
+        console.log(error);
+      });
+  }
+
   deleteUser() {
     var user = firebase.auth().currentUser;
 
@@ -70,7 +88,7 @@ export class AuthService implements OnInit {
         // User deleted.
       })
       .catch(function(error) {
-        // An error happened.
+        console.log(error);
       });
   }
 

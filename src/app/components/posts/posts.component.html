@@ -8,7 +8,7 @@
     <div class="post-content" (clickOutside)="onClickedOutsideContent()">
       <svg
         class="manage-post"
-        *ngIf="loggedUser.id === 2 || loggedUser.id === post.authorID"
+        *ngIf="loggedUser.role === 'admin' || loggedUser.id === post.authorID"
         (click)="seeDropDownPost()"
         version="1.1"
         id="Capa_1"
@@ -121,7 +121,8 @@
         <div
           class="post-date"
           [ngClass]="{
-            reAlign: loggedUser.id != post.authorID && loggedUser.id != 2
+            reAlign:
+              loggedUser.id !== post.authorID && loggedUser.role !== 'admin'
           }"
         >
           {{ post.date | date: "dd MMM, yyyy HH:mm" | lowercase }}
@@ -370,15 +371,41 @@
           (ngSubmit)="postComment(addCommentForm, $event)"
           #addCommentForm="ngForm"
         >
-          <textarea
-            name="comment"
-            id="newCommentTextarea"
-            rows="1"
-            placeholder="Add a comment..."
-            (keyup)="autogrow($event)"
-            required
-            ngModel
-          ></textarea>
+          <div class="write-comment">
+            <textarea
+              name="comment"
+              id="newCommentTextarea"
+              rows="1"
+              placeholder="Add a comment..."
+              (keyup)="autogrow($event)"
+              required
+              ngModel
+            >
+            </textarea>
+            <svg
+              class="pick-picture-svg"
+              (click)="commentImage.click()"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              matTooltip="Add a picture"
+            >
+              <circle cx="12" cy="12" r="3.2" fill="#9faec0" />
+              <path
+                fill="#9faec0"
+                d="M9 2L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-3.17L15 2H9zm3 15c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"
+              />
+              <path d="M0 0h24v24H0z" fill="none" />
+            </svg>
+            <input
+              type="file"
+              accept="image/*"
+              hidden
+              #commentImage
+              (change)="uploadImage($event)"
+            />
+          </div>
           <button type="submit" [disabled]="!addCommentForm.valid">
             Post
           </button>

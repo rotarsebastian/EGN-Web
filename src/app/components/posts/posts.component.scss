@@ -444,9 +444,25 @@
         }
       }
 
-      textarea {
-        width: 98%;
-        resize: none;
+      .write-comment {
+        position: relative;
+
+        textarea {
+          width: 91.5%;
+          resize: none;
+          padding-right: 2.65rem;
+        }
+
+        .pick-picture-svg {
+          position: absolute;
+          right: 0.3rem;
+          top: 0;
+          width: 1.55rem;
+          cursor: pointer;
+          height: auto;
+          padding: 0.5rem;
+          outline: none;
+        }
       }
 
       button {

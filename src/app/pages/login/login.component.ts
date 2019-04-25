@@ -43,6 +43,7 @@ export class LoginComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (!!result) {
         this.emailToRecoverAccount = result;
+        this.authService.resetPassword(this.emailToRecoverAccount);
       }
     });
   }
@@ -72,44 +73,13 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin(loginForm: NgForm) {
-    // let myUserName: string;
-
-    // let foundUser = false;
-    // for (let user of this.users) {
-    //   if (
-    //     loginForm.value.email === user.email &&
-    //     loginForm.value.password === user.password
-    //   ) {
-    //     foundUser = true;
-    //     myUserName = user.name;
-    //     //loginForm.reset();
-    //     break;
-    //   } else if (
-    //     loginForm.value.email === user.email &&
-    //     loginForm.value.password !== user.password
-    //   ) {
-    //     this.incorrectPassword = true;
-    //     foundUser = true;
-    //   } else if (
-    //     loginForm.value.email !== user.email &&
-    //     loginForm.value.password == user.password
-    //   ) {
-    //     this.incorrectEmail = true;
-    //     foundUser = true;
-    //   }
-    // }
-    // if (!foundUser) {
-    //   this.incorrectEmail = true;
-    //   this.incorrectPassword = true;
-    // }
-
     const email = loginForm.value.email;
     const password = loginForm.value.password;
 
     this.authService.signinUser(email, password);
 
     for (let oneUser of this.users) {
-      if (oneUser.email === email && oneUser.password === password) {
+      if (oneUser.email === email) {
         this.usersService.setCurrentUser(oneUser);
         let copy = oneUser;
         delete copy.password;
