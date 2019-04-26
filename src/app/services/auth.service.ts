@@ -3,7 +3,7 @@ import * as firebase from "firebase";
 import { Injectable, OnInit } from "@angular/core";
 import { ToastrService } from "ngx-toastr";
 import { UsersService } from "./users.service";
-import { User } from "../models/users.model";
+import { v4 as uuid } from "uuid";
 
 @Injectable()
 export class AuthService implements OnInit {
@@ -114,10 +114,8 @@ export class AuthService implements OnInit {
       .auth()
       .createUserWithEmailAndPassword(email, password)
       .then(() => {
-        const lastUser = this.userService.getLastUser();
-
         const newUser = {
-          id: lastUser.id + 1,
+          id: uuid(),
           imgPath: "unset",
           name: "New user",
           position: "New member",

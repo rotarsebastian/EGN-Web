@@ -22,6 +22,7 @@ import { ViewEncapsulation } from "@angular/core";
 import { UsersService } from "src/app/services/users.service";
 import { MatDialog } from "@angular/material";
 import { QuestionDialogComponent } from "src/app/dialogs/question/question";
+import { v4 as uuid } from "uuid";
 
 @Component({
   selector: "app-posts",
@@ -160,9 +161,9 @@ export class PostsComponent implements OnInit, AfterViewInit {
         }
         if (this.post["authorID"] === myUser.id) {
           if (myUser.wasDeleted) {
-            this.post.author = "Deleted user";
+            this.post.author = "Former user";
             this.authorImgLink = `unset`;
-            this.post.position = "";
+            this.post.position = "Deleted member";
             this.post.company = "";
           } else {
             this.post.author = myUser.name;
@@ -337,15 +338,9 @@ export class PostsComponent implements OnInit, AfterViewInit {
     const comment = addCommentForm.value.comment;
     const name = this.loggedUser.name;
     const userID = this.loggedUser.id;
-    let commentID: number;
-    if (!!this.post.comments[this.post.comments.length - 1]) {
-      commentID = this.post.comments[this.post.comments.length - 1].id + 1;
-    } else {
-      commentID = 0;
-    }
 
     const newComment = {
-      id: commentID,
+      id: uuid(),
       author: name,
       authorID: userID,
       authorImgPath: this.loggedUser.imgPath,

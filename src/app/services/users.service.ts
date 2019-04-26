@@ -52,8 +52,18 @@ export class UsersService {
   deleteUser(userID: number) {
     for (let user of this.users) {
       if (user.id === userID) {
-        const userIndex = this.users.indexOf(user);
-        this.users.splice(userIndex, 1);
+        // const userIndex = this.users.indexOf(user);
+        // this.users.splice(userIndex, 1);
+        const copyId = user.id;
+
+        for (var variableKey in user) {
+          if (user.hasOwnProperty(variableKey)) {
+            delete user[variableKey];
+          }
+        }
+        user.id = copyId;
+        user.position = "Deleted member";
+        user.wasDeleted = true;
       }
     }
     this.usersChanged.next(this.users.slice());

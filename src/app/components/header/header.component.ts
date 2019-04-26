@@ -8,6 +8,7 @@ import { Post } from "src/app/models/posts.model";
 import { ToastrService } from "ngx-toastr";
 import { UsersService } from "src/app/services/users.service";
 import { Subscription } from "rxjs";
+import { v4 as uuid } from "uuid";
 
 @Component({
   selector: "app-header",
@@ -77,14 +78,9 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
   createPost(content: string) {
     const date = new Date();
-    let newPostID: number;
-    if (!!this.lastPost) {
-      newPostID = this.lastPost.id + 1;
-    } else {
-      newPostID = 0;
-    }
+
     const post = new Post(
-      newPostID,
+      uuid(),
       this.loggedUser.id,
       this.loggedUser.name,
       this.loggedUser.imgPath,

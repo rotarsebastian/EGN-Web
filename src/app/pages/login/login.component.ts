@@ -54,7 +54,6 @@ export class LoginComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (!!result) {
-        console.log(result);
         var actionCodeSettings = {
           // URL you want to redirect back to. The domain (www.example.com) for this
           // URL must be whitelisted in the Firebase Console.
