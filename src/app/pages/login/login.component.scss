@@ -237,6 +237,44 @@ body {
       }
     }
 
+    .register-reset-email-area {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      .reset-email-button {
+        cursor: pointer;
+        border: none;
+        background: none;
+        color: #276cad;
+        padding: 0;
+        margin: 0;
+        margin-left: -0.35rem;
+        line-height: 2rem;
+        -webkit-font-smoothing: antialiased;
+        font-weight: normal;
+        box-shadow: none;
+      }
+
+      .reset-email-button:hover {
+        color: $font-blue-color;
+      }
+
+      .reset-email-button {
+        opacity: 0.85;
+      }
+
+      button:disabled,
+      button[disabled] {
+        opacity: 0.65;
+      }
+
+      button:disabled,
+      button[disabled]:hover {
+        opacity: 0.65;
+        cursor: not-allowed;
+      }
+    }
+
     .orBarContainer {
       display: flex;
       justify-content: space-between;

@@ -260,12 +260,23 @@
               >
                 Forgot your password?
               </button>
+
               <button
                 class="login-button"
                 type="submit"
                 [disabled]="!loginForm.valid"
               >
                 LOGIN
+              </button>
+            </div>
+
+            <div class="register-reset-email-area">
+              <button
+                class="reset-email-button"
+                type="button"
+                (click)="openRegisterModal()"
+              >
+                Create a new account
               </button>
             </div>
           </form>

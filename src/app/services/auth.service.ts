@@ -2,6 +2,8 @@ import { Router, ActivatedRoute } from "@angular/router";
 import * as firebase from "firebase";
 import { Injectable, OnInit } from "@angular/core";
 import { ToastrService } from "ngx-toastr";
+import { UsersService } from "./users.service";
+import { User } from "../models/users.model";
 
 @Injectable()
 export class AuthService implements OnInit {
@@ -10,7 +12,8 @@ export class AuthService implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private userService: UsersService
   ) {}
 
   ngOnInit() {}
@@ -75,6 +78,64 @@ export class AuthService implements OnInit {
         } else if (errorCode === "auth/user-not-found") {
           this.toastr.error("Your email is not registered");
         }
+        console.log(error);
+      });
+  }
+
+  // verifyEmail(email: string) {
+  //   user.sendEmailVerification().then(function() {
+  //     // Email sent.
+  //   }).catch(function(error) {
+  //     // An error happened.
+  //   });
+  // }
+
+  activateAccount(email, settings, password) {
+    firebase
+      .auth()
+      .sendSignInLinkToEmail(email, settings)
+      .then(() => {
+        // The link was successfully sent. Inform the user.
+        // Save the email locally so you don't need to ask the user for it again
+        // if they open the link on the same device.
+
+        //HERE CALL CREATE USER AND THEN STORE THE USER ON LOCALSTORAGE THEM THE APP WILL SIGN IN BY ITSELF
+        this.createNewUser(email, password);
+        this.toastr.success("Please check your email to validate the account");
+        console.log("succes");
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+  }
+
+  createNewUser(email: any, password: any) {
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then(() => {
+        const lastUser = this.userService.getLastUser();
+
+        const newUser = {
+          id: lastUser.id + 1,
+          imgPath: "unset",
+          name: "New user",
+          position: "New member",
+          company: "Unknown company",
+          email: email,
+          wasDeleted: false,
+          role: "user"
+        };
+
+        this.userService.addNewUser(newUser);
+        this.userService.setCurrentUser(newUser);
+        window.localStorage.setItem("currentUser", JSON.stringify(newUser));
+        window.localStorage.setItem("user-logged-in", "true");
+      })
+      .catch(error => {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
         console.log(error);
       });
   }

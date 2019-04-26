@@ -112,11 +112,21 @@ export class UsersService {
     //this.router.navigate(["/user", userId]);
   }
 
+  addNewUser(newUser: any) {
+    this.users.push(newUser);
+    this.usersChanged.next(this.users.slice());
+    this.storeUsers().subscribe();
+  }
+
   getUser(index: number) {
     return this.users[index];
   }
 
-  setCurrentUser(currUser: User) {
+  getLastUser() {
+    return this.users[this.users.length - 1];
+  }
+
+  setCurrentUser(currUser: any) {
     this.loggedInUser = currUser;
   }
 

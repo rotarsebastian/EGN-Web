@@ -24,6 +24,7 @@ import { EditProfileComponent } from "./pages/editProfile/editProfile.component"
 import { CountrySelectComponent } from "./components/country-select/country-select.component";
 import { ChangePasswordDialogComponent } from "./dialogs/changePassword/changePassword";
 import { QuestionDialogComponent } from "./dialogs/question/question";
+import { RegisterAccountDialogComponent } from "./dialogs/registerNewAccount/registerAccount";
 
 export const components = [
   AppComponent,
@@ -48,7 +49,8 @@ export const components = [
   ForgotPasswordDialogComponent,
   CreatePostDialogComponent,
   ChangePasswordDialogComponent,
-  QuestionDialogComponent
+  QuestionDialogComponent,
+  RegisterAccountDialogComponent
 ];
 
 export const pipes = [

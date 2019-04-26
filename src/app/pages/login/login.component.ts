@@ -7,6 +7,7 @@ import { UsersService } from "src/app/services/users.service";
 import { Subscription } from "rxjs";
 import { User } from "src/app/models/users.model";
 import { AuthService } from "src/app/services/auth.service";
+import { RegisterAccountDialogComponent } from "src/app/dialogs/registerNewAccount/registerAccount";
 
 @Component({
   selector: "app-login",
@@ -44,6 +45,29 @@ export class LoginComponent implements OnInit {
       if (!!result) {
         this.emailToRecoverAccount = result;
         this.authService.resetPassword(this.emailToRecoverAccount);
+      }
+    });
+  }
+
+  openRegisterModal(): void {
+    const dialogRef = this.dialog.open(RegisterAccountDialogComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (!!result) {
+        console.log(result);
+        var actionCodeSettings = {
+          // URL you want to redirect back to. The domain (www.example.com) for this
+          // URL must be whitelisted in the Firebase Console.
+          url: "http://localhost:4200/home",
+          // This must be true.
+          handleCodeInApp: true
+        };
+        this.authService.activateAccount(
+          result.email,
+          actionCodeSettings,
+          result.password
+        );
+        //YOU NEED TO CREATE AN USER ONCE YOU SEND THE LINK AND STORE ON LOCAL STORAGE AND ON CLICK USER GETS SIGNED IN
       }
     });
   }
