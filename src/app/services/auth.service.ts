@@ -99,15 +99,44 @@ export class AuthService implements OnInit {
         // Save the email locally so you don't need to ask the user for it again
         // if they open the link on the same device.
 
-        //HERE CALL CREATE USER AND THEN STORE THE USER ON LOCALSTORAGE THEM THE APP WILL SIGN IN BY ITSELF
         this.createNewUser(email, password);
-        this.toastr.success("Please check your email to validate the account");
+
+        this.toastr.success(`An email was sent to ${email}`, null, {
+          timeOut: 7500
+        });
         console.log("succes");
       })
       .catch(function(error) {
         console.log(error);
       });
   }
+
+  // checkSignInMethod() {
+  //   if (firebase.auth().isSignInWithEmailLink(window.location.href)) {
+  //     var emailFromStorage = window.localStorage.getItem("emailForSignIn");
+  //     var passwordFromStorage = window.localStorage.getItem(
+  //       "passwordForSignIn"
+  //     );
+  //     if (!emailFromStorage) {
+  //       emailFromStorage = window.prompt(
+  //         "Please provide your email for confirmation"
+  //       );
+  //     }
+
+  //     // The client SDK will parse the code from the link for you.
+  //     firebase
+  //       .auth()
+  //       .signInWithEmailLink(emailFromStorage, window.location.href)
+  //       .then(function(result) {
+  //         window.localStorage.removeItem("emailForSignIn");
+  //         window.localStorage.removeItem("passwordForSignIn");
+  //       })
+  //       .catch(function(error) {
+  //         // Some error occurred, you can inspect the code: error.code
+  //         // Common errors could be invalid email and invalid or expired OTPs.
+  //       });
+  //   }
+  // }
 
   createNewUser(email: any, password: any) {
     firebase

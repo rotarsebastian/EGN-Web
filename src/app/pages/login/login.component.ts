@@ -66,7 +66,6 @@ export class LoginComponent implements OnInit {
           actionCodeSettings,
           result.password
         );
-        //YOU NEED TO CREATE AN USER ONCE YOU SEND THE LINK AND STORE ON LOCAL STORAGE AND ON CLICK USER GETS SIGNED IN
       }
     });
   }

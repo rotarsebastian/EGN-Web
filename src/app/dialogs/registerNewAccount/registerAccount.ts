@@ -13,8 +13,11 @@ export class RegisterAccountDialogComponent {
   email: string;
   emailIsValid = false;
   passwordIsValid = false;
+  rePasswordIsValid = false;
   usedEmail = false;
   users: any;
+  password: string;
+  rePassword: string;
 
   constructor(
     public dialogRef: MatDialogRef<RegisterAccountDialogComponent>,
@@ -67,6 +70,18 @@ export class RegisterAccountDialogComponent {
       } else {
         this.passwordIsValid = false;
         event.srcElement.classList.add("invalid-input");
+      }
+    } else if (event.srcElement.name === "rePassword") {
+      if (event.srcElement.classList.contains("ng-valid")) {
+        if (this.password === this.rePassword) {
+          this.rePasswordIsValid = true;
+          event.srcElement.classList.remove("invalid-input");
+        }
+      } else {
+        if (this.password !== this.rePassword) {
+          this.rePasswordIsValid = false;
+          event.srcElement.classList.add("invalid-input");
+        }
       }
     }
   }

@@ -241,12 +241,35 @@
         #createPassword="ngModel"
         (keyup)="instantValidation($event)"
       />
+      <input
+        type="password"
+        [(ngModel)]="rePassword"
+        placeholder="Repeat password"
+        id="rePassword"
+        name="rePassword"
+        ngModel
+        minlength="8"
+        required
+        #repeatPassword="ngModel"
+        (keyup)="instantValidation($event)"
+      />
 
       <p
         class="errorMessage"
         *ngIf="!createEmail.valid && createEmail.touched && createEmail.dirty"
       >
         Your email is not valid!
+      </p>
+
+      <p
+        class="errorMessage"
+        *ngIf="
+          repeatPassword.touched &&
+          repeatPassword.dirty &&
+          password !== rePassword
+        "
+      >
+        Your passwords do not match!
       </p>
 
       <p class="errorMessage" *ngIf="usedEmail">
@@ -269,7 +292,9 @@
     <button
       type="button"
       class="reset-password-button"
-      [disabled]="!createEmail.valid || !createPassword.valid"
+      [disabled]="
+        !createEmail.valid || !createPassword.valid || password !== rePassword
+      "
       (click)="setData(email, password)"
     >
       APPLY
