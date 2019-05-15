@@ -19,6 +19,7 @@ import { ToastrService } from "ngx-toastr";
 import { UsersService } from "src/app/services/users.service";
 import { QuestionDialogComponent } from "src/app/dialogs/question/question";
 import { MatDialog } from "@angular/material";
+import { ViewFullPictureDialogComponent } from "src/app/dialogs/viewFullPicture/viewPicture";
 
 @Component({
   selector: "app-comments",
@@ -234,6 +235,20 @@ export class CommentsComponent implements OnInit, AfterViewInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.deleteComment();
+      }
+    });
+  }
+
+  openFullPictureDialog(): void {
+    const dialogRef = this.dialog.open(ViewFullPictureDialogComponent, {
+      data: {
+        image: this.getCommentImage()
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (!!result) {
+        // this.result = result;
+        // this.createPost(result);
       }
     });
   }

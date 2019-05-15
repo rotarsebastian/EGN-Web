@@ -11,14 +11,26 @@ import { Post } from "src/app/models/posts.model";
 export class HomePageComponent implements OnInit {
   subscription: Subscription;
   posts: Post[];
+  isWaiting: boolean;
 
   constructor(private postsService: PostsService) {}
 
   ngOnInit() {
+    this.isWaiting = false;
+    this.getPosts();
+  }
+
+  getPosts() {
+    this.isWaiting = true;
     this.postsService.getPosts();
+    this.isWaiting = true;
     this.subscription = this.postsService.postsChanged.subscribe(
       (posts: Post[]) => {
+        this.isWaiting = false;
         this.posts = posts;
+      },
+      err => {
+        this.isWaiting = false;
       }
     );
   }

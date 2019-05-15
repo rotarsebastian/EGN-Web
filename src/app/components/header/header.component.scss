@@ -157,12 +157,15 @@ svg {
         cursor: pointer;
       }
       div {
-        cursor: pointer;
         width: 2.5rem;
-        border-radius: 50%;
         height: 2.5rem;
-        background-repeat: no-repeat, no-repeat, no-repeat, repeat-x, repeat;
-        background-size: 2.5rem;
+        border: 0.01rem solid black;
+        margin: auto;
+        border-radius: 50%;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        cursor: pointer;
       }
     }
 

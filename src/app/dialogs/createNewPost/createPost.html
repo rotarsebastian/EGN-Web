@@ -213,12 +213,12 @@
 
     <p class="create-post-title">Create a new post</p>
     <p class="create-post-text">
-      We will create your post as soon as you write your text.
+      We will create your post as soon as you complete the following
     </p>
     <div class="input-container">
       <textarea
         type="text"
-        [(ngModel)]="post"
+        [(ngModel)]="postMessage"
         placeholder="Your post content here"
         id="post"
         name="post"
@@ -226,14 +226,31 @@
         required
         #postContent="ngModel"
       ></textarea>
+
+      <p class="create-post-text">
+        Please select the groups you want to share your post in
+      </p>
+
+      <div class="group-list">
+        <div *ngFor="let groupName of groupNames" class="group-item">
+          <mat-checkbox
+            class="groups-checkboxes"
+            name="groupNames"
+            value="{{ groupName.name }}"
+            [(ngModel)]="groupName.checked"
+          >
+            {{ groupName.name }}
+          </mat-checkbox>
+        </div>
+      </div>
     </div>
   </div>
   <div class="button-container">
     <button
-      type="button"
+      type="submit"
       class="reset-password-button"
-      [disabled]="!postContent.valid"
-      [mat-dialog-close]="post"
+      [disabled]="!postContent.valid || !isAnyChecked()"
+      (click)="submit()"
     >
       Create post
     </button>

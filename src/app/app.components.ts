@@ -25,6 +25,7 @@ import { CountrySelectComponent } from "./components/country-select/country-sele
 import { ChangePasswordDialogComponent } from "./dialogs/changePassword/changePassword";
 import { QuestionDialogComponent } from "./dialogs/question/question";
 import { RegisterAccountDialogComponent } from "./dialogs/registerNewAccount/registerAccount";
+import { ViewFullPictureDialogComponent } from "./dialogs/viewFullPicture/viewPicture";
 
 export const components = [
   AppComponent,
@@ -50,7 +51,8 @@ export const components = [
   CreatePostDialogComponent,
   ChangePasswordDialogComponent,
   QuestionDialogComponent,
-  RegisterAccountDialogComponent
+  RegisterAccountDialogComponent,
+  ViewFullPictureDialogComponent
 ];
 
 export const pipes = [

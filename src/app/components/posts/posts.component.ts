@@ -117,6 +117,7 @@ export class PostsComponent implements OnInit, AfterViewInit {
   @Input() index: number;
   @ViewChild("likeButton") likePath: any;
   @ViewChild("entirePost") entirePost: any;
+  @ViewChild("commentImage") commentImageElement: any;
   posts: Post[];
 
   addCommentOpen: boolean = false;
@@ -209,7 +210,7 @@ export class PostsComponent implements OnInit, AfterViewInit {
 
   onClickedOutside() {
     if (this.addCommentOpen) {
-      this.onSeeComments();
+      //this.onSeeComments();
     }
     if (this.dropDownPostOpen) {
       this.seeDropDownPost();
@@ -236,10 +237,10 @@ export class PostsComponent implements OnInit, AfterViewInit {
     pathArray[this.index].classList.toggle("commentsOpen");
 
     this.addCommentOpen = !this.addCommentOpen;
+
     if (this.addCommentOpen) {
       setTimeout(() => {
         let textAreaToEdit: any = document.querySelector("#newCommentTextarea");
-        textAreaToEdit.focus();
         textAreaToEdit.scrollIntoView({ block: "start", behavior: "smooth" });
       }, 50);
     } else {
@@ -267,7 +268,7 @@ export class PostsComponent implements OnInit, AfterViewInit {
     this.dropDownPostOpen = !this.dropDownPostOpen;
   }
 
-  uploadImage(e) {
+  uploadImage(e: any) {
     const files = e.srcElement["files"];
 
     if (files.length > 0) {
@@ -334,10 +335,20 @@ export class PostsComponent implements OnInit, AfterViewInit {
     textArea.style.height = textArea.scrollHeight + "px";
   }
 
+  removeFile() {
+    this.commentWithImage = undefined;
+    this.commentWithImageURL = "";
+    this.commentImageElement.nativeElement.value = "";
+  }
+
   postComment(addCommentForm: NgForm, event: any) {
-    const comment = addCommentForm.value.comment;
+    let comment = addCommentForm.value.comment;
     const name = this.loggedUser.name;
     const userID = this.loggedUser.id;
+
+    if (comment === undefined || comment === null) {
+      comment = "";
+    }
 
     const newComment = {
       id: uuid(),
@@ -363,11 +374,45 @@ export class PostsComponent implements OnInit, AfterViewInit {
 
     this.postsService.storePosts().subscribe();
     addCommentForm.reset();
+    this.removeFile();
   }
 
   openAddComment() {
-    this.onSeeComments();
+    this.onAddComments();
     this.postsService.storePosts().subscribe();
+  }
+
+  onAddComments() {
+    if (this.post["comments"].length > 5) {
+      this.commentsWrappable = !this.commentsWrappable;
+      this.commentsToBeShown = this.post["comments"].slice(
+        this.post["comments"].length - 3
+      );
+      this.wrappedCommentsAmount = this.post["comments"].length - 3;
+    }
+
+    let path = document.querySelectorAll(".comment-svg-path");
+    let pathArray = Array.from(path);
+    pathArray[this.index].classList.toggle("commentsOpen");
+
+    this.addCommentOpen = !this.addCommentOpen;
+    if (this.addCommentOpen) {
+      setTimeout(() => {
+        let textAreaToEdit: any = document.querySelector("#newCommentTextarea");
+        textAreaToEdit.focus();
+        textAreaToEdit.scrollIntoView({ block: "start", behavior: "smooth" });
+      }, 50);
+    } else {
+      let postTop: any = document.querySelectorAll(".entire-post");
+      postTop[this.index].scrollIntoView({
+        block: "start",
+        behavior: "smooth"
+      });
+    }
+
+    if (this.dropDownPostOpen) {
+      this.dropDownPostOpen = !this.dropDownPostOpen;
+    }
   }
 
   onLikePost() {

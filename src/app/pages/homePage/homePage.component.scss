@@ -10,6 +10,18 @@
   overflow-x: hidden;
 }
 
+::ng-deep .mat-progress-spinner circle,
+.mat-spinner circle {
+  stroke: #d50965;
+}
+
+.spinner-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80%;
+}
+
 @media only screen and (max-width: 765px) {
   .posts-container {
     height: 100% !important;

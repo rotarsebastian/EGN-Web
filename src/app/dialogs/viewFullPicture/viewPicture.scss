@@ -1,0 +1,57 @@
+@import "../../../styles/textarea.scss";
+
+$font-blue-color: #1b3d5d;
+$font-white-color: #f6f6f6;
+$font-family: "Source Sans Pro", sans-serif;
+
+.wrapper {
+  font-family: $font-family;
+}
+
+.comment-image {
+  height: 79vh;
+  border-radius: 5px;
+  background-repeat: no-repeat, no-repeat, no-repeat, repeat-x, repeat;
+  margin-left: 0;
+  margin-bottom: 0.25rem;
+  background-size: contain;
+  background-position: center;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 0.45rem;
+}
+
+::ng-deep .cdk-overlay-pane {
+  width: 100%;
+  height: 90%;
+  box-shadow: none;
+  border-radius: 5px;
+}
+
+::ng-deep .cdk-overlay-dark-backdrop {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+::ng-deep .mat-dialog-container {
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.logo-container {
+  display: flex;
+  justify-content: flex-end;
+
+  .egn-logo {
+    width: 5rem;
+  }
+
+  .close-btn {
+    cursor: pointer;
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  .logo-container {
+    margin-bottom: 1.25rem !important;
+  }
+}

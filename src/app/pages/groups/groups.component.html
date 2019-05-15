@@ -1,1 +1,11 @@
-<div class="groups-content">Groups Content</div>
+<div class="posts-container">
+  <div id="posts-top"></div>
+  <app-posts
+    *ngFor="let post of (posts | sort: 'date'); index as i"
+    [post]="post"
+    [index]="i"
+  ></app-posts>
+  <div class="spinner-container" *ngIf="isWaiting">
+    <mat-spinner class="loading-spinner"></mat-spinner>
+  </div>
+</div>

@@ -104,6 +104,22 @@
           </svg>
         </div>
       </div>
+
+      <div *ngIf="post.groupNames" class="post-groups">
+        Post shared in:&nbsp;
+        <span
+          class="single-group-name"
+          [ngClass]="{ blueText: index % 2 === 1 }"
+          *ngFor="let groupName of post.groupNames; index as groupNameIndex"
+          >{{ groupName
+          }}<span
+            class="name-space"
+            *ngIf="groupNameIndex !== post['groupNames'].length - 1"
+            >,&nbsp;</span
+          >
+        </span>
+      </div>
+
       <div class="post-header">
         <div class="post-details">
           <div class="picture-container">
@@ -398,6 +414,18 @@
               />
               <path d="M0 0h24v24H0z" fill="none" />
             </svg>
+
+            <div class="attachment_container">
+              <div class="attachment" *ngIf="commentWithImage">
+                <img
+                  src="/assets/images/cancel-red.svg"
+                  alt="Remove"
+                  (click)="removeFile()"
+                />
+                <p>{{ commentWithImage.name }}</p>
+              </div>
+            </div>
+
             <input
               type="file"
               accept="image/*"
@@ -406,7 +434,10 @@
               (change)="uploadImage($event)"
             />
           </div>
-          <button type="submit" [disabled]="!addCommentForm.valid">
+          <button
+            type="submit"
+            [disabled]="!addCommentForm.valid && !commentImage.files.length > 0"
+          >
             Post
           </button>
           <button type="button" class="cancelButton" (click)="openAddComment()">

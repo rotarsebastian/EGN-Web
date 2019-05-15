@@ -10,7 +10,7 @@ $font-family: "Source Sans Pro", sans-serif;
     font-size: 1.5rem;
     color: $font-blue-color;
     text-align: center;
-    margin-bottom: 0.65rem;
+    margin-bottom: 0.95rem;
     margin-top: 0.25rem;
   }
 
@@ -24,6 +24,15 @@ $font-family: "Source Sans Pro", sans-serif;
     opacity: 0.85;
     margin-top: 0;
     margin-bottom: 1.75rem;
+  }
+
+  .group-list {
+    margin-bottom: 1.75rem;
+    display: flex;
+    justify-content: space-between;
+
+    // .group-item {
+    // }
   }
 
   .input-container {
@@ -42,9 +51,27 @@ $font-family: "Source Sans Pro", sans-serif;
   }
 }
 
+::ng-deep .mat-checkbox {
+  margin-right: 0.5rem;
+}
+
+// overwrite the checkbox background
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background,
+.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+  background-color: $font-blue-color !important;
+}
+
+// overwrite the ripple overlay on hover and click
+::ng-deep
+  .mat-checkbox:not(.mat-checkbox-disabled).mat-accent
+  .mat-checkbox-ripple
+  .mat-ripple-element {
+  background-color: $font-blue-color !important;
+}
+
 ::ng-deep .cdk-overlay-pane {
-  width: 37rem;
-  height: 22.5rem;
+  width: 40rem;
+  height: auto;
   box-shadow: 7px 0 9.4px 0.6px rgba(27, 61, 93, 0.38);
   border-radius: 5px;
 }

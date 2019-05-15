@@ -85,7 +85,6 @@
     right: 0;
     top: 1.5rem;
     padding: 0.3rem 1rem;
-    cursor: pointer;
     font-size: 0.65rem;
     color: #9faec0;
   }
@@ -98,7 +97,7 @@
     border-radius: 50%;
     height: 2.5rem;
     background-repeat: no-repeat, no-repeat, no-repeat, repeat-x, repeat;
-    background-size: 2.5rem;
+    background-size: cover;
     img {
       width: 2.25rem;
       border-radius: 50%;
@@ -164,9 +163,11 @@
           background-repeat: no-repeat, no-repeat, no-repeat, repeat-x, repeat;
           margin: 1rem;
           margin-left: 0;
+          margin-bottom: 0.25rem;
           background-size: cover;
           background-position: center;
           cursor: pointer;
+          width: 100%;
         }
 
         .read-more-comment-state {

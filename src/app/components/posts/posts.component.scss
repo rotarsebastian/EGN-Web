@@ -110,6 +110,27 @@
         }
       }
 
+      .post-groups {
+        font-weight: bold;
+        font-size: 0.8rem;
+        margin-bottom: 1rem;
+
+        .single-group-name {
+          color: #d50965;
+          cursor: pointer;
+
+          &:hover {
+            text-decoration: underline;
+          }
+
+          .name-space {
+            cursor: auto;
+            text-decoration: none;
+            display: inline-block;
+          }
+        }
+      }
+
       .post-header {
         display: flex;
         justify-content: space-between;
@@ -127,11 +148,13 @@
             }
             .user-set-picture {
               width: 3rem;
-              border-radius: 50%;
               height: 3rem;
-              background-repeat: no-repeat, no-repeat, no-repeat, repeat-x,
-                repeat;
-              background-size: 3rem;
+              margin: auto;
+              border-radius: 50%;
+              background-size: cover;
+              background-repeat: no-repeat;
+              background-position: center;
+              cursor: pointer;
             }
           }
           .post-author {
@@ -394,7 +417,7 @@
       border-radius: 50%;
       height: 2.5rem;
       background-repeat: no-repeat, no-repeat, no-repeat, repeat-x, repeat;
-      background-size: 2.5rem;
+      background-size: cover;
       img {
         width: 3rem;
         border-radius: 50%;
@@ -446,6 +469,7 @@
 
       .write-comment {
         position: relative;
+        width: 100%;
 
         textarea {
           width: 91.5%;
@@ -453,9 +477,22 @@
           padding-right: 2.65rem;
         }
 
+        .attachment {
+          display: flex;
+          align-items: center;
+          margin-left: -0.55rem;
+          margin-bottom: 1rem;
+          p {
+            margin: 0;
+          }
+          img {
+            cursor: pointer;
+          }
+        }
+
         .pick-picture-svg {
           position: absolute;
-          right: 0.3rem;
+          right: 0.45rem;
           top: 0;
           width: 1.55rem;
           cursor: pointer;
@@ -486,6 +523,12 @@
     form {
       margin-left: 1.1rem !important;
     }
+  }
+}
+
+@media only screen and (max-width: 1400px) {
+  .pick-picture-svg {
+    right: 0 !important;
   }
 }
 

@@ -1,0 +1,29 @@
+@import "../../../styles/input.scss";
+@import "../../../styles/textarea.scss";
+@import "../../../styles/button.scss";
+
+.posts-container {
+  overflow-y: scroll;
+  height: 73vh;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  overflow-x: hidden;
+}
+
+::ng-deep .mat-progress-spinner circle,
+.mat-spinner circle {
+  stroke: #d50965;
+}
+
+.spinner-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80%;
+}
+
+@media only screen and (max-width: 765px) {
+  .posts-container {
+    height: 100% !important;
+  }
+}

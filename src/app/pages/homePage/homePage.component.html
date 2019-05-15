@@ -6,4 +6,7 @@
     [post]="post"
     [index]="i"
   ></app-posts>
+  <div class="spinner-container" *ngIf="isWaiting">
+    <mat-spinner class="loading-spinner"></mat-spinner>
+  </div>
 </div>

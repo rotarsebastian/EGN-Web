@@ -120,7 +120,10 @@
           class="read-more-comment-state"
           [id]="commentReadIdentifier"
         />
-        <p class="read-more-comment-wrap" *ngIf="comment.content.length >= 400">
+        <p
+          class="read-more-comment-wrap"
+          *ngIf="comment.content && comment.content.length >= 400"
+        >
           {{ comment.content | slice: 0:275
           }}<span class="more-text-comment-dots" *ngIf="!readMoreComment"
             >...</span
@@ -130,12 +133,15 @@
           }}</span>
         </p>
 
-        <p *ngIf="comment.content.length < 400">{{ comment.content }}</p>
+        <p *ngIf="comment.content && comment.content.length < 400">
+          {{ comment.content }}
+        </p>
 
         <div
           *ngIf="comment.commentImage"
           class="comment-image"
           [ngStyle]="{ 'background-image': getCommentImage() }"
+          (click)="openFullPictureDialog()"
         ></div>
 
         <label
