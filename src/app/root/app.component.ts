@@ -2,6 +2,9 @@ import { Component, OnInit } from "@angular/core";
 import { Router, NavigationEnd } from "@angular/router";
 import * as firebase from "firebase";
 import { AuthService } from "../services/auth.service";
+import { GroupsService } from "../services/groups.service";
+import { Subscription } from "rxjs";
+import { Group } from "../models/groups.model";
 
 @Component({
   selector: "app-root",
@@ -11,8 +14,16 @@ import { AuthService } from "../services/auth.service";
 export class AppComponent implements OnInit {
   loginPage: boolean = false;
   homePage: boolean = false;
+  subscription: Subscription;
+  privateGroups: Group[] = [];
+  publicGroups: Group[] = [];
+  groups: Group[];
 
-  constructor(private router: Router, private authService: AuthService) {}
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+    private groupService: GroupsService
+  ) {}
 
   ngOnInit() {
     this.router.events.forEach(event => {
@@ -45,5 +56,27 @@ export class AppComponent implements OnInit {
       storageBucket: "egn-project.appspot.com",
       messagingSenderId: "931205090881"
     });
+
+    this.getGroups();
+  }
+
+  getGroups() {
+    this.groupService.getGroups();
+    this.subscription = this.groupService.groupsChanged.subscribe(
+      (groups: Group[]) => {
+        this.groups = groups;
+        if (this.privateGroups.length === 0 && this.publicGroups.length === 0) {
+          for (let group of groups) {
+            if (group.status === "private") {
+              this.privateGroups.push(group);
+            }
+            if (group.status === "public") {
+              this.publicGroups.push(group);
+            }
+          }
+        }
+      },
+      err => {}
+    );
   }
 }

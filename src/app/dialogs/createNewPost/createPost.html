@@ -243,6 +243,9 @@
           </mat-checkbox>
         </div>
       </div>
+      <div class="spinner-container" *ngIf="isWaiting">
+        <mat-spinner class="loading-spinner"></mat-spinner>
+      </div>
     </div>
   </div>
   <div class="button-container">

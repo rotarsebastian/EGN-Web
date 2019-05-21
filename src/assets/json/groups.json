@@ -1,0 +1,26 @@
+[
+  {
+    "id": "3424",
+    "name": "Marketing",
+    "members": [],
+    "posts": [],
+    "status": "private",
+    "createdAt": "2019-03-18T15:16:14.897Z"
+  },
+  {
+    "id": "6765",
+    "name": "Sales",
+    "members": [],
+    "posts": [],
+    "status": "private",
+    "createdAt": "2019-03-18T15:16:14.897Z"
+  },
+  {
+    "id": "1232",
+    "name": "Management",
+    "members": [],
+    "posts": [],
+    "status": "private",
+    "createdAt": "2019-03-18T15:16:14.897Z"
+  }
+]

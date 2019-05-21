@@ -30,6 +30,7 @@ $font-family: "Source Sans Pro", sans-serif;
     margin-bottom: 1.75rem;
     display: flex;
     justify-content: space-between;
+    flex-flow: wrap row;
 
     // .group-item {
     // }
@@ -55,6 +56,13 @@ $font-family: "Source Sans Pro", sans-serif;
   margin-right: 0.5rem;
 }
 
+.spinner-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80%;
+}
+
 // overwrite the checkbox background
 ::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background,
 .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
@@ -67,6 +75,10 @@ $font-family: "Source Sans Pro", sans-serif;
   .mat-checkbox-ripple
   .mat-ripple-element {
   background-color: $font-blue-color !important;
+}
+
+::ng-deep .mat-checkbox-layout .mat-checkbox-label {
+  color: #1b3d5d !important;
 }
 
 ::ng-deep .cdk-overlay-pane {

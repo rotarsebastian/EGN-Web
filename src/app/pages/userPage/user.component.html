@@ -1,25 +1,34 @@
-<div class="user-profile-container">
+<div class="spinner-container" *ngIf="isWaiting">
+  <mat-spinner class="loading-spinner"></mat-spinner>
+</div>
+<div class="user-profile-container" *ngIf="!isWaiting">
+  <div class="title-bar">
+    <mat-icon class="goBackToProfile" (click)="goBackToProfile()"
+      >arrow_back</mat-icon
+    >
+    <p class="title">{{ user?.name }} Profile</p>
+    <hr />
+  </div>
   <div class="top_container">
     <div class="image_container">
       <div>
         <div
           class="profile_image afterChange"
           [ngStyle]="{ 'background-image': getProfileImage() }"
-          (click)="profileInput.click()"
         ></div>
       </div>
     </div>
 
     <div class="headline">
       <div class="left">
-        <p class="name">{{ loggedUser.name }}</p>
-        <p class="description">{{ loggedUser.position }}</p>
+        <p class="name">{{ user?.name }}</p>
+        <p class="description">{{ user?.position }}</p>
         <p class="description">
-          {{ loggedUser.company }}
+          {{ user?.company }}
         </p>
       </div>
 
-      <div class="right">
+      <div class="right" *ngIf="user?.id === loggedUser.id">
         <button
           (click)="goToEditProfile()"
           matTooltip="Edit Profile"
@@ -34,6 +43,15 @@
 
   <div class="bottom_container">
     <div class="left_container">
+      <div class="button-container" *ngIf="user?.id !== loggedUser.id">
+        <button
+          type="button"
+          (click)="togglePeer(user.id, user.name, user.position, user.company)"
+        >
+          {{ isPeer() ? "Remove from Contact List" : "Add to Contact List" }}
+        </button>
+      </div>
+
       <div class="info_section">
         <hr />
         <div class="icon">
@@ -42,33 +60,25 @@
           >
         </div>
 
-        <p
-          *ngIf="loggedUser.email"
-          matTooltip="Email"
-          matTooltipPosition="left"
-        >
-          {{ loggedUser.email }}
+        <p *ngIf="user?.email" matTooltip="Email" matTooltipPosition="left">
+          {{ user?.email }}
         </p>
 
-        <p
-          *ngIf="loggedUser.phone"
-          matTooltip="Telephone"
-          matTooltipPosition="left"
-        >
-          {{ loggedUser.phone }}
+        <p *ngIf="user?.phone" matTooltip="Telephone" matTooltipPosition="left">
+          {{ user?.phone }}
         </p>
         <p
-          *ngIf="loggedUser.mobilePhone"
+          *ngIf="user?.mobilePhone"
           matTooltip="Mobile phone"
           matTooltipPosition="left"
         >
-          {{ loggedUser.mobilePhone }}
+          {{ user?.mobilePhone }}
         </p>
         <div>
           <img
             src="assets/images/linkedin.svg"
             alt="Linkedin"
-            *ngIf="loggedUser.linkedInProfile"
+            *ngIf="user?.linkedInProfile"
             (click)="openLinkedin()"
           />
         </div>
@@ -76,10 +86,10 @@
         <p
           class="placeholder"
           *ngIf="
-            !loggedUser.email &&
-            !loggedUser.phone &&
-            !loggedUser.mobilePhone &&
-            !loggedUser.linkedInProfile
+            !user?.email &&
+            !user?.phone &&
+            !user?.mobilePhone &&
+            !user?.linkedInProfile
           "
         >
           The member has not added any information.
@@ -93,36 +103,36 @@
             >work</mat-icon
           >
         </div>
-        <p *ngIf="loggedUser.company">{{ loggedUser.company }}</p>
-        <p *ngIf="loggedUser.companyAddress1">
-          {{ loggedUser.companyAddress1 }}
+        <p *ngIf="user?.company">{{ user?.company }}</p>
+        <p *ngIf="user?.companyAddress1">
+          {{ user?.companyAddress1 }}
         </p>
-        <p *ngIf="loggedUser.companyAddress2">
-          {{ loggedUser.companyAddress2 }}
+        <p *ngIf="user?.companyAddress2">
+          {{ user?.companyAddress2 }}
         </p>
-        <p *ngIf="loggedUser.companyAddress3">
-          {{ loggedUser.companyAddress3 }}
+        <p *ngIf="user?.companyAddress3">
+          {{ user?.companyAddress3 }}
         </p>
-        <p *ngIf="loggedUser.companyCity || loggedUser.companyZipCode">
-          {{ loggedUser.companyCity }} {{ loggedUser.companyZipCode }}
+        <p *ngIf="user?.companyCity || user?.companyZipCode">
+          {{ user?.companyCity }} {{ user?.companyZipCode }}
         </p>
         <p
           class="placeholder"
           *ngIf="
-            !loggedUser.company &&
-            !loggedUser.companyAddress1 &&
-            !loggedUser.companyAddress2 &&
-            !loggedUser.companyAddress3 &&
-            !loggedUser.companyCity &&
-            !loggedUser.companyZipCode &&
-            !loggedUser.companyCountry
+            !user?.company &&
+            !user?.companyAddress1 &&
+            !user?.companyAddress2 &&
+            !user?.companyAddress3 &&
+            !user?.companyCity &&
+            !user?.companyZipCode &&
+            !user?.companyCountry
           "
         >
           The member has not added any information.
         </p>
       </div>
 
-      <div class="info_section card">
+      <div class="info_section card" *ngIf="user?.id === loggedUser.id">
         <hr />
         <div class="icon">
           <mat-icon matTooltip="Private information" matTooltipPosition="left"
@@ -130,36 +140,36 @@
           >
         </div>
 
-        <p *ngIf="loggedUser.birthday">
-          {{ loggedUser.birthday | date: "dd MMM y" }}
+        <p *ngIf="user?.birthday">
+          {{ user?.birthday | date: "dd MMM y" }}
         </p>
-        <p *ngIf="loggedUser.privateEmail">{{ loggedUser.privateEmail }}</p>
-        <p *ngIf="loggedUser.privatePhone">{{ loggedUser.privatePhone }}</p>
-        <p *ngIf="loggedUser.privateAddress1">
-          {{ loggedUser.privateAddress1 }}
+        <p *ngIf="user?.privateEmail">{{ user?.privateEmail }}</p>
+        <p *ngIf="user?.privatePhone">{{ user?.privatePhone }}</p>
+        <p *ngIf="user?.privateAddress1">
+          {{ user?.privateAddress1 }}
         </p>
-        <p *ngIf="loggedUser.privateAddress2">
-          {{ loggedUser.privateAddress2 }}
+        <p *ngIf="user?.privateAddress2">
+          {{ user?.privateAddress2 }}
         </p>
-        <p *ngIf="loggedUser.privateAddress3">
-          {{ loggedUser.privateAddress3 }}
+        <p *ngIf="user?.privateAddress3">
+          {{ user?.privateAddress3 }}
         </p>
-        <p *ngIf="loggedUser.privateCity || loggedUser.privateZipCode">
-          {{ loggedUser.privateCity }} {{ loggedUser.privateZipCode }}
+        <p *ngIf="user?.privateCity || user?.privateZipCode">
+          {{ user?.privateCity }} {{ user?.privateZipCode }}
         </p>
 
         <p
           class="placeholder"
           *ngIf="
-            !loggedUser.birthday &&
-            !loggedUser.privateEmail &&
-            !loggedUser.privatePhone &&
-            !loggedUser.privateAddress1 &&
-            !loggedUser.privateAddress2 &&
-            !loggedUser.privateAddress3 &&
-            !loggedUser.privateCity &&
-            !loggedUser.privateZipCode &&
-            !loggedUser.privateCountry
+            !user?.birthday &&
+            !user?.privateEmail &&
+            !user?.privatePhone &&
+            !user?.privateAddress1 &&
+            !user?.privateAddress2 &&
+            !user?.privateAddress3 &&
+            !user?.privateCity &&
+            !user?.privateZipCode &&
+            !user?.privateCountry
           "
         >
           You do not have added any private information.
@@ -170,20 +180,20 @@
     <div class="right_container">
       <div class="row">
         <p class="title">RESPONSIBILITIES AND EXPERTISE</p>
-        <p class="description" *ngIf="loggedUser.expertise">
-          {{ loggedUser.expertise }}
+        <p class="description" *ngIf="user?.expertise">
+          {{ user?.expertise }}
         </p>
-        <p class="description placeholder" *ngIf="!loggedUser.expertise">
+        <p class="description placeholder" *ngIf="!user?.expertise">
           The member has not added any information.
         </p>
       </div>
 
       <div class="row">
         <p class="title">CARRIER AND EXPERIENCE</p>
-        <p class="description" *ngIf="loggedUser.background">
-          {{ loggedUser.background }}
+        <p class="description" *ngIf="user?.background">
+          {{ user?.background }}
         </p>
-        <p class="description placeholder" *ngIf="!loggedUser.background">
+        <p class="description placeholder" *ngIf="!user?.background">
           The member has not added any information.
         </p>
       </div>

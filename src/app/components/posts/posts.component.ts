@@ -23,6 +23,7 @@ import { UsersService } from "src/app/services/users.service";
 import { MatDialog } from "@angular/material";
 import { QuestionDialogComponent } from "src/app/dialogs/question/question";
 import { v4 as uuid } from "uuid";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-posts",
@@ -133,12 +134,14 @@ export class PostsComponent implements OnInit, AfterViewInit {
   authorImgLink: string;
   commentWithImage: File;
   commentWithImageURL: string;
+  public routerLinkVariable = "/user";
 
   constructor(
     private postsService: PostsService,
     private toastr: ToastrService,
     private userService: UsersService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private router: Router
   ) {
     let currentUser = localStorage.getItem("currentUser");
     this.loggedUser = JSON.parse(currentUser);
@@ -180,6 +183,10 @@ export class PostsComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {}
+
+  viewGroup(index: any) {
+    this.router.navigate(["groups", this.post.groupIDs[index]]);
+  }
 
   getProfileImage() {
     if (!!this.authorImgLink) {

@@ -162,6 +162,11 @@
               color: #1b3d5d;
               font-weight: bold;
               font-size: 0.8rem;
+              cursor: pointer;
+
+              &:hover {
+                text-decoration: underline;
+              }
             }
             .author-position {
               color: #939597;

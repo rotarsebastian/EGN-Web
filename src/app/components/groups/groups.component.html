@@ -1,0 +1,16 @@
+<div class="entire-group" #entireGroup (click)="viewGroup()">
+  <!-- (clickOutside)="onClickedOutside()" -->
+
+  <div
+    class="groupName"
+    [ngClass]="{ pinkBackground: group.status === 'private' }"
+  >
+    <div class="name">
+      {{ group.name }}
+    </div>
+  </div>
+  <div class="bottom-bar">
+    <div class="group-members">{{ group.members.length }} members</div>
+    <div class="group-status">{{ group.status }}</div>
+  </div>
+</div>

@@ -12,7 +12,6 @@ import { CreatePostDialogComponent } from "./dialogs/createNewPost/createPost";
 import { EventsComponent } from "./components/events-meetings/events.component";
 import { HeaderComponent } from "./components/header/header.component";
 import { PeersComponent } from "./components/peers/peers.component";
-import { GroupsComponent } from "./pages/groups/groups.component";
 import { CalendarComponent } from "./pages/calendar/calendar.component";
 import { QueriesComponent } from "./pages/queries/queries.component";
 import { PostsComponent } from "./components/posts/posts.component";
@@ -26,6 +25,9 @@ import { ChangePasswordDialogComponent } from "./dialogs/changePassword/changePa
 import { QuestionDialogComponent } from "./dialogs/question/question";
 import { RegisterAccountDialogComponent } from "./dialogs/registerNewAccount/registerAccount";
 import { ViewFullPictureDialogComponent } from "./dialogs/viewFullPicture/viewPicture";
+import { GroupsComponent } from "./components/groups/groups.component";
+import { GroupsComponentPage } from "./pages/groups/groupsPage.component";
+import { SingleGroupComponent } from "./components/single-group/singleGroup.component";
 
 export const components = [
   AppComponent,
@@ -35,12 +37,14 @@ export const components = [
   PostsComponent,
   CommentsComponent,
   CountrySelectComponent,
+  GroupsComponent,
+  SingleGroupComponent,
   // components
 
   // pages
   LoginComponent,
   HomePageComponent,
-  GroupsComponent,
+  GroupsComponentPage,
   CalendarComponent,
   QueriesComponent,
   UserComponent,

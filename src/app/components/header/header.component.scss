@@ -335,8 +335,21 @@ svg {
   }
 }
 
+.new-post-mobile {
+  display: none;
+}
+
 @media only screen and (max-width: 450px) {
   .user-name {
     display: none !important;
+  }
+
+  .new-post-mobile {
+    display: block;
+    position: absolute;
+    bottom: 10vh;
+    right: 1rem;
+    z-index: 100;
+    width: 2.5rem;
   }
 }

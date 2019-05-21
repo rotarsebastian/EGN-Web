@@ -1,3 +1,5 @@
+import { Peer } from "./peers.model";
+
 export class User {
   public id: number;
   public imgPath: string;
@@ -8,6 +10,7 @@ export class User {
   public password: string;
   public wasDeleted: boolean;
   public role: string;
+  public peers: Peer[];
   constructor(
     id: number,
     imgPath: string,
@@ -17,7 +20,8 @@ export class User {
     email: string,
     password: string,
     wasDeleted: boolean,
-    role: string
+    role: string,
+    peers: Peer[]
   ) {
     this.id = id;
     this.imgPath = imgPath;
@@ -28,5 +32,6 @@ export class User {
     this.password = password;
     this.wasDeleted = wasDeleted;
     this.role = role;
+    this.peers = peers;
   }
 }

@@ -13,27 +13,37 @@ $icons-padding: 0.3rem 0.3rem;
   padding: 0.75rem;
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
-  height: 65vh;
+  height: auto;
   overflow-y: scroll;
 
   &::-webkit-scrollbar {
     display: none;
   }
 
+  .no_peers {
+    opacity: 0.5;
+    font-style: italic;
+    text-align: center;
+    margin: 1rem;
+    font-size: 0.9rem;
+  }
+
   .single-peer {
     display: flex;
     flex-flow: row nowrap;
-    margin-bottom: 1rem;
+    margin-bottom: 0.8rem;
     height: 100%;
+    cursor: pointer;
+    outline: none;
 
     .peer-user-picture {
-      background-image: url("../../../assets/images/sebastian.png");
-      padding-right: 0.45rem;
+      margin-right: 0.45rem;
       width: 2.5rem;
-      border-radius: 50%;
       height: 2.5rem;
-      background-repeat: no-repeat, no-repeat, no-repeat, repeat-x, repeat;
-      background-size: 2.5rem;
+      border-radius: 50%;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
     }
 
     :nth-last-child(1) {
@@ -62,15 +72,17 @@ $icons-padding: 0.3rem 0.3rem;
 
       .peer-name {
         font-weight: bold;
+        color: #194470;
+        opacity: 0.8;
+
+        &:hover {
+          text-decoration: underline;
+        }
       }
 
       .peer-position {
         font-weight: bold;
       }
     }
-  }
-
-  .single-peer:nth-last-child(1) {
-    margin-bottom: 0;
   }
 }

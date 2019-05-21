@@ -23,7 +23,6 @@ export class HomePageComponent implements OnInit {
   getPosts() {
     this.isWaiting = true;
     this.postsService.getPosts();
-    this.isWaiting = true;
     this.subscription = this.postsService.postsChanged.subscribe(
       (posts: Post[]) => {
         this.isWaiting = false;

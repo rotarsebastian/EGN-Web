@@ -76,7 +76,11 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     window.location.reload();
   }
 
-  createPost(content: string, groupNames: Array<String>) {
+  createPost(
+    content: string,
+    groupIDs: Array<Number>,
+    groupNames: Array<String>
+  ) {
     const date = new Date();
 
     const post = new Post(
@@ -89,6 +93,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
       this.loggedUser.company,
       date.toISOString(),
       content,
+      groupIDs,
       groupNames,
       [],
       []
@@ -114,7 +119,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     dialogRef.afterClosed().subscribe(result => {
       if (!!result) {
         this.result = result;
-        this.createPost(result.postMessage, result.groupNames);
+        this.createPost(result.postMessage, result.groupIDs, result.groupNames);
       }
     });
   }

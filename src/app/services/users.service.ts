@@ -7,6 +7,7 @@ import { map } from "rxjs/operators";
 import { Router } from "@angular/router";
 import * as firebase from "firebase";
 import randomName from "uuid/v1";
+import { Peer } from "../models/peers.model";
 
 @Injectable({
   providedIn: "root"
@@ -34,7 +35,14 @@ export class UsersService {
       })
       .pipe(
         map(users => {
-          return users;
+          if (users) {
+            for (let user of users) {
+              if (!user["peers"]) {
+                user["peers"] = [];
+              }
+            }
+            return users;
+          }
         })
       )
       .subscribe((users: User[]) => {
@@ -79,6 +87,13 @@ export class UsersService {
     }
     this.usersChanged.next(this.users.slice());
   }
+
+  // createPeer(peer: Peer, user: User) {
+  //   const index = this.users.indexOf(user);
+  //   this.users[index].peers.push(peer);
+  //   this.usersChanged.next(this.users.slice());
+  //   console.log(this.usersChanged);
+  // }
 
   editUser(userId: number, data: any) {
     for (let user of this.users) {
@@ -128,8 +143,12 @@ export class UsersService {
     this.storeUsers().subscribe();
   }
 
-  getUser(index: number) {
-    return this.users[index];
+  getUser(userId: number) {
+    for (let user of this.users) {
+      if (user.id == userId) {
+        return user;
+      }
+    }
   }
 
   getLastUser() {

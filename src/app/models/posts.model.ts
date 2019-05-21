@@ -11,6 +11,7 @@ export class Post {
   public company: string;
   public date: string;
   public message: string;
+  public groupIDs: Array<Number>;
   public groupNames: Array<String>;
   public likes: Like[];
   public comments: Comment[];
@@ -25,6 +26,7 @@ export class Post {
     company: string,
     date: string,
     message: string,
+    groupIDs: Array<Number>,
     groupNames: Array<String>,
     likes: Like[],
     comments: Comment[]
@@ -38,6 +40,7 @@ export class Post {
     this.company = company;
     this.date = date;
     this.message = message;
+    this.groupIDs = groupIDs;
     this.groupNames = groupNames;
     this.likes = likes;
     this.comments = comments;

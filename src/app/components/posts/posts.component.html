@@ -111,6 +111,7 @@
           class="single-group-name"
           [ngClass]="{ blueText: index % 2 === 1 }"
           *ngFor="let groupName of post.groupNames; index as groupNameIndex"
+          (click)="viewGroup(groupNameIndex)"
           >{{ groupName
           }}<span
             class="name-space"
@@ -126,10 +127,16 @@
             <div
               class="user-set-picture"
               [ngStyle]="{ 'background-image': getProfileImage() }"
+              [routerLink]="[routerLinkVariable, post.authorID]"
             ></div>
           </div>
           <div class="post-author">
-            <div class="author-name">{{ post.author }}</div>
+            <div
+              class="author-name"
+              [routerLink]="[routerLinkVariable, post.authorID]"
+            >
+              {{ post.author }}
+            </div>
             <div class="author-position">{{ post.position }}</div>
             <div class="author-company">{{ post.company }}</div>
           </div>

@@ -1,0 +1,100 @@
+// .bar-title {
+//   background-color: #d50965;
+// }
+
+// .blueTheme {
+//   color: #194470 !important;
+// }
+
+// .blueTag {
+//   background-color: #54b0de !important;
+// }
+
+// .events-wrapper {
+//   padding: 1rem 0.7rem;
+//   background: white;
+//   border-bottom-left-radius: 3px;
+//   border-bottom-right-radius: 3px;
+//   overflow-y: scroll;
+//   height: 43vh;
+
+//   &::-webkit-scrollbar {
+//     display: none;
+//   }
+
+//   .single-event {
+//     display: flex;
+//     flex-flow: row wrap;
+//     margin-bottom: 0.66rem;
+
+//     .calendar {
+//       border: solid 1px #ebebeb;
+//       border-radius: 5px;
+//       width: 2.25rem;
+//       position: relative;
+//       height: 2.5rem;
+//       .day {
+//         position: absolute;
+//         top: 33%;
+//         left: 50%;
+//         transform: translate(-50%, -33%);
+//         color: #d50965;
+//       }
+
+//       .month {
+//         width: 100%;
+//         position: absolute;
+//         text-align: center;
+//         font-size: 0.55rem;
+//         bottom: 0;
+//         left: 50%;
+//         transform: translateX(-50%);
+//         background-color: #1b3d5d;
+//         color: white;
+//         border-bottom-left-radius: 2px;
+//         border-bottom-right-radius: 2px;
+//       }
+//     }
+//     .event-info {
+//       width: 78%;
+//       font-size: 0.7rem;
+//       padding: 0 0.55rem;
+//       padding-right: 0;
+
+//       .event-name {
+//         color: #828587;
+//       }
+//       .event-tags {
+//         display: flex;
+//         flex-flow: row wrap;
+//         padding-top: 0.4rem;
+//         font-size: 0.5rem;
+//         .event-time {
+//           border-radius: 5px;
+//           background-color: #cccccc;
+//           padding: 0 0.4rem;
+//           color: white;
+//           text-align: center;
+
+//           height: 0.8rem;
+//           display: flex;
+//           justify-content: center;
+//           align-items: center;
+//         }
+//         .event-type {
+//           border-radius: 5px;
+//           background-color: #d50965;
+//           padding: 0 0.4rem;
+//           color: white;
+//           text-align: center;
+
+//           height: 0.8rem;
+//           margin-left: 0.25rem;
+//           display: flex;
+//           justify-content: center;
+//           align-items: center;
+//         }
+//       }
+//     }
+//   }
+// }

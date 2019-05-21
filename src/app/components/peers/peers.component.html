@@ -1,35 +1,23 @@
 <div>
-  <div class="bar-title trusted-peers-title">Trusted peers</div>
+  <div class="bar-title trusted-peers-title">Contact list</div>
   <div class="peers-wrapper">
     <div class="peers-container">
-      <div class="single-peer" *ngFor="let peer of peers">
-        <svg
-          *ngIf="peer.imgPath === 'unset'"
-          class="img-peer"
-          xmlns="http://www.w3.org/2000/svg"
-          width="20px"
-          height="20px"
-          viewBox="0 0 24 24"
-        >
-          <g
-            fill="none"
-            fill-rule="evenodd"
-            stroke="#1b3d5d"
-            transform="translate(4 3)"
-          >
-            <circle cx="7.5" cy="5" r="5"></circle>
-            <path d="M15 17.5a7.5 7.5 0 0 0-15 0"></path>
-          </g>
-        </svg>
-        <div
-          class="peer-user-picture"
-          *ngIf="peer.imgPath != 'unset'"
-          #peerUserImg
-        ></div>
-        <div class="peer-info">
-          <p class="peer-name">{{ peer.name }}</p>
-          <p>{{ peer.position }} - {{ peer.company }}</p>
+      <div *ngFor="let peer of peers">
+        <div class="single-peer" (click)="navigateTo(peer.id)">
+          <div
+            class="peer-user-picture"
+            [ngStyle]="{ 'background-image': peer.imgPath }"
+            #peerUserImg
+          ></div>
+
+          <div class="peer-info">
+            <p class="peer-name">{{ peer.name }}</p>
+            <p>{{ peer.position }} - {{ peer.company }}</p>
+          </div>
         </div>
+      </div>
+      <div class="no_peers" *ngIf="peers.length === 0">
+        You do not have any users in your contact list
       </div>
     </div>
   </div>

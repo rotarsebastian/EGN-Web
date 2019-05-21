@@ -1,0 +1,12 @@
+<div class="groups-container">
+  <div id="groups-top"></div>
+  <app-groups
+    class="oneGroup"
+    *ngFor="let group of (groups | sort: 'date'); index as i"
+    [group]="group"
+    [index]="i"
+  ></app-groups>
+  <div class="spinner-container" *ngIf="isWaiting">
+    <mat-spinner class="loading-spinner"></mat-spinner>
+  </div>
+</div>
