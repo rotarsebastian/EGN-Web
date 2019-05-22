@@ -27,7 +27,10 @@ import { RegisterAccountDialogComponent } from "./dialogs/registerNewAccount/reg
 import { ViewFullPictureDialogComponent } from "./dialogs/viewFullPicture/viewPicture";
 import { GroupsComponent } from "./components/groups/groups.component";
 import { GroupsComponentPage } from "./pages/groups/groupsPage.component";
-import { SingleGroupComponent } from "./components/single-group/singleGroup.component";
+import { SingleGroupComponent } from "./components/groups/single-group/singleGroup.component";
+import { GroupActivityComponent } from "./components/groups/groupActivity/groupActivity.component";
+import { GroupMembersComponent } from "./components/groups/groupMembers/groupMembers.component";
+import { GroupSettingsComponent } from "./components/groups/groupSettings/groupSettings.component";
 
 export const components = [
   AppComponent,
@@ -39,6 +42,9 @@ export const components = [
   CountrySelectComponent,
   GroupsComponent,
   SingleGroupComponent,
+  GroupActivityComponent,
+  GroupMembersComponent,
+  GroupSettingsComponent,
   // components
 
   // pages

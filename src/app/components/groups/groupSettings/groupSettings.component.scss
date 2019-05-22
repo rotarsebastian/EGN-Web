@@ -1,0 +1,78 @@
+.settings_container {
+  display: flex;
+  flex-direction: column;
+
+  p {
+    margin: 20px 0 10px;
+    color: #575757;
+    font-size: 18px;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  input {
+    border: solid 1px #9faec0;
+    margin-bottom: 10px;
+    width: 80%;
+  }
+
+  textarea {
+    border: solid 1px #9faec0;
+    height: 112px;
+    margin-bottom: 10px;
+    width: 80%;
+  }
+
+  .img_container {
+    width: 80%;
+    height: 100px;
+    position: relative;
+    margin: 10px 0;
+
+    .background_image {
+      height: 100%;
+      width: 96%;
+    }
+
+    img {
+      cursor: pointer;
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+  }
+
+  .select_row {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+
+    p {
+      margin: 0;
+    }
+
+    .select {
+      margin-left: 20px;
+
+      &.not_clickable {
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  button {
+    margin: 10px 0;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .settings_container {
+    input,
+    textarea,
+    .img_container {
+      width: 100%;
+    }
+  }
+}

@@ -9,6 +9,7 @@ import { MatNativeDateModule } from "@angular/material";
 import { ToastrModule } from "ngx-toastr";
 import { LinkyModule } from "angular-linky";
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from "ng-pick-datetime";
+import { NgxWebstorageModule } from "ngx-webstorage";
 
 export const imports = [
   BrowserModule,
@@ -20,10 +21,11 @@ export const imports = [
   MaterialModule,
   ClickOutsideModule,
   MatNativeDateModule,
+  NgxWebstorageModule.forRoot(),
   ToastrModule.forRoot({
     timeOut: 2500,
     positionClass: "toast-bottom-right",
-    preventDuplicates: false
+    preventDuplicates: true
   }),
   LinkyModule,
   OwlDateTimeModule,

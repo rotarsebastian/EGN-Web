@@ -6,6 +6,8 @@ import { AuthGuardService } from "./services/auth-guard.service";
 import { CountryService } from "./services/country.service";
 import { UtilsService } from "./services/utils.service";
 import { GroupsService } from "./services/groups.service";
+import { StorageService } from "./services/storage.service";
+import { ChangeSubpageService } from "./services/changeSubpage.service";
 
 export const services = [
   EventsService,
@@ -15,5 +17,7 @@ export const services = [
   AuthGuardService,
   CountryService,
   UtilsService,
-  GroupsService
+  GroupsService,
+  StorageService,
+  ChangeSubpageService
 ];

@@ -1,0 +1,11 @@
+<div *ngIf="!isWaiting">
+  <app-posts
+    *ngFor="let post of (posts | sort: 'date'); index as i"
+    [post]="post"
+    [index]="i"
+  ></app-posts>
+</div>
+
+<div class="spinner-container" *ngIf="isWaiting">
+  <mat-spinner class="loading-spinner"></mat-spinner>
+</div>

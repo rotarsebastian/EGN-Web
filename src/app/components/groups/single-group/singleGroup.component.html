@@ -1,0 +1,76 @@
+<div class="posts-container">
+  <div id="posts-top"></div>
+  <div class="title-bar">
+    <mat-icon class="goBackToProfile" (click)="goBackToGroups()"
+      >arrow_back</mat-icon
+    >
+    <p class="title">{{ getTitle() }}</p>
+    <hr />
+  </div>
+
+  <!-- <div class="rest_of_content"> -->
+  <div
+    class="group_profile_header"
+    [ngStyle]="{ 'background-image': getBackgroundImage() }"
+  >
+    <div class="overlay"></div>
+    <div class="text">
+      <p class="name">{{ getTitle() }}</p>
+    </div>
+  </div>
+
+  <div class="group_profile_navigation">
+    <div class="left">
+      <div
+        class="nav_item"
+        *ngFor="let item of subpages; let i = index"
+        [ngClass]="{
+          selected: selectedSubpage === i
+        }"
+        (click)="viewSubpage(i)"
+      >
+        <img
+          [src]="item.icon"
+          alt="Navigation item"
+          [ngClass]="{ last: i === subpages.length - 1 }"
+        />
+        <p>{{ item.name }}</p>
+      </div>
+    </div>
+
+    <img
+      class="settings_img"
+      [ngClass]="{ selected: selectedSubpage === 2 }"
+      (click)="viewSubpage(2)"
+      [src]="
+        isSettingsHovered || selectedSubpage === 2
+          ? '/assets/images/settings-white.svg'
+          : '/assets/images/settings-pink.svg'
+      "
+      (mouseover)="isSettingsHovered = true"
+      (mouseout)="isSettingsHovered = false"
+      alt="Group settings"
+      *ngIf="canSeeSettingsPage()"
+      (blur)="isSettingsHovered = false"
+      (focus)="isSettingsHovered = true"
+    />
+  </div>
+
+  <div class="group_profile_body" [ngSwitch]="selectedSubpage">
+    <app-group-activity
+      [groupID]="groupID"
+      *ngSwitchCase="0"
+    ></app-group-activity>
+    <app-group-members
+      [groupID]="groupID"
+      *ngSwitchCase="1"
+    ></app-group-members>
+    <div *ngIf="canSeeSettingsPage()">
+      <app-group-settings
+        [group]="group"
+        *ngSwitchCase="2"
+      ></app-group-settings>
+    </div>
+  </div>
+  <!-- </div> -->
+</div>

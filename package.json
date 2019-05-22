@@ -30,6 +30,7 @@
     "ng-click-outside": "^4.0.0",
     "ng-pick-datetime": "^7.0.0",
     "ngx-toastr": "^10.0.2",
+    "ngx-webstorage": "^3.0.2",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",
     "uuid": "^3.3.2",

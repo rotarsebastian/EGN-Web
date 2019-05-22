@@ -7,7 +7,7 @@ import { QueriesComponent } from "./pages/queries/queries.component";
 import { AuthGuardService } from "./services/auth-guard.service";
 import { UserComponent } from "./pages/userPage/user.component";
 import { EditProfileComponent } from "./pages/editProfile/editProfile.component";
-import { SingleGroupComponent } from "./components/single-group/singleGroup.component";
+import { SingleGroupComponent } from "./components/groups/single-group/singleGroup.component";
 
 const appRoutes: Routes = [
   { path: "", redirectTo: "login", pathMatch: "full" },

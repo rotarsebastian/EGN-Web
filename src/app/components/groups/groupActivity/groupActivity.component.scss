@@ -1,0 +1,36 @@
+.activity_container {
+  display: flex;
+  flex-direction: column;
+
+  .empty_div {
+    margin-top: 20px;
+    text-align: center;
+  }
+}
+
+::ng-deep .mat-progress-spinner circle,
+.mat-spinner circle {
+  stroke: #d50965;
+}
+
+.spinner-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 20rem;
+}
+
+@media screen and (max-width: 480px) {
+  .activity_container .input_container {
+    .attachment_container {
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+    .poll_container .poll_actions {
+      button {
+        height: auto;
+        padding: 5px;
+      }
+    }
+  }
+}

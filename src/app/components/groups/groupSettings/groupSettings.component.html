@@ -1,0 +1,32 @@
+<!-- <div class="settings_container">
+  <p>Group Settings</p>
+  <input placeholder="Name" [(ngModel)]="groupChanges.name">
+  <textarea placeholder="Description" [(ngModel)]="groupChanges.description"></textarea>
+
+  <div class="img_container" *ngIf="groupChanges.coverURL">
+    <div class="background_image" [ngStyle]="{ 'background-image': getBackgroundImage() }" *ngIf="groupChanges.coverURL"></div>
+    <img src="/assets/images/cancel-red.svg" alt="Remove" (click)="removeFile()">
+  </div>
+  <button class="upload" (click)="fileInput.click()">Upload cover image</button>
+  <input type="file" accept="image/*" hidden #fileInput (change)="fileChangeEvent($event)">
+
+  <div class="select_row">
+    <p>Privacy:</p>
+    <div class="select" [ngClass]="{ 'not_clickable': group.isDefault || group.type === 'peer' }"
+      [matMenuTriggerFor]="privacyDropdown" (click)="hidePrivacyMenu()">
+      <p [innerHTML]="groupChanges.type ? groupChanges.type.toUpperCase() : ''"></p>
+      <mat-icon>arrow_drop_down</mat-icon>
+    </div>
+  </div>
+
+  <button [ngClass]="{'disabled': isBtnDisabled()}" [disabled]="isBtnDisabled()"
+    (click)="saveChanges()">Save</button>
+</div>
+
+<mat-menu #privacyDropdown="matMenu">
+  <p class="select_item"
+    [ngClass]="{'selected': groupChanges.type === item}"
+    *ngFor="let item of privacyItems"
+    (click)="groupChanges.type = item">{{ item.toUpperCase() }}</p>
+</mat-menu> -->
+<div>settings</div>
