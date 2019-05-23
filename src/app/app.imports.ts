@@ -10,6 +10,7 @@ import { ToastrModule } from "ngx-toastr";
 import { LinkyModule } from "angular-linky";
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from "ng-pick-datetime";
 import { NgxWebstorageModule } from "ngx-webstorage";
+import { ScrollingModule } from "@angular/cdk/scrolling";
 
 export const imports = [
   BrowserModule,
@@ -20,6 +21,7 @@ export const imports = [
   routing,
   MaterialModule,
   ClickOutsideModule,
+  ScrollingModule,
   MatNativeDateModule,
   NgxWebstorageModule.forRoot(),
   ToastrModule.forRoot({

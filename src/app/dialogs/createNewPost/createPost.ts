@@ -1,8 +1,9 @@
-import { Component, OnInit } from "@angular/core";
-import { MatDialogRef } from "@angular/material";
+import { Component, OnInit, Inject } from "@angular/core";
 import { Subscription } from "rxjs";
 import { GroupsService } from "src/app/services/groups.service";
 import { Group } from "src/app/models/groups.model";
+import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
+import { database } from "firebase";
 
 @Component({
   selector: "app-create-post",
@@ -15,10 +16,13 @@ export class CreatePostDialogComponent implements OnInit {
   subscription: Subscription;
   groups: Group[];
   isWaiting: boolean;
+  noGroups: boolean;
+  groupNameData: string;
 
   constructor(
     public dialogRef: MatDialogRef<CreatePostDialogComponent>,
-    private groupService: GroupsService
+    private groupService: GroupsService,
+    @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
   onNoClick(): void {
@@ -26,6 +30,12 @@ export class CreatePostDialogComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.noGroups = false;
+    //this.groupNameData = "";
+    if (this.data) {
+      this.noGroups = this.data.noGroups;
+      this.groupNameData = this.data.groupName;
+    }
     this.groupNames = [];
     this.isWaiting = true;
     this.groupService.getGroups();
@@ -63,6 +73,9 @@ export class CreatePostDialogComponent implements OnInit {
   }
 
   isAnyChecked() {
+    if (this.noGroups) {
+      return true;
+    }
     const checkedGroups = this.groupNames
       .filter(opt => opt.checked)
       .map(opt => opt.name);

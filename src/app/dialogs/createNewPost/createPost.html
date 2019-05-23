@@ -211,9 +211,16 @@
       </svg>
     </div>
 
-    <p class="create-post-title">Create a new post</p>
-    <p class="create-post-text">
+    <p class="create-post-title" *ngIf="!noGroups">Create a new post</p>
+    <p class="create-post-title" *ngIf="noGroups">
+      Post in {{ groupNameData }}
+    </p>
+    <p class="create-post-text" *ngIf="!noGroups">
       We will create your post as soon as you complete the following
+    </p>
+
+    <p class="create-post-text" *ngIf="noGroups">
+      We will create your post as soon as you write in some content
     </p>
     <div class="input-container">
       <textarea
@@ -227,11 +234,11 @@
         #postContent="ngModel"
       ></textarea>
 
-      <p class="create-post-text">
+      <p class="create-post-text" *ngIf="!noGroups">
         Please select the groups you want to share your post in
       </p>
 
-      <div class="group-list">
+      <div class="group-list" *ngIf="!noGroups">
         <div *ngFor="let groupName of groupNames" class="group-item">
           <mat-checkbox
             class="groups-checkboxes"
@@ -243,7 +250,7 @@
           </mat-checkbox>
         </div>
       </div>
-      <div class="spinner-container" *ngIf="isWaiting">
+      <div class="spinner-container" *ngIf="isWaiting && !noGroups">
         <mat-spinner class="loading-spinner"></mat-spinner>
       </div>
     </div>

@@ -1,12 +1,13 @@
+<div class="title-bar">
+  <mat-icon class="goBackToProfile" (click)="goBackToGroups()"
+    >arrow_back</mat-icon
+  >
+  <p class="title">{{ groupNameTop }}</p>
+  <hr />
+</div>
+
 <div class="posts-container">
   <div id="posts-top"></div>
-  <div class="title-bar">
-    <mat-icon class="goBackToProfile" (click)="goBackToGroups()"
-      >arrow_back</mat-icon
-    >
-    <p class="title">{{ getTitle() }}</p>
-    <hr />
-  </div>
 
   <!-- <div class="rest_of_content"> -->
   <div
@@ -15,7 +16,7 @@
   >
     <div class="overlay"></div>
     <div class="text">
-      <p class="name">{{ getTitle() }}</p>
+      <p class="name">{{ groupNamePicture }}</p>
     </div>
   </div>
 
@@ -59,6 +60,7 @@
   <div class="group_profile_body" [ngSwitch]="selectedSubpage">
     <app-group-activity
       [groupID]="groupID"
+      [groupName]="groupName"
       *ngSwitchCase="0"
     ></app-group-activity>
     <app-group-members

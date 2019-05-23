@@ -1,11 +1,27 @@
-<div *ngIf="!isWaiting">
-  <app-posts
-    *ngFor="let post of (posts | sort: 'date'); index as i"
-    [post]="post"
-    [index]="i"
-  ></app-posts>
-</div>
+<div class="activity_container">
+  <div class="input_icon" (click)="openDialog()" *ngIf="!isWaiting">
+    <div
+      class="profile_image"
+      [ngStyle]="{ 'background-image': getProfileImage() }"
+    ></div>
+    <input placeholder="Write A New Post" style="pointer-events: none" />
+    <mat-icon>send</mat-icon>
+  </div>
 
-<div class="spinner-container" *ngIf="isWaiting">
-  <mat-spinner class="loading-spinner"></mat-spinner>
+  <div *ngIf="!isWaiting">
+    <app-posts
+      *ngFor="let post of (posts | sort: 'date'); index as i"
+      [post]="post"
+      [index]="i"
+      [noTags]="noTags"
+    ></app-posts>
+  </div>
+
+  <div class="empty_div" *ngIf="posts?.length === 0">
+    <p>There are no posts in this group<br />Be the first to create one 😊</p>
+  </div>
+
+  <div class="spinner-container" *ngIf="isWaiting">
+    <mat-spinner class="loading-spinner"></mat-spinner>
+  </div>
 </div>

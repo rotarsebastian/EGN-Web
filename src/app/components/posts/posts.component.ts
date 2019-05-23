@@ -116,6 +116,7 @@ import { Router } from "@angular/router";
 export class PostsComponent implements OnInit, AfterViewInit {
   @Input() post: Post;
   @Input() index: number;
+  @Input() noTags: boolean;
   @ViewChild("likeButton") likePath: any;
   @ViewChild("entirePost") entirePost: any;
   @ViewChild("commentImage") commentImageElement: any;

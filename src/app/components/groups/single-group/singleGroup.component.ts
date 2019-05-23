@@ -1,10 +1,11 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { Subscription } from "rxjs";
 import { Router, ActivatedRoute } from "@angular/router";
-import { PostsService } from "src/app/services/posts.service";
 import { Post } from "src/app/models/posts.model";
 import { StorageService } from "src/app/services/storage.service";
 import { ChangeSubpageService } from "src/app/services/changeSubpage.service";
+import { GroupsService } from "src/app/services/groups.service";
+import { Group } from "src/app/models/groups.model";
 
 @Component({
   selector: "app-single-group",
@@ -18,6 +19,8 @@ export class SingleGroupComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   groupName: String;
   changeGroupSubpageRef: Subscription;
+  groupNameTop: String;
+  groupNamePicture: String;
 
   // group: any;
   subpages: any[];
@@ -29,7 +32,7 @@ export class SingleGroupComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private postsService: PostsService,
+    private groupService: GroupsService,
     private storage: StorageService,
     private changeSubpageService: ChangeSubpageService
   ) {
@@ -77,18 +80,15 @@ export class SingleGroupComponent implements OnInit, OnDestroy {
   }
 
   getPosts() {
-    this.postsService.getPosts();
-    this.subscription = this.postsService.postsChanged.subscribe(
-      (posts: Post[]) => {
-        for (let onePost of posts) {
-          if (onePost.groupIDs) {
-            for (let oneGroupID of onePost.groupIDs) {
-              if (oneGroupID === this.groupID) {
-                let index = onePost.groupIDs.indexOf(oneGroupID);
-                this.groupName = onePost.groupNames[index];
-                break;
-              }
-            }
+    this.groupService.getGroups();
+    this.subscription = this.groupService.groupsChanged.subscribe(
+      (groups: Group[]) => {
+        for (let oneGroup of groups) {
+          if (oneGroup.id === this.groupID) {
+            this.groupName = oneGroup.name;
+            this.groupNamePicture = this.getTitle("name");
+            this.groupNameTop = this.getTitle("title");
+            break;
           }
         }
       },
@@ -164,8 +164,12 @@ export class SingleGroupComponent implements OnInit, OnDestroy {
     this.router.navigate(["/groups"]);
   }
 
-  getTitle() {
-    return this.groupName ? `${this.groupName}` : ``;
+  getTitle(location: string) {
+    if (location === "title") {
+      return this.groupName ? `${this.groupName} group posts` : ``;
+    } else {
+      return this.groupName ? `${this.groupName} group` : ``;
+    }
   }
 
   // getBackgroundImage() {
