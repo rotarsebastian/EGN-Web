@@ -31,6 +31,8 @@ import { SingleGroupComponent } from "./components/groups/single-group/singleGro
 import { GroupActivityComponent } from "./components/groups/groupActivity/groupActivity.component";
 import { GroupMembersComponent } from "./components/groups/groupMembers/groupMembers.component";
 import { GroupSettingsComponent } from "./components/groups/groupSettings/groupSettings.component";
+import { GroupSelectListComponent } from "./components/groups/groupSettings/group-select-list/group-select-list.component";
+import { CreateGroupDialogComponent } from "./dialogs/createGroup/createGroup";
 
 export const components = [
   AppComponent,
@@ -45,6 +47,7 @@ export const components = [
   GroupActivityComponent,
   GroupMembersComponent,
   GroupSettingsComponent,
+  GroupSelectListComponent,
   // components
 
   // pages
@@ -62,7 +65,8 @@ export const components = [
   ChangePasswordDialogComponent,
   QuestionDialogComponent,
   RegisterAccountDialogComponent,
-  ViewFullPictureDialogComponent
+  ViewFullPictureDialogComponent,
+  CreateGroupDialogComponent
 ];
 
 export const pipes = [

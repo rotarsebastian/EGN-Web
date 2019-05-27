@@ -39,22 +39,26 @@
       </div>
     </div>
 
-    <img
-      class="settings_img"
-      [ngClass]="{ selected: selectedSubpage === 2 }"
-      (click)="viewSubpage(2)"
-      [src]="
-        isSettingsHovered || selectedSubpage === 2
-          ? '/assets/images/settings-white.svg'
-          : '/assets/images/settings-pink.svg'
-      "
-      (mouseover)="isSettingsHovered = true"
-      (mouseout)="isSettingsHovered = false"
-      alt="Group settings"
-      *ngIf="canSeeSettingsPage()"
-      (blur)="isSettingsHovered = false"
-      (focus)="isSettingsHovered = true"
-    />
+    <div class="right" *ngIf="canSeeSettingsPage()">
+      <mat-icon class="create-new-group" (click)="openDialog()"
+        >create</mat-icon
+      >
+      <img
+        class="settings_img"
+        [ngClass]="{ selected: selectedSubpage === 2 }"
+        (click)="viewSubpage(2)"
+        [src]="
+          isSettingsHovered || selectedSubpage === 2
+            ? '/assets/images/settings-white.svg'
+            : '/assets/images/settings-pink.svg'
+        "
+        (mouseover)="isSettingsHovered = true"
+        (mouseout)="isSettingsHovered = false"
+        alt="Group settings"
+        (blur)="isSettingsHovered = false"
+        (focus)="isSettingsHovered = true"
+      />
+    </div>
   </div>
 
   <div class="group_profile_body" [ngSwitch]="selectedSubpage">
@@ -65,13 +69,11 @@
     ></app-group-activity>
     <app-group-members
       [groupID]="groupID"
+      [group]="oneGroup"
       *ngSwitchCase="1"
     ></app-group-members>
     <div *ngIf="canSeeSettingsPage()">
-      <app-group-settings
-        [group]="group"
-        *ngSwitchCase="2"
-      ></app-group-settings>
+      <app-group-settings *ngSwitchCase="2"></app-group-settings>
     </div>
   </div>
   <!-- </div> -->

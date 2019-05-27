@@ -6,17 +6,29 @@ import { User } from "../models/users.model";
 import { map } from "rxjs/operators";
 import { Router } from "@angular/router";
 import * as firebase from "firebase";
+
 import randomName from "uuid/v1";
-import { Peer } from "../models/peers.model";
+
+import { AngularFireDatabase, AngularFireList } from "@angular/fire/database";
 
 @Injectable({
   providedIn: "root"
 })
 export class UsersService {
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private db: AngularFireDatabase
+  ) {
+    // db.list<User>("users")
+    //   .valueChanges()
+    //   .subscribe(console.log);
+  }
   usersChanged = new Subject<User[]>();
   private users = [];
-  //path = "../assets/json/users.json";
+
+  //myUsersForSearch: AngularFireList<User>;
+
   loggedInUser: User;
   pathFull = "https://egn-project.firebaseio.com/users.json";
 
@@ -25,6 +37,16 @@ export class UsersService {
       reportProgress: true
     });
     return this.http.request(req);
+  }
+
+  getUsersForSearch(start, end): AngularFireList<User> {
+    return this.db.list("users", ref =>
+      ref
+        .orderByChild("name")
+        .limitToFirst(10)
+        .startAt(start)
+        .endAt(end)
+    );
   }
 
   getUsers() {
@@ -39,6 +61,9 @@ export class UsersService {
             for (let user of users) {
               if (!user["peers"]) {
                 user["peers"] = [];
+              }
+              if (!user["groups"]) {
+                user["groups"] = [];
               }
             }
             return users;

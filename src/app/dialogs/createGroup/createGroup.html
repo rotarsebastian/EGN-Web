@@ -211,58 +211,46 @@
       </svg>
     </div>
 
-    <p class="create-post-title" *ngIf="!noGroups">Create a new post</p>
-    <p class="create-post-title" *ngIf="noGroups">
-      Post in {{ groupNameData }}
-    </p>
-    <p class="create-post-text" *ngIf="!noGroups">
-      We will create your post as soon as you complete the following
+    <p class="create-group-title">Create a new group</p>
+
+    <p class="create-group-text">
+      We will create your group as soon as you complete the following
     </p>
 
-    <p class="create-post-text" *ngIf="noGroups">
-      We will create your post as soon as you write in some content
-    </p>
     <div class="input-container">
-      <textarea
+      <input
         type="text"
-        [(ngModel)]="postMessage"
-        placeholder="Your post content here"
-        id="post"
-        name="post"
+        [(ngModel)]="groupName"
+        placeholder="Your group name here"
+        id="group"
+        name="groupName"
         ngModel
         required
-        #postContent="ngModel"
-      ></textarea>
+        #groupNameInput
+      />
 
-      <p class="create-post-text" *ngIf="!noGroups">
-        Please select the groups you want to share your post in
-      </p>
+      <div class="group-list">
+        <mat-radio-button
+          class="groups-checkboxes"
+          [value]="Public"
+          [(ngModel)]="groupStatus"
+        >
+          Public
+        </mat-radio-button>
 
-      <div class="group-list" *ngIf="!noGroups">
-        <div *ngFor="let groupName of groupNames" class="group-item">
-          <mat-checkbox
-            class="groups-checkboxes"
-            name="groupNames"
-            value="{{ groupName.name }}"
-            [(ngModel)]="groupName.checked"
-          >
-            {{ groupName.name }}
-          </mat-checkbox>
-        </div>
-      </div>
-      <div class="spinner-container" *ngIf="isWaiting && !noGroups">
-        <mat-spinner class="loading-spinner"></mat-spinner>
+        <mat-radio-button
+          class="groups-checkboxes"
+          [value]="Private"
+          [(ngModel)]="groupStatus"
+        >
+          Private
+        </mat-radio-button>
       </div>
     </div>
   </div>
   <div class="button-container">
-    <button
-      type="submit"
-      class="reset-password-button"
-      [disabled]="!postContent.valid || !isAnyChecked()"
-      (click)="submit()"
-    >
-      Create post
+    <button type="submit" class="reset-password-button" (click)="submit()">
+      Create group
     </button>
   </div>
 </div>

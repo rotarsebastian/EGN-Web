@@ -1,10 +1,11 @@
 import { Component, OnInit } from "@angular/core";
 import { Router, NavigationEnd } from "@angular/router";
-import * as firebase from "firebase";
+// import * as firebase from "firebase";
 import { AuthService } from "../services/auth.service";
 import { GroupsService } from "../services/groups.service";
-import { Subscription } from "rxjs";
+import { Subscription, Observable } from "rxjs";
 import { Group } from "../models/groups.model";
+import { AngularFirestore } from "@angular/fire/firestore";
 
 @Component({
   selector: "app-root",
@@ -18,12 +19,16 @@ export class AppComponent implements OnInit {
   privateGroups: Group[] = [];
   publicGroups: Group[] = [];
   groups: Group[];
+  users: Observable<any[]>;
 
   constructor(
     private router: Router,
     private authService: AuthService,
-    private groupService: GroupsService
-  ) {}
+    private groupService: GroupsService,
+    private db: AngularFirestore
+  ) {
+    this.users = db.collection("users").valueChanges();
+  }
 
   ngOnInit() {
     this.router.events.forEach(event => {
@@ -48,14 +53,14 @@ export class AppComponent implements OnInit {
       //this.router.navigate(["/home"]);
     }
 
-    firebase.initializeApp({
-      apiKey: "AIzaSyBohyRVA454ltGvbvXrIdvqyvzMQMSSyho",
-      authDomain: "egn-project.firebaseapp.com",
-      databaseURL: "https://egn-project.firebaseio.com",
-      projectId: "egn-project",
-      storageBucket: "egn-project.appspot.com",
-      messagingSenderId: "931205090881"
-    });
+    // firebase.initializeApp({
+    //   apiKey: "AIzaSyBohyRVA454ltGvbvXrIdvqyvzMQMSSyho",
+    //   authDomain: "egn-project.firebaseapp.com",
+    //   databaseURL: "https://egn-project.firebaseio.com",
+    //   projectId: "egn-project",
+    //   storageBucket: "egn-project.appspot.com",
+    //   messagingSenderId: "931205090881"
+    // });
 
     this.getGroups();
   }

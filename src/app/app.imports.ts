@@ -11,6 +11,12 @@ import { LinkyModule } from "angular-linky";
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from "ng-pick-datetime";
 import { NgxWebstorageModule } from "ngx-webstorage";
 import { ScrollingModule } from "@angular/cdk/scrolling";
+import { AngularFireModule } from "@angular/fire";
+import { AngularFirestoreModule } from "@angular/fire/firestore";
+import { AngularFireAuthModule } from "@angular/fire/auth";
+import { AngularFireAuth } from "@angular/fire/auth";
+import { AngularFireStorageModule } from "@angular/fire/storage";
+import { AngularFireDatabaseModule } from "@angular/fire/database";
 
 export const imports = [
   BrowserModule,
@@ -31,5 +37,17 @@ export const imports = [
   }),
   LinkyModule,
   OwlDateTimeModule,
-  OwlNativeDateTimeModule
+  OwlNativeDateTimeModule,
+  AngularFireModule.initializeApp({
+    apiKey: "AIzaSyBohyRVA454ltGvbvXrIdvqyvzMQMSSyho",
+    authDomain: "egn-project.firebaseapp.com",
+    databaseURL: "https://egn-project.firebaseio.com",
+    projectId: "egn-project",
+    storageBucket: "egn-project.appspot.com",
+    messagingSenderId: "931205090881"
+  }),
+  AngularFirestoreModule,
+  AngularFireAuthModule,
+  AngularFireStorageModule,
+  AngularFireDatabaseModule
 ];

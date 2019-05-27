@@ -1,0 +1,224 @@
+@import "../../../styles/input.scss";
+
+$font-blue-color: #1b3d5d;
+$font-white-color: #f6f6f6;
+$font-family: "Source Sans Pro", sans-serif;
+
+.wrapper {
+  font-family: $font-family;
+  .create-group-title {
+    font-size: 1.5rem;
+    color: $font-blue-color;
+    text-align: center;
+    margin-bottom: 0.95rem;
+    margin-top: 0.25rem;
+  }
+
+  .create-group-text {
+    text-align: center;
+    color: #969090;
+    text-align: center;
+    -webkit-font-smoothing: antialiased;
+    font-weight: normal;
+    font-size: 1rem;
+    opacity: 0.85;
+    margin-top: 0;
+    margin-bottom: 1.75rem;
+  }
+
+  .group-list {
+    margin-bottom: 1.75rem;
+    display: flex;
+    justify-content: space-evenly;
+    flex-flow: wrap row;
+
+    // .group-item {
+    // }
+  }
+
+  .input-container {
+    margin: 0 5%;
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+::ng-deep .mat-checkbox {
+  margin-right: 0.5rem;
+}
+
+.spinner-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80%;
+}
+
+// overwrite the checkbox background
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background,
+.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+  background-color: $font-blue-color !important;
+}
+
+// overwrite the ripple overlay on hover and click
+::ng-deep
+  .mat-checkbox:not(.mat-checkbox-disabled).mat-accent
+  .mat-checkbox-ripple
+  .mat-ripple-element {
+  background-color: $font-blue-color !important;
+}
+
+::ng-deep .mat-checkbox-layout .mat-checkbox-label {
+  color: #1b3d5d !important;
+}
+
+::ng-deep .cdk-overlay-pane {
+  width: 40rem;
+  height: auto;
+  box-shadow: 7px 0 9.4px 0.6px rgba(27, 61, 93, 0.38);
+  border-radius: 5px;
+}
+
+::ng-deep .cdk-overlay-dark-backdrop {
+  background: rgba(0, 0, 0, 0.45);
+}
+
+::ng-deep .mat-dialog-container {
+  background-color: #f6f6f6;
+}
+
+.logo-container {
+  display: flex;
+  justify-content: space-between;
+
+  .egn-logo {
+    width: 5rem;
+  }
+
+  .close-btn {
+    cursor: pointer;
+  }
+}
+
+input {
+  width: 100%;
+  border-radius: 5px;
+  border: solid 0.3px #cccccc;
+  background-color: #ffffff;
+  line-height: 2rem;
+  margin-bottom: 1rem;
+  padding: 0.25rem 0.65rem;
+  margin-left: -0.35rem;
+  font-size: 0.95rem;
+  padding-right: 0;
+}
+.errorMessage {
+  color: #de071c;
+  margin-top: -10px;
+  font-size: 12px;
+  line-height: 1.5;
+  font-weight: 400;
+  letter-spacing: 0;
+  letter-spacing: 0.006em;
+}
+.invalid-input {
+  border: 1px solid #de071c;
+}
+
+input.ng-dirty.ng-touched.ng-invalid {
+  background: #fef0f0;
+}
+
+input:focus {
+  outline: none;
+  border: 1px solid $font-blue-color;
+  background: white !important;
+}
+
+button:focus,
+button:active {
+  outline: none;
+}
+
+::placeholder {
+  color: #9c9ea0;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #9c9ea0;
+}
+
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: #9c9ea0;
+}
+
+.reset-password-button {
+  cursor: pointer;
+  line-height: 2rem;
+  padding: 0.25rem 2.5rem;
+  border-radius: 5px;
+  box-shadow: 6px 0 6.6px 0.4px rgba(27, 61, 93, 0.16);
+  border: solid 0.3px #cccccc;
+  background-color: #1b3d5d;
+  font-size: 0.95rem;
+  letter-spacing: -1px;
+  color: $font-white-color;
+  opacity: 0.95;
+  -webkit-font-smoothing: antialiased;
+  font-weight: normal;
+}
+
+.reset-password-button:active {
+  transform: scale(1.1);
+}
+
+.reset-password-button:hover {
+  opacity: 0.85;
+}
+
+button:disabled,
+button[disabled] {
+  opacity: 0.65;
+}
+
+button:disabled,
+button[disabled]:hover {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+@media only screen and (max-width: 1030px) {
+}
+
+@media only screen and (max-width: 770px) {
+}
+
+@media only screen and (max-width: 650px) {
+  .input-container {
+    margin: 0 8% !important;
+  }
+
+  .logo-container {
+    margin-bottom: 1.25rem !important;
+  }
+
+  .reset-password-button {
+    padding: 0.25rem 1rem !important;
+  }
+
+  .create-group-title {
+    font-size: 1.2rem !important;
+  }
+
+  .create-group-text {
+    font-size: 0.75rem !important;
+    margin-bottom: 1rem !important;
+  }
+}

@@ -1,4 +1,5 @@
 import { Peer } from "./peers.model";
+import { Group } from "./groups.model";
 
 export class User {
   public id: number;
@@ -11,6 +12,7 @@ export class User {
   public wasDeleted: boolean;
   public role: string;
   public peers: Peer[];
+  public groups: Group[];
   constructor(
     id: number,
     imgPath: string,
@@ -21,7 +23,8 @@ export class User {
     password: string,
     wasDeleted: boolean,
     role: string,
-    peers: Peer[]
+    peers: Peer[],
+    groups: Group[]
   ) {
     this.id = id;
     this.imgPath = imgPath;
@@ -33,5 +36,6 @@ export class User {
     this.wasDeleted = wasDeleted;
     this.role = role;
     this.peers = peers;
+    this.groups = groups;
   }
 }

@@ -1,0 +1,90 @@
+<div class="top-container">
+  <div class="group-select-container">
+    <mat-list-item class="primary-imenu-item" role="listitem">
+      <mat-form-field class="select-form">
+        <mat-select
+          placeholder="Select groups"
+          name="group"
+          class="filter-select"
+          [(ngModel)]="selectedGroups"
+          [compareWith]="equals"
+          multiple
+          #groupSelect="ngModel"
+        >
+          <mat-option disabled="disabled" class="filter-option">
+            <button
+              mat-raised-button
+              class="mat-primary fill text-sm"
+              (click)="selectAll(groupSelect, groupListChoices)"
+            >
+              Select All
+            </button>
+            <button
+              mat-raised-button
+              class="mat-accent fill text-sm"
+              (click)="deselectAll(groupSelect)"
+            >
+              Deselect All
+            </button>
+          </mat-option>
+          <mat-option *ngFor="let group of groupListChoices" [value]="group">
+            {{ group.viewValue }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-list-item>
+  </div>
+
+  <div class="button-container">
+    <button
+      (click)="addUserToGroup()"
+      [disabled]="
+        !selectedGroups ||
+        selectedGroups?.length === 0 ||
+        groupListChoices.length === user.groups.length ||
+        isButtonAddDisabled()
+      "
+    >
+      Add
+    </button>
+    <button
+      (click)="removeUserFromGroup()"
+      class="pink-button"
+      [disabled]="
+        !selectedGroups ||
+        user.groups.length === 0 ||
+        selectedGroups?.length === 0 ||
+        isButtonDisabled()
+      "
+    >
+      Remove
+    </button>
+  </div>
+</div>
+
+<div *ngIf="user.groups.length === 0" class="bottom-container">
+  This user is not part of any group
+</div>
+
+<div
+  *ngIf="groupListChoices?.length === user.groups.length"
+  class="bottom-container"
+>
+  This user is member in all created groups.
+</div>
+
+<div
+  *ngIf="
+    user.groups.length !== 0 && groupListChoices?.length !== user.groups.length
+  "
+  class="bottom-container"
+>
+  <div>This member is in the following groups:</div>
+
+  <span *ngFor="let group of user.groups; index as groupIndex">
+    {{ group.name
+    }}<span class="name-space" *ngIf="groupIndex !== user.groups.length - 1"
+      >,</span
+    >
+  </span>
+</div>

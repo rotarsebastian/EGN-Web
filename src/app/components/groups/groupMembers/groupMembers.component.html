@@ -1,23 +1,24 @@
-<!-- <div class="members_container">
-  <app-member-item *ngFor="let member of groupMembers" [member]="member.user"
-    [roleName]="member.role.name !== 'user' ? member.role.name : null"
-    [dropdown]="optionsDropdown" [showDropdown]="canPerformAnyActionOn(member)"
-    (selectMember)="openOptions($event)"></app-member-item>
+<div *ngIf="!isWaiting" class="container">
+  <div
+    *ngFor="let groupMember of members; index as memberIndex"
+    class="member-container"
+  >
+    <div class="single-member" (click)="navigateTo(groupMember.id)">
+      <div
+        class="member-user-picture"
+        [ngStyle]="{ 'background-image': getImage(memberIndex) }"
+      ></div>
 
-  <button class="round" (click)="openAddUserDialog()" *ngIf="canAddMembers()"
-    matTooltip="Add member">
-    <mat-icon>add</mat-icon>
-  </button>
-
-  <div class="waiting" *ngIf="isWaiting">
-    <mat-spinner diameter="40"></mat-spinner>
+      <div class="member-info">
+        <p class="member-name">{{ groupMember.name }}</p>
+        <p>{{ groupMember.position }} - {{ groupMember.company }}</p>
+      </div>
+    </div>
   </div>
 </div>
 
-<mat-menu #optionsDropdown="matMenu" overlapTrigger="false">
-  <div *ngFor="let item of options">
-    <p class="select_item" *ngIf="showItem(item)" (click)="optionsClick(item)">
-      {{item.name}}</p>
+<div *ngIf="isWaiting">
+  <div class="spinner-container" *ngIf="isWaiting">
+    <mat-spinner class="loading-spinner"></mat-spinner>
   </div>
-</mat-menu> -->
-<div>Members</div>
+</div>

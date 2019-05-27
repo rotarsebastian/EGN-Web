@@ -6,6 +6,8 @@ import { StorageService } from "src/app/services/storage.service";
 import { ChangeSubpageService } from "src/app/services/changeSubpage.service";
 import { GroupsService } from "src/app/services/groups.service";
 import { Group } from "src/app/models/groups.model";
+import { CreateGroupDialogComponent } from "src/app/dialogs/createGroup/createGroup";
+import { MatDialog } from "@angular/material";
 
 @Component({
   selector: "app-single-group",
@@ -21,6 +23,8 @@ export class SingleGroupComponent implements OnInit, OnDestroy {
   changeGroupSubpageRef: Subscription;
   groupNameTop: String;
   groupNamePicture: String;
+  oneGroup: any;
+  createGroupResult: any;
 
   // group: any;
   subpages: any[];
@@ -34,7 +38,8 @@ export class SingleGroupComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private groupService: GroupsService,
     private storage: StorageService,
-    private changeSubpageService: ChangeSubpageService
+    private changeSubpageService: ChangeSubpageService,
+    private dialog: MatDialog
   ) {
     let currentUser = localStorage.getItem("currentUser");
     this.loggedUser = JSON.parse(currentUser);
@@ -76,15 +81,16 @@ export class SingleGroupComponent implements OnInit, OnDestroy {
       }
     );
 
-    this.getPosts();
+    this.getGroups();
   }
 
-  getPosts() {
+  getGroups() {
     this.groupService.getGroups();
     this.subscription = this.groupService.groupsChanged.subscribe(
       (groups: Group[]) => {
         for (let oneGroup of groups) {
           if (oneGroup.id === this.groupID) {
+            this.oneGroup = oneGroup;
             this.groupName = oneGroup.name;
             this.groupNamePicture = this.getTitle("name");
             this.groupNameTop = this.getTitle("title");
@@ -172,13 +178,19 @@ export class SingleGroupComponent implements OnInit, OnDestroy {
     }
   }
 
-  // getBackgroundImage() {
-  //   if (this.loggedUser) {
-  //     return this.loggedUser.imgPath !== "unset"
-  //       ? `url(${this.loggedUser.imgPath})`
-  //       : `url(/assets/images/standardProfile.svg)`;
-  //   }
-  // }
+  openDialog(): void {
+    const dialogRef = this.dialog.open(CreateGroupDialogComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      if (!!result) {
+        this.createGroupResult = result;
+        this.createGroup(result.groupName, result.groupStatus);
+      }
+    });
+  }
+
+  createGroup(groupName: string, groupStatus: string) {
+    console.log(groupName, groupStatus);
+  }
 
   getBackgroundImage() {
     return `url(/assets/images/banner-group.png)`;
