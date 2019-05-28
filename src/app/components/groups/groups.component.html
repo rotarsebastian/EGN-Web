@@ -1,14 +1,28 @@
-<div class="entire-group" #entireGroup (click)="viewGroup()">
+<div
+  class="entire-group"
+  #entireGroup
+  (click)="viewGroup($event)"
+  *ngIf="canSeeGroup()"
+>
   <!-- (clickOutside)="onClickedOutside()" -->
 
   <div
     class="groupName"
     [ngClass]="{ pinkBackground: group.status === 'private' }"
   >
+    <div
+      class="closing-image"
+      [ngStyle]="{ 'background-image': getBackgroundImage() }"
+      *ngIf="loggedUser.role === 'admin'"
+      (click)="deleteGroup()"
+      #closingButton
+    ></div>
+
     <div class="name">
       {{ group.name }}
     </div>
   </div>
+
   <div class="bottom-bar">
     <div class="group-members">{{ group.members.length }} members</div>
     <div class="group-status">{{ group.status }}</div>

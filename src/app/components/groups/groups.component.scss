@@ -71,6 +71,22 @@
       font-size: 0.9rem;
       height: 100%;
     }
+    .closing-image {
+      width: 1.5rem;
+      height: 1.5rem;
+      position: absolute;
+      right: -0.5rem;
+      top: -0.5rem;
+      border-radius: 50%;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-color: white;
+
+      &:hover {
+        background-color: #ccc;
+      }
+    }
   }
 
   .bottom-bar {

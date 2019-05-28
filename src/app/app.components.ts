@@ -33,6 +33,7 @@ import { GroupMembersComponent } from "./components/groups/groupMembers/groupMem
 import { GroupSettingsComponent } from "./components/groups/groupSettings/groupSettings.component";
 import { GroupSelectListComponent } from "./components/groups/groupSettings/group-select-list/group-select-list.component";
 import { CreateGroupDialogComponent } from "./dialogs/createGroup/createGroup";
+import { EventItemComponent } from "./components/event-item/event-item.component";
 
 export const components = [
   AppComponent,
@@ -48,6 +49,7 @@ export const components = [
   GroupMembersComponent,
   GroupSettingsComponent,
   GroupSelectListComponent,
+  EventItemComponent,
   // components
 
   // pages

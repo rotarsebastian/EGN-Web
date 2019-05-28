@@ -1,23 +1,28 @@
+import { User } from "./users.model";
+
 export class Event {
   public id: number;
   public name: string;
   public eventStart: string;
   public eventEnd: string;
-  public tags: [string];
   public date: string;
+  public address: string;
+  public attendingMembers: User[];
   constructor(
     id: number,
     name: string,
     eventStart: string,
     eventEnd: string,
-    tags: [string],
-    date: string
+    date: string,
+    address: string,
+    attendingMembers: User[]
   ) {
     this.id = id;
     this.name = name;
     this.eventStart = eventStart;
     this.eventEnd = eventEnd;
-    this.tags = tags;
     this.date = date;
+    this.address = address;
+    this.attendingMembers = attendingMembers;
   }
 }
