@@ -8,6 +8,8 @@ import { GroupsService } from "src/app/services/groups.service";
 import { Group } from "src/app/models/groups.model";
 import { CreateGroupDialogComponent } from "src/app/dialogs/createGroup/createGroup";
 import { MatDialog } from "@angular/material";
+import { v4 as uuid } from "uuid";
+import { ToastrService } from "ngx-toastr";
 
 @Component({
   selector: "app-single-group",
@@ -26,7 +28,6 @@ export class SingleGroupComponent implements OnInit, OnDestroy {
   oneGroup: any;
   createGroupResult: any;
 
-  // group: any;
   subpages: any[];
   selectedSubpage: number;
   isSettingsHovered: boolean;
@@ -39,7 +40,8 @@ export class SingleGroupComponent implements OnInit, OnDestroy {
     private groupService: GroupsService,
     private storage: StorageService,
     private changeSubpageService: ChangeSubpageService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private toastr: ToastrService
   ) {
     let currentUser = localStorage.getItem("currentUser");
     this.loggedUser = JSON.parse(currentUser);
@@ -101,10 +103,6 @@ export class SingleGroupComponent implements OnInit, OnDestroy {
       err => {}
     );
   }
-
-  // goToEditProfile() {
-  //   this.router.navigate(["/user/edit", this.loggedUser.id]);
-  // }
 
   ngOnDestroy() {
     this.changeGroupSubpageRef.unsubscribe();
@@ -189,7 +187,22 @@ export class SingleGroupComponent implements OnInit, OnDestroy {
   }
 
   createGroup(groupName: string, groupStatus: string) {
-    console.log(groupName, groupStatus);
+    const date = new Date();
+
+    const group = new Group(
+      uuid(),
+      groupName,
+      [],
+      [],
+      groupStatus,
+      date.toISOString()
+    );
+    console.log("Created " + group.id);
+
+    this.toastr.success("Your group has been created.");
+
+    this.groupService.createGroup(group);
+    this.groupService.storeGroups().subscribe();
   }
 
   getBackgroundImage() {

@@ -8,7 +8,7 @@
     <mat-icon>send</mat-icon>
   </div>
 
-  <div *ngIf="!isWaiting">
+  <div *ngIf="!isWaiting" class="posts-container">
     <app-posts
       *ngFor="let post of (posts | sort: 'date'); index as i"
       [post]="post"

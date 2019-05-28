@@ -1,9 +1,11 @@
 import { Component, OnInit } from "@angular/core";
 import { Subscription } from "rxjs";
-import { PostsService } from "src/app/services/posts.service";
-import { Post } from "src/app/models/posts.model";
 import { Group } from "src/app/models/groups.model";
 import { GroupsService } from "src/app/services/groups.service";
+import { CreateGroupDialogComponent } from "src/app/dialogs/createGroup/createGroup";
+import { ToastrService } from "ngx-toastr";
+import { MatDialog } from "@angular/material";
+import { v4 as uuid } from "uuid";
 
 @Component({
   selector: "app-groups-page",
@@ -14,8 +16,17 @@ export class GroupsComponentPage implements OnInit {
   subscription: Subscription;
   groups: Group[];
   isWaiting: boolean;
+  createGroupResult: any;
+  loggedUser: any;
 
-  constructor(private groupService: GroupsService) {}
+  constructor(
+    private groupService: GroupsService,
+    private dialog: MatDialog,
+    private toastr: ToastrService
+  ) {
+    let currentUser = localStorage.getItem("currentUser");
+    this.loggedUser = JSON.parse(currentUser);
+  }
 
   ngOnInit() {
     this.isWaiting = false;
@@ -35,5 +46,38 @@ export class GroupsComponentPage implements OnInit {
         this.isWaiting = false;
       }
     );
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(CreateGroupDialogComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      if (!!result) {
+        this.createGroupResult = result;
+        this.createGroup(result.groupName, result.groupStatus);
+      }
+    });
+  }
+
+  createGroup(groupName: string, groupStatus: string) {
+    const date = new Date();
+
+    const group = new Group(
+      uuid(),
+      groupName,
+      [],
+      [],
+      groupStatus,
+      date.toISOString()
+    );
+    console.log("Created " + group.id);
+
+    this.toastr.success("Your group has been created.");
+
+    this.groupService.createGroup(group);
+    this.groupService.storeGroups().subscribe();
+  }
+
+  canSeeSettingsPage() {
+    return this.loggedUser.role === "admin";
   }
 }

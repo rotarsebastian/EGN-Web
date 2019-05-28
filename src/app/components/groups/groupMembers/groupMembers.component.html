@@ -15,6 +15,10 @@
       </div>
     </div>
   </div>
+
+  <div class="empty_div" *ngIf="members?.length === 0">
+    <p>There are no members in this group<br />Be the first one to join 😊</p>
+  </div>
 </div>
 
 <div *ngIf="isWaiting">

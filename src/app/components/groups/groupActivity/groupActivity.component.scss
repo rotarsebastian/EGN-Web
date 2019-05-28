@@ -68,3 +68,13 @@ mat-icon {
   justify-content: center;
   height: 20rem;
 }
+
+@media only screen and (max-width: 450px) {
+  .activity_container {
+    height: 54vh;
+  }
+
+  .posts-container {
+    height: 100%;
+  }
+}

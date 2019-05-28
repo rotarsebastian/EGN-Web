@@ -17,6 +17,26 @@
   stroke: #d50965;
 }
 
+mat-icon {
+  font-family: "Material Icons" !important;
+}
+
+.create-group-container {
+  height: 3.5rem;
+  .create-new-group {
+    padding: 0.2rem;
+    font-size: 1.5rem;
+    color: #54b0de;
+    border: 1px solid #54b0de;
+    border-radius: 50px;
+    margin-right: 0.5rem;
+    width: 1.5rem;
+    cursor: pointer;
+    float: right;
+    margin-top: 0.7rem;
+  }
+}
+
 .spinner-container {
   position: absolute;
   display: flex;
@@ -29,8 +49,31 @@
   height: 50rem;
 }
 
+.new-post-mobile {
+  display: none;
+}
+
 @media only screen and (max-width: 765px) {
   .groups-container {
     height: 100% !important;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .user-name {
+    display: none !important;
+  }
+
+  .new-post-mobile {
+    display: block;
+    position: absolute;
+    bottom: 2vh;
+    right: 1rem;
+    z-index: 100;
+    width: 2.5rem;
+  }
+
+  .create-group-container {
+    display: none;
   }
 }

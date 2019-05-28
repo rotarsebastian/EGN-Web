@@ -106,7 +106,7 @@
     margin-bottom: 10px;
     min-height: fit-content;
 
-    @media screen and (max-width: 480px) {
+    @media screen and (max-width: 450px) {
       padding: 5px 5px 0;
     }
 
@@ -118,11 +118,11 @@
         justify-content: center;
         align-items: center;
         border-radius: 20px;
-        width: 110px;
         padding: 3px 15px;
         margin-right: 10px;
         cursor: pointer;
         background-color: #ca2c73;
+        width: 85px;
 
         p {
           color: white;
@@ -153,7 +153,6 @@
 
       @media screen and (max-width: 480px) {
         flex-wrap: wrap;
-        width: 90%;
       }
     }
 
@@ -212,10 +211,4 @@
 
 mat-icon {
   font-family: "Material Icons" !important;
-}
-
-@media only screen and (max-width: 765px) {
-  .posts-container {
-    height: 100% !important;
-  }
 }

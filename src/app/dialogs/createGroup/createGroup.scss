@@ -20,14 +20,15 @@ $font-family: "Source Sans Pro", sans-serif;
     text-align: center;
     -webkit-font-smoothing: antialiased;
     font-weight: normal;
-    font-size: 1rem;
+    font-size: 0.85rem;
     opacity: 0.85;
     margin-top: 0;
     margin-bottom: 1.75rem;
   }
 
   .group-list {
-    margin-bottom: 1.75rem;
+    margin: 1rem 0;
+    margin-bottom: 1.85rem;
     display: flex;
     justify-content: space-evenly;
     flex-flow: wrap row;
@@ -47,48 +48,8 @@ $font-family: "Source Sans Pro", sans-serif;
   }
 }
 
-::ng-deep .mat-checkbox {
-  margin-right: 0.5rem;
-}
-
-.spinner-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 80%;
-}
-
-// overwrite the checkbox background
-::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background,
-.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
-  background-color: $font-blue-color !important;
-}
-
-// overwrite the ripple overlay on hover and click
-::ng-deep
-  .mat-checkbox:not(.mat-checkbox-disabled).mat-accent
-  .mat-checkbox-ripple
-  .mat-ripple-element {
-  background-color: $font-blue-color !important;
-}
-
-::ng-deep .mat-checkbox-layout .mat-checkbox-label {
-  color: #1b3d5d !important;
-}
-
-::ng-deep .cdk-overlay-pane {
-  width: 40rem;
-  height: auto;
-  box-shadow: 7px 0 9.4px 0.6px rgba(27, 61, 93, 0.38);
-  border-radius: 5px;
-}
-
-::ng-deep .cdk-overlay-dark-backdrop {
-  background: rgba(0, 0, 0, 0.45);
-}
-
-::ng-deep .mat-dialog-container {
-  background-color: #f6f6f6;
+::ng-deep .mat-radio-button {
+  margin: 0 1.5rem;
 }
 
 .logo-container {
@@ -115,48 +76,7 @@ input {
   margin-left: -0.35rem;
   font-size: 0.95rem;
   padding-right: 0;
-}
-.errorMessage {
-  color: #de071c;
-  margin-top: -10px;
-  font-size: 12px;
-  line-height: 1.5;
-  font-weight: 400;
-  letter-spacing: 0;
-  letter-spacing: 0.006em;
-}
-.invalid-input {
-  border: 1px solid #de071c;
-}
-
-input.ng-dirty.ng-touched.ng-invalid {
-  background: #fef0f0;
-}
-
-input:focus {
-  outline: none;
   border: 1px solid $font-blue-color;
-  background: white !important;
-}
-
-button:focus,
-button:active {
-  outline: none;
-}
-
-::placeholder {
-  color: #9c9ea0;
-  opacity: 1; /* Firefox */
-}
-
-:-ms-input-placeholder {
-  /* Internet Explorer 10-11 */
-  color: #9c9ea0;
-}
-
-::-ms-input-placeholder {
-  /* Microsoft Edge */
-  color: #9c9ea0;
 }
 
 .reset-password-button {
@@ -173,6 +93,35 @@ button:active {
   opacity: 0.95;
   -webkit-font-smoothing: antialiased;
   font-weight: normal;
+}
+
+::ng-deep .mat-radio-outer-circle {
+  .mat-radio-checked & {
+    border-color: $font-blue-color !important;
+  }
+}
+
+::ng-deep .mat-radio-inner-circle {
+  background-color: $font-blue-color !important;
+}
+
+::ng-deep .mat-radio-ripple .mat-ripple-element {
+  background-color: $font-blue-color !important;
+}
+
+::ng-deep .cdk-overlay-pane {
+  width: 35rem;
+  height: auto;
+  box-shadow: 7px 0 9.4px 0.6px rgba(27, 61, 93, 0.38);
+  border-radius: 5px;
+}
+
+::ng-deep .cdk-overlay-dark-backdrop {
+  background: rgba(0, 0, 0, 0.45);
+}
+
+::ng-deep .mat-dialog-container {
+  background-color: #f6f6f6;
 }
 
 .reset-password-button:active {
@@ -194,7 +143,10 @@ button[disabled]:hover {
   cursor: not-allowed;
 }
 
-@media only screen and (max-width: 1030px) {
+@media only screen and (max-width: 450px) {
+  ::ng-deep .mat-radio-button {
+    margin: 0.5rem 1.5rem;
+  }
 }
 
 @media only screen and (max-width: 770px) {

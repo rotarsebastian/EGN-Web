@@ -8,8 +8,9 @@ import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
   styleUrls: ["./createGroup.scss"]
 })
 export class CreateGroupDialogComponent implements OnInit {
-  groupStatus: string;
+  groupStatus: string[];
   groupName: string;
+  groupStatusChoice: string;
 
   constructor(
     public dialogRef: MatDialogRef<CreateGroupDialogComponent>,
@@ -22,13 +23,14 @@ export class CreateGroupDialogComponent implements OnInit {
 
   ngOnInit() {
     this.groupName = "";
-    this.groupStatus = "";
+    this.groupStatusChoice = "";
+    this.groupStatus = ["public", "private"];
   }
 
   submit(): void {
     this.close({
       groupName: this.groupName,
-      groupStatus: this.groupStatus
+      groupStatus: this.groupStatusChoice
     });
   }
 

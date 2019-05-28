@@ -220,36 +220,38 @@
     <div class="input-container">
       <input
         type="text"
+        matInput
         [(ngModel)]="groupName"
         placeholder="Your group name here"
-        id="group"
+        id="groupName"
         name="groupName"
-        ngModel
         required
+        ngModel
         #groupNameInput
       />
-
       <div class="group-list">
-        <mat-radio-button
-          class="groups-checkboxes"
-          [value]="Public"
-          [(ngModel)]="groupStatus"
+        <mat-radio-group
+          aria-labelledby="example-radio-group-label"
+          class="example-radio-group"
+          [(ngModel)]="groupStatusChoice"
         >
-          Public
-        </mat-radio-button>
-
-        <mat-radio-button
-          class="groups-checkboxes"
-          [value]="Private"
-          [(ngModel)]="groupStatus"
-        >
-          Private
-        </mat-radio-button>
+          <mat-radio-button
+            class="groups-checkboxes"
+            *ngFor="let status of groupStatus"
+            [value]="status"
+            >{{ status | titlecase }}
+          </mat-radio-button>
+        </mat-radio-group>
       </div>
     </div>
   </div>
   <div class="button-container">
-    <button type="submit" class="reset-password-button" (click)="submit()">
+    <button
+      type="button"
+      class="reset-password-button"
+      [disabled]="groupStatusChoice.length === 0 || groupName.length === 0"
+      (click)="submit()"
+    >
       Create group
     </button>
   </div>

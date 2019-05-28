@@ -9,7 +9,7 @@
     border: 1px solid #9faec0;
     transition: 0.2s ease-out;
     height: 2.5rem;
-    width: 73%;
+    width: 95%;
     border-radius: 5px;
     padding: 0 10px;
     color: #575757;
@@ -32,19 +32,9 @@
     }
   }
 
-  button {
-    line-height: normal;
-    padding: 0;
-    width: 20%;
-    color: white;
-    font-size: 0.85rem;
-    margin-right: 0.2rem;
-    box-shadow: none;
-    letter-spacing: 0;
-  }
-
-  @media screen and (max-width: 480px) {
+  @media screen and (max-width: 450px) {
     display: block;
+    width: 95%;
   }
 }
 
@@ -91,4 +81,10 @@ mat-icon {
   align-items: center;
   justify-content: center;
   height: 20rem;
+}
+
+@media screen and (max-width: 450px) {
+  .user-name {
+    font-size: 0.75rem;
+  }
 }
