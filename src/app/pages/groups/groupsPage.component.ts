@@ -46,6 +46,7 @@ export class GroupsComponentPage implements OnInit {
         this.isWaiting = false;
       }
     );
+    this.isWaiting = false;
   }
 
   openDialog(): void {

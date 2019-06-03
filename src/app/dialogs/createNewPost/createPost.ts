@@ -53,6 +53,10 @@ export class CreatePostDialogComponent implements OnInit {
 
           this.groupNames.push(groupElement);
         }
+        this.groupNames = this.groupNames.filter(
+          (group, index, self) =>
+            index === self.findIndex(t => t.id === group.id)
+        );
       },
       err => {
         this.isWaiting = false;

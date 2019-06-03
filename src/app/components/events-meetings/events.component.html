@@ -19,8 +19,10 @@
         </div>
         <div class="event-tags">
           <div class="event-time">
-            {{ event.eventStart | date: "hh:mm" }} -
-            {{ event.eventEnd | date: "hh:mm" }}
+            {{ event.eventStart | date: "hh:mm" }}
+            <span *ngIf="event.eventEnd"
+              >-{{ event.eventEnd | date: "hh:mm" }}</span
+            >
           </div>
           <div
             class="event-type"
@@ -31,6 +33,9 @@
           </div>
         </div>
       </div>
+    </div>
+    <div class="no_events" *ngIf="events?.length === 0">
+      You do not have any events coming soon for you
     </div>
   </div>
 </div>

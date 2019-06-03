@@ -6,6 +6,11 @@
     [post]="post"
     [index]="i"
   ></app-posts>
+
+  <div class="empty_div" *ngIf="posts?.length === 0 && !isWaiting">
+    <p>There are no posts available<br />Be the first to create one 😊</p>
+  </div>
+
   <div class="spinner-container" *ngIf="isWaiting">
     <mat-spinner class="loading-spinner"></mat-spinner>
   </div>

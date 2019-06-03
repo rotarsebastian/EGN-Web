@@ -218,7 +218,7 @@
     </p>
 
     <div class="input-container">
-      <p class="section_title">Event name</p>
+      <p class="section_title">Event name<span>*</span></p>
       <input
         type="text"
         matInput
@@ -232,7 +232,7 @@
       <p class="section_title">Time and Place</p>
       <div class="row">
         <div class="input_label small">
-          <label [owlDateTimeTrigger]="dt1"> Start date </label>
+          <label [owlDateTimeTrigger]="dt1"> Start date<span>*</span></label>
           <input
             [min]="today"
             [max]="endTime"
@@ -252,18 +252,29 @@
             [owlDateTimeTrigger]="dt2"
             [owlDateTime]="dt2"
             [(ngModel)]="endTime"
-            required
           />
           <owl-date-time #dt2></owl-date-time>
         </div>
         <div class="input_label">
-          <label (click)="addressInput.focus()">Address</label>
+          <label (click)="addressInput.focus()">Address<span>*</span></label>
           <input
             [(ngModel)]="address"
             placeholder="Event address here"
             #addressInput
             required
           />
+        </div>
+        <div class="group-list">
+          <div *ngFor="let tagName of eventTags" class="group-item">
+            <mat-checkbox
+              class="groups-checkboxes"
+              name="tagNames"
+              value="{{ tagName.name }}"
+              [(ngModel)]="tagName.checked"
+            >
+              {{ tagName.name }}
+            </mat-checkbox>
+          </div>
         </div>
       </div>
     </div>
@@ -275,8 +286,8 @@
       [disabled]="
         eventName.length === 0 ||
         address.length === 0 ||
-        endTime.length === 0 ||
-        startTime.length === 0
+        startTime.length === 0 ||
+        !isAnyChecked()
       "
       (click)="submit()"
     >

@@ -10,6 +10,13 @@
   overflow-x: hidden;
 }
 
+.empty_div {
+  text-align: center;
+  color: #828587;
+  font-size: large;
+  font-style: italic;
+}
+
 ::ng-deep .mat-progress-spinner circle,
 .mat-spinner circle {
   stroke: #d50965;

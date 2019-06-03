@@ -52,15 +52,15 @@ $font-family: "Source Sans Pro", sans-serif;
   }
 }
 
-::ng-deep .mat-checkbox {
-  margin-right: 0.5rem;
-}
-
 .spinner-container {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 80%;
+}
+
+::ng-deep .mat-checkbox {
+  margin-right: 0.5rem;
 }
 
 // overwrite the checkbox background

@@ -6,6 +6,7 @@ import { Router } from "@angular/router";
 import { MatDialog } from "@angular/material";
 import { ToastrService } from "ngx-toastr";
 import { QuestionDialogComponent } from "src/app/dialogs/question/question";
+import { UsersService } from "src/app/services/users.service";
 
 @Component({
   selector: "app-event-item",
@@ -24,7 +25,8 @@ export class EventItemComponent implements OnInit {
     private router: Router,
     private dialog: MatDialog,
     private toastr: ToastrService,
-    private eventService: EventsService
+    private eventService: EventsService,
+    private userService: UsersService
   ) {
     let currentUser = localStorage.getItem("currentUser");
     this.loggedUser = JSON.parse(currentUser);

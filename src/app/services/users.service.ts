@@ -65,6 +65,9 @@ export class UsersService {
               if (!user["groups"]) {
                 user["groups"] = [];
               }
+              if (!user["events"]) {
+                user["events"] = [];
+              }
             }
             return users;
           }

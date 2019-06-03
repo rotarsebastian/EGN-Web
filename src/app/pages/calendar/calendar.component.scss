@@ -55,8 +55,9 @@ mat-icon {
       margin: 0 2% 20px 0;
 
       @media screen and (max-width: 450px) {
-        max-width: unset;
+        max-width: 95%;
         margin-right: 0 !important;
+        margin-top: 0.5rem;
       }
     }
   }

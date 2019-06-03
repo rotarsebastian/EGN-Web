@@ -12,6 +12,13 @@
   text-align: center;
 }
 
+.empty_div {
+  text-align: center;
+  color: #828587;
+  font-size: large;
+  font-style: italic;
+}
+
 ::ng-deep .mat-progress-spinner circle,
 .mat-spinner circle {
   stroke: #d50965;
@@ -64,7 +71,7 @@ mat-icon {
     display: none !important;
   }
 
-  .new-post-mobile {
+  .new-group-mobile {
     display: block;
     position: absolute;
     bottom: 2vh;

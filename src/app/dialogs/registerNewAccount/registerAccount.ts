@@ -26,6 +26,7 @@ export class RegisterAccountDialogComponent {
   ) {}
 
   ngOnInit() {
+    this.users = [];
     this.usersService.getUsers();
     this.usersService.usersChanged.subscribe((users: User[]) => {
       this.users = users;
@@ -37,11 +38,14 @@ export class RegisterAccountDialogComponent {
   }
 
   setData(email: string, password: string) {
-    for (let oneUser of this.users) {
-      if (oneUser.email === email) {
-        this.usedEmail = true;
+    if (this.users) {
+      for (let oneUser of this.users) {
+        if (oneUser.email === email) {
+          this.usedEmail = true;
+        }
       }
     }
+
     if (this.usedEmail) {
       this.toastr.error("Please choose another email");
     } else {

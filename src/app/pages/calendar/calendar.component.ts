@@ -36,7 +36,6 @@ export class CalendarComponent {
 
   getEvents() {
     this.isWaiting = true;
-    this.eventService.getEvents();
     this.subscription = this.eventService.eventsChanged.subscribe(
       (events: Event[]) => {
         this.isWaiting = false;
@@ -52,7 +51,8 @@ export class CalendarComponent {
     eventName: string,
     eventStart: string,
     eventEnd: string,
-    address: string
+    address: string,
+    selectedTags: any
   ) {
     const event = new Event(
       uuid(),
@@ -61,7 +61,7 @@ export class CalendarComponent {
       eventEnd,
       address,
       [],
-      []
+      selectedTags
     );
     console.log("Created " + event.id);
 
@@ -80,7 +80,8 @@ export class CalendarComponent {
           result.eventName,
           result.startTime,
           result.endTime,
-          result.address
+          result.address,
+          result.selectedTags
         );
       }
     });

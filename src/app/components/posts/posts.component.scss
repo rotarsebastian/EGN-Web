@@ -543,3 +543,11 @@
     width: 6rem !important;
   }
 }
+
+@media only screen and (max-width: 450px) {
+  .write-comment {
+    textarea {
+      width: 81.5% !important;
+    }
+  }
+}

@@ -1,5 +1,6 @@
 import { Peer } from "./peers.model";
 import { Group } from "./groups.model";
+import { Event } from "./events.model";
 
 export class User {
   public id: number;
@@ -13,6 +14,7 @@ export class User {
   public role: string;
   public peers: Peer[];
   public groups: Group[];
+  public events: Event[];
   constructor(
     id: number,
     imgPath: string,
@@ -24,7 +26,8 @@ export class User {
     wasDeleted: boolean,
     role: string,
     peers: Peer[],
-    groups: Group[]
+    groups: Group[],
+    events: Event[]
   ) {
     this.id = id;
     this.imgPath = imgPath;
@@ -37,5 +40,6 @@ export class User {
     this.role = role;
     this.peers = peers;
     this.groups = groups;
+    this.events = events;
   }
 }

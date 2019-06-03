@@ -37,7 +37,7 @@ $font-family: "Source Sans Pro", sans-serif;
 
 ::ng-deep .cdk-overlay-pane {
   width: 37rem;
-  height: 28.5rem;
+  height: auto;
   box-shadow: 7px 0 9.4px 0.6px rgba(27, 61, 93, 0.38);
   border-radius: 5px;
 }

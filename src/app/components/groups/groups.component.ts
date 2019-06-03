@@ -32,6 +32,9 @@ export class GroupsComponent {
   }
 
   viewGroup(event: any) {
+    if (this.loggedUser.role === "user") {
+      this.router.navigate(["groups", this.group.id]);
+    }
     if (event.target !== this.closingButton.nativeElement) {
       this.router.navigate(["groups", this.group.id]);
     }
@@ -40,6 +43,9 @@ export class GroupsComponent {
   canSeeGroup() {
     let canSee = false;
     if (this.loggedUser.role === "admin") {
+      canSee = true;
+    }
+    if (this.group.status === "public") {
       canSee = true;
     }
     for (let oneGroup of this.loggedUser.groups) {

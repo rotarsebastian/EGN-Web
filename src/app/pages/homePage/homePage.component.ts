@@ -17,6 +17,7 @@ export class HomePageComponent implements OnInit {
 
   ngOnInit() {
     this.isWaiting = false;
+    this.posts = [];
     this.getPosts();
   }
 
@@ -32,5 +33,6 @@ export class HomePageComponent implements OnInit {
         this.isWaiting = false;
       }
     );
+    this.isWaiting = false;
   }
 }
