@@ -5,24 +5,24 @@ export class Event {
   public name: string;
   public eventStart: string;
   public eventEnd: string;
-  public date: string;
   public address: string;
   public attendingMembers: User[];
+  public tags: [];
   constructor(
     id: number,
     name: string,
     eventStart: string,
     eventEnd: string,
-    date: string,
     address: string,
-    attendingMembers: User[]
+    attendingMembers: User[],
+    tags: []
   ) {
     this.id = id;
     this.name = name;
     this.eventStart = eventStart;
     this.eventEnd = eventEnd;
-    this.date = date;
     this.address = address;
     this.attendingMembers = attendingMembers;
+    this.tags = tags;
   }
 }

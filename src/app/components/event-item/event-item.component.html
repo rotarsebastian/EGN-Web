@@ -1,20 +1,40 @@
 <div class="event">
-  <div class="header"></div>
+  <div
+    class="closing-image"
+    [ngStyle]="{ 'background-image': getBackgroundImage() }"
+    *ngIf="loggedUser.role === 'admin'"
+    (click)="deleteEvent()"
+    #closingButton
+  ></div>
+
+  <div class="header" [ngStyle]="{ 'background-image': getCoverImg() }"></div>
 
   <div class="content">
     <div class="top">
-      <div class="row">
-        <div class="left">
-          <div class="date" matTooltip="Start date" matTooltipPosition="left">
-            <p>{{ event.eventStart }}</p>
-          </div>
-          <p>{{ event.name }}</p>
-        </div>
+      <div class="date" matTooltip="Start date" matTooltipPosition="left">
+        <p>{{ event.eventStart | date: "hh:mm" }}</p>
       </div>
+
+      <!-- <div class="date" matTooltip="End date" matTooltipPosition="left">
+        <p>{{ event.eventEnd | date: "hh:mm" }}</p>
+      </div> -->
+      <p class="name">{{ event.name }}</p>
     </div>
 
-    <button class="with_icon">
-      Attend
+    <div class="row">
+      <mat-icon matTooltip="Address" matTooltipPosition="left"
+        >location_on</mat-icon
+      >
+      <p class="secondary">{{ event.address }}</p>
+    </div>
+
+    <button
+      class="attend_button"
+      (click)="attendToEvent()"
+      [ngClass]="{ attending: attendText === 'Attending' }"
+    >
+      <mat-icon>{{ attendIcon }}</mat-icon>
+      {{ attendText }}
     </button>
   </div>
 </div>

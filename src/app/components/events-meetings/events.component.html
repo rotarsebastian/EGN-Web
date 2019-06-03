@@ -7,9 +7,11 @@
     >
       <div class="calendar">
         <div class="day" [ngClass]="{ blueTheme: i % 2 === 1 }">
-          {{ event.date | date: "dd" }}
+          {{ event.eventStart | date: "dd" }}
         </div>
-        <div class="month">{{ event.date | date: "LLL" | uppercase }}</div>
+        <div class="month">
+          {{ event.eventStart | date: "LLL" | uppercase }}
+        </div>
       </div>
       <div class="event-info">
         <div class="event-name">
@@ -17,7 +19,8 @@
         </div>
         <div class="event-tags">
           <div class="event-time">
-            {{ event.eventStart }} - {{ event.eventEnd }}
+            {{ event.eventStart | date: "hh:mm" }} -
+            {{ event.eventEnd | date: "hh:mm" }}
           </div>
           <div
             class="event-type"

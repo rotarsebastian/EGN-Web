@@ -1,10 +1,63 @@
 <div class="events_container">
-  <div class="events_section">
-    <app-event-item *ngFor="let event of events" [event]="event">
+  <div class="create-group-container" *ngIf="canSeeSettingsPage()">
+    <mat-icon class="create-new-group" (click)="openDialog()">create</mat-icon>
+  </div>
+
+  <div class="new-event-mobile" *ngIf="canSeeSettingsPage()">
+    <svg
+      version="1.1"
+      id="Capa_1"
+      (click)="openDialog()"
+      xmlns="http://www.w3.org/2000/svg"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      x="0px"
+      y="0px"
+      viewBox="0 0 50 50"
+      style="enable-background:new 0 0 50 50;"
+      xml:space="preserve"
+    >
+      <circle style="fill:#1b3d5d;" cx="25" cy="25" r="25" />
+      <line
+        style="fill:none;stroke:#FFFFFF;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;"
+        x1="25"
+        y1="13"
+        x2="25"
+        y2="38"
+      />
+      <line
+        style="fill:none;stroke:#FFFFFF;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;"
+        x1="37.5"
+        y1="25"
+        x2="12.5"
+        y2="25"
+      />
+      <g></g>
+      <g></g>
+      <g></g>
+      <g></g>
+      <g></g>
+      <g></g>
+      <g></g>
+      <g></g>
+      <g></g>
+      <g></g>
+      <g></g>
+      <g></g>
+      <g></g>
+      <g></g>
+      <g></g>
+    </svg>
+  </div>
+
+  <div class="events_section" *ngIf="!isWaiting && events?.length !== 0">
+    <app-event-item
+      *ngFor="let event of (events | sort: 'date'); index as i"
+      [event]="event"
+    >
     </app-event-item>
   </div>
 
-  <div class="empty_div" *ngIf="events?.length === 0">
+  <div class="empty_div" *ngIf="events?.length === 0 && !isWaiting">
     <p>There are no events available<br />Be the first to create one 😊</p>
   </div>
 

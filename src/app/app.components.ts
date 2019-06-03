@@ -34,6 +34,7 @@ import { GroupSettingsComponent } from "./components/groups/groupSettings/groupS
 import { GroupSelectListComponent } from "./components/groups/groupSettings/group-select-list/group-select-list.component";
 import { CreateGroupDialogComponent } from "./dialogs/createGroup/createGroup";
 import { EventItemComponent } from "./components/event-item/event-item.component";
+import { CreateEventDialogComponent } from "./dialogs/createEvent/createEvent";
 
 export const components = [
   AppComponent,
@@ -68,7 +69,8 @@ export const components = [
   QuestionDialogComponent,
   RegisterAccountDialogComponent,
   ViewFullPictureDialogComponent,
-  CreateGroupDialogComponent
+  CreateGroupDialogComponent,
+  CreateEventDialogComponent
 ];
 
 export const pipes = [

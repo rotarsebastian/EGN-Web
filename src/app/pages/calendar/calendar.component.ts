@@ -1,9 +1,11 @@
 import { Component } from "@angular/core";
 import { Subscription } from "rxjs";
 import { EventsService } from "src/app/services/events.service";
-import { MatDialog } from "@angular/material";
-import { ToastrService } from "ngx-toastr";
 import { Event } from "src/app/models/events.model";
+import { v4 as uuid } from "uuid";
+import { ToastrService } from "ngx-toastr";
+import { MatDialog } from "@angular/material";
+import { CreateEventDialogComponent } from "src/app/dialogs/createEvent/createEvent";
 
 @Component({
   selector: "app-calendar",
@@ -44,5 +46,47 @@ export class CalendarComponent {
         this.isWaiting = false;
       }
     );
+  }
+
+  createEvent(
+    eventName: string,
+    eventStart: string,
+    eventEnd: string,
+    address: string
+  ) {
+    const event = new Event(
+      uuid(),
+      eventName,
+      eventStart,
+      eventEnd,
+      address,
+      [],
+      []
+    );
+    console.log("Created " + event.id);
+
+    this.toastr.success("Your event has been created.");
+
+    this.eventService.createEvent(event);
+    this.eventService.storeEvents().subscribe();
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(CreateEventDialogComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      if (!!result) {
+        this.createEventResult = result;
+        this.createEvent(
+          result.eventName,
+          result.startTime,
+          result.endTime,
+          result.address
+        );
+      }
+    });
+  }
+
+  canSeeSettingsPage() {
+    return this.loggedUser.role === "admin";
   }
 }
