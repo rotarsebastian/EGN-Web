@@ -57,7 +57,7 @@ export class LoginComponent implements OnInit {
         var actionCodeSettings = {
           // URL you want to redirect back to. The domain (www.example.com) for this
           // URL must be whitelisted in the Firebase Console.
-          url: "http://quickcocktails.dk/kea/egn-platform/",
+          url: "http://quickcocktails.dk/kea/project-egn/",
           handleCodeInApp: true
         };
         this.authService.activateAccount(

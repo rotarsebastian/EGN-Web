@@ -264,7 +264,9 @@
               <button
                 class="login-button"
                 type="submit"
-                [disabled]="!loginForm.valid"
+                [disabled]="
+                  !loginForm.valid || password.touched || email.touched
+                "
               >
                 LOGIN
               </button>
