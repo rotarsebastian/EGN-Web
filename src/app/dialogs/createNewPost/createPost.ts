@@ -15,7 +15,6 @@ export class CreatePostDialogComponent implements OnInit {
   groupNames: any;
   subscription: Subscription;
   groups: Group[];
-  noGroups: boolean;
   groupNameData: string;
   loggedUser: any;
   currentUser: any;
@@ -36,9 +35,7 @@ export class CreatePostDialogComponent implements OnInit {
 
   ngOnInit() {
     this.isWaiting = true;
-    this.noGroups = false;
     if (this.data) {
-      this.noGroups = this.data.noGroups;
       this.groupNameData = this.data.groupName;
     }
     this.groupNames = [];
@@ -51,6 +48,7 @@ export class CreatePostDialogComponent implements OnInit {
           this.currentUser = user;
         }
         if (this.currentUser && this.currentUser.groups.length > 0) {
+          this.isWaiting = false;
           for (let group of this.currentUser.groups) {
             const groupElement = {
               id: group.id,
@@ -66,8 +64,8 @@ export class CreatePostDialogComponent implements OnInit {
             (group, index, self) =>
               index === self.findIndex(t => t.id === group.id)
           );
-          this.isWaiting = false;
         }
+        this.isWaiting = false;
       }
     });
 
@@ -86,9 +84,6 @@ export class CreatePostDialogComponent implements OnInit {
   }
 
   isAnyChecked() {
-    if (this.noGroups) {
-      return true;
-    }
     if (this.loggedUser.groups.length === 0) {
       return true;
     }
