@@ -38,9 +38,11 @@ export class PeersComponent implements OnInit {
           }
         }
         for (let user of users) {
-          for (let peer of this.peers) {
-            if (user.id === peer.id) {
-              this.peersUpdated.push(user);
+          if (this.peers) {
+            for (let peer of this.peers) {
+              if (user.id === peer.id) {
+                this.peersUpdated.push(user);
+              }
             }
           }
         }

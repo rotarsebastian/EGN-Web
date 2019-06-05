@@ -34,15 +34,7 @@ export class EditProfileComponent implements OnInit, AfterViewInit {
     this.loggedUser = JSON.parse(currentUser);
   }
 
-  ngOnInit() {
-    this.userService.usersChanged.subscribe((users: User[]) => {
-      for (let user of users) {
-        if (this.loggedUser.id === user.id) {
-          this.loggedUser = user;
-        }
-      }
-    });
-  }
+  ngOnInit() {}
 
   ngAfterViewInit() {
     this.userService.getUsers();
