@@ -90,7 +90,6 @@ export class HeaderComponent implements OnInit, AfterViewInit {
       [],
       []
     );
-    console.log("Created " + post.id);
 
     this.toastr.success("Your post has been created.");
 

@@ -196,7 +196,6 @@ export class SingleGroupComponent implements OnInit, OnDestroy {
       groupStatus,
       date.toISOString()
     );
-    console.log("Created " + group.id);
 
     this.toastr.success("Your group has been created.");
 

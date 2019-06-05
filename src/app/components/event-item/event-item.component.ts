@@ -63,7 +63,6 @@ export class EventItemComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        console.log("Deleted " + this.event.id);
         this.eventService.deleteEvent(this.event.id);
         this.eventService.storeEvents().subscribe();
         this.toastr.success("Your event has been deleted.");

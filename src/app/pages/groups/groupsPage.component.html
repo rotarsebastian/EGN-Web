@@ -51,10 +51,6 @@
     </svg>
   </div>
 
-  <!-- <div class="empty_div" *ngIf="groups?.length === 0 && !isWaiting">
-    <p>There are no groups available<br />Be the first to create one 😊</p>
-  </div> -->
-
   <app-groups
     class="oneGroup"
     *ngFor="let group of (groups | sort: 'date'); index as i"

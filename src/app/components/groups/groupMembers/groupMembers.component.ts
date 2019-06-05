@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from "@angular/core";
-
 import { GroupsService } from "src/app/services/groups.service";
 import { Subscription } from "rxjs";
 import { Group } from "src/app/models/groups.model";

@@ -1,11 +1,9 @@
-import { Component, OnInit, ViewEncapsulation } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { UsersService } from "src/app/services/users.service";
 import { User } from "src/app/models/users.model";
-import { Subject, Observable, BehaviorSubject, Subscription } from "rxjs";
+import { Subscription } from "rxjs";
 import { GroupsService } from "src/app/services/groups.service";
 import { Group } from "src/app/models/groups.model";
-import { NgModel } from "@angular/forms";
-// import { AngularFirestore } from "@angular/fire/firestore";
 
 @Component({
   selector: "app-group-settings",

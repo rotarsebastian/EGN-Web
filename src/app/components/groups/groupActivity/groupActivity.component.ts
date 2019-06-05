@@ -112,7 +112,6 @@ export class GroupActivityComponent implements OnInit, OnDestroy {
       [],
       []
     );
-    console.log("Created " + post.id);
 
     this.toastr.success("Your post has been created.");
 

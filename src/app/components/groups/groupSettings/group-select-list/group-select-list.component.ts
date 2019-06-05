@@ -126,7 +126,6 @@ export class GroupSelectListComponent implements OnInit {
     }
     this.addUserToAllSelectedGroups(userGroups, user);
     for (let group of this.groups) {
-      console.log(group.members);
     }
     this.groupService.storeGroups().subscribe();
   }

@@ -78,7 +78,6 @@ export class CreatePostDialogComponent implements OnInit {
   submit(): void {
     const selectedGroups = this.getSelectedGroups();
     const selectedGroupsNames = this.getSelectedGroupsName();
-    console.log(this.isAnyChecked());
     this.close({
       postMessage: this.postMessage,
       groupIDs: selectedGroups,

@@ -4,8 +4,6 @@
   (click)="viewGroup($event)"
   *ngIf="canSeeGroup()"
 >
-  <!-- (clickOutside)="onClickedOutside()" -->
-
   <div
     class="groupName"
     [ngClass]="{ pinkBackground: group.status === 'private' }"

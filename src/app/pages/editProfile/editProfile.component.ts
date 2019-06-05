@@ -7,7 +7,6 @@ import { ToastrService } from "ngx-toastr";
 import { UsersService } from "src/app/services/users.service";
 import { AuthService } from "src/app/services/auth.service";
 import { QuestionDialogComponent } from "src/app/dialogs/question/question";
-import { User } from "src/app/models/users.model";
 
 @Component({
   selector: "app-edit-profile",

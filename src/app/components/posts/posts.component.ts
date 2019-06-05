@@ -218,7 +218,6 @@ export class PostsComponent implements OnInit {
 
   onClickedOutside() {
     if (this.addCommentOpen) {
-      //this.onSeeComments();
     }
     if (this.dropDownPostOpen) {
       this.seeDropDownPost();
@@ -314,7 +313,6 @@ export class PostsComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        console.log("Deleted " + this.post.id);
         this.postsService.deletePost(this.post.id);
         this.postsService.storePosts().subscribe();
         this.toastr.success("Your post has been deleted.");

@@ -1,5 +1,4 @@
 import { Component, Input, ViewChild, OnInit } from "@angular/core";
-
 import { User } from "src/app/models/users.model";
 import { Group } from "src/app/models/groups.model";
 import { Router } from "@angular/router";
@@ -83,7 +82,6 @@ export class GroupsComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        console.log("Deleted " + this.group.id);
         this.groupService.deleteGroup(this.group.id);
         this.groupService.storeGroups().subscribe();
         this.toastr.success("Your group has been deleted.");
