@@ -35,7 +35,13 @@ export class EditProfileComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    this.loggedUser = this.userService.getCurrentUser();
+    this.userService.usersChanged.subscribe((users: User[]) => {
+      for (let user of users) {
+        if (this.loggedUser.id === user.id) {
+          this.loggedUser = user;
+        }
+      }
+    });
   }
 
   ngAfterViewInit() {
@@ -50,7 +56,7 @@ export class EditProfileComponent implements OnInit, AfterViewInit {
   getProfileImage() {
     return this.loggedUser.imgPath !== "unset"
       ? `url(${this.loggedUser.imgPath})`
-      : `url(./assets/images/standardProfile.svg)`;
+      : `url(/assets/images/standardProfile.svg)`;
   }
 
   profileChangeEvent(e) {

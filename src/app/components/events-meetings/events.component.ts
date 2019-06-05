@@ -12,6 +12,7 @@ export class EventsComponent implements OnInit {
   events: any = [];
   subscription: Subscription;
   loggedUser: any;
+  isWaiting: boolean = false;
 
   constructor(private eventsService: EventsService) {
     let currentUser = localStorage.getItem("currentUser");
@@ -19,6 +20,7 @@ export class EventsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.isWaiting = true;
     this.events = [];
     this.eventsService.getEvents();
     this.subscription = this.eventsService.eventsChanged.subscribe(
@@ -36,6 +38,10 @@ export class EventsComponent implements OnInit {
           (group, index, self) =>
             index === self.findIndex(t => t.id === group.id)
         );
+        this.isWaiting = false;
+      },
+      err => {
+        this.isWaiting = false;
       }
     );
   }

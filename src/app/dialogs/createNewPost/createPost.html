@@ -250,13 +250,16 @@
           </mat-checkbox>
         </div>
       </div>
+      <div class="spinner-container" *ngIf="isWaiting">
+        <mat-spinner diameter="20" class="loading-spinner"></mat-spinner>
+      </div>
     </div>
   </div>
   <div class="button-container">
     <button
       type="submit"
       class="reset-password-button"
-      [disabled]="!postContent.valid || !isAnyChecked()"
+      [disabled]="!postContent.valid"
       (click)="submit()"
     >
       Create post

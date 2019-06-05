@@ -9,24 +9,6 @@
         <router-outlet *ngIf="!loginPage"></router-outlet>
       </div>
       <div class="right-component">
-        <div class="groups-component" *ngIf="homePage">
-          <div>
-            <div class="bar-title">Groups and networks</div>
-            <div class="groups-wrapper">
-              <div>
-                <p>Private</p>
-                <div class="groups-amount">{{ privateGroups.length }}</div>
-              </div>
-              <div>
-                <p>Public</p>
-                <div class="groups-amount" style="background-color: #1b3d5d;">
-                  {{ publicGroups.length }}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
         <div class="events-component">
           <app-events></app-events>
         </div>

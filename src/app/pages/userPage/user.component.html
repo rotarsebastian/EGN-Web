@@ -6,7 +6,8 @@
     <p class="title">{{ user?.name }} Profile</p>
     <hr />
   </div>
-  <div class="top_container">
+
+  <div class="top_container" *ngIf="!isWaiting">
     <div class="image_container">
       <div>
         <div
@@ -38,7 +39,7 @@
     </div>
   </div>
 
-  <div class="bottom_container">
+  <div class="bottom_container" *ngIf="!isWaiting">
     <div class="left_container">
       <div class="button-container" *ngIf="user?.id !== loggedUser.id">
         <button
@@ -203,5 +204,8 @@
         </p>
       </div>
     </div>
+  </div>
+  <div class="spinner-container" *ngIf="isWaiting">
+    <mat-spinner class="loading-spinner"></mat-spinner>
   </div>
 </div>

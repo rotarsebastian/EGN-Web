@@ -18,9 +18,12 @@
           </div>
         </div>
       </div>
-      <div class="no_peers" *ngIf="peers.length === 0">
+      <div class="no_peers" *ngIf="peers.length === 0 && !isWaiting">
         You do not have any peers in your contact list
       </div>
+    </div>
+    <div class="spinner-container" *ngIf="isWaiting">
+      <mat-spinner diameter="30" class="loading-spinner"></mat-spinner>
     </div>
   </div>
 </div>

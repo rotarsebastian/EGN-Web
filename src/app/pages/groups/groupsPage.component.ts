@@ -26,12 +26,21 @@ export class GroupsComponentPage implements OnInit {
     private userService: UsersService,
     private dialog: MatDialog,
     private toastr: ToastrService
-  ) {}
+  ) {
+    let currentUser = localStorage.getItem("currentUser");
+    this.loggedUser = JSON.parse(currentUser);
+  }
 
   ngOnInit() {
     this.groups = [];
     this.isWaiting = false;
-    this.loggedUser = this.userService.getCurrentUser();
+    this.userService.usersChanged.subscribe((users: User[]) => {
+      for (let user of users) {
+        if (this.loggedUser.id === user.id) {
+          this.loggedUser = user;
+        }
+      }
+    });
     this.getGroups();
   }
 

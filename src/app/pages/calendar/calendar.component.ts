@@ -34,7 +34,13 @@ export class CalendarComponent implements OnInit {
   ngOnInit() {
     this.events = [];
     this.isWaiting = false;
-    this.loggedUser = this.userService.getCurrentUser();
+    this.userService.usersChanged.subscribe((users: User[]) => {
+      for (let user of users) {
+        if (this.loggedUser.id === user.id) {
+          this.loggedUser = user;
+        }
+      }
+    });
     this.getEvents();
   }
 

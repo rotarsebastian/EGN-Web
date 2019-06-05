@@ -12,13 +12,14 @@ import { User } from "src/app/models/users.model";
 export class MembersComponent {
   members: any;
   subscription: Subscription;
-  isWaiting: boolean;
+  isWaiting: boolean = false;
   copyUsers: User[];
 
   constructor(private userService: UsersService, private router: Router) {}
 
   ngOnInit() {
     this.isWaiting = true;
+    this.userService.getUsers();
     this.subscription = this.userService.usersChanged.subscribe(
       (users: User[]) => {
         this.members = users;

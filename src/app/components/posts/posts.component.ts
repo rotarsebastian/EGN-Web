@@ -1,10 +1,4 @@
-import {
-  Component,
-  OnInit,
-  Input,
-  ViewChild,
-  AfterViewInit
-} from "@angular/core";
+import { Component, OnInit, Input, ViewChild } from "@angular/core";
 import { Post } from "../../models/posts.model";
 import { NgForm } from "@angular/forms";
 import {
@@ -113,7 +107,7 @@ import { Router } from "@angular/router";
   ],
   encapsulation: ViewEncapsulation.None
 })
-export class PostsComponent implements OnInit, AfterViewInit {
+export class PostsComponent implements OnInit {
   @Input() post: Post;
   @Input() index: number;
   @Input() noTags: boolean;
@@ -135,6 +129,8 @@ export class PostsComponent implements OnInit, AfterViewInit {
   authorImgLink: string;
   commentWithImage: File;
   commentWithImageURL: string;
+  isWaiting: boolean = false;
+  postUser: any;
   public routerLinkVariable = "/user";
 
   constructor(
@@ -149,6 +145,7 @@ export class PostsComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+    this.isWaiting = true;
     if (this.post["likes"]) {
       for (let like of this.post.likes) {
         if (like.author === this.loggedUser.id) {
@@ -178,27 +175,30 @@ export class PostsComponent implements OnInit, AfterViewInit {
           }
         }
       }
+      this.isWaiting = false;
     });
-
-    console.log("Loaded " + this.post.id);
   }
-
-  ngAfterViewInit() {}
 
   viewGroup(index: any) {
     this.router.navigate(["groups", this.post.groupIDs[index]]);
   }
 
   getProfileImage() {
+    if (this.isWaiting) {
+      return `url(./assets/images/standardProfile.svg)`;
+    }
     if (!!this.authorImgLink) {
-      return this.authorImgLink !== "unset"
+      return this.authorImgLink !== "unset" && !this.isWaiting
         ? `url(${this.authorImgLink})`
         : `url(./assets/images/standardProfile.svg)`;
     }
   }
 
   getYourImage() {
-    return this.loggedUser.imgPath !== "unset"
+    if (this.isWaiting) {
+      return `url(./assets/images/standardProfile.svg)`;
+    }
+    return this.loggedUser.imgPath !== "unset" && !this.isWaiting
       ? `url(${this.loggedUser.imgPath})`
       : `url(./assets/images/standardProfile.svg)`;
   }

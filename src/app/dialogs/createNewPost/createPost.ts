@@ -19,6 +19,7 @@ export class CreatePostDialogComponent implements OnInit {
   groupNameData: string;
   loggedUser: any;
   currentUser: any;
+  isWaiting: boolean = false;
 
   constructor(
     public dialogRef: MatDialogRef<CreatePostDialogComponent>,
@@ -34,6 +35,7 @@ export class CreatePostDialogComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.isWaiting = true;
     this.noGroups = false;
     if (this.data) {
       this.noGroups = this.data.noGroups;
@@ -41,29 +43,33 @@ export class CreatePostDialogComponent implements OnInit {
     }
     this.groupNames = [];
 
-    this.loggedUser = this.userService.getCurrentUser();
-    this.currentUser = this.userService.getCurrentUser();
-    for (let group of this.currentUser.groups) {
-      const groupElement = {
-        id: group.id,
-        name: `${group.name} Group`,
-        value: `${this.loggedUser.groups.indexOf(group)}`,
-        checked: false
-      };
+    this.userService.getUsers();
+    this.userService.usersChanged.subscribe((users: User[]) => {
+      for (let user of users) {
+        if (this.loggedUser.id === user.id) {
+          this.loggedUser = user;
+          this.currentUser = user;
+        }
+        if (this.currentUser && this.currentUser.groups.length > 0) {
+          for (let group of this.currentUser.groups) {
+            const groupElement = {
+              id: group.id,
+              name: `${group.name} Group`,
+              value: `${this.loggedUser.groups.indexOf(group)}`,
+              checked: false
+            };
 
-      this.groupNames.push(groupElement);
-    }
-    this.groupNames = this.groupNames.filter(
-      (group, index, self) => index === self.findIndex(t => t.id === group.id)
-    );
+            this.groupNames.push(groupElement);
+          }
 
-    // this.userService.getUsers();
-    // this.userService.usersChanged.subscribe(
-    //   (users: User[]) => {
-
-    //   },
-    //   err => {}
-    // );
+          this.groupNames = this.groupNames.filter(
+            (group, index, self) =>
+              index === self.findIndex(t => t.id === group.id)
+          );
+          this.isWaiting = false;
+        }
+      }
+    });
 
     this.postMessage = "";
   }

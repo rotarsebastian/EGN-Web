@@ -1,6 +1,9 @@
 <div class="events-component">
   <div class="bar-title">Upcoming events and meetings</div>
   <div class="events-wrapper">
+    <div class="spinner-container" *ngIf="isWaiting">
+      <mat-spinner diameter="30" class="loading-spinner"></mat-spinner>
+    </div>
     <div
       class="single-event"
       *ngFor="let event of (events | sort: 'date'); index as i"
@@ -34,7 +37,7 @@
         </div>
       </div>
     </div>
-    <div class="no_events" *ngIf="events?.length === 0">
+    <div class="no_events" *ngIf="events?.length === 0 && !isWaiting">
       You do not have any events coming soon for you
     </div>
   </div>

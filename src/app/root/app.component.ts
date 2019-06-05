@@ -1,6 +1,5 @@
 import { Component, OnInit } from "@angular/core";
 import { Router, NavigationEnd } from "@angular/router";
-// import * as firebase from "firebase";
 import { AuthService } from "../services/auth.service";
 import { GroupsService } from "../services/groups.service";
 import { Subscription, Observable } from "rxjs";
@@ -50,18 +49,8 @@ export class AppComponent implements OnInit {
       this.loginPage = true;
     } else {
       this.loginPage = false;
-      this.router.navigate(["/home"]);
     }
-
-    // firebase.initializeApp({
-    //   apiKey: "AIzaSyBohyRVA454ltGvbvXrIdvqyvzMQMSSyho",
-    //   authDomain: "egn-project.firebaseapp.com",
-    //   databaseURL: "https://egn-project.firebaseio.com",
-    //   projectId: "egn-project",
-    //   storageBucket: "egn-project.appspot.com",
-    //   messagingSenderId: "931205090881"
-    // });
-
+    this.router.navigate(["/home"]);
     this.getGroups();
   }
 

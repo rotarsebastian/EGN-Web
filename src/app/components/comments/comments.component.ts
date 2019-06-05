@@ -248,11 +248,6 @@ export class CommentsComponent implements OnInit, AfterViewInit {
         image: this.getCommentImage()
       }
     });
-    dialogRef.afterClosed().subscribe(result => {
-      if (!!result) {
-        // this.result = result;
-        // this.createPost(result);
-      }
-    });
+    dialogRef.afterClosed().subscribe(result => {});
   }
 }

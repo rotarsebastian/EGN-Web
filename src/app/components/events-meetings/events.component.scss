@@ -106,3 +106,15 @@
     }
   }
 }
+
+::ng-deep .mat-progress-spinner circle,
+.mat-spinner circle {
+  stroke: #d50965;
+}
+
+.spinner-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80%;
+}

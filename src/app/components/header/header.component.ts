@@ -19,7 +19,6 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   loggedUser: User;
   result: string;
   homePage: boolean = true;
-  lastPost: Post;
   public routerLinkVariable = "/user";
   subscription: Subscription;
 
@@ -35,7 +34,6 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    this.userService.getUsers();
     this.subscription = this.userService.usersChanged.subscribe(
       (users: User[]) => {
         for (let myUser of users) {
@@ -45,12 +43,6 @@ export class HeaderComponent implements OnInit, AfterViewInit {
         }
       }
     );
-
-    this.postsService.postsChanged.subscribe((posts: Post[]) => {
-      if (!!posts) {
-        this.lastPost = posts[posts.length - 1];
-      }
-    });
   }
 
   getProfileImage() {

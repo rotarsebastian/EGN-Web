@@ -1,4 +1,8 @@
-<div class="search_header" [ngClass]="{ is_admin: isAdmin() }">
+<div
+  class="search_header"
+  [ngClass]="{ is_admin: isAdmin() }"
+  *ngIf="!isWaiting"
+>
   <div class="search_input_container">
     <img src="./assets/images/search-dark.svg" />
     <input
@@ -19,6 +23,7 @@
     <app-group-select-list
       [user]="user"
       [groupListChoices]="groupListChoices"
+      [groups]="groups"
       class="select-list"
     ></app-group-select-list>
   </div>

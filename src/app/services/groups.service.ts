@@ -55,8 +55,16 @@ export class GroupsService {
     }
   }
 
-  getGroup(index: number) {
+  getGroup(index: any) {
     return this.groups[index];
+  }
+
+  getGroupByID(groupID: any) {
+    for (let group of this.groups) {
+      if (group.id == groupID) {
+        return group;
+      }
+    }
   }
 
   createGroup(group: Group) {

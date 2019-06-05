@@ -27,7 +27,6 @@ export class RegisterAccountDialogComponent {
 
   ngOnInit() {
     this.users = [];
-    this.usersService.getUsers();
     this.usersService.usersChanged.subscribe((users: User[]) => {
       this.users = users;
     });

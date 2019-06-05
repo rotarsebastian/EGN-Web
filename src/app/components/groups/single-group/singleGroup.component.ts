@@ -51,7 +51,6 @@ export class SingleGroupComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.userService.getUsers();
     this.userService.usersChanged.subscribe((users: User[]) => {
       for (let user of users) {
         if (this.loggedUser.id === user.id) {
@@ -94,25 +93,14 @@ export class SingleGroupComponent implements OnInit, OnDestroy {
       }
     );
 
-    this.getGroups();
+    this.getGroup();
   }
 
-  getGroups() {
-    this.groupService.getGroups();
-    this.subscription = this.groupService.groupsChanged.subscribe(
-      (groups: Group[]) => {
-        for (let oneGroup of groups) {
-          if (oneGroup.id === this.groupID) {
-            this.oneGroup = oneGroup;
-            this.groupName = oneGroup.name;
-            this.groupNamePicture = this.getTitle("name");
-            this.groupNameTop = this.getTitle("title");
-            break;
-          }
-        }
-      },
-      err => {}
-    );
+  getGroup() {
+    this.oneGroup = this.groupService.getGroupByID(this.groupID);
+    this.groupName = this.oneGroup.name;
+    this.groupNamePicture = this.getTitle("name");
+    this.groupNameTop = this.getTitle("title");
   }
 
   ngOnDestroy() {

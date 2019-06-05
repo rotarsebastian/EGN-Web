@@ -2,7 +2,6 @@ import { Component, OnInit, Input, ViewChild } from "@angular/core";
 import { EventsService } from "src/app/services/events.service";
 import { Subscription } from "rxjs";
 import { Event } from "../../models/events.model";
-import { Router } from "@angular/router";
 import { MatDialog } from "@angular/material";
 import { ToastrService } from "ngx-toastr";
 import { QuestionDialogComponent } from "src/app/dialogs/question/question";
@@ -23,7 +22,6 @@ export class EventItemComponent implements OnInit {
   @ViewChild("closingButton") closingButton: any;
 
   constructor(
-    private router: Router,
     private dialog: MatDialog,
     private toastr: ToastrService,
     private eventService: EventsService,

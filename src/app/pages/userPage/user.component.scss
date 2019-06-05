@@ -8,20 +8,15 @@ mat-icon {
 }
 
 .spinner-container {
-  position: absolute;
   display: flex;
   align-items: center;
   justify-content: center;
   height: 80%;
-  top: 40%;
-  left: 50%;
-  transform: translate(-40%, -50%);
-  height: 50rem;
+  padding: 5rem 0;
 }
 
 .user-profile-container {
   background: #fff;
-  //height: 71vh;
   overflow-y: scroll;
   overflow-x: hidden;
   height: auto;

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, AfterViewInit } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { Subscription } from "rxjs";
 import { UsersService } from "src/app/services/users.service";
 import { User } from "src/app/models/users.model";
@@ -16,6 +16,7 @@ export class PeersComponent implements OnInit {
   peersUpdated: any;
   users: any;
   public routerLinkVariable = "/user";
+  isWaiting: boolean = false;
 
   constructor(private userService: UsersService, private router: Router) {
     let currentUser = localStorage.getItem("currentUser");
@@ -23,9 +24,10 @@ export class PeersComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.isWaiting = true;
     this.peers = [];
     this.peersUpdated = [];
-    this.userService.getUsers();
+
     this.subscription = this.userService.usersChanged.subscribe(
       (users: User[]) => {
         this.users = users;
@@ -49,6 +51,10 @@ export class PeersComponent implements OnInit {
         );
         this.peers = this.peersUpdated;
         this.loggedUser.peers = this.peers;
+        this.isWaiting = false;
+      },
+      err => {
+        this.isWaiting = false;
       }
     );
   }

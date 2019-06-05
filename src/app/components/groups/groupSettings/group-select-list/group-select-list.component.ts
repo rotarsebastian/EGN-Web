@@ -1,10 +1,9 @@
-import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import { NgModel } from "@angular/forms";
 import { ToastrService } from "ngx-toastr";
 import { UsersService } from "src/app/services/users.service";
 import { Subscription } from "rxjs";
 import { GroupsService } from "src/app/services/groups.service";
-import { Group } from "src/app/models/groups.model";
 
 @Component({
   selector: "app-group-select-list",
@@ -14,8 +13,8 @@ import { Group } from "src/app/models/groups.model";
 export class GroupSelectListComponent implements OnInit {
   @Input() groupListChoices: any;
   @Input() user: any;
+  @Input() groups: any;
   subscription: Subscription;
-  groups: Group[];
   selectedGroups: any;
 
   constructor(
@@ -24,9 +23,7 @@ export class GroupSelectListComponent implements OnInit {
     private groupService: GroupsService
   ) {}
 
-  ngOnInit() {
-    this.getGroups();
-  }
+  ngOnInit() {}
 
   equals(objOne, objTwo) {
     if (typeof objOne !== "undefined" && typeof objTwo !== "undefined") {
@@ -40,16 +37,6 @@ export class GroupSelectListComponent implements OnInit {
 
   deselectAll(select: NgModel) {
     select.update.emit([]);
-  }
-
-  getGroups() {
-    this.groupService.getGroups();
-    this.subscription = this.groupService.groupsChanged.subscribe(
-      (groups: Group[]) => {
-        this.groups = groups;
-      },
-      err => {}
-    );
   }
 
   addUserToGroup() {
@@ -71,7 +58,6 @@ export class GroupSelectListComponent implements OnInit {
         self.findIndex(t => t.id === group.id && t.name === group.name)
     );
 
-    //console.log(this.user[`groups`]);
     this.addUserToAllSelectedGroups(this.user["groups"], this.user);
 
     this.selectedGroups = [];
@@ -97,7 +83,6 @@ export class GroupSelectListComponent implements OnInit {
       }
     }
 
-    //console.log(this.user[`groups`]);
     this.removeUserFromAllSelectedGroups(this.user["groups"], this.user);
 
     this.selectedGroups = [];

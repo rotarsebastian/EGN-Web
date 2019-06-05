@@ -9,25 +9,13 @@ import * as firebase from "firebase";
 
 import randomName from "uuid/v1";
 
-import { AngularFireDatabase, AngularFireList } from "@angular/fire/database";
-
 @Injectable({
   providedIn: "root"
 })
 export class UsersService {
-  constructor(
-    private http: HttpClient,
-    private router: Router,
-    private db: AngularFireDatabase
-  ) {
-    // db.list<User>("users")
-    //   .valueChanges()
-    //   .subscribe(console.log);
-  }
+  constructor(private http: HttpClient, private router: Router) {}
   usersChanged = new Subject<User[]>();
   private users = [];
-
-  //myUsersForSearch: AngularFireList<User>;
 
   loggedInUser: User;
   pathFull = "https://egn-project.firebaseio.com/users.json";
@@ -37,16 +25,6 @@ export class UsersService {
       reportProgress: true
     });
     return this.http.request(req);
-  }
-
-  getUsersForSearch(start, end): AngularFireList<User> {
-    return this.db.list("users", ref =>
-      ref
-        .orderByChild("name")
-        .limitToFirst(10)
-        .startAt(start)
-        .endAt(end)
-    );
   }
 
   getUsers() {
@@ -95,8 +73,6 @@ export class UsersService {
   deleteUser(userID: number) {
     for (let user of this.users) {
       if (user.id === userID) {
-        // const userIndex = this.users.indexOf(user);
-        // this.users.splice(userIndex, 1);
         const copyId = user.id;
 
         for (var variableKey in user) {
@@ -169,7 +145,7 @@ export class UsersService {
     this.storeUsers().subscribe();
   }
 
-  getUser(userId: number) {
+  getUser(userId: any) {
     for (let user of this.users) {
       if (user.id == userId) {
         return user;

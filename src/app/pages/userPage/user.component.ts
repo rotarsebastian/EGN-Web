@@ -18,6 +18,7 @@ export class UserComponent implements OnInit {
   userId: number;
   user: User;
   subscription: Subscription;
+  isWaiting: boolean = false;
 
   constructor(
     private router: Router,
@@ -31,13 +32,29 @@ export class UserComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.isWaiting = true;
+    this.userService.getUsers();
     this.route.params.subscribe(params => {
       this.userId = params["id"];
       this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     });
 
-    this.loggedUser = this.userService.getCurrentUser();
-    this.user = this.userService.getUser(this.userId);
+    this.subscription = this.userService.usersChanged.subscribe(
+      (users: User[]) => {
+        for (let myUser of users) {
+          if (myUser.id === this.loggedUser.id) {
+            this.loggedUser = myUser;
+          }
+          if (myUser.id == this.userId) {
+            this.user = myUser;
+          }
+        }
+        this.isWaiting = false;
+      },
+      err => {
+        this.isWaiting = false;
+      }
+    );
   }
 
   goToEditProfile() {
@@ -56,15 +73,14 @@ export class UserComponent implements OnInit {
     id: number,
     name: string,
     position: string,
-    company: string,
-    imgPath: string
+    company: string
   ) {
     const newPeer: Peer = {
       id: id,
       name: name,
       position: position,
       company: company,
-      imgPath: imgPath
+      imgPath: this.getProfileImage()
     };
     let goodPeer: boolean = true;
 
@@ -81,17 +97,11 @@ export class UserComponent implements OnInit {
     }
   }
 
-  togglePeer(
-    id: number,
-    name: string,
-    position: string,
-    company: string,
-    imgPath: string
-  ) {
+  togglePeer(id: number, name: string, position: string, company: string) {
     if (this.isPeer()) {
       this.removeFromContactList(id, name);
     } else {
-      this.addToContactList(id, name, position, company, imgPath);
+      this.addToContactList(id, name, position, company);
     }
   }
 
@@ -108,9 +118,11 @@ export class UserComponent implements OnInit {
   }
 
   isPeer() {
-    for (let peer of this.loggedUser.peers) {
-      if (this.user.id === peer.id) {
-        return true;
+    if (this.loggedUser && this.user) {
+      for (let peer of this.loggedUser.peers) {
+        if (this.user.id === peer.id) {
+          return true;
+        }
       }
     }
     return false;
@@ -120,7 +132,7 @@ export class UserComponent implements OnInit {
     if (this.user) {
       return this.user.imgPath !== "unset"
         ? `url(${this.user.imgPath})`
-        : `url(./assets/images/standardProfile.svg)`;
+        : `url(/assets/images/standardProfile.svg)`;
     }
   }
 }
