@@ -73,14 +73,15 @@ export class UserComponent implements OnInit {
     id: number,
     name: string,
     position: string,
-    company: string
+    company: string,
+    imgPath: string
   ) {
     const newPeer: Peer = {
       id: id,
       name: name,
       position: position,
       company: company,
-      imgPath: this.getProfileImage()
+      imgPath: imgPath
     };
     let goodPeer: boolean = true;
 
@@ -97,11 +98,17 @@ export class UserComponent implements OnInit {
     }
   }
 
-  togglePeer(id: number, name: string, position: string, company: string) {
+  togglePeer(
+    id: number,
+    name: string,
+    position: string,
+    company: string,
+    imgPath: string
+  ) {
     if (this.isPeer()) {
       this.removeFromContactList(id, name);
     } else {
-      this.addToContactList(id, name, position, company);
+      this.addToContactList(id, name, position, company, imgPath);
     }
   }
 
