@@ -10,6 +10,8 @@ import { CreateGroupDialogComponent } from "src/app/dialogs/createGroup/createGr
 import { MatDialog } from "@angular/material";
 import { v4 as uuid } from "uuid";
 import { ToastrService } from "ngx-toastr";
+import { UsersService } from "src/app/services/users.service";
+import { User } from "src/app/models/users.model";
 
 @Component({
   selector: "app-single-group",
@@ -38,6 +40,7 @@ export class SingleGroupComponent implements OnInit, OnDestroy {
     private router: Router,
     private route: ActivatedRoute,
     private groupService: GroupsService,
+    private userService: UsersService,
     private storage: StorageService,
     private changeSubpageService: ChangeSubpageService,
     private dialog: MatDialog,
@@ -48,9 +51,17 @@ export class SingleGroupComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.userService.getUsers();
+    this.userService.usersChanged.subscribe((users: User[]) => {
+      for (let user of users) {
+        if (this.loggedUser.id === user.id) {
+          this.loggedUser = user;
+        }
+      }
+    });
     this.subpages = [
-      { icon: "/assets/images/feed-transparent.svg", name: "Activity" },
-      { icon: "/assets/images/members.svg", name: "Members" }
+      { icon: "./assets/images/feed-transparent.svg", name: "Activity" },
+      { icon: "./assets/images/members.svg", name: "Members" }
     ];
 
     // Init the subpage accordingly
@@ -206,6 +217,6 @@ export class SingleGroupComponent implements OnInit, OnDestroy {
   }
 
   getBackgroundImage() {
-    return `url(/assets/images/banner-group.png)`;
+    return `url(./assets/images/banner-group.png)`;
   }
 }

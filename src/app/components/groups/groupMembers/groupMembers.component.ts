@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, AfterViewInit } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 
 import { GroupsService } from "src/app/services/groups.service";
 import { Subscription } from "rxjs";
@@ -10,7 +10,7 @@ import { Router } from "@angular/router";
   templateUrl: "./groupMembers.component.html",
   styleUrls: ["./groupMembers.component.scss"]
 })
-export class GroupMembersComponent implements OnInit, AfterViewInit {
+export class GroupMembersComponent implements OnInit {
   @Input("groupID") groupID: number;
   @Input("group") group: any;
 
@@ -40,12 +40,10 @@ export class GroupMembersComponent implements OnInit, AfterViewInit {
     );
   }
 
-  ngAfterViewInit() {}
-
   getImage(index: number) {
     return this.members[index].imgPath !== "unset"
       ? `url(${this.members[index].imgPath})`
-      : `url(/assets/images/standardProfile.svg)`;
+      : `url(./assets/images/standardProfile.svg)`;
   }
 
   navigateTo(id: number) {

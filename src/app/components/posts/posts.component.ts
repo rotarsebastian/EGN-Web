@@ -193,14 +193,14 @@ export class PostsComponent implements OnInit, AfterViewInit {
     if (!!this.authorImgLink) {
       return this.authorImgLink !== "unset"
         ? `url(${this.authorImgLink})`
-        : `url(/assets/images/standardProfile.svg)`;
+        : `url(./assets/images/standardProfile.svg)`;
     }
   }
 
   getYourImage() {
     return this.loggedUser.imgPath !== "unset"
       ? `url(${this.loggedUser.imgPath})`
-      : `url(/assets/images/standardProfile.svg)`;
+      : `url(./assets/images/standardProfile.svg)`;
   }
 
   seeMoreComments(event) {

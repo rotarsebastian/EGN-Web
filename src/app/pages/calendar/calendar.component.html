@@ -57,11 +57,11 @@
     </app-event-item>
   </div>
 
-  <div class="empty_div" *ngIf="events?.length === 0 && !isWaiting">
-    <p>There are no events available<br />Be the first to create one 😊</p>
-  </div>
-
   <div class="spinner-container" *ngIf="isWaiting">
     <mat-spinner class="loading-spinner"></mat-spinner>
   </div>
+
+  <!-- <div class="empty_div" *ngIf="events?.length === 0 && !isWaiting">
+    <p>There are no events available<br />Be the first to create one 😊</p>
+  </div> -->
 </div>

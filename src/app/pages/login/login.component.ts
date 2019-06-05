@@ -57,7 +57,7 @@ export class LoginComponent implements OnInit {
         var actionCodeSettings = {
           // URL you want to redirect back to. The domain (www.example.com) for this
           // URL must be whitelisted in the Firebase Console.
-          url: "http://localhost:4200/home",
+          url: "http://quickcocktails.dk/kea/egn-app9/",
           // This must be true.
           handleCodeInApp: true
         };
@@ -109,7 +109,5 @@ export class LoginComponent implements OnInit {
         localStorage.setItem("user-logged-in", "true");
       }
     }
-
-    //console.log(firebase.auth().currentUser);
   }
 }

@@ -1,0 +1,36 @@
+<div class="search_header">
+  <div class="search_input_container">
+    <img src="./assets/images/search-dark.svg" />
+    <input
+      class="search_input"
+      placeholder="Your user name here"
+      (keyup)="search($event)"
+      autofocus
+    />
+  </div>
+</div>
+
+<div *ngIf="!isWaiting" class="container">
+  <div
+    *ngFor="let user of members; index as memberIndex"
+    class="member-container"
+  >
+    <div class="single-member" (click)="navigateTo(user.id)">
+      <div
+        class="member-user-picture"
+        [ngStyle]="{ 'background-image': getImage(memberIndex) }"
+      ></div>
+
+      <div class="member-info">
+        <p class="member-name">{{ user.name }}</p>
+        <p>{{ user.position }} - {{ user.company }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="isWaiting">
+  <div class="spinner-container" *ngIf="isWaiting">
+    <mat-spinner class="loading-spinner"></mat-spinner>
+  </div>
+</div>

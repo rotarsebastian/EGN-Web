@@ -3,7 +3,7 @@ import { LoginComponent } from "./pages/login/login.component";
 import { HomePageComponent } from "./pages/homePage/homePage.component";
 import { GroupsComponentPage } from "./pages/groups/groupsPage.component";
 import { CalendarComponent } from "./pages/calendar/calendar.component";
-import { QueriesComponent } from "./pages/queries/queries.component";
+import { MembersComponent } from "./pages/members/members.component";
 import { AuthGuardService } from "./services/auth-guard.service";
 import { UserComponent } from "./pages/userPage/user.component";
 import { EditProfileComponent } from "./pages/editProfile/editProfile.component";
@@ -33,8 +33,8 @@ const appRoutes: Routes = [
     canActivate: [AuthGuardService]
   },
   {
-    path: "queries",
-    component: QueriesComponent,
+    path: "members",
+    component: MembersComponent,
     canActivate: [AuthGuardService]
   },
   {

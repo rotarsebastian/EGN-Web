@@ -18,7 +18,6 @@ export class UserComponent implements OnInit {
   userId: number;
   user: User;
   subscription: Subscription;
-  isWaiting: boolean;
 
   constructor(
     private router: Router,
@@ -32,31 +31,13 @@ export class UserComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.isWaiting = true;
-
-    this.userService.getUsers();
     this.route.params.subscribe(params => {
       this.userId = params["id"];
       this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     });
 
-    this.subscription = this.userService.usersChanged.subscribe(
-      (users: User[]) => {
-        this.isWaiting = false;
-
-        for (let myUser of users) {
-          if (myUser.id === this.loggedUser.id) {
-            this.loggedUser = myUser;
-          }
-          if (myUser.id == this.userId) {
-            this.user = myUser;
-          }
-        }
-      },
-      err => {
-        this.isWaiting = false;
-      }
-    );
+    this.loggedUser = this.userService.getCurrentUser();
+    this.user = this.userService.getUser(this.userId);
   }
 
   goToEditProfile() {
@@ -75,14 +56,15 @@ export class UserComponent implements OnInit {
     id: number,
     name: string,
     position: string,
-    company: string
+    company: string,
+    imgPath: string
   ) {
     const newPeer: Peer = {
       id: id,
       name: name,
       position: position,
       company: company,
-      imgPath: this.getProfileImage()
+      imgPath: imgPath
     };
     let goodPeer: boolean = true;
 
@@ -99,11 +81,17 @@ export class UserComponent implements OnInit {
     }
   }
 
-  togglePeer(id: number, name: string, position: string, company: string) {
+  togglePeer(
+    id: number,
+    name: string,
+    position: string,
+    company: string,
+    imgPath: string
+  ) {
     if (this.isPeer()) {
       this.removeFromContactList(id, name);
     } else {
-      this.addToContactList(id, name, position, company);
+      this.addToContactList(id, name, position, company, imgPath);
     }
   }
 
@@ -132,7 +120,7 @@ export class UserComponent implements OnInit {
     if (this.user) {
       return this.user.imgPath !== "unset"
         ? `url(${this.user.imgPath})`
-        : `url(/assets/images/standardProfile.svg)`;
+        : `url(./assets/images/standardProfile.svg)`;
     }
   }
 }

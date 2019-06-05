@@ -7,6 +7,7 @@ import { ToastrService } from "ngx-toastr";
 import { UsersService } from "src/app/services/users.service";
 import { AuthService } from "src/app/services/auth.service";
 import { QuestionDialogComponent } from "src/app/dialogs/question/question";
+import { User } from "src/app/models/users.model";
 
 @Component({
   selector: "app-edit-profile",
@@ -33,7 +34,9 @@ export class EditProfileComponent implements OnInit, AfterViewInit {
     this.loggedUser = JSON.parse(currentUser);
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.loggedUser = this.userService.getCurrentUser();
+  }
 
   ngAfterViewInit() {
     this.userService.getUsers();
@@ -47,7 +50,7 @@ export class EditProfileComponent implements OnInit, AfterViewInit {
   getProfileImage() {
     return this.loggedUser.imgPath !== "unset"
       ? `url(${this.loggedUser.imgPath})`
-      : `url(/assets/images/standardProfile.svg)`;
+      : `url(./assets/images/standardProfile.svg)`;
   }
 
   profileChangeEvent(e) {

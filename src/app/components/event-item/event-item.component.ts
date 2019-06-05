@@ -7,6 +7,7 @@ import { MatDialog } from "@angular/material";
 import { ToastrService } from "ngx-toastr";
 import { QuestionDialogComponent } from "src/app/dialogs/question/question";
 import { UsersService } from "src/app/services/users.service";
+import { User } from "src/app/models/users.model";
 
 @Component({
   selector: "app-event-item",
@@ -34,14 +35,22 @@ export class EventItemComponent implements OnInit {
 
   ngOnInit() {
     this.getMyStatusText();
+    this.userService.getUsers();
+    this.userService.usersChanged.subscribe((users: User[]) => {
+      for (let user of users) {
+        if (this.loggedUser.id === user.id) {
+          this.loggedUser = user;
+        }
+      }
+    });
   }
 
   getBackgroundImage() {
-    return `url(/assets/images/close.svg)`;
+    return `url(./assets/images/close.svg)`;
   }
 
   getCoverImg() {
-    return `url(/assets/images/events-banner.png)`;
+    return `url(./assets/images/events-banner.png)`;
   }
 
   deleteEvent() {

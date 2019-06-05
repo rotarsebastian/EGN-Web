@@ -49,8 +49,8 @@
         (click)="viewSubpage(2)"
         [src]="
           isSettingsHovered || selectedSubpage === 2
-            ? '/assets/images/settings-white.svg'
-            : '/assets/images/settings-pink.svg'
+            ? './assets/images/settings-white.svg'
+            : './assets/images/settings-pink.svg'
         "
         (mouseover)="isSettingsHovered = true"
         (mouseout)="isSettingsHovered = false"

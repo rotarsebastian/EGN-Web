@@ -13,7 +13,7 @@ import { EventsComponent } from "./components/events-meetings/events.component";
 import { HeaderComponent } from "./components/header/header.component";
 import { PeersComponent } from "./components/peers/peers.component";
 import { CalendarComponent } from "./pages/calendar/calendar.component";
-import { QueriesComponent } from "./pages/queries/queries.component";
+import { MembersComponent } from "./pages/members/members.component";
 import { PostsComponent } from "./components/posts/posts.component";
 import { CommentsComponent } from "./components/comments/comments.component";
 import { UserComponent } from "./pages/userPage/user.component";
@@ -58,7 +58,7 @@ export const components = [
   HomePageComponent,
   GroupsComponentPage,
   CalendarComponent,
-  QueriesComponent,
+  MembersComponent,
   UserComponent,
   EditProfileComponent,
 

@@ -234,11 +234,11 @@
         #postContent="ngModel"
       ></textarea>
 
-      <p class="create-post-text" *ngIf="!noGroups">
+      <p class="create-post-text" *ngIf="!noGroups && groupNames.length !== 0">
         Please select the groups you want to share your post in
       </p>
 
-      <div class="group-list" *ngIf="!noGroups">
+      <div class="group-list" *ngIf="!noGroups && groupNames.length !== 0">
         <div *ngFor="let groupName of groupNames" class="group-item">
           <mat-checkbox
             class="groups-checkboxes"
@@ -249,9 +249,6 @@
             {{ groupName.name }}
           </mat-checkbox>
         </div>
-      </div>
-      <div class="spinner-container" *ngIf="isWaiting && !noGroups">
-        <mat-spinner class="loading-spinner"></mat-spinner>
       </div>
     </div>
   </div>

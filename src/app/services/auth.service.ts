@@ -107,7 +107,7 @@ export class AuthService implements OnInit {
         console.log("succes");
       })
       .catch(function(error) {
-        console.log(error);
+        console.log(error, "da");
       });
   }
 
@@ -150,6 +150,7 @@ export class AuthService implements OnInit {
           position: "New member",
           company: "Unknown company",
           email: email,
+          password: password,
           wasDeleted: false,
           role: "user"
         };

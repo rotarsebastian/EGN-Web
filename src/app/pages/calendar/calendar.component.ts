@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { Subscription } from "rxjs";
 import { EventsService } from "src/app/services/events.service";
 import { Event } from "src/app/models/events.model";
@@ -6,21 +6,24 @@ import { v4 as uuid } from "uuid";
 import { ToastrService } from "ngx-toastr";
 import { MatDialog } from "@angular/material";
 import { CreateEventDialogComponent } from "src/app/dialogs/createEvent/createEvent";
+import { UsersService } from "src/app/services/users.service";
+import { User } from "src/app/models/users.model";
 
 @Component({
   selector: "app-calendar",
   templateUrl: "./calendar.component.html",
   styleUrls: ["./calendar.component.scss"]
 })
-export class CalendarComponent {
-  subscription: Subscription;
+export class CalendarComponent implements OnInit {
   events: Event[];
   isWaiting: boolean;
   createEventResult: any;
   loggedUser: any;
+  subscription: Subscription;
 
   constructor(
     private eventService: EventsService,
+    private userService: UsersService,
     private dialog: MatDialog,
     private toastr: ToastrService
   ) {
@@ -29,17 +32,19 @@ export class CalendarComponent {
   }
 
   ngOnInit() {
-    this.isWaiting = false;
     this.events = [];
+    this.isWaiting = false;
+    this.loggedUser = this.userService.getCurrentUser();
     this.getEvents();
   }
 
   getEvents() {
     this.isWaiting = true;
+    this.eventService.getEvents();
     this.subscription = this.eventService.eventsChanged.subscribe(
       (events: Event[]) => {
-        this.isWaiting = false;
         this.events = events;
+        this.isWaiting = false;
       },
       err => {
         this.isWaiting = false;

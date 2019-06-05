@@ -109,7 +109,7 @@ import { ViewFullPictureDialogComponent } from "src/app/dialogs/viewFullPicture/
   ]
 })
 export class CommentsComponent implements OnInit, AfterViewInit {
-  @Input() comment: Comment;
+  @Input() comment: any;
   @Input() indexComment: number;
   @Input() index: number;
   @Input() currentPost: Post;
@@ -144,6 +144,9 @@ export class CommentsComponent implements OnInit, AfterViewInit {
     this.userService.getUsers();
     this.userService.usersChanged.subscribe((users: User[]) => {
       for (let user of users) {
+        if (this.loggedUser.id === user.id) {
+          this.loggedUser = user;
+        }
         if (this.comment["authorID"] === user.id) {
           if (user.wasDeleted) {
             this.authorImgLink = "unset";
@@ -165,7 +168,7 @@ export class CommentsComponent implements OnInit, AfterViewInit {
     if (!!this.authorImgLink) {
       return this.authorImgLink !== "unset"
         ? `url(${this.authorImgLink})`
-        : `url(/assets/images/standardProfile.svg)`;
+        : `url(./assets/images/standardProfile.svg)`;
     }
   }
 

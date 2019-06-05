@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild } from "@angular/core";
+import { Component, Input, ViewChild, OnInit } from "@angular/core";
 
 import { User } from "src/app/models/users.model";
 import { Group } from "src/app/models/groups.model";
@@ -7,13 +7,14 @@ import { QuestionDialogComponent } from "src/app/dialogs/question/question";
 import { ToastrService } from "ngx-toastr";
 import { MatDialog } from "@angular/material";
 import { GroupsService } from "src/app/services/groups.service";
+import { UsersService } from "src/app/services/users.service";
 
 @Component({
   selector: "app-groups",
   templateUrl: "./groups.component.html",
   styleUrls: ["./groups.component.scss"]
 })
-export class GroupsComponent {
+export class GroupsComponent implements OnInit {
   @Input() group: Group;
   @Input() index: number;
   @ViewChild("entireGroup") entireGroup: any;
@@ -25,17 +26,28 @@ export class GroupsComponent {
     private router: Router,
     private dialog: MatDialog,
     private toastr: ToastrService,
-    private groupService: GroupsService
+    private groupService: GroupsService,
+    private userService: UsersService
   ) {
     let currentUser = localStorage.getItem("currentUser");
     this.loggedUser = JSON.parse(currentUser);
   }
 
+  ngOnInit() {
+    this.userService.getUsers();
+    this.userService.usersChanged.subscribe((users: User[]) => {
+      for (let user of users) {
+        if (this.loggedUser.id === user.id) {
+          this.loggedUser = user;
+        }
+      }
+    });
+  }
+
   viewGroup(event: any) {
     if (this.loggedUser.role === "user") {
       this.router.navigate(["groups", this.group.id]);
-    }
-    if (event.target !== this.closingButton.nativeElement) {
+    } else if (event.target !== this.closingButton.nativeElement) {
       this.router.navigate(["groups", this.group.id]);
     }
   }
@@ -57,7 +69,7 @@ export class GroupsComponent {
   }
 
   getBackgroundImage() {
-    return `url(/assets/images/close.svg)`;
+    return `url(./assets/images/close.svg)`;
   }
 
   deleteGroup() {

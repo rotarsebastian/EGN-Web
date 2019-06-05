@@ -61,10 +61,6 @@ export class GroupSettingsComponent implements OnInit {
     return this.loggedUser.role === "admin";
   }
 
-  // getSelectedGroups() {
-  //   return this.groupListChoices.filter(opt => opt.checked).map(opt => opt.id);
-  // }
-
   getUsers() {
     this.isWaiting = true;
 
@@ -72,14 +68,17 @@ export class GroupSettingsComponent implements OnInit {
 
     this.userService.usersChanged.subscribe(
       (users: User[]) => {
-        {
-          this.allUsers = [];
-          this.copyUsers = [];
-          this.isWaiting = false;
-
-          this.allUsers = users;
-          this.copyUsers = users;
+        for (let user of users) {
+          if (this.loggedUser.id === user.id) {
+            this.loggedUser = user;
+          }
         }
+        this.allUsers = [];
+        this.copyUsers = [];
+        this.isWaiting = false;
+
+        this.allUsers = users;
+        this.copyUsers = users;
       },
       err => {
         this.isWaiting = false;
@@ -97,10 +96,5 @@ export class GroupSettingsComponent implements OnInit {
     );
 
     this.allUsers = result;
-
-    // this.userService
-    //   .getUsersForSearch(this.startAt.value, this.endAt.value)
-    //   .valueChanges()
-    //   .subscribe(users => (this.allUsers = users));
   }
 }

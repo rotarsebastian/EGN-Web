@@ -59,16 +59,23 @@ export class UsersService {
         map(users => {
           if (users) {
             for (let user of users) {
-              if (!user["peers"]) {
-                user["peers"] = [];
-              }
-              if (!user["groups"]) {
-                user["groups"] = [];
-              }
-              if (!user["events"]) {
-                user["events"] = [];
+              if (user !== null) {
+                if (!user["peers"]) {
+                  user["peers"] = [];
+                }
+                if (!user["groups"]) {
+                  user["groups"] = [];
+                }
+                if (!user["events"]) {
+                  user["events"] = [];
+                }
+              } else {
+                users = users.filter(function(el) {
+                  return el != null;
+                });
               }
             }
+
             return users;
           }
         })
@@ -116,13 +123,6 @@ export class UsersService {
     this.usersChanged.next(this.users.slice());
   }
 
-  // createPeer(peer: Peer, user: User) {
-  //   const index = this.users.indexOf(user);
-  //   this.users[index].peers.push(peer);
-  //   this.usersChanged.next(this.users.slice());
-  //   console.log(this.usersChanged);
-  // }
-
   editUser(userId: number, data: any) {
     for (let user of this.users) {
       if (user.id === userId) {
@@ -135,7 +135,6 @@ export class UsersService {
             );
             var imageFile = data[key];
             profileImagesRef.put(imageFile).then(function(snapshot) {
-              console.log("Uploaded a file!");
               profileImagesRef
                 .getDownloadURL()
                 .then(link => {
@@ -162,7 +161,6 @@ export class UsersService {
 
     this.usersChanged.next(this.users.slice());
     this.storeUsers().subscribe();
-    //this.router.navigate(["/user", userId]);
   }
 
   addNewUser(newUser: any) {

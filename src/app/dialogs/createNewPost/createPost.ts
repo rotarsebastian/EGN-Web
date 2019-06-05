@@ -1,9 +1,9 @@
 import { Component, OnInit, Inject } from "@angular/core";
 import { Subscription } from "rxjs";
-import { GroupsService } from "src/app/services/groups.service";
 import { Group } from "src/app/models/groups.model";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
-import { database } from "firebase";
+import { UsersService } from "src/app/services/users.service";
+import { User } from "src/app/models/users.model";
 
 @Component({
   selector: "app-create-post",
@@ -15,15 +15,19 @@ export class CreatePostDialogComponent implements OnInit {
   groupNames: any;
   subscription: Subscription;
   groups: Group[];
-  isWaiting: boolean;
   noGroups: boolean;
   groupNameData: string;
+  loggedUser: any;
+  currentUser: any;
 
   constructor(
     public dialogRef: MatDialogRef<CreatePostDialogComponent>,
-    private groupService: GroupsService,
+    private userService: UsersService,
     @Inject(MAT_DIALOG_DATA) public data: any
-  ) {}
+  ) {
+    let currentUser = localStorage.getItem("currentUser");
+    this.loggedUser = JSON.parse(currentUser);
+  }
 
   onNoClick(): void {
     this.dialogRef.close();
@@ -31,37 +35,36 @@ export class CreatePostDialogComponent implements OnInit {
 
   ngOnInit() {
     this.noGroups = false;
-    //this.groupNameData = "";
     if (this.data) {
       this.noGroups = this.data.noGroups;
       this.groupNameData = this.data.groupName;
     }
     this.groupNames = [];
-    this.isWaiting = true;
-    this.groupService.getGroups();
-    this.subscription = this.groupService.groupsChanged.subscribe(
-      (groups: Group[]) => {
-        this.isWaiting = false;
-        this.groups = groups;
-        for (let i = 0; i < groups.length; i++) {
-          const groupElement = {
-            id: groups[i].id,
-            name: `${groups[i].name} Group`,
-            value: `${i}`,
-            checked: false
-          };
 
-          this.groupNames.push(groupElement);
-        }
-        this.groupNames = this.groupNames.filter(
-          (group, index, self) =>
-            index === self.findIndex(t => t.id === group.id)
-        );
-      },
-      err => {
-        this.isWaiting = false;
-      }
+    this.loggedUser = this.userService.getCurrentUser();
+    this.currentUser = this.userService.getCurrentUser();
+    for (let group of this.currentUser.groups) {
+      const groupElement = {
+        id: group.id,
+        name: `${group.name} Group`,
+        value: `${this.loggedUser.groups.indexOf(group)}`,
+        checked: false
+      };
+
+      this.groupNames.push(groupElement);
+    }
+    this.groupNames = this.groupNames.filter(
+      (group, index, self) => index === self.findIndex(t => t.id === group.id)
     );
+
+    // this.userService.getUsers();
+    // this.userService.usersChanged.subscribe(
+    //   (users: User[]) => {
+
+    //   },
+    //   err => {}
+    // );
+
     this.postMessage = "";
   }
 
@@ -78,6 +81,9 @@ export class CreatePostDialogComponent implements OnInit {
 
   isAnyChecked() {
     if (this.noGroups) {
+      return true;
+    }
+    if (this.loggedUser.groups.length === 0) {
       return true;
     }
     const checkedGroups = this.groupNames

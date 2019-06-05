@@ -6,6 +6,8 @@ import { MatDialog } from "@angular/material";
 import { CreatePostDialogComponent } from "src/app/dialogs/createNewPost/createPost";
 import { ToastrService } from "ngx-toastr";
 import { v4 as uuid } from "uuid";
+import { UsersService } from "src/app/services/users.service";
+import { User } from "src/app/models/users.model";
 
 @Component({
   selector: "app-group-activity",
@@ -24,7 +26,8 @@ export class GroupActivityComponent implements OnInit, OnDestroy {
   constructor(
     private postsService: PostsService,
     private dialog: MatDialog,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private userService: UsersService
   ) {
     let currentUser = localStorage.getItem("currentUser");
     this.loggedUser = JSON.parse(currentUser);
@@ -32,7 +35,14 @@ export class GroupActivityComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.isWaiting = false;
-
+    this.userService.getUsers();
+    this.userService.usersChanged.subscribe((users: User[]) => {
+      for (let user of users) {
+        if (this.loggedUser.id === user.id) {
+          this.loggedUser = user;
+        }
+      }
+    });
     this.getPosts();
   }
 
@@ -67,7 +77,7 @@ export class GroupActivityComponent implements OnInit, OnDestroy {
   getProfileImage() {
     return this.loggedUser.imgPath !== "unset"
       ? `url(${this.loggedUser.imgPath})`
-      : `url(/assets/images/standardProfile.svg)`;
+      : `url(./assets/images/standardProfile.svg)`;
   }
 
   openDialog(): void {

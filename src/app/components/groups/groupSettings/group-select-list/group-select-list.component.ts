@@ -12,11 +12,11 @@ import { Group } from "src/app/models/groups.model";
   styleUrls: ["./group-select-list.component.scss"]
 })
 export class GroupSelectListComponent implements OnInit {
-  @Input() groupListChoices: any[];
-  @Input() user: any[];
+  @Input() groupListChoices: any;
+  @Input() user: any;
   subscription: Subscription;
   groups: Group[];
-  selectedGroups: any[];
+  selectedGroups: any;
 
   constructor(
     private toastr: ToastrService,

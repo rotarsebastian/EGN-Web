@@ -1,10 +1,9 @@
 <div class="search_header" [ngClass]="{ is_admin: isAdmin() }">
   <div class="search_input_container">
-    <img src="/assets/images/search-dark.svg" />
+    <img src="./assets/images/search-dark.svg" />
     <input
       class="search_input"
-      placeholder="Group name"
-      [(ngModel)]="searchTerm"
+      placeholder="Your user name here"
       (keyup)="search($event)"
       autofocus
     />
@@ -28,12 +27,3 @@
 <div class="spinner-container" *ngIf="isWaiting">
   <mat-spinner class="loading-spinner"></mat-spinner>
 </div>
-
-<!-- <mat-menu #userDropdownMenu="matMenu">
-  <div class="group-list-dropdown" *ngFor="let group of groups">
-    <button mat-menu-item [routerLink]="[routerLinkVariable, loggedUser.id]">
-      <mat-icon>group</mat-icon>
-      <span>{{ group.name }}</span>
-    </button>
-  </div>
-</mat-menu> -->

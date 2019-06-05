@@ -13,6 +13,7 @@ export class CreateEventDialogComponent implements OnInit {
   endTime: string;
   address: string;
   eventTags: any;
+  today: any;
 
   constructor(
     public dialogRef: MatDialogRef<CreateEventDialogComponent>,
@@ -24,6 +25,7 @@ export class CreateEventDialogComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.today = new Date();
     this.eventName = "";
     this.startTime = "";
     this.endTime = "";

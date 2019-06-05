@@ -6,6 +6,8 @@ import { CreateGroupDialogComponent } from "src/app/dialogs/createGroup/createGr
 import { ToastrService } from "ngx-toastr";
 import { MatDialog } from "@angular/material";
 import { v4 as uuid } from "uuid";
+import { UsersService } from "src/app/services/users.service";
+import { User } from "src/app/models/users.model";
 
 @Component({
   selector: "app-groups-page",
@@ -21,16 +23,15 @@ export class GroupsComponentPage implements OnInit {
 
   constructor(
     private groupService: GroupsService,
+    private userService: UsersService,
     private dialog: MatDialog,
     private toastr: ToastrService
-  ) {
-    let currentUser = localStorage.getItem("currentUser");
-    this.loggedUser = JSON.parse(currentUser);
-  }
+  ) {}
 
   ngOnInit() {
-    this.isWaiting = false;
     this.groups = [];
+    this.isWaiting = false;
+    this.loggedUser = this.userService.getCurrentUser();
     this.getGroups();
   }
 
@@ -39,14 +40,13 @@ export class GroupsComponentPage implements OnInit {
     this.groupService.getGroups();
     this.subscription = this.groupService.groupsChanged.subscribe(
       (groups: Group[]) => {
-        this.isWaiting = false;
         this.groups = groups;
+        this.isWaiting = false;
       },
       err => {
         this.isWaiting = false;
       }
     );
-    this.isWaiting = false;
   }
 
   openDialog(): void {

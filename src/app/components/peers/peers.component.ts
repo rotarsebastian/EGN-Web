@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ViewChild } from "@angular/core";
+import { Component, OnInit, OnChanges, AfterViewInit } from "@angular/core";
 import { Subscription } from "rxjs";
 import { UsersService } from "src/app/services/users.service";
 import { User } from "src/app/models/users.model";
@@ -9,11 +9,12 @@ import { Router } from "@angular/router";
   templateUrl: "./peers.component.html",
   styleUrls: ["./peers.component.scss"]
 })
-export class PeersComponent implements OnInit, AfterViewInit {
+export class PeersComponent implements OnInit {
   peers: any;
   subscription: Subscription;
-  //@ViewChild("peerUserImg") peerUserImg: any;
   loggedUser: User;
+  peersUpdated: any;
+  users: any;
   public routerLinkVariable = "/user";
 
   constructor(private userService: UsersService, private router: Router) {
@@ -23,14 +24,31 @@ export class PeersComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.peers = [];
+    this.peersUpdated = [];
     this.userService.getUsers();
     this.subscription = this.userService.usersChanged.subscribe(
       (users: User[]) => {
+        this.users = users;
         for (let myUser of users) {
           if (this.loggedUser.id === myUser.id) {
             this.peers = myUser.peers;
+            this.loggedUser = myUser;
           }
         }
+        for (let user of users) {
+          for (let peer of this.peers) {
+            if (user.id === peer.id) {
+              this.peersUpdated.push(user);
+            }
+          }
+        }
+
+        this.peersUpdated = this.peersUpdated.filter(
+          (group, index, self) =>
+            index === self.findIndex(t => t.id === group.id)
+        );
+        this.peers = this.peersUpdated;
+        this.loggedUser.peers = this.peers;
       }
     );
   }
@@ -39,11 +57,9 @@ export class PeersComponent implements OnInit, AfterViewInit {
     this.router.navigate(["/user", id]);
   }
 
-  ngAfterViewInit() {
-    // if (this.peers.imgPath != "unset") {
-    //   this.peerUserImg.nativeElement.style.backgroundImage = `url("${
-    //     this.peerUserImg.imgPath
-    //   }")`;
-    // }
+  getImage(peerIMG: any) {
+    return peerIMG === "unset"
+      ? `url(./assets/images/standardProfile.svg)`
+      : `url(${peerIMG})`;
   }
 }

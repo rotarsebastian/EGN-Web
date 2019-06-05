@@ -56,7 +56,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   getProfileImage() {
     return this.loggedUser.imgPath !== "unset"
       ? `url(${this.loggedUser.imgPath})`
-      : `url(/assets/images/standardProfile.svg)`;
+      : `url(./assets/images/standardProfile.svg)`;
   }
 
   ngAfterViewInit() {

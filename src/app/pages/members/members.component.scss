@@ -1,0 +1,137 @@
+.member-container {
+  display: flex;
+  box-shadow: 0 0px 10px 0 rgba(0, 0, 0, 0.16);
+  margin-bottom: 0.5rem;
+  padding: 0.75rem;
+  .single-member {
+    display: flex;
+    flex-flow: row nowrap;
+    margin-bottom: 0.8rem;
+    height: 100%;
+    cursor: pointer;
+    outline: none;
+
+    .member-user-picture {
+      margin-right: 0.45rem;
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 50%;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    :nth-last-child(1) {
+      margin-bottom: 0;
+    }
+    .img-member {
+      height: 100%;
+      border-radius: 50%;
+      width: 20%;
+      padding-right: 0.45rem;
+    }
+
+    .member-info {
+      font-size: 0.8rem;
+      font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      color: #8d8b8b;
+      padding: 0.35rem 0;
+
+      p {
+        margin: 0;
+      }
+
+      .member-name {
+        font-weight: bold;
+        color: #194470;
+        opacity: 0.8;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
+      .member-position {
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+.empty_div {
+  text-align: center;
+  color: #828587;
+  font-size: large;
+  font-style: italic;
+}
+
+::ng-deep .mat-progress-spinner circle,
+.mat-spinner circle {
+  stroke: #d50965;
+}
+
+mat-icon {
+  font-family: "Material Icons" !important;
+  color: #59b1dc;
+  font-size: 25px;
+}
+
+.spinner-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 20rem;
+}
+
+.container {
+  padding: 1rem 0;
+  height: 73vh;
+  overflow-y: scroll;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  overflow-x: hidden;
+}
+
+.search_header {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.9rem 0;
+  padding-bottom: 0;
+
+  .search_input_container {
+    display: flex;
+    border: 1px solid #9faec0;
+    transition: 0.2s ease-out;
+    height: 2.5rem;
+    width: 95%;
+    border-radius: 5px;
+    padding: 0 10px;
+    color: #575757;
+    font-size: 14px;
+    background: white;
+
+    img {
+      padding-right: 0.5rem;
+    }
+
+    input {
+      width: 100%;
+      border-radius: 5px;
+      background-color: #ffffff;
+      height: 100%;
+      border: none !important;
+      padding: 0;
+      font-size: 0.8rem;
+      outline: none;
+    }
+  }
+
+  @media screen and (max-width: 450px) {
+    display: block;
+    width: 95%;
+  }
+}

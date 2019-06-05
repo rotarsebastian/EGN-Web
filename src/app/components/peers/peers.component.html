@@ -6,7 +6,9 @@
         <div class="single-peer" (click)="navigateTo(peer.id)">
           <div
             class="peer-user-picture"
-            [ngStyle]="{ 'background-image': peer.imgPath }"
+            [ngStyle]="{
+              'background-image': getImage(peer.imgPath)
+            }"
             #peerUserImg
           ></div>
 
