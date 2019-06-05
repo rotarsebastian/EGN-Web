@@ -19,6 +19,7 @@ export class CreatePostDialogComponent implements OnInit {
   loggedUser: any;
   currentUser: any;
   isWaiting: boolean = false;
+  noGroups: boolean;
 
   constructor(
     public dialogRef: MatDialogRef<CreatePostDialogComponent>,
@@ -34,8 +35,10 @@ export class CreatePostDialogComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.noGroups = false;
     this.isWaiting = true;
     if (this.data) {
+      this.noGroups = this.data.noGroups;
       this.groupNameData = this.data.groupName;
     }
     this.groupNames = [];
@@ -84,6 +87,9 @@ export class CreatePostDialogComponent implements OnInit {
   }
 
   isAnyChecked() {
+    if (this.noGroups) {
+      return true;
+    }
     if (this.loggedUser.groups.length === 0) {
       return true;
     }
