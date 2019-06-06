@@ -139,7 +139,7 @@ export class UserComponent implements OnInit {
     if (this.user) {
       return this.user.imgPath !== "unset"
         ? `url(${this.user.imgPath})`
-        : `url(/assets/images/standardProfile.svg)`;
+        : `url(./assets/images/standardProfile.svg)`;
     }
   }
 }
