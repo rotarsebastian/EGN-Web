@@ -195,11 +195,7 @@
           <p>Welcome to EGN Members' Universe</p>
         </div>
         <div class="form-area">
-          <form
-            (ngSubmit)="onLogin(loginForm)"
-            #loginForm="ngForm"
-            autocomplete="off"
-          >
+          <form (ngSubmit)="onLogin(loginForm)" #loginForm="ngForm">
             <label for="email">Email address</label>
             <input
               type="email"
