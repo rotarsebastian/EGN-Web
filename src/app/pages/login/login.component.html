@@ -265,7 +265,7 @@
                 class="login-button"
                 type="submit"
                 [disabled]="
-                  !loginForm.valid || !password.touched || !email.touched
+                  !loginForm.valid && (!email.touched || !password.touched)
                 "
               >
                 LOGIN
